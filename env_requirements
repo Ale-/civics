@@ -1,0 +1,8 @@
+appdirs==1.4.3
+Django==1.10.6
+django-appconf==1.0.2
+django-maintenancemode==0.11.2
+IPy==0.83
+packaging==16.8
+pyparsing==2.2.0
+six==1.10.0
