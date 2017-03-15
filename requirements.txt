@@ -1,8 +1,12 @@
 appdirs==1.4.3
 Django==1.10.6
 django-appconf==1.0.2
+django-geojson==2.10.0
+django-leaflet==0.21.0
 django-maintenancemode==0.11.2
 IPy==0.83
+jsonfield==2.0.1
 packaging==16.8
+pycountry==17.1.8
 pyparsing==2.2.0
 six==1.10.0

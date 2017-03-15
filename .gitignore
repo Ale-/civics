@@ -4,7 +4,7 @@ env
 # Private settings
 civics/private_settings.py
 
-# Database
+# Database and migrations
 db.sqlite3
 
 # Byte-compiled / optimized / DLL files

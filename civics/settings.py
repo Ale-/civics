@@ -27,7 +27,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'maintenancemode'
+    'maintenancemode',
+    'models',
+    'leaflet',
+    'djgeojson',
 ]
 
 MIDDLEWARE_CLASSES = [
