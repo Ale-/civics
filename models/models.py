@@ -3,6 +3,7 @@ from django.utils.translation import ugettext_lazy as _
 from . import geography_utils as geo
 from djgeojson.fields import PointField
 from leaflet.forms.widgets import LeafletWidget
+from . import categories
 
 #
 #  City
@@ -30,9 +31,9 @@ class Initiative(models.Model):
   twitter      = models.URLField(_('Twitter'), blank=True, null=True, help_text=_('Describe los objetivos y actividad de la iniciativa.'))
   facebook     = models.URLField(_('Descripción de la iniciativa'), blank=True, null=True, help_text=_('Describe los objetivos y actividad de la iniciativa.'))
   email        = models.EmailField(_('Correo electrónico'), blank=True, null=True, help_text=_('Especifica un correo de contacto para la iniciativa.'))
-  # topic       = models.TextField()
-  # space       = models.TextField()
-  # agent       = models.TextField()
+  topic        = models.TextField(_('Tema'), blank=False, max_length=2, choices = categories.TOPICS, null=True, help_text=_('El tema de la iniciativa'))
+  space        = models.TextField(_('Tipo de espacio'), blank=False, max_length=2, choices = categories.SPACES, null=True, help_text=_('El tipo de espacio asociado a la iniciativa'))
+  agent        = models.TextField(_('tipo de agente'), blank=False, max_length=2, choices = categories.AGENTS, null=True, help_text=_('El tipo de agente involucrado en la iniciativa'))
   city         = models.ForeignKey(City, blank=False, null=True)
   neighborhood = models.CharField(_('Barrio'), max_length = 200, blank=False, null=True, help_text=_('¿En qué barrio de la ciudad se sitúa la iniciativa?'))
   latlon       = PointField(_("Ubicación"), blank=False, null=True, help_text=_("Añade la ubicación de la iniciativa."))
