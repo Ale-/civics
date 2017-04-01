@@ -6,7 +6,7 @@ class CityTest(TestCase):
 
     """ Create a city """
     def create_city(self):
-        return models.City.objects.create(name="Eutropia", country="VA", latlon ="POINT (0.0 0.0)" )
+        return models.City.objects.create(name="Eutropia", country="VA", position ="POINT (0.0 0.0)" )
 
     """ Test city creation """
     def test_city_creation(self):
@@ -31,7 +31,7 @@ class InitiativeTest(TestCase):
             agent        = "IM",
             city         = city,
             neighborhood = "Test neighborhood",
-            latlon       = city.latlon,
+            position     = city.latlon,
         )
 
     """ Test city creation """

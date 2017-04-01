@@ -17,6 +17,7 @@ MAINTENANCE_IGNORE_URLS = (
 )
 LOGIN_URL = '/login'
 
+
 #
 # Application definition
 #

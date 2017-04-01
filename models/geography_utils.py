@@ -1,8 +1,11 @@
 import pycountry
 from django.utils.translation import ugettext_lazy as _
 
+# TODO: tests
+
 #
-# Returns a tuple (name of country, two-digit keycode of country) from a pycountry country
+# Returns a tuple (country name, ISO 3166-1 alpha-2 country code)
+# from a pycountry Country model
 #
 def country_as_tuple(country):
     return (country.alpha_2, country.name)

@@ -5,9 +5,9 @@ from . import models
 class CityForm(ModelForm):
   class Meta:
     model = models.City
-    widgets = {
-        'latlon' : LeafletWidget(),
-    }
+    #widgets = {
+    #    'position' : LeafletWidget(),
+    #}
     fields = '__all__'
 
 class InitiativeForm(ModelForm):
