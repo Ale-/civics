@@ -1,9 +1,7 @@
 from django.core.management.base import BaseCommand, CommandError
-import csv
-import json
-import os.path
+import csv, json, os.path
 from models.models import City
-from django.contrib.gis.geos import GEOSGeometry
+
 
 # TODO: tests!!!
 
@@ -33,6 +31,7 @@ class Command(BaseCommand):
             city_objects = map(
                 lambda i: City(
                     name     = i['Name'],
+                    city     = i['City'],
                     country  = i['Code'],
                     position = json.loads('{ "type": "Point", "coordinates": [' + i['Longitude'] + ',' + i['Latitude'] +'] }')
                 ),

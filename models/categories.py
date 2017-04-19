@@ -17,7 +17,7 @@ TOPICS = (
     ('MS', _('Movilidad sostenible')),
     ('PG', _('Política y gobernanza')),
     ('UP', _('Urbanismo / Patrimonio')),
-    ('OT', _('Otro')),
+    ('PC', _('Periodismo comunitario')),
 )
 
 SPACES = (
@@ -29,11 +29,10 @@ SPACES = (
     ('EP', _('Escuelas populares')),
     ('HU', _('Huerto urbano/rural')),
     ('IU', _('Intervenciones urbanas')),
-    ('MC', _('Medios comunitarios de comunicación')),
+    ('MC', _('Medios de comunicación comunitaria')),
     ('MS', _('Mercado social / Comercios')),
     ('SE', _('Solares / Espacios recuperados')),
-    ('EM', _('Espacios colaborativos/maker')),
-    ('OT', _('Otro')),
+    ('EM', _('Labs / Colaborativos / Maker')),
 )
 
 ACTIVITIES = (
@@ -50,10 +49,9 @@ ACTIVITIES = (
 
 AGENTS = (
     ('IM', _('Iniciativas municipales / Gobierno')),
-    ('IC', _('Iniciativa ciudadana')),
+    ('UO', _('Universidades / ONG / Fundaciones')),
     ('OI', _('Organismos internacionales')),
     ('ES', _('Empresa social / Startup')),
-    ('UO', _('Universidades / ONG')),
+    ('IC', _('Iniciativa ciudadana')),
     ('JA', _('Juntas / Asociaciones de vecinos')),
-    ('CC', _('Conquistas ciudadanas del pasado')),
 )
