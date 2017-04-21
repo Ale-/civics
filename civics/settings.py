@@ -21,7 +21,8 @@ LOGIN_URL = '/login'
 #
 # Application definition
 #
-INSTALLED_APPS = [
+
+CONTRIB_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -29,10 +30,15 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'maintenancemode',
-    'models',
     'leaflet',
     'djgeojson',
 ]
+
+PROJECT_APPS = [
+    'apps.models',
+]
+
+INSTALLED_APPS = CONTRIB_APPS + PROJECT_APPS
 
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
