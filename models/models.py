@@ -31,10 +31,10 @@ class Initiative(models.Model):
                                   help_text=_('Describe los objetivos y actividad de la iniciativa.'))
   website      = models.URLField(_('Website'), blank=True, null=True,
                                   help_text=_('Especifica opcionalmente una web para conocer mejor la iniciativa.'))
-  twitter      = models.CharField(_('Twitter'), blank=True, null=True,
-                                  help_text=_('Si tienes una cuenta de Twitter, pon aquí el nombre del usuario sin la @ inicial.'))
-  facebook     = models.URLField(_('Descripción de la iniciativa'), blank=True, null=True,
-                                 help_text=_('Describe los objetivos y actividad de la iniciativa.'))
+  twitter      = models.CharField(_('Twitter'), blank=True, null=True, max_length = 128,
+                                  help_text=_('Si tienes una cuenta de Twitter, pon aquí el nombre de usuario.'))
+  facebook     = models.URLField(_('Facebook'), blank=True, null=True,
+                                 help_text=_('Si tienes un perfil de Facebook pon aquí su enlace.'))
   email        = models.EmailField(_('Correo electrónico'), blank=True, null=True,
                                    help_text=_('Especifica un correo de contacto para la iniciativa.'))
   topic        = models.CharField(_('Tema'), blank=False, null=False, default='DC', max_length=2, choices = categories.TOPICS,
@@ -43,7 +43,8 @@ class Initiative(models.Model):
                                   help_text=_('El tipo de espacio asociado a la iniciativa'))
   agent        = models.CharField(_('tipo de agente'), blank=False, null=False, default='IM', max_length=2, choices = categories.AGENTS,
                                   help_text=_('El tipo de agente involucrado en la iniciativa'))
-  city         = models.ForeignKey(City, blank=False, null=True)
+  city         = models.ForeignKey(City, verbose_name=_('Ciudad'), blank=False, null=True, on_delete=models.SET_NULL,
+                                   help_text=_('Ciudad donde se encuentra la iniciativa. Si no la encuentras en la lista puedes añadir una nueva.'))
   address      = models.CharField(_('Dirección'), max_length = 200, blank=False, null=True,
                                   help_text=_('Dirección de la iniciativa'))
   district     = models.CharField(_('Distrito'), max_length = 200, blank=False, null=True,

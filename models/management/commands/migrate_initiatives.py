@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand, CommandError
-import csv, json,nos.path
+import csv, json, os.path
 from models.models import Initiative, City
 
 # TODO: tests!!!
@@ -30,17 +30,19 @@ class Command(BaseCommand):
             initiatives_objects = map(
                 lambda i: Initiative(
                     name        = i['Name'],
-                    country     = i['Code'],
                     topic       = i['Topic'],
                     space       = i['Space'],
                     agent       = i['Agent'],
                     description = i['Description'],
                     website     = i['Website'],
-                    city        = City.objects.filter(name=i['City']).first()
-                    address     = i['Adress']
+                    email       = i['Email'],
+                    twitter     = i['Twitter'],
+                    facebook    = i['Facebook'],
+                    city        = City.objects.filter(name=i['City']).first(),
+                    address     = i['Address'],
                     district    = i['District'],
                     position    = json.loads('{ "type": "Point", "coordinates": [' + i['Longitude'] + ',' + i['Latitude'] +'] }')
                 ),
                 initiatives
             )
-            Initiative.objects.bulk_create(initiative_objects)
+            Initiative.objects.bulk_create(initiatives_objects)
