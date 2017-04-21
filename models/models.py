@@ -58,3 +58,34 @@ class Initiative(models.Model):
   class Meta:
     verbose_name = _('Iniciativa')
     verbose_name_plural = _('Iniciativas')
+
+#
+#  Event
+#
+class Event(models.Model):
+
+  initiative   = models.ForeignKey(Initiative, verbose_name=_("Iniciativa que organiza la actividad"), default=False, null=True,
+                                   help_text=_('¿Qué iniciativa organiza el evento?'))
+  title        = models.CharField(_('Título del evento'), max_length = 200, blank=False, null=True,
+                                  help_text=_('¿Cuál es el título del evento que quieres organiza?'))
+  date         = models.DateField(_('Fecha del evento'),
+                                  help_text=_('¿Qué día se celebra la actividad?'))
+  time         = models.TimeField(_('Hora del evento'),
+                                  help_text=_('¿A qué hora se celebra la actividad?'))
+  position     = PointField(_("Ubicación"), blank=False, null=True,
+                            help_text=_("Añade la ubicación de la actividad. Si lo dejas en blanco se usará la ubicación de la iniciativa asociada."))
+  topic        = models.CharField(_('Temática de la actividad'), blank=False, null=False, default='DC', max_length=2, choices = categories.TOPICS,
+                                   help_text=_('El tema de la actividad'))
+  agent        = models.CharField(_('tipo de agente'), blank=False, null=False, default='IM', max_length=2, choices = categories.AGENTS,
+                                  help_text=_('El tipo de agente involucrado en la actividad'))
+  category     = models.CharField(_('tipo de actividad'), blank=False, null=False, default='AU', max_length=2, choices = categories.ACTIVITIES,
+                                  help_text=_('El tipo de actividad que quieres organizar'))
+  description  = models.TextField(_('Descripción de la iniciativa'), blank=False, null=True,
+                                  help_text=_('Describe la actividad.'))
+
+  def __str__(self):
+    return self.title
+
+  class Meta:
+    verbose_name = _('Actividad')
+    verbose_name_plural = _('Actividades')
