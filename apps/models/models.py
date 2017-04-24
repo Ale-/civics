@@ -9,9 +9,12 @@ from . import categories
 #  City
 #
 class City(models.Model):
-  name     = models.CharField(_('Nombre de la ciudad'), max_length = 200, blank = False, null = True, help_text = _('Especifica el nombre de la ciudad.'))
-  country  = models.CharField(_('País'), max_length = 2, choices = geo.countries_as_tuple(), blank = False, null = True, help_text = _('¿A qué país pertenece la ciudad?'))
-  position = PointField(_("Ubicación"), blank=False, null=True, help_text=_("Añade la ubicación de la ciudad."))
+  name     = models.CharField(_('Nombre de la ciudad'), max_length = 200, blank = False, null = True,
+                              help_text = _('Especifica el nombre de la ciudad.'))
+  country  = models.CharField(_('País'), max_length = 2, choices = geo.countries_as_tuple(), blank = False, null = True,
+                              help_text = _('¿A qué país pertenece la ciudad?'))
+  position = PointField(_("Ubicación"), blank=False, null=True,
+                        help_text=_("Añade la ubicación de la ciudad."))
 
   def __str__(self):
     return self.name
@@ -25,23 +28,23 @@ class City(models.Model):
 #
 class Initiative(models.Model):
 
-  name         = models.CharField(_('Nombre de la iniciativa'), max_length = 200, blank=False, null=True,
+  name         = models.CharField(_('Nombre de la iniciativa'), max_length = 200, blank=False, null=True
                                   help_text=_('¿Cuál es el nombre de tu iniciativa?'))
-  description  = models.TextField(_('Descripción de la iniciativa'), blank=False, null=True,
+  description  = models.TextField(_('Descripción de la iniciativa'), blank=False, null=True
                                   help_text=_('Describe los objetivos y actividad de la iniciativa.'))
-  website      = models.URLField(_('Website'), blank=True, null=True,
+  website      = models.URLField(_('Website'), blank=True, null=True
                                   help_text=_('Especifica opcionalmente una web para conocer mejor la iniciativa.'))
-  twitter      = models.CharField(_('Twitter'), blank=True, null=True, max_length = 128,
+  twitter      = models.CharField(_('Twitter'), blank=True, null=True, max_length = 128
                                   help_text=_('Si tienes una cuenta de Twitter, pon aquí el nombre de usuario.'))
-  facebook     = models.URLField(_('Facebook'), blank=True, null=True,
+  facebook     = models.URLField(_('Facebook'), blank=True, null=True
                                  help_text=_('Si tienes un perfil de Facebook pon aquí su enlace.'))
-  email        = models.EmailField(_('Correo electrónico'), blank=True, null=True,
+  email        = models.EmailField(_('Correo electrónico'), blank=True, null=True
                                    help_text=_('Especifica un correo de contacto para la iniciativa.'))
-  topic        = models.CharField(_('Tema'), blank=False, null=False, default='DC', max_length=2, choices = categories.TOPICS,
+  topic        = models.CharField(_('Tema'), blank=False, null=False, default='DC', max_length=2, choices = categories.TOPICS
                                    help_text=_('El tema de la iniciativa'))
-  space        = models.CharField(_('Tipo de espacio'), blank=False, null=False, default='CC', max_length=2, choices = categories.SPACES,
+  space        = models.CharField(_('Tipo de espacio'), blank=False, null=False, default='CC', max_length=2, choices = categories.SPACES
                                   help_text=_('El tipo de espacio asociado a la iniciativa'))
-  agent        = models.CharField(_('tipo de agente'), blank=False, null=False, default='IM', max_length=2, choices = categories.AGENTS,
+  agent        = models.CharField(_('tipo de agente'), blank=False, null=False, default='IM', max_length=2, choices = categories.AGENTS
                                   help_text=_('El tipo de agente involucrado en la iniciativa'))
   city         = models.ForeignKey(City, verbose_name=_('Ciudad'), blank=False, null=True, on_delete=models.SET_NULL,
                                    help_text=_('Ciudad donde se encuentra la iniciativa. Si no la encuentras en la lista puedes añadir una nueva.'))
