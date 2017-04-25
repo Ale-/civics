@@ -1,0 +1,18 @@
+{# Site messages region #}
+
+{% if messages %}
+    <div class="region-messages">
+        <div class="region-inner">
+            <ul class="messages-list">
+                <p class="messages-list__remove">
+                  ❌
+                </p>
+                {% for message in messages %}
+                    <li{% if message.tags %} class="messages-list__msg {{ message.tags }}"{% endif %}>
+                        {{ message }}
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+{% endif %}

@@ -1,0 +1,18 @@
+{# Renders a template with a single column of fixed with #}
+{% extends 'base.html' %} {% block layout_classes %}single-fixed{% endblock %}
+
+{% block layout %}
+
+    {% include 'regions/header.html' %}
+
+    <div class="region-content">
+        <div class="container-fixed">
+            <main class="layout-main">
+                {% block main %}{% endblock %}
+            </main>
+        </div>
+    </div>
+
+    {% include 'regions/footer.html' %}
+
+{% endblock %}

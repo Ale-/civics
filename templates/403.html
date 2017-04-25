@@ -1,0 +1,14 @@
+{# Extend basic page #} {% extends 'layouts/single-fixed-column.html' %} {% load static i18n %}
+{% block body_classes %}err403{% endblock %}
+
+{# Content #}
+{% block main %}
+    <div class="msg-403">
+          <p class="msg-403__image">
+            ❌
+          </p>
+          <p class="msg-403__text">
+            <strong>404</strong> # {% trans 'No tienes permiso para acceder a esta página. ¿Has hecho login?' %}
+          <p>
+    </div>
+{% endblock %}

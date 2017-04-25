@@ -1,0 +1,14 @@
+{# Extend basic page #} {% extends 'layouts/single-fixed-column.html' %} {% load static i18n %}
+{% block body_classes %}err404{% endblock %}
+
+{# Content #}
+{% block main %}
+    <div class="msg-404">
+          <p class="msg-404__image">
+            ❌
+          </p>
+          <p class="msg-404__text">
+            <strong>404</strong> # {% trans 'La página que buscas no existe. ¿Las has escrito correctamente?' %}
+          <p>
+    </div>
+{% endblock %}
