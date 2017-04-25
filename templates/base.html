@@ -1,55 +1,48 @@
-{# Base template for the site #} {% load static utils %}
-
-<!doctype html>
+{# Base template for the site #} {% load static utils %} <!doctype html>
 
 <html>
-  <head>
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-      {# Title and description #}
-      <title>
-          {% if page__title %} {% block page__title %}{% endblock %} | {{ document_title }}
-          {% else %} {{ document_title }} {% endif %}
-      </title>
+        {# Title and description #}
+        <title>
+            {% if page__title %} {% block page__title %}{% endblock %} | {{ document_title }}
+            {% else %} {{ document_title }} {% endif %}
+        </title>
 
-      {% if page_description %}
-          <meta name="description" content="{{ page_description }}">
-      {% else %}
-          <meta name="description" content="{{ document_description }}">
-      {% endif %}
+        {% if page_description %}
+            <meta name="description" content="{{ page_description }}">
+        {% else %}
+            <meta name="description" content="{{ document_description }}">
+        {% endif %}
 
-      {# Robots and humans #}
-      <meta name="robots" content="robots.txt">
-      <link href="humans.txt" rel="author">
+        {# Robots and humans #}
+        <meta name="robots" content="robots.txt">
+        <link href="humans.txt" rel="author">
 
-      {# Favicons #}
-      <link href="{% img 'favicon.ico' %}" rel="icon" type="image/png">
+        {# Favicons #}
+        <link href="{% img 'favicon.ico' %}" rel="icon" type="image/png">
 
-      {# Styles #}
-      <link href="{% static 'grrr_tools/styles/css/style.css' %}" rel="stylesheet">
+        {# Styles #}
+        <link href="{% css 'style.css' %}" rel="stylesheet">
 
-      {# Block for the extension of base head, to include css/js libraries #}
-      {% block page_header %}{% endblock %}
-  </head>
+        {# Block for the extension of base head, to include css/js libraries #}
+        {% block page_header %}{% endblock %}
+    </head>
 
-  <body class="{% if user.is_authenticated %}logged-in{% endif %} {% block body_classes %}{% endblock %} {% block layout_classes %}{% endblock %}"
-        id="{% block body_id %}{% endblock %}">
+    <body class="{% if user.is_authenticated %}logged-in{% endif %} {% block body_classes %}{% endblock %} {% block layout_classes %}{% endblock %}">
 
-      {# Logged-in users adminbar #}
-      {% if user.is_authenticated %}
-          {% include 'regions/adminbar.html' %}
-      {% endif %}
+        {# Toolbar #}
+        {% include 'regions/toolbar.html' %}
 
-      {# Site messages #}
-      {% include 'regions/messages.html' %}
+        {# Site messages #}
+        {% include 'regions/messages.html' %}
 
-      {# Content layouts #}
-      {% block layout %}{% endblock %}
+        {# Content layouts #}
+        {% block layout %}{% endblock %}
 
-      {# Scripts #}
-      <script src="{% js 'jquery.min.js' %}"></script>
-      {% block page_scripts %}{% endblock %}
-  </body>
-
+        {# Scripts #}
+        {% block page_scripts %}{% endblock %}
+    </body>
 </html>
