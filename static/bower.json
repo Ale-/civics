@@ -1,0 +1,21 @@
+{
+  "name": "Civics",
+  "homepage": "https://github.com/Ale-/civics",
+  "authors": [
+    "Ale <a@wwb.cc>"
+  ],
+  "description": "Civics platform, a project by Vivero de Iniciativas Ciudadanas.",
+  "main": "",
+  "license": "GPL v.3.0",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.2.1"
+  }
+}

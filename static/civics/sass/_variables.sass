@@ -1,0 +1,70 @@
+//
+// LAYOUT
+//
+
+// Grid system
+$size_base     : 16px
+$m             : 1.5 * $size_base
+$grid_columns  : 12
+$columns_guter : $m
+$grid_classes  : false
+$width_fixed   : $m*50
+
+// Main regions
+$header  : '.region-header'
+$header_height : 76 + 2*$m
+$header_padding: $m
+$content : '.region-content'
+$content_margin_top: $m*2
+$content_margin_bottom: $m*2
+$footer  : '.region-footer'
+$footer_height : $m*7
+$footer_padding: $m 0
+$sticky_footer: false
+$toolbar_height: $m*2
+
+// Minimum padding in responsive one-col-layouts
+$min_padding: $m/2
+
+
+//
+//  COLORS
+//
+
+// Interface colors (from Bootstrap)
+$color_calm    : #5bc0de
+$color_success : #9d0
+$color_warning : #f0ad4e
+$color_danger  : #d9534f
+
+// Site palette
+$palette_primary : #ff0048
+
+// Element colors
+$color_background           : white
+$color_text                 : #333
+$color_headers              : $color_text
+$color_header_background    : $palette_primary
+$color_header_text          : $color_text
+$color_footer_background    : #222
+$color_footer_text          : white
+
+// Text selection
+$color_selection_background : $palette_primary
+$color_selection_text       : $color_text
+
+
+//
+//  FONTS
+//
+
+@import url("https://fonts.googleapis.com/css?family=Oxygen:300,400")
+$font_primary   : 'Oxygen', sans-serif
+$font_headers   : 'Oxygen', sans-serif
+$font_headers_weight: bold
+
+// Font sizes:
+$size_headers  : (2rem, 1.75rem, 1.5rem, 1.25rem, 1rem, 0.85rem)
+$size_big      : 1.25em
+$size_small    : 0.85em
+$size_smaller  : 0.55em

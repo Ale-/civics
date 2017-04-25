@@ -1,0 +1,20 @@
+@import breakpoints
+@import compass/css3/inline-block
+@import clearfix
+
+=fixed_height_grid($cols_sm, $cols_md, $cols_lg, $cols_xl, $grid_item_class, $height, $padding: $m)
+  +clearfix
+  .#{$grid_item_class}
+    +inline-block
+    // To remove ghost margins
+    float: left
+    height: $height
+    padding: $padding
+    +breakpoint('sm')
+      width: 100%/$cols_sm
+    +breakpoint('md')
+      width: 100%/$cols_md
+    +breakpoint('lg')
+      width: 100%/$cols_lg
+    +breakpoint('xl')
+      width: 100%/$cols_xl

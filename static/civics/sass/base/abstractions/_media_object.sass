@@ -1,0 +1,16 @@
+// Media object
+
+@import clearfix
+
+$media_margin: $m !default
+
+=media_object($margin)
+  +clearfix
+  .media__left
+    float: left
+    +inline-block
+  .media__right
+    float: right
+    +inline-block
+.media
+  +media_object($media_margin)

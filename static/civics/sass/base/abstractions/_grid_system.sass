@@ -1,0 +1,63 @@
+/**
+ *  GRID SYSTEM
+ *
+
+@import breakpoints
+@import clearfix
+@import compass/css3/box-sizing
+@import compass/css3/inline-block
+
+
+$grid_columns: 12 !default
+$column_gutter: 24px !default
+
+=container-fixed($margin: 0 auto)
+  +clearfix
+  width: $width_fixed
+  max-width: 100%
+  margin: $margin
+
+=container-fluid
+  +clearfix
+  width: 100%
+
+=column($cols, $resolution: 'all', $padding: $column_gutter, $container_cols: $grid_columns)
+  +box-sizing(border-box)
+  +inline-block
+  vertical-align: top
+  float: left
+  width: 100%
+  padding: 0 $min_padding
+  @if $resolution != 'all'
+    +breakpoint($resolution)
+      width: percentage($cols/$container_cols)
+      padding: 0 $padding/2
+  @else
+    width: percentage($cols/$container_cols)
+    padding: 0 $padding/2
+
+=firstcol
+  +breakpoint(md)
+    padding-left: 0
+
+=lastcol
+  +breakpoint(md)
+    padding-right: 0
+
+=gridsystem_framework($columns_number: $grid_columns, $gutter: $column_gutter)
+  .container-fixed
+    +container-fixed
+  .container-fluid
+    +container-fluid
+  @each $resolution in sm md lg xl
+    .hidden-#{$resolution}
+      +breakpoint($resolution)
+        display: hidden
+    @for $columns from 1 through $columns_number
+      .column-#{$resolution}-#{$columns}
+        +breakpoint(#{$resolution})
+          +column($columns, $gutter)
+  .first-col
+    +firstcol
+  .lastcol
+    +lastcol

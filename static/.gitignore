@@ -1,0 +1,5 @@
+# Ignore bower components
+bower_components
+
+# Ignore Sass cache
+civics/.sass-cache

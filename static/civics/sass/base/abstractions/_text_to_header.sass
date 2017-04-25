@@ -1,0 +1,10 @@
+//  Style text element as header
+
+$font_headers         : 'free-sans', 'sans-serif' !default
+$font_headers_weight  : bold !default
+$size_headers         : (2rem, 1.75rem, 1.5rem, 1.25rem, 1rem, 0.85rem) !default
+
+=h($n)
+  font-family : $font_headers
+  font-weight : $font_headers_weight
+  font-size   : nth($size_headers, $n)

@@ -1,0 +1,25 @@
+@import compass/css3/transition
+@import compass/css3/opacity
+@import compass/css3/transform
+@import compass/css3/animation
+
+// Link style mixins
+
+// =links
+//   a
+//     &:link, &:visited
+//
+//     &:hover
+//
+//     &:active
+
+
+// Animations
+
++keyframes(showup)
+  0%
+    +opacity(0)
+    +transform( translate(0, 100px) )
+  100%
+    +opacity(1)
+    +transform( translate(0, 0) )

@@ -1,0 +1,62 @@
+//
+// Base reset of DOM elements
+//
+
+@import compass/css3/box-sizing
+@import text_to_header
+
+*
+  +box-sizing(border-box)
+
+html
+  font-size: $size_base
+
+body
+  position: relative
+  background-color: $color_background !important
+  cursor: crosshair
+
+// RESET OF DEFAULT MARGINS AND PADDINGS
+p
+  margin: 0
+ul,li
+  padding: 0
+figure
+  margin: 0
+
+// SET DEFAULT TEXT SIZES
+@for $i from 1 through 6
+  h#{$i}
+    +h($i)
+
+small
+  font-size: #{$size_small}em
+
+// RESPONSIVE IMAGES BY DEFAULT
+img
+  max-width: 100%
+  height: auto
+
+// LISTS
+li
+  list-style: none
+
+// RESET LINK DEFAULT STYLES
+a
+  text-decoration: none !important
+
+// RESET FORM DEFAULT STYLES
+input,
+select,
+button
+  &::focus,
+  &::-moz-focus-outer,
+  &::-moz-focus-inner
+    border  : 0
+    outline : 0
+
+// SELECTION COLORS
+::-moz-selection,
+::selection
+  background: $color_selection_background
+  color     : $color_selection_text
