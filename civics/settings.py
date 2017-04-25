@@ -7,8 +7,15 @@ from django.utils.translation import ugettext_lazy as _
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 #
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+ENV_PATH = os.path.abspath( os.path.dirname(__file__) )
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(ENV_PATH, '..', 'static')
+PROJECT_STATIC_FOLDER = 'civics'
+STATICFILES_DIRS = [
+    ( PROJECT_STATIC_FOLDER, STATIC_ROOT + '/' + PROJECT_STATIC_FOLDER + '/' ),
+]
 MEDIA_URL = '/media/'
 MAINTENANCE_IGNORE_URLS = (
     r'^/admin/.*',
@@ -17,7 +24,7 @@ MAINTENANCE_IGNORE_URLS = (
 LOGIN_URL = '/login'
 
 # Name of project static assets folder
-PROJECT_STATIC_FOLDER = 'civics'
+
 
 # Name of site in the document title
 DOCUMENT_TITLE = 'Civics'
