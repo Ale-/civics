@@ -11,3 +11,7 @@ def css(file):
 @register.simple_tag
 def js(file):
     return  STATIC_DIR + PROJECT_STATIC_FOLDER + '/js/' + file
+
+@register.simple_tag
+def img(file):
+    return  STATIC_DIR + PROJECT_STATIC_FOLDER + '/img/' + file

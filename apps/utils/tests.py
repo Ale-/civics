@@ -11,3 +11,7 @@ class FiltersTestCase(TestCase):
     def JsTagFilterTest(self):
         uri = 'test.js'
         self.assertEqual( utils.css(context_url), settings.BASE_DIR + '/static/civics/js/' + uri )
+
+    def ImgTagFilterTest(self):
+        uri = 'test.jpg'
+        self.assertEqual( utils.css(context_url), settings.BASE_DIR + '/static/civics/img/' + uri )
