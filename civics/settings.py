@@ -5,7 +5,6 @@ Django settings for civics project
 import os
 from django.utils.translation import ugettext_lazy as _
 
-#
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 #
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -16,6 +15,13 @@ MAINTENANCE_IGNORE_URLS = (
     r'^/login$',
 )
 LOGIN_URL = '/login'
+
+# Name of project static assets folder
+PROJECT_STATIC_FOLDER = 'civics'
+
+# Name of site in the document title
+DOCUMENT_TITLE = 'Civics'
+DOCUMENT_DESCRIPTION = _('Aquí podrás encontrar iniciativas ciudadanas existentes en tu ciudad, etc.')
 
 
 #
@@ -36,6 +42,7 @@ CONTRIB_APPS = [
 
 PROJECT_APPS = [
     'apps.models',
+    'apps.utils',
 ]
 
 INSTALLED_APPS = CONTRIB_APPS + PROJECT_APPS
@@ -65,6 +72,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'apps.utils.context_processors.site_info_processor'
             ],
         },
     },
