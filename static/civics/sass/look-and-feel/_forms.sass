@@ -1,0 +1,47 @@
+@import style_button
+@import compass/css3/transition
+
+=generic_form
+  //Field container
+  [class^='form-field--']
+    padding: $m 0
+    border-bottom: 1px dashed #ddd
+
+  //Field labels
+  [class^='form-field__label']
+    +h(5)
+  .required [class^='form-field__label']:before
+    content: "*"
+    display: inline
+    font-size: 1em
+    color: #d00
+    margin-right: $m/4
+
+  //Field help texts
+  [class^='form-field__help']
+    margin: $m/4 $m $m/2
+    color: lighten($color_text, 20%)
+
+  //Widgets
+  input,
+  textarea,
+  select
+    background-color: #eee
+    border: 1px solid rgba(black, .05)
+    +transition(background-color, .1s ease-out)
+    &:focus
+      background-color: white
+      border-color: rgba(black, .25)
+
+  //Submits
+  input[type=submit]
+    +button_success(40px)
+
+.form--initiative
+  +generic_form
+
+.form--city
+  +generic_form
+
+.form--event
+  +generic_form
