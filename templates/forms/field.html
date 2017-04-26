@@ -1,0 +1,22 @@
+{# Template to render a formfield #}
+
+<div class="form-field--{{ form_class }} {% if field.field.required %}required{% endif %}">
+    <p class="form-field__label--{{ form_class }}">
+        {{ field.label_tag }}
+    </p>
+    <p class="form-field__help--{{ form_class }}">
+        {{ field.help_text }}
+    </p>
+    <p class="form-field__widget--{{ form_class }}">
+        {{ field }}
+    </p>
+    {% if field.errors %}
+    <ul class="form-field__errors--{{ form_class }}">
+        {% for error in field.errors %}
+          <li class="form-field__error--{{ form_class }}">
+              {{ error }}
+          </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+</div>

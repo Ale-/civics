@@ -1,0 +1,8 @@
+{# Template to render all fields in a form #}
+{# Not included in form.html to be reusable (in the context of a composed form, for instance) #}
+
+<div class="form-fields--{{ form_class }}">
+    {% for field in form %}
+        {% include 'forms/field.html' with field=field form_class=form_class %}
+    {% endfor %}
+</div>

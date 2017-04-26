@@ -1,0 +1,7 @@
+{# Template to render a modelform #} {% load i18n %}
+
+<form enctype="multipart/form-data" action="{{ action }}" method="post" class="form--{{ form_class }}">
+    {% csrf_token %}
+    {% include 'forms/fields.html' with form_class=form_class %}
+    <input class="form__submit" type="submit" value="{% trans 'Envía' %}" />
+</form>
