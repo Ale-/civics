@@ -2,6 +2,8 @@
 
 <form enctype="multipart/form-data" action="{{ action }}" method="post" class="form--{{ form_class }}">
     {% csrf_token %}
-    {% include 'forms/fields.html' with form_class=form_class %}
+    {% with 'forms/fields-'|add:form_class|add:'.html' as fields %}
+        {% include fields with form_class=form_class %}
+    {% endwith %}
     <input class="form__submit" type="submit" value="{% trans 'Envía' %}" />
 </form>

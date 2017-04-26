@@ -4,13 +4,13 @@
 
 <div class="form-field--{{ fieldname }} {% if field.field.required %}required{% endif %}">
     <p class="form-field__label--{{ fieldname }}">
-        {{ field.label_tag }}
-    </p>
-    <p class="form-field__help--{{ fieldname }}">
-        {{ field.help_text }}
+        {{ field.label }}
     </p>
     <p class="form-field__widget--{{ fieldname }}">
         {{ field }}
+    </p>
+    <p class="form-field__help--{{ fieldname }}">
+        {{ field.help_text }}
     </p>
     {% if field.errors %}
     <ul class="form-field__errors--{{ fieldname }}">

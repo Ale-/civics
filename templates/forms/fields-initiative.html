@@ -1,0 +1,46 @@
+{# Template to render all fields in a form #}
+{# Not included in form.html to be reusable (in the context of a composed form, for instance) #}
+{% load i18n %}
+
+<div class="form-fields--{{ form_class }}">
+    <div class="fieldset">
+        <h4 class="fieldset__label">
+          {% trans 'Datos básicos' %}
+        </h4>
+        <div class="fieldset__items--inline">
+            {% include 'forms/field.html' with field=form.name %}
+            {% include 'forms/field.html' with field=form.email %}
+        </div>
+    </div>
+    <div class="fieldset">
+        <h4 class="fieldset__label">
+            {% trans 'Categoriza tu iniciativa' %}
+        </h4>
+        <div class="fieldset__items--inline">
+            {% include 'forms/field.html' with field=form.topic %}
+            {% include 'forms/field.html' with field=form.space %}
+            {% include 'forms/field.html' with field=form.agent %}
+        </div>
+    </div>
+    <div class="fieldset">
+        <h4 class="fieldset__label">
+            {% trans 'Ubica tu iniciativa' %}
+        </h4>
+        <div class="fieldset__items--inline">
+            {% include 'forms/field.html' with field=form.city %}
+            {% include 'forms/field.html' with field=form.district %}
+            {% include 'forms/field.html' with field=form.address %}
+        </div>
+        {% include 'forms/field.html' with field=form.position %}
+    </div>
+    <div class="fieldset">
+        <h4 class="fieldset__label">
+            {% trans 'Enlaces' %}
+        </h4>
+        <div class="fieldset__items--inline">
+            {% include 'forms/field.html' with field=form.website %}
+            {% include 'forms/field.html' with field=form.twitter %}
+            {% include 'forms/field.html' with field=form.facebook %}
+        </div>
+    </div>
+</div>
