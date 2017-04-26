@@ -3,3 +3,6 @@ bower_components
 
 # Ignore Sass cache
 civics/.sass-cache
+
+# Ignore Css files
+civics/css
