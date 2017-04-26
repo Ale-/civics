@@ -7,6 +7,10 @@ from leaflet.forms.widgets import LeafletWidget
 from django.contrib.auth.models import User
 from django.utils import timezone
 
+
+COUNTRIES = geo.countries_as_tuple()
+
+
 #
 #  City
 #
@@ -16,7 +20,7 @@ class City(models.Model):
 
   name     = models.CharField(_('Nombre de la ciudad'), max_length = 200, blank = False, null = True,
                               help_text = _('Especifica el nombre de la ciudad.'))
-  country  = models.CharField(_('País'), max_length = 2, choices = geo.countries_as_tuple(), blank = False, null = True,
+  country  = models.CharField(_('País'), max_length = 2, choices = COUNTRIES, blank = False, null = True,
                               help_text = _('¿A qué país pertenece la ciudad?'))
   position = PointField(_("Ubicación"), blank=False, null=True,
                         help_text=_("Añade la ubicación de la ciudad."))
