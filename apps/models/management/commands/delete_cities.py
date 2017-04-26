@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand, CommandError
-from models.models import City
+from apps.models.models import City
 
 
 # TODO: tests!!!

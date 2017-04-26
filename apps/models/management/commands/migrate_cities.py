@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand, CommandError
 import csv, json, os.path
-from models.models import City
+from apps.models.models import City
 
 
 # TODO: tests!!!
@@ -30,10 +30,9 @@ class Command(BaseCommand):
             cities = csv.DictReader(cities_file)
             city_objects = map(
                 lambda i: City(
-                    name     = i['Name'],
-                    city     = i['City'],
-                    country  = i['Code'],
-                    position = json.loads('{ "type": "Point", "coordinates": [' + i['Longitude'] + ',' + i['Latitude'] +'] }')
+                    name     = i['city'],
+                    country  = i['countrycode'],
+                    position = json.loads('{ "type": "Point", "coordinates": [' + i['longitude'] + ',' + i['latitude'] +'] }')
                 ),
                 cities
             )

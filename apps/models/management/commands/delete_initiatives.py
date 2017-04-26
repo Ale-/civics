@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand, CommandError
-from models.models import Initiative
+from apps.models.models import Initiative
 
 # TODO: tests!!!
 

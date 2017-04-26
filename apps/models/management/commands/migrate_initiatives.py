@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand, CommandError
 import csv, json, os.path
-from models.models import Initiative, City
+from apps.models.models import Initiative, City
 
 # TODO: tests!!!
 
