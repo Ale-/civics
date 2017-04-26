@@ -1,0 +1,7 @@
+{# Base template to render regions #}
+
+<{{ html_container }} class="region-{{ region_name }}">
+    <div class="container-{{ layout }}">
+        {% block region_content %}{% endblock %}
+    </div>
+</{{ html_container }}>

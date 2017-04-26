@@ -34,10 +34,10 @@
     <body class="{% if user.is_authenticated %}logged-in{% endif %} {% block body_classes %}{% endblock %} {% block layout_classes %}{% endblock %}">
 
         {# Toolbar #}
-        {% include 'regions/toolbar.html' %}
+        {% include 'regions/toolbar.html' with region_name="toolbar" html_container="div" layout="fluid" %}
 
         {# Site messages #}
-        {% include 'regions/messages.html' %}
+        {% include 'regions/messages.html' with region_name="messages" html_container="div" layout="fixed" %}
 
         {# Content layouts #}
         {% block layout %}{% endblock %}

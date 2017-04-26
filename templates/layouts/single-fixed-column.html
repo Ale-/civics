@@ -3,7 +3,7 @@
 
 {% block layout %}
 
-    {% include 'regions/header.html' %}
+    {% include 'regions/header.html' with region_name='header' html_container='header' layout='fluid' %}
 
     <div class="region-content">
         <div class="container-fixed">
@@ -13,6 +13,6 @@
         </div>
     </div>
 
-    {% include 'regions/footer.html' %}
+    {% include 'regions/footer.html' with region_name='footer' html_container='footer' layout='fluid' %}
 
 {% endblock %}
