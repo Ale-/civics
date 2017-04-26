@@ -1,0 +1,32 @@
+{# Template for site's maintenance page #} {% load static utils i18n %} <!doctype html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        {# Title and description #}
+        <title> {{ document_title }} | {% trans 'En mantenimiento' %}</title>
+        <meta name="description" content="{{ document_description }}">
+
+        {# Robots and humans #}
+        <meta name="robots" content="robots.txt">
+        <link href="humans.txt" rel="author">
+
+        {# Favicons #}
+        <link href="{% img 'favicon.ico' %}" rel="icon" type="image/png">
+
+        {# Styles #}
+        <link href="{% css 'maintenance.css' %}" rel="stylesheet">
+    </head>
+
+    <body class="{% if user.is_authenticated %}logged-in{% endif %} maintenance">
+        <div class="region-content">
+            <div class="container-fixed">
+                <main class="layout-main">
+                    {% trans 'En mantenimiento' %}
+                </main>
+            </div>
+        </div>
+    </body>
+</html>
