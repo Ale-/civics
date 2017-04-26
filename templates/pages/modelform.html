@@ -1,6 +1,22 @@
-{# Modelform generic page #} {% extends 'layouts/single-fixed-column.html' %}
+{# Modelform generic page #} {% extends 'layouts/single-fixed-column.html' %} {% load utils %}
 {% block body_classes %}modelform{% endblock %}
 
+{# Form dependencies #}
+{% block page_header %}
+    {% if 'leaflet' in dependencies  %}
+        {% load static leaflet_tags %}
+        {% leaflet_css plugins="forms, geocoder" %}
+    {% endif %}
+{% endblock %}
+
 {% block main %}
+    {% include 'pages/title.html' with title=title %}
     {% include 'forms/form.html' with form_class=form__html_class %}
+{% endblock %}
+
+{% block page_scripts %}
+    {% if 'leaflet' in dependencies  %}
+        {% load static leaflet_tags %}
+        {% leaflet_js plugins="forms, geocoder" %}
+    {% endif %}
 {% endblock %}
