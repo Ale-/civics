@@ -5,17 +5,19 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib import messages
 
 
-generic_template = 'pages/form_models.html'
+generic_template = 'pages/modelform.html'
 
 class GenericCreate(LoginRequiredMixin, CreateView):
   title = ''
   dependencies = []
+  form_modifier = ''
 
   def get_context_data(self, **kwargs):
     context = super(GenericCreate, self).get_context_data(**kwargs)
-    context['title']         = self.title
-    context['dependencies']  = self.dependencies
-    context['template_name'] = self.template_name
+    context['title']            = self.title
+    context['dependencies']     = self.dependencies
+    context['template_name']    = self.template_name
+    context['form__html_class'] = self.form__html_class
     return context
 
   def form_valid(self, form):
@@ -26,12 +28,14 @@ class GenericCreate(LoginRequiredMixin, CreateView):
 class GenericUpdate(LoginRequiredMixin, UpdateView):
   title = ''
   dependencies = []
+  form_modifier = ''
 
   def get_context_data(self, **kwargs):
     context = super(GenericUpdate, self).get_context_data(**kwargs)
-    context['title']        = self.title
-    context['dependencies'] = self.dependencies
-    context['template_name'] = self.template_name
+    context['title']             = self.title
+    context['dependencies']      = self.dependencies
+    context['template_name']     = self.template_name
+    context['form__html_class'] = self.form__html_class
     return context
 
   def form_valid(self, form):
@@ -48,6 +52,7 @@ class GenericUpdate(LoginRequiredMixin, UpdateView):
 class GenericDelete(LoginRequiredMixin, DeleteView):
   title = ''
   template_name = generic_template
+  form_modifier = ''
 
   def get_context_data(self, **kwargs):
     context = super(GenericDelete, self).get_context_data(**kwargs)

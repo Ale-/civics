@@ -2,5 +2,5 @@
 {% block body_classes %}modelform{% endblock %}
 
 {% block main %}
-    {{ form }}
+    {% include 'forms/form.html' with form_class=form__html_class %}
 {% endblock %}
