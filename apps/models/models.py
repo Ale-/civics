@@ -46,6 +46,8 @@ class Initiative(models.Model):
   slug          = models.SlugField(editable=False, blank=True)
   creation_date = models.DateField(editable=False, default=timezone.now)
   user          = models.ForeignKey(User, verbose_name=_('Gestor'), null=True, on_delete=models.SET_NULL)
+  video         = models.CharField(_('Video'), max_length=200, blank=False, null=True,
+                                   help_text=_('Inserta la url de un video de Youtube o Vimeo'))
   description   = models.TextField(_('Descripción de la iniciativa'), blank=False, null=True,
                                    help_text=_('Describe los objetivos y actividad de la iniciativa.'))
   website       = models.URLField(_('Website'), blank=True, null=True,
