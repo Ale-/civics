@@ -1,0 +1,8 @@
+{% load i18n %}
+
+<div class="field__widget--limited-textarea">
+    {{ parent_widget }}
+    <p class="textarea-counter">
+       {% trans 'Has escrito' %}: <span class="textarea-count"> 0</span> {% trans 'caracteres. Tienes un límite de ' %} {{limit}}.
+    </p>
+</div>

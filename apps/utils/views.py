@@ -3,7 +3,10 @@ from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib import messages
-
+from apps.models import forms
+from django.views.generic.edit import FormView
+from django.http import HttpResponse
+from django.utils.html import escape
 
 generic_template = 'pages/modelform.html'
 
@@ -69,3 +72,13 @@ class GenericDelete(LoginRequiredMixin, DeleteView):
     if not self.object.edit_permissions(self.request.user):
       raise PermissionDenied
     return self.initial
+
+
+class PopupFormView(FormView):
+
+    def form_valid(self, form):
+        instance = form.save()
+        return HttpResponse('<script type="text/javascript">opener.dismissAddRelatedObjectPopup(window, "%s", "%s");</script>' % (\
+                            escape(instance.id),
+                            escape(instance.name)
+        ))

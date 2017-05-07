@@ -1,0 +1,10 @@
+{% load static utils %}
+
+<div class="select-with-popup">
+  <p class="select-wrapper">
+      {{ parent_widget }}
+  </p>
+  <a class="related-widget-wrapper-link add-related" id="add_id_{{ field }}" href="{% url view_name %}">
+      {{ link_text }}
+  </a>
+</div>
