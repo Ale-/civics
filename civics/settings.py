@@ -17,6 +17,7 @@ STATICFILES_DIRS = [
     ( PROJECT_STATIC_FOLDER, STATIC_ROOT + '/' + PROJECT_STATIC_FOLDER + '/' ),
 ]
 MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(ENV_PATH, '..', 'media')
 MAINTENANCE_IGNORE_URLS = (
     r'^/admin/.*',
     r'^/login$',
@@ -121,6 +122,17 @@ LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'locale'),
 )
 DECIMAL_SEPARATOR = '.'
+
+#
+# Leaflet
+#
+
+LEAFLET_CONFIG = {
+    'DEFAULT_CENTER': (-15, -26),
+    'DEFAULT_ZOOM'  : 2,
+    'MIN_ZOOM'      : 2,
+    'MAX_ZOOM'      : 18,
+}
 
 #
 # Other settings
