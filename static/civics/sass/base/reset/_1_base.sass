@@ -2,19 +2,18 @@
 // Base reset of DOM elements
 //
 
-@import compass/css3/box-sizing
 @import compass/css3/text-shadow
 @import text_to_header
 
 *
-  +box-sizing(border-box)
+  box-sizing: border-box
 
 html
   font-size: $size_base
 
 body
   position: relative
-  background-color: $color_background !important
+  background-color: $color_background
   cursor: crosshair
 
 main
@@ -42,6 +41,9 @@ img
   max-width: 100%
   height: auto
 
+iframe
+  max-width: 100%
+
 // LISTS
 li
   list-style: none
@@ -53,7 +55,9 @@ a
 // RESET FORM DEFAULT STYLES
 input,
 select,
-button
+button,
+textarea
+  max-width: 100%
   &::focus,
   &::-moz-focus-outer,
   &::-moz-focus-inner,
@@ -61,9 +65,11 @@ button
     outline : 0
 
 select
-  &:-moz-focusring
-    color: transparent
-    +text-shadow(0 0 0 black)
+  // &:-moz-focusring
+  //   color: transparent
+  //   +text-shadow(0 0 0 black)
+  &:hover
+    cursor: pointer
 
 // SELECTION COLORS
 ::-moz-selection,

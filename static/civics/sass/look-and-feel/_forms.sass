@@ -1,74 +1,107 @@
-@import style_button
-@import breakpoints
-@import compass/css3/transition
-@import compass/css3/flexbox
-@import compass/css3/appearance
 @import compass/css3/animation
+@import compass/css3/inline-block
+@import compass/css3/transform
+@import compass/css3/border-radius
+@import compass/css3/filter
 
-=generic_form
+[class^='modelform--']
+  .page-title
+    text-align: center
 
-  //Fieldsets
-  .fieldset
-    padding: $m 0
-  .fieldset__label
-    margin-top: 0
-    text-transform: uppercase
-    border-bottom: 1px solid #222
-  .fieldset__items--inline
-    margin-bottom: $m
-    +display-flex
-    +flex-direction(column)
-    +breakpoint('sm')
-      +flex-direction(row)
-    > div
-      padding: 0 $m
-      +flex(1 0)
-    > div:not(:last-child)
-      border-right: 1px solid #ddd
-
-  //Field labels
-  [class^='form-field__label']
-    +h(5)
-    text-transform: uppercase
-    font-size: .85em
-  .required [class^='form-field__label']:before
-    content: "*"
-    display: inline
-    font-size: 1em
-    color: #d00
-    margin-right: $m/4
-
-  //Field help texts
-  [class^='form-field__help']
-    color: lighten($color_text, 20%)
-    font-size: $size_small
-
-  //Widgets
-  input,
-  textarea,
-  select
-    padding: $m/2
-    margin: $m/2
-    background-color: #eee
-    border: 1px solid rgba(black, .05)
-    +transition(background-color, .1s ease-out)
-    &:focus
-      background-color: white
-      border-color: rgba(black, .25)
-  select
-    +appearance(none)
-
-
-  //Submits
-  input[type=submit]
-    +button_success(40px)
-
-.form--initiative
+.form--initiative,
+.form--event,
+.form--city
+  width:  960px
+  max-width: 100%
+  margin: $m*2 auto
   +generic_form
   +animation(showup 1s 1)
+
+  input[type=submit]
+    line-height: 12px
+  input, textarea, select
+    width: 100% !important
+    +border-radius(4px)
+  [class^='field-']
+    padding: $m/2
+  [class^='fieldset-']
+    margin-bottom: $m
+    border-bottom: 1px dashed #ddd
+  .leaflet-container
+    margin: $m 0
+    min-height: 400px
+  .leaflet-tile
+    +filter(grayscale(100%))
+  .leaflet-control-zoom-out.leaflet-bar-part
+    display: none
+  .placeholder
+    margin-top: $m
 
 .form--city
   +generic_form
 
 .form--event
   +generic_form
+
+
+
+// .modelform--initiative
+//   background-color: $palette_primary
+//
+// .modelform--event
+//   background-color: $palette_secondary
+
+// It's not possible to use :after pseudo-selector on select elements
+// So we apply it to its container
+.field__widget--topic,
+.field__widget--agent,
+.field__widget--category,
+.field__widget--space,
+.select-with-popup .select-wrapper
+  position: relative
+  select
+    padding-right: $m
+  &::after
+    content: "⌄"
+    font-size: 1.5em
+    position: absolute
+    right: $m/2
+    line-height: 60px
+
+.field__widget--picture-preview,
+.field__widget--video
+  svg
+    display: block
+    margin: $m/2 auto
+    padding: $m
+    width: 200px
+  #inner
+    fill: rgba(black, .15)
+  #frame
+    fill: none
+    stroke: rgba(black, .15)
+    stroke-width: 10px
+
+.field__widget--picture-preview
+  &:hover
+    cursor: pointer
+    #inner
+      fill: rgba(black, .05)
+    #frame
+      stroke: rgba(black, .05)
+
+.textarea-counter
+  font-size: $size_small
+  color: #aaa
+
+.geocode-widget__geocode-submit,
+.video-widget__submit,
+.related-widget-wrapper-link
+  +button_dark
+  padding: 0 $m/2
+  float: right
+
+.geocode-widget__geometry
+  display: none
+.field__widget--picture-preview::hover
+  cursor: pointer !important

@@ -1,0 +1,28 @@
+@import compass/css3/inline-block
+@import clearfix
+@import compass/css3/flexbox
+
+.fieldset--two-col
+  +clearfix
+
+.fieldset__left--two-col,
+.fieldset__right--two-col
+  +inline-block
+  float: left
+  width: 50%
+
+.fieldset__left--two-col
+  padding-right: $m/4
+.fieldset__right--two-col
+  padding-left: $m/4
+.fieldset__full--two-col
+  clear: both
+
+.fieldset--inline
+  +display-flex
+  +flex-direction(column)
+  +breakpoint('sm')
+    +flex-direction(row)
+  > div
+    +flex(1 0)
+  > div:not(:last-child)

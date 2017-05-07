@@ -12,6 +12,13 @@
 .container-fluid
   +container-fluid
 
+.clickable:hover
+  cursor: pointer
+
+.hidden
+  display: none
+
+
 // Link style mixins
 
 // =links
@@ -21,6 +28,22 @@
 //     &:hover
 //
 //     &:active
+
+// Modals
+
+=modal_container
+  display: none
+  position: fixed
+  top: 0
+  left: 0
+  width: 100vw
+  height: 100vh
+  z-index: 100
+
+=css_modal_container
+  +modal_container
+  &:target
+    display: block
 
 
 // Animations

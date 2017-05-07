@@ -1,0 +1,125 @@
+@import breakpoints
+@import compass/css3/transition
+@import compass/css3/appearance
+@import compass/css3/inline-block
+
+// Buttons
+
+@function button_hover($color)
+  @return darken($color, 10%)
+
+=button($color_background: $color_background, $color_hovered: button_hover($color_background), $color_text: $color_text, $height: $m*1.5)
+  height: $height
+  border: 0
+  line-height: $height
+  color: $color_text
+  background-color: $color_background
+  +transition(background-color, .1s ease)
+  &:hover
+    background-color: $color_hovered
+    cursor: pointer
+
+=button_success($height: $button_height)
+  +button($color_success, button_hover($color_success), white)
+
+=button_warning($height: $button_height)
+  +button($color_warning, button_hover($color_warning), white)
+
+=button_danger($height: $button_height)
+  +button($color_calm, button_hover($color_calm), white)
+
+=button_calm($height: $button_height)
+  +button($color_calm, button_hover($color_calm), white)
+
+=button_default
+  +button(none, rgba(black, .1))
+  border: 1px solid $color_text
+  text-transform: uppercase
+  padding: $m/3 $m/2
+  font-size: $size_small
+
+=button_dark
+  +button(#222, #333, white)
+  text-transform: uppercase
+  font-size: .75em
+  +inline-block
+
+// Forms
+
+=generic_form
+
+  //Fieldsets
+  [class^='fieldset-'],
+  [class^='field-']
+    padding-bottom: $m
+    position: relative
+  .fieldset__label
+    margin-top: 0
+    text-transform: uppercase
+    border-bottom: 1px solid #222
+  .fieldset__items--inline
+    margin-bottom: $m
+    > div
+      padding: 0 $m
+    > div:not(:last-child)
+      border-right: 1px solid #ddd
+
+  //Field labels
+  [class^='field__label']
+    +h(5)
+    text-transform: uppercase
+    font-size: .85em
+  .required [class^='field__label']:before
+    content: "*"
+    display: inline
+    font-size: 1em
+    color: #d00
+    margin-right: $m/4
+
+  //Field help texts
+  [class^='field__help']
+    color: lighten($color_text, 20%)
+    font-size: $size_small
+
+  input:not([type='file']),
+  textarea,
+  select
+    background-color: #eee
+    border: 1px solid rgba(black, .05)
+    +transition(background-color, .1s ease-out)
+    &:focus
+      background-color: white
+      border-color: rgba(black, .25)
+  select
+    +appearance(none)
+    // hide the default arrow in ie10 and ie11
+    &::-ms-expand
+      display: none
+  //Widgets
+  input,
+  textarea,
+  select
+    padding: $m/2
+    margin: $m/2 0
+    &:hover
+      border-color: #aaa
+
+  //Submits
+  input[type=submit]
+    +button_success(40px)
+
+  label.submit
+    &:hover
+      cursor: pointer
+    +button_default
+
+  optgroup
+    font-weight: normal
+    text-transform: uppercase
+    font-size: $size_small
+    color: #999
+    border-bottom: 1px solid #999
+  option
+    text-transform: normal
+    font-size: 1em
+    color: $color_text
