@@ -6,3 +6,8 @@ civics/.sass-cache
 
 # Ignore Css files
 civics/css
+
+# Ignore assets other than project's
+admin/*
+leaflet/*
+utils/*
