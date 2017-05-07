@@ -83,7 +83,6 @@ class InitiativeCreate(GenericCreate):
   template_name    = modelform_generic_template
   title            = _('Sube tu iniciativa')
   success_url      = reverse_lazy('front')
-  dependencies     = ['leaflet']
 
   def get_context_data(self, **kwargs):
     """Pass context data to generic view."""
@@ -106,7 +105,6 @@ class InitiativeEdit(GenericUpdate):
   template_name    = modelform_generic_template
   title            = _('Edita la información de la iniciativa ')
   success_url      = reverse_lazy('front')
-  dependencies     = ['leaflet']
 
   def get_context_data(self, **kwargs):
     """Pass context data to generic view."""
@@ -148,6 +146,7 @@ class EventCreate(GenericCreate):
   template_name    = modelform_generic_template
   title            = _('Crea un evento ')
   success_url      = reverse_lazy('front')
+  dependencies     = ['leaflet']
 
   def get_context_data(self, **kwargs):
     """Pass context data to generic view."""
@@ -162,6 +161,7 @@ class EventEdit(GenericUpdate):
   template_name = modelform_generic_template
   title = _('Edita la información del evento ')
   success_url = reverse_lazy('front')
+  dependencies     = ['leaflet']
 
   def get_context_data(self, **kwargs):
     """Pass context data to generic view."""
