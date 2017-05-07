@@ -1,3 +1,13 @@
-{# Toolbar region #} {% extends 'regions/region-base.html' %}
+{# Toolbar region #} {% extends 'regions/region-base.html' %} {% load utils static %}
 
-{% block region_content %}{% endblock %}
+{% block region_content %}
+    <div class="region-{{ region_name }}__left">
+        <a href="{% url 'front' %}">
+            <img src="{% img 'logo-civics.png' %}" />
+        </a>
+    </div>
+    <div class="region-{{ region_name }}__center">
+    </div>
+    <div class="region-{{ region_name }}__right">
+    </div>
+{% endblock %}

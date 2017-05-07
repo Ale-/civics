@@ -1,11 +1,11 @@
 {# Modelform generic page #} {% extends 'layouts/single-fixed-column.html' %} {% load utils %}
-{% block body_classes %}modelform{% endblock %}
+{% block body_classes %}modelform--{{ form__html_class }}{% endblock %}
 
 {# Form dependencies #}
 {% block page_header %}
     {% if 'leaflet' in dependencies  %}
         {% load static leaflet_tags %}
-        {% leaflet_css plugins="forms, geocoder" %}
+        {% leaflet_css plugins="forms" %}
     {% endif %}
 {% endblock %}
 
@@ -15,8 +15,9 @@
 {% endblock %}
 
 {% block page_scripts %}
+    {{ form.media }}
     {% if 'leaflet' in dependencies  %}
         {% load static leaflet_tags %}
-        {% leaflet_js plugins="forms, geocoder" %}
+        {% leaflet_js plugins="forms" %}
     {% endif %}
 {% endblock %}

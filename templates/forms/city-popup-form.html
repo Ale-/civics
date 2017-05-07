@@ -1,0 +1,20 @@
+{# Template to render a modelform #} {% extends 'layouts/single-fixed-column.html' %} {% load i18n %}
+{% block body_classes %}popup-modelform--city{% endblock %}
+
+
+{% block main %}
+    {% include 'pages/title.html' with title=title %}
+    <form enctype="multipart/form-data" method="post" class="form--city">
+        {% csrf_token %}
+        <div class="form-fields--city">
+            {% include 'forms/field.html' with field=form.name %}
+            {% include 'forms/field.html' with field=form.country %}
+            {% include 'forms/field.html' with field=form.position %}
+        </div>
+        <input class="form__submit" type="submit" value="{% trans 'Envía' %}" />
+    </form>
+{% endblock %}
+
+{% block page_scripts %}
+    {{ form.media }}
+{% endblock %}
