@@ -34,7 +34,7 @@ LOGOUT_URL = '/logout'
 LOGOUT_REDIRECT_URL = '/'
 
 ACCOUNT_ACTIVATION_DAYS = 7
-REGISTRATIOM_OPEN = True
+REGISTRATION_OPEN = True
 
 # Name of site in the document title
 DOCUMENT_TITLE = 'Civics'
