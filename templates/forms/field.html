@@ -9,9 +9,6 @@
     <p class="field__help--{{ fieldname }}">
         {{ field.help_text }}
     </p>
-    <p class="field__widget--{{ fieldname }}">
-        {{ field }}
-    </p>
     {% if field.errors %}
     <ul class="field__errors--{{ fieldname }}">
         {% for error in field.errors %}
@@ -21,6 +18,9 @@
         {% endfor %}
     </ul>
     {% endif %}
+    <p class="field__widget--{{ fieldname }}">
+        {{ field }}
+    </p>  
 </div>
 
 {% endwith %}
