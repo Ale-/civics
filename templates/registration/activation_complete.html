@@ -1,0 +1,15 @@
+{# Extend basic page #}
+{% extends 'layouts/single-fixed-column.html' %} {% load i18n static %}
+{% block body_classes %}activation-complete{% endblock %}
+
+{% block page_id %}user_register{% endblock %}
+
+{# Title #}
+{% block title %}
+  <h1>{% trans 'Bienvenid@' %}</h1>
+{% endblock %}
+
+{# Content #}
+{% block main %}
+{% trans 'Has activado la cuenta.' %}
+{% endblock %}

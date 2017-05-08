@@ -1,0 +1,16 @@
+{# Extend basic page #}
+{% extends 'layouts/single-fixed-column.html' %} {% load i18n static %}
+{% block body_classes %}registration{% endblock %}
+
+{# Content #}
+{% block main %}
+    {% if user.is_authenticated %}
+        <p class="form-errors">
+            {% blocktrans trimmed %}
+                Ya estás autenticado en la plataforma.
+            {% endblocktrans %}
+        </p>
+    {% endif %}
+    {% include 'pages/title.html' with title="Signin" %}
+    {% include 'forms/regular-form.html' with form_title="Sign up" form=form form_class="registration" submit_text="Crea un usuari@  " %}
+{% endblock %}

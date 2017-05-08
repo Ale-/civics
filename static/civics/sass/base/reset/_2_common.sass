@@ -21,13 +21,16 @@
 
 // Link style mixins
 
-// =links
-//   a
-//     &:link, &:visited
-//
-//     &:hover
-//
-//     &:active
+=links_normal
+  a
+    +transition(color .1s ease)
+    &:link, &:visited
+      color: #555
+      border-bottom: 1px dotted #555
+    &:hover
+      color: #777
+    &:active
+      color: #555
 
 // Modals
 

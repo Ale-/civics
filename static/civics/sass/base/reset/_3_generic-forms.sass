@@ -35,7 +35,6 @@
   +button(none, rgba(black, .1))
   border: 1px solid $color_text
   text-transform: uppercase
-  padding: $m/3 $m/2
   font-size: $size_small
 
 =button_dark
@@ -107,6 +106,8 @@
   //Submits
   input[type=submit]
     +button_success(40px)
+    padding-top: 0
+    padding-bottom: 0
 
   label.submit
     &:hover

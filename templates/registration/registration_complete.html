@@ -1,0 +1,14 @@
+{# Extend basic page #}
+{% extends 'layouts/single-fixed-column.html' %} {% load i18n static %}
+{% block body_classes %}registration-complete{% endblock %}
+
+{# Content #}
+{% block main %}
+{% include 'pages/title.html' with title="Signin" %}
+    {% blocktrans trimmed%}
+        Has completado el registro con éxito.
+        Hemos enviado a tu buzón de correo electrónico un correo con un enlace para activar tu cuenta.
+        Vísitalo para activar la cuenta y poder registrar tu iniciativa en la plataforma. 
+        Si no encuentras el correo, no se te olvide comprobar la bandeja de spam.
+    {% endblocktrans %}
+{% endblock %}

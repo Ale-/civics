@@ -5,6 +5,12 @@ Django settings for civics project
 import os
 from django.utils.translation import ugettext_lazy as _
 
+#
+# Site state settings
+#
+DEBUG       = True
+MAINTENANCE = False
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 #
 
@@ -23,9 +29,12 @@ MAINTENANCE_IGNORE_URLS = (
     r'^/login$',
 )
 LOGIN_URL = '/login'
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_URL = '/logout'
+LOGOUT_REDIRECT_URL = '/'
 
-# Name of project static assets folder
-
+ACCOUNT_ACTIVATION_DAYS = 7
+REGISTRATIOM_OPEN = True
 
 # Name of site in the document title
 DOCUMENT_TITLE = 'Civics'
@@ -39,6 +48,7 @@ DOCUMENT_DESCRIPTION = _('Aquí podrás encontrar iniciativas ciudadanas existen
 CONTRIB_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
+    'registration',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
@@ -135,10 +145,18 @@ LEAFLET_CONFIG = {
 }
 
 #
-# Other settings
+# Mail settings
 #
-DEBUG = True
-MAINTENANCE = False
+
+if DEBUG:
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+    EMAIL_HOST = 'localhost'
+    DEFAULT_FROM_EMAIL = 'no-reply@civics.localhost'
+else:
+    EMAIL_HOST = 'localhost'
+    DEFAULT_FROM_EMAIL = 'no-reply@civics.cc'
+    EMAIL_PORT = '25'
+    EMAIL_USE_TLS = True
 
 #
 # Import private settings

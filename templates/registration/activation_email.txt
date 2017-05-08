@@ -1,0 +1,10 @@
+{% load i18n %}
+{% blocktrans %}
+    Alguien ha registrado un usuario/a en la plataforma civics.cc usando este correo.
+    Si eres tú, visita este enlace para activar la cuenta:
+        http://{{ site }}/activate/{{ activation_key }}
+    En caso contrario, puedes borrar este correo.
+{% endblocktrans %}
+{% blocktrans %}
+  Este enlace es válido por {{ expiration_days }} días.
+{% endblocktrans %}

@@ -1,0 +1,34 @@
+{# Extend basic page #}
+{% extends 'layouts/single-fixed-column.html' %} {% load i18n %}
+{% block body_classes %}login{% endblock %} {% block htmltitle %}Signup/Login{% endblock %}
+
+
+{# Content #}
+{% block main %}
+
+    {% if user.is_authenticated %}
+        <p class="form-errors">
+            {% blocktrans trimmed %}
+                Ya estás autenticado en la plataforma.
+            {% endblocktrans %}
+        </p>
+    {% endif %}
+
+    {% include 'pages/title.html' with title="Login" %}
+
+    {% include 'forms/regular-form.html' with form_title="Login" form=form form_class="login" submit_text="Crea un usuari@  " %}
+
+    <ul class="loginform-links">
+        <li class="loginform-links__link">
+            <a href="{% url 'password_reset' %}">
+                {% trans '¿Has olvidado tu nombre de usuari@ o contraseña?' %}
+            </a>
+        </li>
+        <li class="loginform-links__link">
+            <a href="{% url 'registration_register' %}">
+                {% trans 'Regístrate en la plataforma' %}
+            </a>
+        </li>
+    </ul>
+
+{% endblock %}
