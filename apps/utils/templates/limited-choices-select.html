@@ -1,0 +1,10 @@
+{# Renders a select from a tuple of limited options #} {% load i18n %}
+
+ <select class="{{ select_class }}" name="{{ select_name }}" {% if multiple %}multiple{% endif %}>
+    {% if all %}
+        <option value="all" selected>{% trans 'Todas las opciones' %}</option>
+    {% endif %}
+    {% for element in options %}
+        <option value="{{ element.id }}">{{ element.name }}</option>
+    {% endfor %}
+ </select>

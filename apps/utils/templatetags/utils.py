@@ -15,3 +15,8 @@ def js(file):
 @register.simple_tag
 def img(file):
     return  STATIC_URL + PROJECT_STATIC_FOLDER + '/img/' + file
+
+@register.inclusion_tag('limited-choices-select.html')
+def limited_choices_select(choices=None, select_name=None, select_class=None, all=False, multiple=False):
+    options = [{ 'name' : option[1], 'id' : option[0] } for option in choices ]
+    return  { 'options' : options, 'select_name' : select_name, 'select_class' : select_class, 'all' : all, 'multiple' : multiple}
