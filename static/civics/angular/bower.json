@@ -1,0 +1,24 @@
+{
+  "name": "civics",
+  "homepage": "https://github.com/Ale-/civics",
+  "authors": [
+    "Ale <a@414c45.net>"
+  ],
+  "description": "Angular dependencies for civics.cc frontend",
+  "main": "",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-leaflet-directive": "^0.10.0",
+    "angular": "^1.6.4",
+    "angular-loading-bar": "^0.9.0",
+    "angular-route": "^1.6.4"
+  }
+}
