@@ -1,0 +1,7 @@
+{# Modelform generic page #} {% extends 'layouts/single-fixed-column.html' %} {% load utils i18n static %}
+{% block body_classes %}dashboard{% endblock %}
+
+{% block main %}
+    {% include 'pages/title.html' with title="Dashboard" %}
+    {% lorem %}
+{% endblock %}
