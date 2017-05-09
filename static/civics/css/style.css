@@ -405,89 +405,90 @@ p {
 /* line 26, ../sass/base/reset/_1_base.sass */
 ul, li {
   padding: 0;
+  margin: 0;
 }
 
-/* line 28, ../sass/base/reset/_1_base.sass */
+/* line 29, ../sass/base/reset/_1_base.sass */
 figure {
   margin: 0;
 }
 
-/* line 33, ../sass/base/reset/_1_base.sass */
+/* line 34, ../sass/base/reset/_1_base.sass */
 h1 {
   font-family: "Oxygen", sans-serif;
   font-weight: 400;
   font-size: 2rem;
 }
 
-/* line 33, ../sass/base/reset/_1_base.sass */
+/* line 34, ../sass/base/reset/_1_base.sass */
 h2 {
   font-family: "Oxygen", sans-serif;
   font-weight: 400;
   font-size: 1.75rem;
 }
 
-/* line 33, ../sass/base/reset/_1_base.sass */
+/* line 34, ../sass/base/reset/_1_base.sass */
 h3 {
   font-family: "Oxygen", sans-serif;
   font-weight: 400;
   font-size: 1.5rem;
 }
 
-/* line 33, ../sass/base/reset/_1_base.sass */
+/* line 34, ../sass/base/reset/_1_base.sass */
 h4 {
   font-family: "Oxygen", sans-serif;
   font-weight: 400;
   font-size: 1.25rem;
 }
 
-/* line 33, ../sass/base/reset/_1_base.sass */
+/* line 34, ../sass/base/reset/_1_base.sass */
 h5 {
   font-family: "Oxygen", sans-serif;
   font-weight: 400;
   font-size: 1rem;
 }
 
-/* line 33, ../sass/base/reset/_1_base.sass */
+/* line 34, ../sass/base/reset/_1_base.sass */
 h6 {
   font-family: "Oxygen", sans-serif;
   font-weight: 400;
   font-size: 0.85rem;
 }
 
-/* line 36, ../sass/base/reset/_1_base.sass */
+/* line 37, ../sass/base/reset/_1_base.sass */
 small {
   font-size: 0.85emem;
 }
 
-/* line 40, ../sass/base/reset/_1_base.sass */
+/* line 41, ../sass/base/reset/_1_base.sass */
 img {
   max-width: 100%;
   height: auto;
 }
 
-/* line 44, ../sass/base/reset/_1_base.sass */
+/* line 45, ../sass/base/reset/_1_base.sass */
 iframe {
   max-width: 100%;
 }
 
-/* line 48, ../sass/base/reset/_1_base.sass */
+/* line 49, ../sass/base/reset/_1_base.sass */
 li {
   list-style: none;
 }
 
-/* line 52, ../sass/base/reset/_1_base.sass */
+/* line 53, ../sass/base/reset/_1_base.sass */
 a {
   text-decoration: none !important;
 }
 
-/* line 56, ../sass/base/reset/_1_base.sass */
+/* line 57, ../sass/base/reset/_1_base.sass */
 input,
 select,
 button,
 textarea {
   max-width: 100%;
 }
-/* line 61, ../sass/base/reset/_1_base.sass */
+/* line 62, ../sass/base/reset/_1_base.sass */
 input::focus, input::-moz-focus-outer, input::-moz-focus-inner,
 select::focus,
 select::-moz-focus-outer,
@@ -502,12 +503,12 @@ textarea::-moz-focus-inner {
   outline: 0;
 }
 
-/* line 71, ../sass/base/reset/_1_base.sass */
+/* line 72, ../sass/base/reset/_1_base.sass */
 select:hover {
   cursor: pointer;
 }
 
-/* line 75, ../sass/base/reset/_1_base.sass */
+/* line 76, ../sass/base/reset/_1_base.sass */
 ::-moz-selection,
 ::selection {
   background: #f9afeb;
@@ -677,6 +678,20 @@ select:hover {
 /* line 1, ../sass/layout/_toolbar.sass */
 .region-toolbar {
   padding: 24px;
+}
+
+/* line 4, ../sass/layout/_toolbar.sass */
+[class^='region-toolbar__'] {
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+  *zoom: 1;
+  *display: inline;
+}
+
+/* line 7, ../sass/layout/_toolbar.sass */
+.region-toolbar__right {
+  float: right;
 }
 
 /* line 8, ../sass/look-and-feel/_forms.sass */
@@ -1355,13 +1370,28 @@ select:hover {
 /* line 1, ../sass/look-and-feel/_regions.sass */
 .region-toolbar {
   background: white;
-  border-bottom: 4px solid #ddd;
+  border-bottom: 4px solid #9c9e9d;
+  font-family: "Oxygen", sans-serif;
 }
 
-/* line 3, ../sass/look-and-feel/_registration-forms.sass */
+/* line 5, ../sass/look-and-feel/_registration-forms.sass */
+.login .page-title,
+.registration .page-title {
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  margin: 24px 0;
+}
+/* line 9, ../sass/look-and-feel/_registration-forms.sass */
 .login main,
 .registration main {
   text-align: center;
+  padding: 24px;
+  background-color: white;
+  width: 360px;
+  float: right;
+  -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
 }
 
 /* line 51, ../sass/base/reset/_3_generic-forms.sass */
@@ -1558,9 +1588,17 @@ select:hover {
   color: #555;
 }
 
-/* line 12, ../sass/look-and-feel/_registration-forms.sass */
+/* line 24, ../sass/look-and-feel/_registration-forms.sass */
 .loginform-links__link {
-  text-transform: uppercase;
   font-size: 0.85em;
-  padding: 12px;
+}
+
+/* line 27, ../sass/look-and-feel/_registration-forms.sass */
+.login {
+  background: url('../img/login-bg.png?1494338631') repeat #eae9e9;
+}
+
+/* line 29, ../sass/look-and-feel/_registration-forms.sass */
+.registration {
+  background: url('../img/signin-bg.png?1494340217') repeat #eae9e9;
 }
