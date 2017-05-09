@@ -1,6 +1,7 @@
 from django import template
 from django.utils.translation import ugettext_lazy as _
 from civics.settings import STATIC_URL, PROJECT_STATIC_FOLDER
+from django.utils.safestring import mark_safe
 
 register = template.Library()
 
@@ -11,6 +12,10 @@ def css(file):
 @register.simple_tag
 def js(file):
     return  STATIC_URL + PROJECT_STATIC_FOLDER + '/js/' + file
+
+@register.simple_tag
+def angular(file):
+    return  mark_safe("<script type='text/javascript' src='" +STATIC_URL + PROJECT_STATIC_FOLDER + "/angular/" + file + "'></script>")
 
 @register.simple_tag
 def img(file):
