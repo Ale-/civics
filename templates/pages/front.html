@@ -1,6 +1,23 @@
-{# Site front page #} {% extends 'layouts/single-fixed-column.html' %}
+{# Site front page #} {% extends 'layouts/single-fluid-column.html' %} {% load static utils %}
 {% block body_classes %}front{% endblock %}
 
+{% block page_header %}
+    <link rel="stylesheet" href="{% static '/civics/angular/bower_components/leaflet/dist/leaflet.css' %}"></link>
+{% endblock %}
+
 {% block main %}
-<h1>Bla bla bla</h1>
+    <div ng-app="civics">
+        <div ng-view></div>
+    </div>
+{% endblock %}
+
+{% block page_scripts %}
+    {# angular version 1.6.2 #}
+    {% angular "bower_components/angular/angular.min.js" %}
+    {% angular "bower_components/angular-route/angular-route.min.js" %}
+    {% angular "bower_components/angular-loading-bar/build/loading-bar.js" %}
+    {% angular "bower_components/leaflet/dist/leaflet.js" %}
+    {% angular "bower_components/angular-leaflet-directive/dist/angular-leaflet-directive.min.js" %}
+    {% angular "controllers/mapController.js" %}
+    {% angular "app.js" %}
 {% endblock %}
