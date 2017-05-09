@@ -14,13 +14,13 @@
         </p>
     {% endif %}
 
-    {% include 'pages/title.html' with title="Login" %}
+    {% include 'pages/title.html' with title='Accede a tu iniciativa' %}
 
-    {% include 'forms/regular-form.html' with form_title="Login" form=form form_class="login" submit_text="Crea un usuari@  " %}
+    {% include 'forms/regular-form.html' with form_title="Login" form=form form_class="login" submit_text="Accede" %}
 
     <ul class="loginform-links">
         <li class="loginform-links__link">
-            <a href="{% url 'password_reset' %}">
+            <a href="{% url 'front' %}">
                 {% trans '¿Has olvidado tu nombre de usuari@ o contraseña?' %}
             </a>
         </li>

@@ -1,4 +1,4 @@
-{# Toolbar region #} {% extends 'regions/region-base.html' %} {% load utils static %}
+{# Toolbar region #} {% extends 'regions/region-base.html' %} {% load utils static i18n %}
 
 {% block region_content %}
     <div class="region-{{ region_name }}__left">
@@ -9,5 +9,10 @@
     <div class="region-{{ region_name }}__center">
     </div>
     <div class="region-{{ region_name }}__right">
+        <ul class="user-actions">
+            <li class="user-actions__action">
+                <a href="/login">{% trans 'Entrar' %}</a>
+            </li>
+        </ul>
     </div>
 {% endblock %}
