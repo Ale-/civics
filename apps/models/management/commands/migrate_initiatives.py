@@ -5,7 +5,7 @@ from apps.models.models import Initiative, City
 # TODO: tests!!!
 
 """
-A manage.py command to migrate cities from a CSV file
+A manage.py command to migrate initiatives from a CSV file
 """
 
 class Command(BaseCommand):
@@ -20,7 +20,7 @@ class Command(BaseCommand):
         parser.add_argument('csv_file')
 
     """
-    Imports City models from a given CSV file
+    Imports Initiative models from a given CSV file
     """
     def handle(self, *args, **options):
         if not os.path.isfile(options['csv_file']):
