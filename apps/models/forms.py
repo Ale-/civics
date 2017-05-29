@@ -41,8 +41,9 @@ class InitiativeForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         self.base_fields['user'].widget.attrs['disabled'] = True
         self.base_fields['user'].widget.attrs['readonly'] = True
-        self.base_fields['user'].initial = kwargs['initial']['user']
-        self.base_fields['email'].initial = kwargs['initial']['user'].email
+        if('user' in kwargs['initial']):
+            self.base_fields['user'].initial = kwargs['initial']['user']
+            self.base_fields['email'].initial = kwargs['initial']['user'].email
         super(InitiativeForm, self).__init__(*args, **kwargs)
 
 
