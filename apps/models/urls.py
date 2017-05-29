@@ -1,6 +1,7 @@
 from django.conf.urls import url
 from . import views
 from apps.utils.views import PopupFormView
+from django.views.generic import TemplateView
 from .forms import CityForm
 
 urlpatterns = [
@@ -10,8 +11,9 @@ urlpatterns = [
     url(r'^borra/ciudad(?P<pk>.+)$', views.CityDelete.as_view(), name="delete_city"),
 
     url(r'^crea/iniciativa$', views.InitiativeCreate.as_view(), name="create_initiative"),
-    url(r'^edita/iniciativa/(?P<slug>.+)$', views.InitiativeEdit.as_view(), name="edit_initiative"),
-    url(r'^borra/iniciativa/(?P<slug>.+)$', views.InitiativeDelete.as_view(), name="delete_initiative"),
+    url(r'^edita/iniciativa/(?P<pk>.+)$', views.InitiativeEdit.as_view(), name="edit_initiative"),
+    url(r'^borra/iniciativa/(?P<pk>.+)$', views.InitiativeDelete.as_view(), name="delete_initiative"),
+    url(r'^bienvenido$', TemplateView.as_view(template_name='pages/initiative-success.html'), name="welcome_initiative"),
 
     url(r'^crea/evento$', views.EventCreate.as_view(), name="create_event"),
     url(r'^edita/evento/(?P<slug>.+)$', views.EventEdit.as_view(), name="edit_event"),
