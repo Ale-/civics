@@ -7,7 +7,7 @@
  */
 
  function coords_to_geojson(lat, lng){
-     return '{"type":"Point", "coordinates":['+ lat + ',' + lng+ ']}';
+     return '{"type":"Point", "coordinates":['+ lng + ',' + lat + ']}';
  }
 
  /**
@@ -73,15 +73,27 @@ function Geocoder(map, marker, geometry_field)
 
 +(function()
 {
-    var map = L.map('geocode-widget__map').setView([-15, -26], 2);
-    var marker;
-    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(map);
-
     document.querySelectorAll('.geocode-widget').forEach( function(widget)
     {
         var geometry_field  = widget.querySelector('.geocode-widget__geometry');
+        if(geometry_field.value){
+            var data = JSON.parse(geometry_field.value);
+            var map = L.map('geocode-widget__map');
+            var marker = L.marker([data.coordinates[1], data.coordinates[0]], { 'draggable' : true });
+            marker.on('dragend', function(e){
+                var latlng = e.target.getLatLng();
+                geometry_field.value = coords_to_geojson(latlng.lat, latlng.lng);
+            });
+            map.addLayer(marker).setView([data.coordinates[0], data.coordinates[1]], 4);
+        } else {
+            var map = L.map('geocode-widget__map').setView([-15, -26], 2);
+            var marker = {};
+        }
+
+        L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
         var geocoder        = new Geocoder(map, marker, geometry_field);
         var trigger         = widget.querySelector('.geocode-widget__geocode-submit');
         trigger.addEventListener('click', function(e)
