@@ -1,6 +1,7 @@
 from django.core.management.base import BaseCommand, CommandError
 import csv, json, os.path
 from apps.models.models import Initiative, City
+from django.utils.text import slugify
 
 # TODO: tests!!!
 
@@ -30,6 +31,7 @@ class Command(BaseCommand):
             initiatives_objects = map(
                 lambda i: Initiative(
                     name        = i['Name'],
+                    slug        = slugify(i['Name']),
                     topic       = i['Topic'],
                     space       = i['Space'],
                     agent       = i['Agent'],
