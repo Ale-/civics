@@ -3,10 +3,12 @@ from django.shortcuts import render
 from apps.utils.views import GenericCreate, GenericUpdate, GenericDelete
 from . import forms, models
 from django.urls import reverse_lazy
+from django.shortcuts import get_object_or_404
 
 # Model related views
 
 modelform_generic_template = 'pages/modelform.html'
+modelform_delete_template = 'pages/modelform--delete.html'
 
 #
 #  City
@@ -82,12 +84,16 @@ class InitiativeCreate(GenericCreate):
   form__html_class = 'initiative'
   template_name    = modelform_generic_template
   title            = _('Sube tu iniciativa')
-  success_url      = reverse_lazy('front')
+  success_url      = reverse_lazy('modelforms:welcome_initiative')
+
+  def form_valid(self, form):
+    return super(GenericCreate, self).form_valid(form)
 
   def get_context_data(self, **kwargs):
     """Pass context data to generic view."""
     context = super(InitiativeCreate, self).get_context_data(**kwargs)
     context['form__html_class'] = self.form__html_class
+    context['submit_text'] = _('Crea tu iniciativa')
     return context
 
   def get_initial(self):
@@ -109,10 +115,11 @@ class InitiativeEdit(GenericUpdate):
   def get_context_data(self, **kwargs):
     """Pass context data to generic view."""
     context                     = super(InitiativeEdit, self).get_context_data(**kwargs)
-    slug                        = self.kwargs['slug']
-    initiative                  = get_object_or_404(models.Initiative, slug=slug)
+    pk                          = self.kwargs['pk']
+    initiative                  = get_object_or_404(models.Initiative, pk=pk)
     context['title']            = self.title + (' ') + initiative.name
     context['form__html_class'] = self.form__html_class
+    context['submit_text'] = _('Edita esta iniciativa')
     return context
 
 class InitiativeDelete(GenericDelete):
@@ -120,16 +127,18 @@ class InitiativeDelete(GenericDelete):
   model            = models.Initiative
   form_class       = forms.InitiativeForm
   form__html_class = 'initiative'
-  template_name    = modelform_generic_template
+  template_name    = modelform_delete_template
   title            = _('Borra la iniciativa ')
   success_url      = reverse_lazy('front')
 
   def get_context_data(self, **kwargs):
     """Pass context data to generic view."""
     context          = super(InitiativeDelete, self).get_context_data(**kwargs)
-    slug             = self.kwargs['slug']
-    initiative       = get_object_or_404(models.Initiative, slug=slug)
+    pk               = self.kwargs['pk']
+    initiative       = get_object_or_404(models.Initiative, pk=pk)
     context['title'] = self.title + (' ') + initiative.name
+    context['form__html_class'] = self.form__html_class
+    context['submit_text'] = _('¿Estás seguro de que quieres borrar esta iniciativa?')
     return context
 
 
