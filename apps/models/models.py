@@ -88,6 +88,10 @@ class Initiative(models.Model):
     self.slug = slugify(self.name)
     super(Initiative, self).save(*args, **kwargs)
 
+  def edit_permissions(self, user):
+    """Returns users allowed to edit an instance of this model."""
+    return self.user is user or user.is_staff
+
 #
 #  Event
 #
