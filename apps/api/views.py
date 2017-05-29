@@ -19,9 +19,8 @@ def initiatives_service(request):
     topics = request.GET.get('topics').split(',');
     spaces = request.GET.get('spaces').split(',');
     agents = request.GET.get('agents').split(',');
-    cities = City.objects.annotate(num_refs=Count('initiative')).filter(num_refs__gt=0)
+    cities = City.objects.annotate(num_refs=Count('initiative')).filter(num_refs__gt=10)
     initiatives = Initiative.objects.filter(city__in=cities)
-    print(initiatives.first())
     if city   != 'all':
         initiatives = initiatives.filter(city=city);
     if topics != ['all']:
