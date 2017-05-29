@@ -1,0 +1,11 @@
+{# Modelform generic page #} {% extends 'layouts/single-fixed-column.html' %} {% load utils %}
+{% block body_classes %}modelform--{{ form__html_class }}{% endblock %}
+
+{% block main %}
+    {% include 'pages/title.html' with title=title %}
+    <form enctype="multipart/form-data" action="{{ action }}" method="post" class="form--{{ form__html_class }}">
+        {% csrf_token %}
+        <input class="form__submit" type="submit" value="{{ submit_text }}" />
+    </form>
+
+{% endblock %}

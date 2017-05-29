@@ -1,0 +1,9 @@
+{# Site front page #} {% extends 'layouts/single-fluid-column.html' %} {% load static utils %}
+{% block body_classes %}initiative-success{% endblock %}
+
+{% block main %}
+    <div class="message-success">
+      <p class="message-success__text">¡Enhorabuena, tu iniciativa ha sido incorporada!</p>
+      <a class="message-success__button" href="/">Ve al perfil de tu iniciativa</a>
+    </div>
+{% endblock %}

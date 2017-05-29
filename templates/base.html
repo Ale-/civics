@@ -31,7 +31,7 @@
         {% block page_header %}{% endblock %}
     </head>
 
-    <body class="{% if user.is_authenticated %}logged-in{% endif %} {% block body_classes %}{% endblock %} {% block layout_classes %}{% endblock %}">
+    <body class="{% if user.is_authenticated %}logged-in{% endif %} {% if user.is_staff %}staff-user{% endif %} {% block body_classes %}{% endblock %} {% block layout_classes %}{% endblock %}">
 
         {# Toolbar #}
         {% include 'regions/toolbar.html' with region_name="toolbar" html_container="div" layout="fluid" %}

@@ -7,11 +7,19 @@
         </a>
     </div>
     <div class="region-{{ region_name }}__center">
+        <ul class="main-menu">
+          <li class="main-menu__link main-menu__link--active">
+              <a href="/#!/iniciativas">Iniciativas</a>
+          </li>
+            <li class="main-menu__link">
+                <a href="/#!/eventos">Agenda</a>
+            </li>
+        </ul>
     </div>
     <div class="region-{{ region_name }}__right">
         <ul class="user-actions">
             <li class="user-actions__action">
-                <a href="/login">{% trans 'Entrar' %}</a>
+                <a href="/login"><span class="icon-login"></span></a>
             </li>
         </ul>
     </div>
