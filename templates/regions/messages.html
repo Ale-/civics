@@ -3,9 +3,6 @@
 {% block region_content %}
     {% if messages %}
         <ul class="messages-list">
-            <p class="messages-list__remove">
-              ❌
-            </p>
             {% for message in messages %}
                 <li{% if message.tags %} class="messages-list__msg {{ message.tags }}"{% endif %}>
                     {{ message }}
