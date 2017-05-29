@@ -1,0 +1,98 @@
+@import compass/css3/transform
+@import compass/css3/border-radius
+@import compass/css3/box-shadow
+@import compass/css3/inline-block
+
+.initiative-info
+  height: 100vh
+  position: fixed
+  left: -640px
+  top: 135px
+  z-index: 0
+  width: 640px
+  background-color: #f5f5f5
+  +inline-block
+  +transition(left .15s ease)
+  padding: 0 $m
+  border-right: 1px solid rgba(black, .25)
+
+.initiative-info
+  +links_toolbar
+
+.initiative-info.expanded
+  left: 0
+
+.initiative-info__name
+  text-align: center
+  text-transform: uppercase
+  margin-top: $m/2
+  font-size: 1.3rem
+
+.initiative-info__close
+  +inline-block
+  float: right
+  font-style: normal
+  &:hover
+    cursor: pointer
+  font-size: 2rem
+
+.initiative-info__edit,
+.initiative-info__remove
+  font-size: 2rem
+  display: none
+.initiative-info__edit
+  +transform(rotate(45deg))
+.staff-user
+  .initiative-info__edit,
+  .initiative-info__remove
+    +inline-block
+
+.initiative-info__details
+  font-size: $size_small
+  margin-top: $m*3
+  clear: both
+  text-align: center
+  z-index: 100
+
+.initiative-info__detail
+  margin-bottom: $m
+
+.initiative-info__detail a
+  margin-left: $m/2
+  line-height: 30px
+
+.initiative_blank-image
+  width: 75%
+  +inline-block
+  height: 200px
+  line-height: 200px
+  background-color: #eee
+  font-size: 100px
+  color: #ddd
+  text-align: center
+
+.initiative-header
+  margin-bottom: $m*2
+
+.initiative-header
+  .initiative-marker
+    width: 25%
+    padding-left: $m
+    float: right
+    margin-top: $m/2
+    text-align: center
+    +inline-block
+    & .outer:before
+      +text-shadow(none)
+    p
+      margin-bottom: $m/6
+      font-size: $size_small *.9
+      text-transform: uppercase
+      &::before
+        content: "· "
+    & .outer:before
+      +text-shadow(none)
+  .inner
+    left: 73px
+  .initiative-marker__topic
+    margin-top: $m/2

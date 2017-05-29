@@ -1,0 +1,34 @@
+.map-actions,
+.calendar-actions
+  background: white
+  height: 36px
+  line-height: 36px
+  left: 0
+  width: 100%
+  padding: 0 $m/2
+  border-bottom: 1px solid rgba(black, .1)
+
+.map-actions__count,
+.calendar-actions__count
+  +inline-block
+
+.map-actions__count-label,
+.calendar-actions__count-label
+  color: #555
+
+.map-actions__actions,
+.calendar-actions__actions
+  float: right
+  margin-right: $m
+  span
+    +transition(color .15s ease)
+    &:hover
+      cursor: pointer
+      color: #555
+
+.map-actions__action--share,
+.calendar-actions__action--share
+  +inline-block
+
+[class^='map-actions__action']
+  padding-left: $m/3

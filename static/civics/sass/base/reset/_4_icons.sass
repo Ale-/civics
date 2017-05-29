@@ -1,0 +1,298 @@
+@import compass/css3/inline-block
+@import compass/css3/border-radius
+@import compass/css3/text-shadow
+@import compass/css3/box-shadow
+
+.initiative-marker
+  text-align: center
+  position: relative
+
+.initiative-marker .outer,
+.initiative-marker .inner,
+.initiative-cluster
+  +icon
+
+.initiative-marker .outer
+  &::before
+    font-size: 60px
+    +text-shadow(0 0 5px rgba(black, .5))
+.initiative-marker .inner
+  text-align: center
+  &::before
+    font-size: 23px
+    line-height: 23px
+    color: rgba(black, .75)
+
+.initiative-cluster
+  &::before
+    content: "\e812"
+    color: #ED61AA
+    font-size: 40px
+    +text-shadow(0 0 5px rgba(black, .5))
+
+.fa-map-marker,
+.fa-spinner
+  &::before
+    content: "◎"
+    color: $color_text !important
+
+.initiative-cluster .inner
+  +border-radius(50%)
+  background-color: rgba(white, .75)
+  width: 9px
+  height: 9px
+  position: absolute
+  top: 8px
+  left: 9px
+  border: 1px solid rgba(white, .25)
+
+.initiative-cluster__name,
+.initiative-cluster__count
+  display: none
+  background: white
+  width: 100px
+  text-align: center
+  text-transform: uppercase
+  text-align: center
+  font-size: $size_small
+  padding: $m/4 $m/3
+.initiative-cluster__name
+  font-weight: bold
+
+.city:hover
+  .initiative-cluster__name,
+  .initiative-cluster__count
+    display: block
+
+.leaflet-div-icon
+  border: 0 !important
+  background: none !important
+
+.initiative-cluster
+  &:hover
+    .initiative-cluster__name,
+    .initiative-cluster__count
+      display: blockº
+
+.initiative-marker .inner
+  +inline-block
+  +border-radius(50%)
+  width: 24px
+  height: 24px
+  background-color: #eee
+  position: absolute
+  top: 11px
+  left: 8px
+
+// Iniciativas municipales
+.icon-agent-im:before
+  content: "\e80b"
+
+// Universidades
+.icon-agent-uo:before
+  content: "\e813"
+
+// Organismos internacionales
+.icon-agent-oi:before
+  content: "\e80e"
+
+// Empresas sociales
+.icon-agent-es:before
+  content: "\e812"
+
+// Iniciativas ciudadanas
+.icon-agent-ic:before
+  content: "\e80a"
+
+// Juntas y asociaciones de vecinos
+.icon-agent-ja:before
+  content: "\e815"
+
+// Conquistas ciudadanas
+.icon-agent-cc:before
+  content: "\e80a"
+
+
+// Temáticas -- colores sobre la forma exterior
+// desarrollo comunitario
+.icon-topic-dc
+  color: #fdea14
+  + .inner
+    background-color: #fefac4
+  // arte urbano
+.icon-topic-au
+  color: #f8b835
+  + .inner
+    background-color: #fdedcc
+  // cultura libre
+.icon-topic-cl
+  color: #ec6851
+  + .inner
+    background-color: #fad9d3
+  // deporte / salud / cuidados
+.icon-topic-ds
+  color: #f3a498
+  + .inner
+    background-color: #fce8e5
+  // igualdad / derechos / memoria
+.icon-topic-id
+  color: #e1517c
+  + .inner
+    background-color: #f7d3de
+  // ecología / consumo
+.icon-topic-ec
+  color: #932c49
+  + .inner
+    background-color: #e4cad1
+  // otras economías
+.icon-topic-oe
+  color: #8e8e16
+  + .inner
+    background-color: #e3e3c5
+  // educación expandida
+.icon-topic-ee
+  color: #b7d69c
+  + .inner
+    background-color: #edf5e6
+  // ciencia / tecnología
+.icon-topic-ct
+  color: #2cae87
+  + .inner
+    background-color: #edf5e6
+  // movilidad sostenible
+.icon-topic-ms
+  color: #40bfef
+  + .inner
+    background-color: #cfeffb
+  // política y gobernanza
+.icon-topic-pg
+  color: #0079ba
+  + .inner
+    background-color: #bfddee
+  // urbanismo / patrimonio
+.icon-topic-up
+  color: #587e74
+  + .inner
+    background-color: #d5dfdc
+  // periodismo comunitario
+.icon-topic-pc
+  color: #f87dcc
+  + .inner
+    background-color: #f7d3de
+
+
+// Espacios
+
+.icon-space-cc:before
+  content: '\e846'
+.icon-space-em:before
+  content: '\e847'
+.icon-space-mc:before
+  content: '\e848'
+.icon-space-di:before
+  content: '\e849'
+.icon-space-ei:before
+  content: '\e84a'
+.icon-space-ea:before
+  content: '\e84b'
+.icon-space-ep:before
+  content: '\e84c'
+.icon-space-hu:before
+  content: '\e84d'
+.icon-space-it:before
+  content: '\e84e'
+.icon-space-iu:before
+  content: '\e84f'
+.icon-space-ms::before
+  content: '\e850'
+.icon-space-se:before
+  content: '\e851'
+
+.icon-download
+  +icon
+  &:before
+    content: '\e811'
+
+.icon-share
+  +icon
+  &:before
+    content: '\e817'
+
+.icon-twitter
+  +icon
+  &:before
+    content: '\e81a'
+
+.icon-facebook
+  +icon
+  &:before
+    content: '\e818'
+
+
+.icon-login
+  &:before
+    font-size: 2em
+  +icon
+  &:before
+    content: '\e832'
+
+.icon-email
+  +icon
+  &:before
+    content: '\e819'
+
+.icon-website
+  +icon
+  &:before
+    content: '\e82e'
+
+.icon-address
+  +icon
+  &:before
+    content: '\e81c'
+
+.icon-email,
+.icon-website,
+.icon-address
+  height: 26px !important
+  &:before
+    color: #555
+    font-size: 26px
+    text-align: center
+    +border-radius(50%)
+    background: white
+    width: 26px
+    line-height: 26px
+
+.icon-topic
+  +icon
+  &:before
+    content: '\e820'
+.icon-space
+  +icon
+  &:before
+    content: '\e81f'
+.icon-agent
+  +icon
+  &:before
+    content: '\e821'
+.icon-add
+  +icon
+  &:before
+    content: '\e825'
+.icon-calendar
+  +icon
+  &:before
+    content: '\e81d'
+.icon-map
+  +icon
+  &:before
+    content: '\e816'
+.icon-info
+  +icon
+  &:before
+    content: 'ℹ'
+.icon-list
+  +icon
+  &:before
+    content: '\e814'

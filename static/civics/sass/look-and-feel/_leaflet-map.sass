@@ -1,0 +1,23 @@
+@import compass/css3/transition
+
+#initiatives-map,
+#events-map
+  position: fixed
+  top: 134px
+  left: 0
+  right: 100vw
+  height: calc(100vh - 146px) !important
+  z-index: -1
+  +transition(left .15s ease)
+
+#initiatives-map,
+#events-map
+  &.collapsed
+    left: 640px
+    .leaflet-marker-icon
+      opacity: .25 !important
+    .leaflet-marker-icon.selected
+      opacity: 1 !important
+
+.leaflet-control-layers-overlays
+  display: none

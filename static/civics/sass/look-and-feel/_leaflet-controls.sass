@@ -1,0 +1,20 @@
+@import compass/css3/border-radius
+
+.leaflet-control-layers
+  +border-radius(0 !important)
+  text-transform: uppercase
+  font-size: $size_small
+
+.leaflet-control-layers label
+  &:hover
+    cursor: pointer
+
+.leaflet-control-layers-selector
+  margin-right: $m/2
+
+.leaflet-control-layers-overlays,
+.leaflet-control-layers-separator
+  display: none
+
+.leaflet-bar a
+  +border-radius(0 !important)

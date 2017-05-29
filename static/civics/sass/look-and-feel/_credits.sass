@@ -1,0 +1,49 @@
+@import compass/css3/inline-block
+
+.civics-about
+  position: fixed
+  top: 50px
+  left: 0
+  min-height: 100vh
+  width: 100vw
+  text-align: justify
+  padding: $m*7 calc(50vw - 240px) 25vw
+  background: url('../img/logo_civics-150x58.png') no-repeat center $m*3 #eee
+
+.close-about
+  position: absolute
+  right: $m*2
+  top: $m*2
+  font-size: 1.5rem
+  &:hover
+    cursor: pointer
+
+.civics-about__icons
+  margin-top: $m
+  +clearfix
+
+  [class^='icon-']
+    font-size: 2em
+    margin-bottom: $m/2
+  .plus-icon
+    font-weight: bold
+    font-size: 1.5em
+
+.civics-about__icons-item
+  +inline-block
+  width: 30%
+  padding: 0 $m
+  text-align: center
+
+
+.civics-about__icon-text
+  text-transform: uppercase
+  font-size: $size_small
+
+.civics-credits
+  text-align: center
+  margin-top: $m*3
+
+.civics-credits__title
+  clear: both
+  text-transform: uppercase

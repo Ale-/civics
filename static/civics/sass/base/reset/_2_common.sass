@@ -32,6 +32,48 @@
     &:active
       color: #555
 
+=links_toolbar
+  a
+    +transition(color .1s ease)
+    &:link, &:visited
+      color: #333
+    &:hover
+      color: #ed61aa
+    &:active
+      color: #333
+
+=links_filters
+  a
+    +transition(color .1s ease)
+    &:link, &:visited
+      color: white
+    &:hover
+      color: rgba(white, .75)
+    &:active
+      color: white
+
+=links_success
+  a
+    +transition(background-color .1s ease)
+    background-color: #f9afea
+    color: $color_text
+    &:hover
+      background-color: darken(#f9afea, 10%)
+
+=icon
+  &:before
+    font-family: $font_icons
+    speak: none
+    font-style: normal
+    font-weight: normal
+    font-variant: normal
+    text-transform: none
+    line-height: 1
+    position: relative
+    /* Better Font Rendering ===========
+    -webkit-font-smoothing: antialiased
+    -moz-osx-font-smoothing: grayscale
+
 // Modals
 
 =modal_container
@@ -58,3 +100,11 @@
   100%
     +opacity(1)
     +transform( translate(0, 0) )
+
++keyframes(hideup)
+  0%
+    +opacity(1)
+  33%
+    +opacity(1)
+  100%
+    +opacity(0)

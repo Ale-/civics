@@ -1,0 +1,188 @@
+.map-filters
+  width: 100%
+  height: 48px
+  color: white
+  border-bottom: 1px solid rgba(black, .05)
+  +links_filters
+
+.map-filters__filter
+  +inline-block
+  width: 25%
+  float: left
+  text-align: center
+  line-height: 48px
+  text-transform: uppercase
+  +transition(background-color .1s ease)
+  &:hover
+    cursor: pointer
+
+.map-filters__filter
+  background-color: #ed61aa
+  &:hover
+    background-color: #ea4a9e
+
+.map-filters__filter--calendar
+  background-color: #02cfc2 !important
+  &:hover
+    background-color: #02b6aa !important
+
+.map-filters__categories
+  text-align: left
+  position: absolute
+  z-index: 100
+  width: 25%
+  border: 1px solid rgba(black, .15)
+  border-width: 0 1px 1px
+  background-color: lighten(#ed61aa, 10%)
+
+.map-filters__categories--calendar
+  background-color: lighten(#02cfc2, 10%)
+
+.map-filters__category
+  &:hover
+    background-color: darken(#ed61aa, 10%)
+
+.map-filters__category--calendar
+  &:hover
+    background-color: darken(#02cfc2, 10%)
+
+.map-filters__filter:hover
+  .map-filters__filter-label
+    background-color: darken(#ed61aa, 5%)
+
+.map-filters__filter--calendar:hover
+  .map-filters__filter-label
+    background-color: darken(#02cfc2, 5%)
+
+.map-filters__category
+  font-size: $size_small
+  line-height: 32px
+  text-transform: capitalize
+  padding: 0 $m
+  color: rgba(black, .75)
+  +icon
+
+  &.inactive
+    +opacity(.5)
+
+.map-filters__category::before
+  content: " "
+  width: 20px
+  height: 20px
+  line-height: 20px
+  margin: 0 $m/2 5px 0
+  +inline-block
+  +border-radius(50%)
+  color: #111
+
+.category-topic-dc::before
+  background-color: #fdea14
+.category-topic-au::before
+  background-color: #f8b835
+.category-topic-cl::before
+  background-color: #ec6851
+.category-topic-ds::before
+  background-color: #f3a498
+.category-topic-id::before
+  background-color: #e1517c
+.category-topic-ec::before
+  background-color: #932c49
+.category-topic-oe::before
+  background-color: #8e8e16
+.category-topic-ee::before
+  background-color: #b7d69c
+.category-topic-ct::before
+  background-color: #2cae87
+.category-topic-ms::before
+  background-color: #40bfef
+.category-topic-pg::before
+  background-color: #0079ba
+.category-topic-up::before
+  background-color: #587e74
+.category-topic-pc::before
+  background-color: #f87dcc
+
+[class*=category-space-]
+  &::before
+    background-color: white
+    text-align: center
+    width: 24px
+    height: 24px
+    font-size: 24px
+    line-height: 24px
+
+.category-space-cc:before
+  content: '\e846'
+.category-space-em:before
+  content: '\e847'
+.category-space-mc:before
+  content: '\e848'
+.category-space-di:before
+  content: '\e849'
+.category-space-ei:before
+  content: '\e84a'
+.category-space-ea:before
+  content: '\e84b'
+.category-space-ep:before
+  content: '\e84c'
+.category-space-hu:before
+  content: '\e84d'
+.category-space-it:before
+  content: '\e84e'
+.category-space-iu:before
+  content: '\e84f'
+.category-space-ms::before
+  content: '\e850'
+.category-space-se:before
+  content: '\e851'
+
+[class*=category-activity-]
+  &::before
+    background-color: white
+    text-align: center
+    width: 24px
+    height: 24px
+    font-size: 36px
+    line-height: 36px
+
+.category-activity-au:before
+  content: '\e800'
+.category-activity-cu:before
+  content: '\e801'
+.category-activity-di:before
+  content: '\e802'
+.category-activity-en:before
+  content: '\e803'
+.category-activity-ev:before
+  content: '\e804'
+.category-activity-ex:before
+  content: '\e805'
+.category-activity-fi:before
+  content: '\e806'
+.category-activity-pu:before
+  content: '\e807'
+.category-activity-ta:before
+  content: '\e808'
+
+
+[class*=category-agent-]
+  &::before
+    font-size: 24px
+.category-agent-im:before
+  content: "\e853"
+.category-agent-uo:before
+  content: "\e856"
+.category-agent-oi:before
+  content: "\e854"
+.category-agent-es:before
+  content: "\e855"
+.category-agent-ic:before
+  content: "\e852"
+.category-agent-ja:before
+  content: "\e857"
+.category-agent-cc:before
+  content: "\e852"
+
+.map-filters__filter span
+  margin-right: $m/3
+  color: rgba(white, .5)

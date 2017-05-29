@@ -1,0 +1,35 @@
+@import compass/css3/transition
+@import compass/css3/opacity
+
+.initiatives-grid
+  padding: $m*4 $m*6
+  background: image-url('signin-bg.png') repeat #eae9e9
+  height: calc(100vh - 182px)
+  overflow-y: scroll
+  +transition(left .1s ease)
+
+.initiatives-grid.collapsed
+  position: relative
+  left: 640px
+  width: calc(100vw - 640px)
+
+.initiatives-grid__item
+  +inline-block
+  width: 25%
+  padding: $m
+  position: relative
+  .initiative_blank-image
+    +box-shadow(0 0 10px rgba(black, .2))
+    width: 100%
+  +transition(opacity .15s ease)
+  &:hover
+    cursor: pointer
+    +opacity(.9)
+
+.initiative-caption
+  font-size: $size_small
+  text-align: center
+  position: absolute
+  bottom: $m
+  width: calc(100% - 48px)
+  background: rgba(white, .5)
