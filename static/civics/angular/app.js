@@ -12,8 +12,20 @@ angular.module('civics', [
     'ngRoute',
     'angular-loading-bar',
     'leaflet-directive',
-    'civics.map_controller'
+    'civics.settings',
+    'civics.initiatives_service',
+    'civics.categories_service',
+    'civics.events_service',
+    'civics.cities_service',
+    'civics.map_controller',
+    'civics.calendar_controller',
   ])
+
+  .run( function(Cities, Settings){
+      Cities.get( function(cities_response){;
+          Settings.setCities( cities_response.data );
+      });
+  })
 
   .config(['$routeProvider', 'cfpLoadingBarProvider', '$logProvider', '$compileProvider', '$httpProvider', function ($routeProvider, cfpLoadingBarProvider, $logProvider, $compileProvider, $httpProvider) {
 
@@ -26,13 +38,32 @@ angular.module('civics', [
     //Use applysync to reduce $digest calls using ajax
     $httpProvider.useApplyAsync(true);
 
+    //Turn off spinner in angular-loading-bar
+    cfpLoadingBarProvider.includeSpinner = false;
+
+
     var templates_url = '/static/civics/angular/views/'
 
     $routeProvider
-      .when('/', {
-        templateUrl : templates_url + 'map.html',
-        controller  : 'MapController',
-        controllerAs: 'map',
+      .when('/iniciativas', {
+          templateUrl : templates_url + 'initiatives.html',
+          controller  : 'MapController',
+          controllerAs: 'map',
+          resolve: {
+              initiatives: function(Initiatives) {
+                  return Initiatives.setup();
+              }
+          }
+      })
+      .when('/eventos', {
+          templateUrl : templates_url + 'calendar.html',
+          controller  : 'CalendarController',
+          controllerAs: 'calendar',
+          resolve: {
+              events: function(Events) {
+                  return Events.setup();
+              }
+          }
       })
       .when('/about', {
         templateUrl : templates_url + 'about.html',
@@ -40,6 +71,6 @@ angular.module('civics', [
         controllerAs: 'map',
       })
       .otherwise({
-        redirectTo: '/'
+        redirectTo: '/iniciativas'
       });
   }]);

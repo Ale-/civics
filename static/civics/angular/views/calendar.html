@@ -1,0 +1,129 @@
+<ul class="map-filters">
+    <li class="map-filters__filter map-filters__filter--calendar map-filters__filter--topics">
+        <p class="map-filters__filter-label"
+           ng-init="showing_topics = false" ng-click="showing_topics = !showing_topics">
+           <span class="icon-topic"></span> Temática
+        </p>
+        <ul class="map-filters__categories map-filters__categories--calendar" ng-show="showing_topics">
+            <li class="map-filters__category map-filters__category--calendar category-topic-{{category_key}}"
+                ng-repeat="(category_key, category_name) in calendar.topics"
+                ng-click="calendar.toggle('topics', category_key)"
+                ng-class="{ 'inactive' : !calendar.active['topics'][category_key] }">
+                {{ category_name }}
+            </li>
+        </ul>
+    </li>
+    <li class="map-filters__filter map-filters__filter--calendar map-filters__filter--spaces">
+        <p class="map-filters__filter-label"
+           ng-init="showing_activities = false" ng-click="showing_activities = !showing_activities">
+            <span class="icon-calendar"></span> Actividad
+        </p>
+        <ul class="map-filters__categories map-filters__categories--calendar" ng-show="showing_activities">
+            <li class="map-filters__category map-filters__category--calendar category-activity-{{category_key}}"
+                ng-repeat="(category_key, category_name) in calendar.activities"
+                ng-click="calendar.toggle('spaces', category_key)"
+                ng-class="{ 'inactive' : !calendar.active['activities'][category_key] }">
+                {{ category_name }}
+            </li>
+        </ul>
+    </li>
+    <li class="map-filters__filter map-filters__filter--calendar map-filters__filter--agents">
+        <p  class="map-filters__filter-label"
+            ng-init="showing_agents = false" ng-click="showing_agents = !showing_agents">
+            <span class="icon-agent"></span> Agente
+        </p>
+        <ul class="map-filters__categories map-filters__categories--calendar" ng-show="showing_agents">
+            <li class="map-filters__category map-filters__category--calendar category-agent-{{category_key}}"
+                ng-repeat="(category_key, category_name) in calendar.agents"
+                ng-click="calendar.toggle('agents', category_key)"
+                ng-class="{ 'inactive' : !calendar.active['agents'][category_key] }">
+                {{ category_name }}
+            </li>
+        </ul>
+    </li>
+    <li class="map-filters__filter map-filters__filter--calendar">
+        <a href="/crea/evento"><span class="icon-add"></span> Añadir</a>
+    </li>
+</ul>
+<div class="calendar-actions">
+    <div class="map-actions__count">
+        <span class="map-actions__count-label">Mostrando </span>
+        <span class="map-actions__count-number">{{ calendar.events_count }}</span>
+        <span class="map-actions__count-label"> eventos</span>
+    </div>
+    <div class="calendar-actions__actions">
+        <!-- <div class="calendar-actions__action calendar-actions__action--share">
+            <span class="icon-share"></span>
+            <span class="icon-facebook"></span>
+            <span class="icon-twitter"></span>
+        </div> -->
+        <a href="{{ calendar.download_link }}"><span class="calendar-actions__action--download icon-download"></span></a>
+    </div>
+</div>
+
+<leaflet id="events-map" ng-class="{ 'collapsed' : calendar.showing_event }" height="480px" width="100%"
+          center="calendar.center" controls="calendar.controls" defaults="calendar.defaults" layers="calendar.layers" markers="calendar.markers" >
+</leaflet>
+
+<ul class="secondary-menu">
+    <li class="secondary-menu__link" ng-init="showing_credits=false" ng-click="showing_credits=true">
+        Qué es Civics
+    </li>
+    <li class="secondary-menu__link" ng-init="showing_legend=false" ng-click="showing_legend=true">
+        Leyenda
+    </li>
+    <div class="civics-about" ng-show="showing_credits">
+        <p class="close-about" ng-click="showing_credits=false">
+          ×
+        </p>
+        <p class="civics-about__text">
+          Muchos ciudadanos trabajan de forma colectiva para construir una ciudad más inclusiva, ética, sostenible,
+          participativa y habitable, desvelando un mapa emergente de tu ciudad.
+          Aquí podrás encontrar iniciativas y actividades existentes en tu calle, barrio, etc. Ayúdanos a conectar
+          gente con ideas e ideas que buscan gente, que juntas hacen cosas como [huertos urbanos/rutas en bici/solidaridad vecinal, etc].
+          Si formas parte de un colectivo, iniciativa, asociación, comunidad, etc. anímate a compartir vuestras actividades, proyectos
+          y eventos. Cuantos más seamos, más ganamos todos.
+        </p>
+        <div class="civics-about__icons">
+            <div class="civics-about__icons-item">
+                <p class="icon-map"></p>
+                <p class="civics-about__icon-text">
+                    Mapa de iniciativas
+                </p>
+            </div>
+            <span class="plus-icon">+</span>
+            <div class="civics-about__icons-item">
+                <p class="icon-calendar"></p>
+                <p class="civics-about__icon-text">
+                    Mapa de actividades
+                </p>
+            </div>
+            <span class="plus-icon">+</span>
+            <div class="civics-about__icons-item">
+                <p class="icon-info"></p>
+                <p class="civics-about__icon-text">
+                    Información
+                </p>
+            </div>
+        </div>
+        <div class="civics-credits">
+            <h5 class="civics-credits__title">- Logos de espacios amigos -</h5>
+            <div class="civics-credits__logos">
+                [ logos ]
+            </div>
+        </div>
+    </div>
+    <div class="civics-legend" ng-show="showing_legend">
+      <p class="close-legend" ng-click="showing_legend=false">
+        ×
+      </p>
+      <p class="civics-legend__text">
+        El sistema de categorías se ha establecido en colaboración con muchas iniciativas ciudadanas y colectivos
+        a lo largo de más de 20 ciudades ibereoamericanas. Cualquier comentario para mejorar la platoforma escribir a:
+        [...]
+      </p>
+      <p class="civics-legend__icons">
+          [ leyenda ]
+      </p>
+    </div>
+</ul>

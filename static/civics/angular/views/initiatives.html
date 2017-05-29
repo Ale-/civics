@@ -1,0 +1,182 @@
+<ul class="map-filters">
+    <li class="map-filters__filter map-filters__filter--topics">
+        <p class="map-filters__filter-label"
+           ng-init="showing_topics = false" ng-click="showing_topics = !showing_topics">
+           <span class="icon-topic"></span> Temática
+        </p>
+        <ul class="map-filters__categories" ng-show="showing_topics">
+            <li class="map-filters__category category-topic-{{category_key}}"
+                ng-repeat="(category_key, category_name) in map.topics"
+                ng-click="map.toggle('topics', category_key)"
+                ng-class="{ 'inactive' : !map.active['topics'][category_key] }">
+                {{ category_name }}
+            </li>
+        </ul>
+    </li>
+    <li class="map-filters__filter map-filters__filter--spaces">
+        <p class="map-filters__filter-label"
+           ng-init="showing_spaces = false" ng-click="showing_spaces = !showing_spaces">
+            <span class="icon-space"></span> Espacio
+        </p>
+        <ul class="map-filters__categories" ng-show="showing_spaces">
+            <li class="map-filters__category category-space-{{category_key}}"
+                ng-repeat="(category_key, category_name) in map.spaces"
+                ng-click="map.toggle('spaces', category_key)"
+                ng-class="{ 'inactive' : !map.active['spaces'][category_key] }">
+                {{ category_name }}
+            </li>
+        </ul>
+    </li>
+    <li class="map-filters__filter map-filters__filter--agents">
+        <p  class="map-filters__filter-label"
+            ng-init="showing_agents = false" ng-click="showing_agents = !showing_agents">
+            <span class="icon-agent"></span> Agente
+        </p>
+        <ul class="map-filters__categories" ng-show="showing_agents">
+            <li class="map-filters__category category-agent-{{category_key}}"
+                ng-repeat="(category_key, category_name) in map.agents"
+                ng-click="map.toggle('agents', category_key)"
+                ng-class="{ 'inactive' : !map.active['agents'][category_key] }">
+                {{ category_name }}
+            </li>
+        </ul>
+    </li>
+    <li class="map-filters__filter">
+        <a href="/crea/iniciativa"><span class="icon-add"></span> Añadir</a>
+    </li>
+</ul>
+
+<div class="map-actions">
+    <div class="map-actions__count">
+        <span class="map-actions__count-label">Mostrando </span>
+        <span class="map-actions__count-number">{{ map.initiatives_count }}</span>
+        <span class="map-actions__count-label"> iniciativas</span>
+    </div>
+    <div class="map-actions__actions">
+        <!-- <div class="map-actions__action map-actions__action--share">
+            <span class="icon-share"></span>
+            <span class="icon-facebook"></span>
+            <span class="icon-twitter"></span>
+        </div> -->
+        <span ng-click="map.showing_map=true" class="map-actions__action--map icon-map"></span>
+        <span ng-click="map.showing_map=false" class="map-actions__action--grid icon-list"></span>
+        <span ng-click="map.download_xls()" class="map-actions__action--download icon-download"></span>
+    </div>
+</div>
+
+<div class="initiative-info" ng-class="{ 'expanded' : map.showing_initiative }">
+    <a class="initiative-info__edit" href="/edita/iniciativa/{{ map.initiative.id }}">✏</a>
+    <a class="initiative-info__remove" href="/borra/iniciativa/{{ map.initiative.id }}">⤫</a>
+    <i class="initiative-info__close" ng-click="map.closeInitiativeInfo()">×</i>
+    <h2 class='initiative-info__name'>
+        {{ map.initiative.name }}
+    </h2>
+    <div class="initiative-header">
+        <img ng-show="map.initiative.img" src="{{ map.initiative.img }}" />
+        <div ng-hide="map.initiative.img" class="initiative_blank-image">
+            <span class="icon-agent"></span>
+        </div>
+        <div class='initiative-marker'>
+            <i class='outer icon-topic-{{ map.initiative.topic }} icon-agent-{{ map.initiative.agent }}'></i>
+            <i class='inner icon-space-{{ map.initiative.space }}'></i>
+            <p class="initiative-marker__topic">{{ map.initiative_topicname }}</p>
+            <p class="initiative-marker__space">{{ map.initiative_spacename }}</p>
+            <p class="initiative-marker__agent">{{ map.initiative_agentname }}</p>
+        </div>
+    </div>
+    <p class='initiative-info__description'>
+        {{ map.initiative.description }}
+    </p>
+    <div class='initiative-info__details'>
+        <p class="initiative-info__detail initiative-info__detail--website" ng-show="map.initiative.website">
+            <span class="icon-website"></span> <a href="{{ map.initiative_website }}" target="_blank">{{ map.initiative.website }}</a>
+        </p>
+        <p class="initiative-info__detail initiative-info__detail--email" ng-show="map.initiative.email">
+            <span class="icon-email"></span> <a href="mailto:{{ map.initiative.email }}" target="_blank">{{ map.initiative.email }}</a>
+        </p>
+        <p class="initiative-info__detail initiative-info__detail--address" ng-show="map.initiative.address">
+            <span class="icon-address"></span> {{ map.initiative.address }} ({{ map.initiative.city }}, {{ map.initiative.country }})
+        </p>
+    </div>
+</div>
+
+
+<leaflet ng-if="map.showing_map" id="initiatives-map" ng-class="{ 'collapsed' : map.showing_initiative }" height="480px" width="100%"
+          lf-center="map.center" defaults="map.defaults" layers="map.layers" markers="map.markers" controls="map.controls" >
+</leaflet>
+
+<div class="initiatives-grid" ng-if="!map.showing_map" ng-class="{ 'collapsed' : map.showing_initiative }">
+    <div class="initiatives-grid__item" ng-repeat="marker in map.markers" ng-hide="marker.layer=='hidden'" ng-click="map.showInitiativeInfo(marker)">
+        <img ng-show="marker.img" src="{{ marker.img }}" />
+        <div ng-hide="marker.img" class="initiative_blank-image">
+            <span class="icon-agent"></span>
+        </div>
+        <div class="initiative-caption">
+          <p class="initiative-name">{{ marker.name }}</p>
+          <p class="initiative-city">{{ marker.city }} / {{ marker.country }}</p>
+        </div>
+    </div>
+</div>
+
+<ul class="secondary-menu">
+    <li class="secondary-menu__link" ng-init="showing_credits=false" ng-click="showing_credits=true">
+        Qué es Civics
+    </li>
+    <li class="secondary-menu__link" ng-init="showing_legend=false" ng-click="showing_legend=true">
+        Leyenda
+    </li>
+    <div class="civics-about" ng-show="showing_credits">
+        <p class="close-about" ng-click="showing_credits=false">
+          ×
+        </p>
+        <p class="civics-about__text">
+          Muchos ciudadanos trabajan de forma colectiva para construir una ciudad más inclusiva, ética, sostenible,
+          participativa y habitable, desvelando un mapa emergente de tu ciudad.
+          Aquí podrás encontrar iniciativas y actividades existentes en tu calle, barrio, etc. Ayúdanos a conectar
+          gente con ideas e ideas que buscan gente, que juntas hacen cosas como [huertos urbanos/rutas en bici/solidaridad vecinal, etc].
+          Si formas parte de un colectivo, iniciativa, asociación, comunidad, etc. anímate a compartir vuestras actividades, proyectos
+          y eventos. Cuantos más seamos, más ganamos todos.
+        </p>
+        <div class="civics-about__icons">
+            <div class="civics-about__icons-item">
+                <p class="icon-map"></p>
+                <p class="civics-about__icon-text">
+                    Mapa de iniciativas
+                </p>
+            </div>
+            <span class="plus-icon">+</span>
+            <div class="civics-about__icons-item">
+                <p class="icon-calendar"></p>
+                <p class="civics-about__icon-text">
+                    Mapa de actividades
+                </p>
+            </div>
+            <span class="plus-icon">+</span>
+            <div class="civics-about__icons-item">
+                <p class="icon-info"></p>
+                <p class="civics-about__icon-text">
+                    Información
+                </p>
+            </div>
+        </div>
+        <div class="civics-credits">
+            <h5 class="civics-credits__title">- Logos de espacios amigos -</h5>
+            <div class="civics-credits__logos">
+                [ logos ]
+            </div>
+        </div>
+    </div>
+    <div class="civics-legend" ng-show="showing_legend">
+      <p class="close-legend" ng-click="showing_legend=false">
+        ×
+      </p>
+      <p class="civics-legend__text">
+        El sistema de categorías se ha establecido en colaboración con muchas iniciativas ciudadanas y colectivos
+        a lo largo de más de 20 ciudades ibereoamericanas. Cualquier comentario para mejorar la platoforma escribir a:
+        [...]
+      </p>
+      <p class="civics-legend__icons">
+          [ leyenda ]
+      </p>
+    </div>
+</ul>
