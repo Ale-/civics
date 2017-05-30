@@ -11,6 +11,9 @@ urlpatterns = [
     url(r'^$', TemplateView.as_view(template_name='pages/front.html'), name="front"),
     url(r'^', include('apps.models.urls', namespace='modelforms')),
 
+    # Static URLs
+    url(r'^acerca$', TemplateView.as_view(template_name='pages/about.html'), name="about"),
+
     # Registration URLs
     url(r'^registrate/$', RegistrationView.as_view(form_class=RegistrationFormUniqueEmail), name="registration_register"),
     url(r'', include('registration.backends.default.urls')),

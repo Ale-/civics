@@ -8,11 +8,14 @@
     </div>
     <div class="region-{{ region_name }}__center">
         <ul class="main-menu">
-          <li class="main-menu__link main-menu__link--active">
-              <a href="/#!/iniciativas">Iniciativas</a>
-          </li>
             <li class="main-menu__link">
-                <a href="/#!/eventos">Agenda</a>
+                <a href="{% url 'about' %}">{% trans 'Acerca' %}</a>
+            </li>
+            <li class="main-menu__link">
+                <a href="/#!/iniciativas">{% trans 'Iniciativas' %}</a>
+            </li>
+            <li class="main-menu__link">
+                <a href="/#!/eventos">{% trans 'Agenda' %}</a>
             </li>
         </ul>
     </div>

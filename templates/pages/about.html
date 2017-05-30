@@ -1,0 +1,42 @@
+{# Site front page #} {% extends 'layouts/single-fluid-column.html' %} {% load static utils %}
+
+{% block main %}
+    <div class="civics-about">
+        <p class="civics-about__text">
+          Muchos ciudadanos trabajan de forma colectiva para construir una ciudad más inclusiva, ética, sostenible,
+          participativa y habitable, desvelando un mapa emergente de tu ciudad.
+          Aquí podrás encontrar iniciativas y actividades existentes en tu calle, barrio, etc. Ayúdanos a conectar
+          gente con ideas e ideas que buscan gente, que juntas hacen cosas como [huertos urbanos/rutas en bici/solidaridad vecinal, etc].
+          Si formas parte de un colectivo, iniciativa, asociación, comunidad, etc. anímate a compartir vuestras actividades, proyectos
+          y eventos. Cuantos más seamos, más ganamos todos.
+        </p>
+        <div class="civics-about__icons">
+            <div class="civics-about__icons-item">
+                <p class="icon-map"></p>
+                <p class="civics-about__icon-text">
+                    Mapa de iniciativas
+                </p>
+            </div>
+            <span class="plus-icon">+</span>
+            <div class="civics-about__icons-item">
+                <p class="icon-calendar"></p>
+                <p class="civics-about__icon-text">
+                    Mapa de actividades
+                </p>
+            </div>
+            <span class="plus-icon">+</span>
+            <div class="civics-about__icons-item">
+                <p class="icon-info"></p>
+                <p class="civics-about__icon-text">
+                    Información
+                </p>
+            </div>
+        </div>
+        <div class="civics-credits">
+            <h5 class="civics-credits__title">- Logos de espacios amigos -</h5>
+            <div class="civics-credits__logos">
+                [ logos ]
+            </div>
+        </div>
+    </div>
+{% endblock %}
