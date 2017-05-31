@@ -53,6 +53,13 @@ angular.module('civics.settings', [])
                   type : 'xyz',
               },
           },
+          overlays: {
+              hidden: {
+                  name    : 'Hidden markers',
+                  visible : false,
+                  type    : 'group',
+              }
+          }
       };
 
       this.map_controls = {
@@ -63,8 +70,6 @@ angular.module('civics.settings', [])
 
       this.setCities = function(cities)
       {
-          this.map_layers.overlays = {};
-
           cities.forEach( angular.bind(this, function(city){
               this.map_layers.overlays[city.name] = {
                   name                    : city.name,
