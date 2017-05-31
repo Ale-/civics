@@ -14,3 +14,4 @@ Pillow==4.1.1
 pycountry==17.1.8
 pyparsing==2.2.0
 six==1.10.0
+xlwt==1.2.0
