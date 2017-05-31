@@ -7,9 +7,9 @@
         <ul class="map-filters__categories" ng-show="showing_topics">
             <li class="map-filters__category category-topic-{{category_key}}"
                 ng-repeat="(category_key, category_name) in map.topics"
-                ng-click="map.toggle('topics', category_key)"
-                ng-class="{ 'inactive' : !map.active['topics'][category_key] }">
-                {{ category_name }}
+                ng-click="map.toggleFilter('topic', category_key)"
+                ng-class="{ 'active' : map.active_categories['topic'][category_key] }">
+                {{ category_name }} <span class="map-filters__checkmark"></span>
             </li>
         </ul>
     </li>
@@ -21,9 +21,9 @@
         <ul class="map-filters__categories" ng-show="showing_spaces">
             <li class="map-filters__category category-space-{{category_key}}"
                 ng-repeat="(category_key, category_name) in map.spaces"
-                ng-click="map.toggle('spaces', category_key)"
-                ng-class="{ 'inactive' : !map.active['spaces'][category_key] }">
-                {{ category_name }}
+                ng-click="map.toggleFilter('space', category_key)"
+                ng-class="{ 'active' : map.active_categories['space'][category_key] }">
+                {{ category_name }} <span class="map-filters__checkmark"></span>
             </li>
         </ul>
     </li>
@@ -35,9 +35,9 @@
         <ul class="map-filters__categories" ng-show="showing_agents">
             <li class="map-filters__category category-agent-{{category_key}}"
                 ng-repeat="(category_key, category_name) in map.agents"
-                ng-click="map.toggle('agents', category_key)"
-                ng-class="{ 'inactive' : !map.active['agents'][category_key] }">
-                {{ category_name }}
+                ng-click="map.toggleFilter('agent', category_key)"
+                ng-class="{ 'active' : map.active_categories['agent'][category_key] }">
+                {{ category_name }} <span class="map-filters__checkmark"></span>
             </li>
         </ul>
     </li>
@@ -47,11 +47,23 @@
 </ul>
 
 <div class="map-actions">
-    <div class="map-actions__count">
-        <span class="map-actions__count-label">Mostrando </span>
-        <span class="map-actions__count-number">{{ map.initiatives_count }}</span>
-        <span class="map-actions__count-label"> iniciativas</span>
+    <div class="markers-count">
+        <span class="markers-count__label">Mostrando </span>
+        <span class="markers-count__number">{{ map.initiatives_count }}</span>
+        <span class="markers-count__label"> iniciativas</span>
     </div>
+    <ul class="filter-tags">
+        <li class="filter-tags__tag"
+            ng-repeat="filter in map.active_filters"
+            ng-click="map.removeFilter($index)">
+            {{ filter.n }} <span class="filter-tags__close">×</span>
+        </li>
+        <li class="filter-tags__remove"
+            ng-show="map.active_filters.length > 0"
+            ng-click="map.removeFilters()">
+            Eliminar filtros
+        </li>
+    </ul>
     <div class="map-actions__actions">
         <!-- <div class="map-actions__action map-actions__action--share">
             <span class="icon-share"></span>

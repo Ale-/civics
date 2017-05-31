@@ -1,19 +1,20 @@
+@import compass/css3/inline-block
+@import compass/css3/border-radius
+
 .map-actions,
 .calendar-actions
-  background: white
+  background: #eee
   height: 36px
-  line-height: 36px
+  line-height: 30px
   left: 0
   width: 100%
   padding: 0 $m/2
-  border-bottom: 1px solid rgba(black, .1)
 
-.map-actions__count,
-.calendar-actions__count
+.markers-count
   +inline-block
+  margin-right: $m/2
 
-.map-actions__count-label,
-.calendar-actions__count-label
+.markers-count__label
   color: #555
 
 .map-actions__actions,
@@ -32,3 +33,38 @@
 
 [class^='map-actions__action']
   padding-left: $m/3
+
+.filter-tags
+  +inline-block
+
+.filter-tags li
+  display: inline
+  text-transform: uppercase
+  font-size: .75em
+  margin: 0 4px
+  padding: 4px 8px
+  +transition(background-color .15s ease)
+  &:hover
+    background-color: #fff
+    cursor: pointer
+
+.filter-tags__tag
+  background: #ddd
+  +border-radius(4px)
+
+.filter-tags__close
+  font-weight: bold
+  font-size: 1.25em
+  color: #555
+  line-height: 1em
+  margin-left: $m/6
+
+.map-filters__checkmark
+  float: right
+  font-size: 1.5em
+  color: rgba(black, .75) !important
+  &::before
+    content: "☐"
+.active
+  .map-filters__checkmark::before
+    content: "☒"

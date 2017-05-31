@@ -2,79 +2,116 @@ angular.module('civics.map_controller', [])
 
 .controller("MapController", function(Initiatives, Settings, initiatives, $scope, Categories, leafletData, $location)
 {
+    // Leaflet map settings
     this.markers  = initiatives;
     this.defaults = Settings.map_defaults.defaults;
     this.center   = Settings.map_defaults.center;
     this.layers   = Settings.map_layers;
     this.controls = Settings.map_controls;
 
+    // Section state
     this.showing_map = true;
-
     this.showing_initiative = false;
     this.initiatives_count = this.markers.length;
 
-    this.topics = Categories.topics;
-    this.spaces = Categories.spaces;
-    this.agents = Categories.agents;
-
-    this.calculating = false;
-
-    /**
-     *  Setup visible categories
-     */
-    this.active = {
-      'topics' : {},
-      'agents' : {},
-      'spaces' : {},
+    // Filter categories
+    this.topics = Categories.topic;
+    this.spaces = Categories.space;
+    this.agents = Categories.agent;
+    this.active_categories = {
+      'topic' : {},
+      'agent' : {},
+      'space' : {},
     };
 
-    for(var topic in this.topics)
-        this.active['topics'][topic] = true;
-
-    for(var agent in this.agents)
-        this.active['agents'][agent] = true;
-
-    for(var space in this.spaces)
-        this.active['spaces'][space] = true;
-
-    // for(var i = 0; i < this.initiatives_count; i++){
-    //     var marker = this.markers[i];
-    //     if(marker.topic != 'otra') this.categories['topics'][marker.topic]['markers'].push(i);
-    //     this.categories['agents'][marker['agent']]['markers'].push(i);
-    //     if(marker.space != 'x' && marker.space != 'ot') this.categories['spaces'][marker['space']]['markers'].push(i);
-    // };
+    // Active filter tags
+    this.active_filters = [];
 
 
     /**
-     *  Add active category to the link in the page header
+     *  Reset categories to default inactive state
      */
-    var links = document.querySelectorAll(".main-menu__link");
-    links[0].setAttribute('class', 'main-menu__link main-menu__link--active-initiatives');
-    links[1].setAttribute('class', 'main-menu__link');
+    this.resetCategories = function(){
+        for(var topic in this.topics){
+          this.active_categories['topic'][topic] = false;
+        }
+        for(var agent in this.agents){
+          this.active_categories['agent'][agent] = false;
+        }
+        for(var space in this.spaces){
+          this.active_categories['space'][space] = false;
+        }
+    }
+    // Apply default state
+    this.resetCategories();
 
     /**
-     *  toggle
-     *  Implement main functionality in the map filters
-     *  Toggles a category showing/hiding markers related to it
-     *  TODO: optimize
+     *  Filter markers by active categories
      */
-    this.toggle = function(category, subcategory){
-        var count = this.initiatives_count;
-        this.active[category][subcategory] = !this.active[category][subcategory];
-        this.markers.forEach( angular.bind(this, function(marker){
-            if( this.active['topics'][marker.topic] &&
-                this.active['agents'][marker.agent] &&
-                this.active['spaces'][marker.space]){
-                if(marker.layer != marker.original_layer){
-                    marker.layer = marker.original_layer;
-                    count++;
+    this.filterMarkers = function()
+    {
+        var count = this.markers.length;
+        var filters_length = this.active_filters.length;
+        if(filters_length > 0){
+            this.markers.forEach( angular.bind(this, function(marker)
+            {
+                let visible = false;
+                for(let i = 0; i < filters_length; i++){
+                    let filter = this.active_filters[i];
+                    if(marker[filter.k] == filter.v){
+                        visible = true;
+                        break;
+                    };
                 }
-            } else if(marker.layer != 'hidden'){
-                marker.layer = 'hidden';
-                count--;
-            }
-        }));
+                if(visible){
+                    if(marker.layer != marker.city)
+                         marker.layer = marker.city;
+                } else {
+                    marker.layer = 'hidden';
+                    count--;
+                }
+            }));
+        } else {
+            this.markers.forEach( function(marker){
+                if(marker.layer != marker.city)
+                     marker.layer = marker.city;
+            });
+        }
         this.initiatives_count = count;
+    };
+
+    /**
+     *  Toggle a filter
+     */
+    this.toggleFilter = function(category, subcategory){
+        const new_state = !this.active_categories[category][subcategory];
+        this.active_categories[category][subcategory] = new_state;
+        if(new_state)
+            this.active_filters.push({ 'k' : category, 'v': subcategory, 'n' : Categories[category][subcategory] });
+        else {
+            var index = this.active_filters.findIndex(function(filter){
+                return filter.v == subcategory;
+            });
+            this.active_filters.splice(index, 1);
+        }
+        this.filterMarkers();
+    }
+
+    /**
+     *  Remove a filter
+     */
+    this.removeFilter = function(index){
+        this.active_filters.splice(index, 1);
+        this.filterMarkers();
+    }
+
+    /**
+     *  Remove all filters
+     */
+    this.removeFilters = function(){
+        this.active_filters = [];
+        this.resetCategories();
+        this.filterMarkers();
     }
 
     /**
@@ -85,11 +122,11 @@ angular.module('civics.map_controller', [])
     $scope.$on('leafletDirectiveMarker.initiatives-map.click', angular.bind(this, function(event, args){
         this.showing_initiative     = true;
         this.initiative             = args.model;
-        this.initiative_topicname   = Categories.topics[args.model.topic];
-        this.initiative_agentname   = Categories.agents[args.model.agent];
-        this.initiative_spacename   = Categories.spaces[args.model.space];
+        this.initiative_topicname   = Categories.topic[args.model.topic];
+        this.initiative_agentname   = Categories.agent[args.model.agent];
+        this.initiative_spacename   = Categories.space[args.model.space];
         if(current_marker)
-          current_marker.className = 'leaflet-marker-icon leaflet-div-icon leaflet-zoom-animated leaflet-clickable';
+            current_marker.className = 'leaflet-marker-icon leaflet-div-icon leaflet-zoom-animated leaflet-clickable';
         current_marker              = args.leafletObject._icon;
         current_marker.className    += ' selected';
     }));
@@ -117,18 +154,21 @@ angular.module('civics.map_controller', [])
           this.initiative_spacename   = Categories.spaces[initiative.space];
     };
 
+    /**
+     *   Download XLS with filtered initiatives
+     */
     this.download_xls = function(){
         var base_url = "api/initiatives_xls?topics=";
-        for(var topic in this.active.topics)
-            if( this.active.topics[topic] == true )
+        for(var topic in this.active_categories.topic)
+            if( this.active_categories.topic )
               base_url += topic.toUpperCase() + ",";
         base_url += "&spaces=";
-        for(var space in this.active.spaces)
-            if( this.active.spaces[space] == true )
+        for(var space in this.active_categories.space)
+            if( this.active_categories.space )
               base_url += space.toUpperCase() + ",";
         base_url += "&agents=";
-        for(var agent in this.active.agents)
-            if( this.active.agents[agent] == true )
+        for(var agent in this.active_categories.agent)
+            if( this.active_categories.agent )
               base_url += agent.toUpperCase() + ",";
 
         window.open(base_url);
