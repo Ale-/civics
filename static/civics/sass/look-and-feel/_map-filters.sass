@@ -31,8 +31,7 @@
   position: absolute
   z-index: 100
   width: 25%
-  border: 1px solid rgba(black, .15)
-  border-width: 0 1px 1px
+  outline: 1px solid rgba(black, .05)
   background-color: lighten(#ed61aa, 10%)
 
 .map-filters__categories--calendar
@@ -183,3 +182,18 @@
 .map-filters__filter span
   margin-right: $m/3
   color: rgba(white, .5)
+
+.category-country
+  +inline-block
+  width: 175px
+  float: left
+  margin-bottom: 4px
+  text-transform: uppercase
+  font-size: .75em
+  clear: both
+  padding-left: 12px
+.cities-wrapper
+  +inline-block
+  width: calc(100% - 175px)
+.category-city
+  width: 100%
