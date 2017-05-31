@@ -79,8 +79,8 @@ angular.module('civics.settings', [])
                       disableClusteringAtZoom : 10,
                       iconCreateFunction: function(cluster) {
                            return L.divIcon({
-                              iconSize   : [28, 40],
-                              iconAnchor : [14, 40],
+                              iconSize   : [40, 60],
+                              iconAnchor : [20, 40],
                               className  : 'city',
                               html: '<div class="initiative-cluster"> \
                                           <div class="inner"></div> \
