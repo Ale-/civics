@@ -21,8 +21,9 @@ angular.module('civics', [
     'civics.calendar_controller',
   ])
 
-  .run( function(Cities, Settings){
+  .run( function(Cities, Categories, Settings){
       Cities.get( function(cities_response){;
+          Categories.setCities( cities_response.data );
           Settings.setCities( cities_response.data );
       });
   })

@@ -20,12 +20,6 @@ angular.module('civics.settings', [])
           }
       };
 
-      cities = ["buenos-aires", "rosario", "rio-de-janeiro", "santos", "sao-paulo", "bogota", "cartagena-de-indias", "medellin", "quibdo", "san-jose", "quito", "san-salvador", "madrid", "zaragoza", "santa-fe", "ciudad-de-guatemala", "tegucigalpa", "managua", "montevideo"];
-
-      var overlays = {};
-
-
-
       this.map_layers = {
           baselayers: {
               civics: {
@@ -70,33 +64,35 @@ angular.module('civics.settings', [])
 
       this.setCities = function(cities)
       {
-          cities.forEach( angular.bind(this, function(city){
-              this.map_layers.overlays[city.name] = {
-                  name                    : city.name,
-                  visible                 : true,
-                  type                    : "markercluster",
-                  layerOptions            : {
-                      disableClusteringAtZoom : 10,
-                      iconCreateFunction: function(cluster) {
-                           return L.divIcon({
-                              iconSize   : [40, 60],
-                              iconAnchor : [20, 40],
-                              className  : 'city',
-                              html: '<div class="initiative-cluster"> \
-                                          <div class="inner"></div> \
-                                          <p class="initiative-cluster__name">' +
-                                              city.name +
-                                          '</p>\
-                                          <p class="initiative-cluster__count">' +
-                                              cluster.getChildCount() + ' iniciativas\
-                                          </p>\
-                                     </div>'
-                           });
+          for(country in cities){
+              cities[country].forEach( angular.bind(this, function(city){
+                  this.map_layers.overlays[city] = {
+                      name                    : city,
+                      visible                 : true,
+                      type                    : "markercluster",
+                      layerOptions            : {
+                          disableClusteringAtZoom : 10,
+                          iconCreateFunction: function(cluster) {
+                               return L.divIcon({
+                                  iconSize   : [40, 60],
+                                  iconAnchor : [20, 40],
+                                  className  : 'city',
+                                  html: '<div class="initiative-cluster"> \
+                                              <div class="inner"></div> \
+                                              <p class="initiative-cluster__name">' +
+                                                  city +
+                                              '</p>\
+                                              <p class="initiative-cluster__count">' +
+                                                  cluster.getChildCount() + ' iniciativas\
+                                              </p>\
+                                         </div>'
+                               });
+                          },
+                          showCoverageOnHover : false,
                       },
-                      showCoverageOnHover : false,
-                  },
-              }
-          }));
+                  }
+              }));
+          }
       };
 
       return this;

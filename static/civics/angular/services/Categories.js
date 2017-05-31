@@ -55,6 +55,12 @@ angular.module('civics.categories_service', [])
       'ta': 'Taller',
     };
 
+    this.city = {};
+
+    this.setCities = function(citylist){
+        this.city = citylist;
+    }
+
     return this;
 
 })

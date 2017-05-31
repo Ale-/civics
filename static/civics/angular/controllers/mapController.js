@@ -15,13 +15,15 @@ angular.module('civics.map_controller', [])
     this.initiatives_count = this.markers.length;
 
     // Filter categories
+    this.cities = Categories.city;
     this.topics = Categories.topic;
     this.spaces = Categories.space;
     this.agents = Categories.agent;
     this.active_categories = {
+      'city'  : {},
       'topic' : {},
-      'agent' : {},
       'space' : {},
+      'agent' : {},
     };
 
     // Active filter tags
@@ -32,14 +34,19 @@ angular.module('civics.map_controller', [])
      *  Reset categories to default inactive state
      */
     this.resetCategories = function(){
+        for(var country in this.cities){
+            for(var i in this.cities[country]){
+                this.active_categories['city'][ this.cities[country][i] ] = false;
+            }
+        }
         for(var topic in this.topics){
           this.active_categories['topic'][topic] = false;
         }
-        for(var agent in this.agents){
-          this.active_categories['agent'][agent] = false;
-        }
         for(var space in this.spaces){
           this.active_categories['space'][space] = false;
+        }
+        for(var agent in this.agents){
+          this.active_categories['agent'][agent] = false;
         }
     }
     // Apply default state
@@ -83,11 +90,11 @@ angular.module('civics.map_controller', [])
     /**
      *  Toggle a filter
      */
-    this.toggleFilter = function(category, subcategory){
+    this.toggleFilter = function(category, subcategory, city){
         const new_state = !this.active_categories[category][subcategory];
         this.active_categories[category][subcategory] = new_state;
         if(new_state)
-            this.active_filters.push({ 'k' : category, 'v': subcategory, 'n' : Categories[category][subcategory] });
+            this.active_filters.push({ 'k' : category, 'v': subcategory, 'n' : city ? subcategory : Categories[category][subcategory] });
         else {
             var index = this.active_filters.findIndex(function(filter){
                 return filter.v == subcategory;

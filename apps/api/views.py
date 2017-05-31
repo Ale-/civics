@@ -143,16 +143,16 @@ def initiatives_service_xls(request):
 
 
 def cities_service(request):
-    cities = City.objects.annotate(num_refs=Count('initiative')).filter(num_refs__gt=0)
-
+    cities = City.objects.annotate(num_refs=Count('initiative')).filter(num_refs__gt=10)
     if len(cities) > 0:
-        cities_json = []
+        cities_json = {}
         for city in cities:
-            coords = city.position['coordinates']
-            cities_json.append({
-                'name'    : city.name,
-                'country' : pycountry.countries.get(alpha_2=city.country).name,
-            })
+            coords  = city.position['coordinates']
+            country = pycountry.countries.get(alpha_2=city.country).name
+            if(country in cities_json):
+                cities_json[country].append( city.name )
+            else:
+                cities_json[country] = [ city.name ]
         return HttpResponse(json.dumps(cities_json, indent=4), content_type="application/json")
 
     return HttpResponse(no_results)

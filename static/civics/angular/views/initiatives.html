@@ -1,4 +1,23 @@
 <ul class="map-filters">
+    <li class="map-filters__filter map-filters__filter--cities">
+        <p class="map-filters__filter-label"
+           ng-init="showing_cities = false" ng-click="showing_cities = !showing_cities">
+           <span class="icon-topic"></span> Ciudad
+        </p>
+        <ul class="map-filters__categories" ng-show="showing_cities">
+            <div ng-repeat="(country, cities) in map.cities">
+                <p class="category-country">{{ country }}</p>
+                <div class="cities-wrapper">
+                    <li class="map-filters__category category-city"
+                        ng-click="map.toggleFilter('city', city, true)"
+                        ng-repeat="city in cities"
+                        ng-class="{ 'active' : map.active_categories['city'][city] }">
+                        {{ city }} <span class="map-filters__checkmark"></span>
+                    </li>
+                </div>
+            </div>
+        </ul>
+    </li>
     <li class="map-filters__filter map-filters__filter--topics">
         <p class="map-filters__filter-label"
            ng-init="showing_topics = false" ng-click="showing_topics = !showing_topics">
@@ -40,9 +59,6 @@
                 {{ category_name }} <span class="map-filters__checkmark"></span>
             </li>
         </ul>
-    </li>
-    <li class="map-filters__filter">
-        <a href="/crea/iniciativa"><span class="icon-add"></span> Añadir</a>
     </li>
 </ul>
 
