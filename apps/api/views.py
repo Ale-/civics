@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from apps.models.models import Initiative, City, Event
+from apps.models.categories import *
 from django.utils.translation import ugettext_lazy as _
 from django.http import HttpResponse
 from django.db.models import Count
@@ -8,6 +9,7 @@ from django.utils.text import slugify
 from datetime import date
 import pycountry
 from django.contrib.staticfiles.templatetags.staticfiles import static
+import math
 
 #
 #  API
@@ -100,44 +102,106 @@ def events_service(request):
 def initiatives_service_xls(request):
     import xlwt
 
-    topics = request.GET.get('topics').split(',');
-    spaces = request.GET.get('spaces').split(',');
-    agents = request.GET.get('agents').split(',');
+    topics = request.GET.get('topics').split(',')[0:-1];
+    spaces = request.GET.get('spaces').split(',')[0:-1];
+    agents = request.GET.get('agents').split(',')[0:-1];
 
-    initiatives = Initiative.objects.filter(topic__in=topics, space__in=spaces, agent__in=agents)
+    initiatives = Initiative.objects.all()
+    if len(topics) > 0:
+        initiatives = initiatives.filter(topic__in=topics)
+    if len(spaces) > 0:
+        initiatives = initiatives.filter(space__in=spaces)
+    if len(agents) > 0:
+        initiatives = initiatives.filter(agent__in=agents)
 
     response = HttpResponse(content_type='application/ms-excel')
     filename = 'iniciativas-civics__' + date.today().isoformat() + '.xls'
     response['Content-Disposition'] = 'attachment; filename=' + filename
+
     wb = xlwt.Workbook(encoding='utf-8')
     ws = wb.add_sheet("Initiatives")
+    ezxf = xlwt.easyxf
 
-    row_num = 0
+    # Write headers
+    count_style = ezxf('font: bold on, name monospace, height 320')
+    ws.write(0, 0, "CIVICS.CC # " + date.today().strftime("%d/%m/%Y"), count_style)
+    count_style = ezxf('font: bold off, name monospace, height 240')
+    count = str(initiatives.count()) + " iniciativas encontradas en las categorías: "
+    topics_keys = dict(TOPICS)
+    spaces_keys = dict(SPACES)
+    agents_keys = dict(AGENTS)
+    for topic in topics:
+        if topic:
+            count += str(topics_keys[topic]) + " · "
+    for space in spaces:
+        if space:
+            count += str(spaces_keys[space]) + " · "
+    for agent in agents:
+        if agent:
+            count += str(agents_keys[agent]) + " · "
 
+    ws.write(1, 0, count, count_style)
+    ws.row(0).height_mismatch = True
+    ws.row(1).height_mismatch = True
+    ws.row(0).height = 368
+    ws.row(1).height = 368
+
+    row_num = 4
     columns = [
         (u"Nombre de la iniciativa", 12000),
-        (u"Descripción", 24000),
+        (u"Descripción", 25600),
+        (u"Temática", 12000),
+        (u"Espacio", 12000),
+        (u"Agente", 12000),
+        (u"Facebook", 12000),
+        (u"Twitter", 12000),
+        (u"Web", 12000),
+        (u"Ciudad", 8000),
+        (u"País", 8000),
+        (u"Latitud", 4000),
+        (u"Longitud", 4000),
+        (u"Fecha de creación", 6000),
     ]
 
-    font_style = xlwt.XFStyle()
-    font_style.font.bold = True
+    xlwt.add_palette_colour("header_background", 0x21)
+    wb.set_colour_RGB(0x21, 50, 50, 50)
+    headers_style = ezxf('font: bold on, color white, name monospace, height 200; align: wrap on, horz center, vert center; borders: bottom thin, top thin; pattern: pattern solid, fore_colour header_background')
 
     for col_num in range(len(columns)):
-        ws.write(row_num, col_num, columns[col_num][0], font_style)
+        ws.write(row_num, col_num, columns[col_num][0], headers_style)
         ws.col(col_num).width = columns[col_num][1]
+        ws.row(row_num).height_mismatch = True
+        ws.row(row_num).height = 368
 
-    font_style = xlwt.XFStyle()
-    font_style.alignment.wrap = 1
-
+    firstcol_style = ezxf('font: height 200, name monospace, bold on; align: wrap on, vert center, horiz center')
+    cell_style = ezxf('font: height 200, name monospace, bold off; align: wrap on, vert center, horiz center')
     for initiative in initiatives:
-        print(initiative)
         row_num += 1
         row = [
             initiative.name,
-            initiative.description,
+            initiative.description.strip(),
+            initiative.get_topic_display(),
+            initiative.get_space_display(),
+            initiative.get_agent_display(),
+            initiative.facebook,
+            initiative.twitter,
+            initiative.website,
+            initiative.city.name if initiative.city else "None",
+            initiative.city.get_country_display() if initiative.city else "None",
+            initiative.position['coordinates'][0],
+            initiative.position['coordinates'][1],
+            initiative.creation_date.strftime("%d/%m/%Y"),
         ]
-        for col_num in range(len(row)):
-            ws.write(row_num, col_num, row[col_num], font_style)
+        # Initiative name
+        ws.write(row_num, 0, row[0], firstcol_style)
+        for col_num in range(1, len(row)):
+            content = row[col_num]
+            ws.write(row_num, col_num, row[col_num], cell_style)
+
+        content_length = len( initiative.description )
+        characters_per_line = 100
+        ws.row(row_num).height_mismatch = True
+        ws.row(row_num).height = max(math.ceil(content_length/characters_per_line * 480), 480)
 
     wb.save(response)
     return response

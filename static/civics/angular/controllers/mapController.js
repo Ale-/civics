@@ -167,17 +167,16 @@ angular.module('civics.map_controller', [])
     this.download_xls = function(){
         var base_url = "api/initiatives_xls?topics=";
         for(var topic in this.active_categories.topic)
-            if( this.active_categories.topic )
+            if( this.active_categories.topic[topic] )
               base_url += topic.toUpperCase() + ",";
         base_url += "&spaces=";
         for(var space in this.active_categories.space)
-            if( this.active_categories.space )
+            if( this.active_categories.space[space] )
               base_url += space.toUpperCase() + ",";
         base_url += "&agents=";
         for(var agent in this.active_categories.agent)
-            if( this.active_categories.agent )
+            if( this.active_categories.agent[agent] )
               base_url += agent.toUpperCase() + ",";
-
         window.open(base_url);
     };
 
