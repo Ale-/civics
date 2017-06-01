@@ -7,6 +7,7 @@ import json
 from django.utils.text import slugify
 from datetime import date
 import pycountry
+from django.contrib.staticfiles.templatetags.staticfiles import static
 
 #
 #  API
@@ -156,3 +157,8 @@ def cities_service(request):
         return HttpResponse(json.dumps(cities_json, indent=4), content_type="application/json")
 
     return HttpResponse(no_results)
+
+def countries_service(request):
+    # TODO: catch exceptions
+    countries_data = open( 'static/civics/geojson/countries-medium--simplified.json' )
+    return HttpResponse(countries_data, content_type="application/json")

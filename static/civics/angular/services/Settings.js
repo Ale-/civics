@@ -22,6 +22,14 @@ angular.module('civics.settings', [])
 
       this.map_layers = {
           baselayers: {
+              mapnik : {
+                  name         : 'Open Street Map',
+                  url          : 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
+                  layerOptions : {
+                       attribution : '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                  },
+                  type : 'xyz',
+              },
               civics: {
                    name: 'civics',
                    url: 'https://api.mapbox.com/styles/v1/civics/cir1q2kud001icmm9tmh4s9lt/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiY2l2aWNzIiwiYSI6ImNpcXpmZ2toZTAwNmFpOG1nc2swdG5kZ28ifQ.P6-IjrcLcdnPqQvkn0GWKQ',
@@ -37,14 +45,6 @@ angular.module('civics.settings', [])
                                     under <a href="http://www.openstreetmap.org/copyright">ODbL</a>.'
                   },
                   type: 'xyz',
-              },
-              mapnik : {
-                  name         : 'Open Street Map',
-                  url          : 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
-                  layerOptions : {
-                       attribution : '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                  },
-                  type : 'xyz',
               },
           },
           overlays: {
@@ -94,6 +94,23 @@ angular.module('civics.settings', [])
               }));
           }
       };
+
+      this.setCountries = function(countries){
+          this.map_layers.overlays[countries] = {
+              name: 'Civics countries',
+              type: 'geoJSONShape',
+              data: countries,
+              visible: true,
+              layerOptions: {
+                  style: {
+                      color: 'white',
+                      fillColor: 'black',
+                      weight: 1,
+                      fillOpacity: 0.2
+                  }
+              }
+          }
+      }
 
       return this;
 

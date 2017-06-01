@@ -7,4 +7,5 @@ urlpatterns = [
     url(r'^events$', views.events_service, name='get_events'),
     url(r'^initiatives_xls$', views.initiatives_service_xls, name='get_initiatives_xls'),
     url(r'^cities$', views.cities_service, name='get_cities'),
+    url(r'^countries$', views.countries_service, name='get_countries'),
 ]
