@@ -1,0 +1,15 @@
+@import compass/css3/transition
+
+.fake-breadcrumb
+  button
+    border: 0 !important
+    padding: $m/2
+    background: none
+    text-transform: uppercase
+    font-size: $size_small
+    +transition(background-color .15s ease)
+    margin-bottom: $m
+    &::before
+      content: "«"
+    &:hover
+      background: #eee
