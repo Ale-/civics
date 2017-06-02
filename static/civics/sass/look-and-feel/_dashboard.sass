@@ -1,0 +1,96 @@
+@import compass/css3/inline-block
+@import compass/css3/filter
+@import compass/css3/transform
+@import compass/css3/box-shadow
+
+.dashboard main
+  background: #eee
+
+.dashboard .page-title
+  text-align: center
+  text-transform: uppercase
+  font-size: 1.25rem
+  margin-bottom: $m*2
+  &:before
+    content: "- "
+  &:after
+    content: " -"
+
+.dashboard .layout-main
+  margin: 0
+  padding-top: $m*2
+  min-height: calc(100vh - 50px)
+
+.dashboard-left,
+.dashboard-right,
+.dashboard-left__left,
+.dashboard-left__right
+  +inline-block
+  width: calc(50% - #{$m})
+  margin: 0 $m/2
+  min-height: calc(100vh - 240px)
+
+.dashboard-left,
+.dashboard-left__left
+  float: left
+
+.dashboard-left__left
+  background-color: $palette_primary
+
+.dashboard-left__right
+  background-color: $palette_secondary
+
+//.dashboard-left__left,
+  .dashboard-left__right
+  +box-shadow(0 0 5px rgba(black,.1))
+
+.initiative__field,
+.events__field
+  padding: $m/2
+  color: rgba(black, .7)
+
+.initiative__field--name,
+.events__field--name,
+  position: relative
+  background-color: darken($palette_primary, 15%)
+  +links_dashboard
+  h2
+    margin: 0
+    text-transform: uppercase
+    font-size: 1.25rem
+    display: inline
+.initiative__field-label
+  text-transform: uppercase
+  font-size: .9em
+  margin-bottom: $m/3
+
+.initiative__field--name,
+  background-color: darken($palette_primary, 15%)
+.events__field--name
+  background-color: darken($palette_secondary, 15%)
+
+.initiative__edit,
+.events__create
+  float: right
+
+.initiative__edit
+  font-size: 2em
+  +transform( rotate(45deg) )
+.events__create
+  margin-top: 8px
+
+#dashboard_map
+  +box-shadow(0 0 5px rgba(black,.1))
+  margin: 0 $m/2
+  max-width: 100%
+  min-height: calc(100vh - 240px)
+  .leaflet-tile
+    +filter( grayscale(100%) !important)
+
+.events__field--empty
+  font-size: 1.25em
+  padding: $m*2
+  text-align: center
+  span
+    font-size: .8em
+    margin: 0 $m/4
