@@ -90,7 +90,7 @@ class Initiative(models.Model):
 
   def edit_permissions(self, user):
     """Returns users allowed to edit an instance of this model."""
-    return self.user is user or user.is_staff
+    return self.user == user or user.is_staff
 
 #
 #  Event
