@@ -1,14 +1,15 @@
-{# Extend basic page #} {% extends 'layouts/single-fixed-column.html' %} {% load static i18n %}
+{# Extend basic page #} {% extends 'layouts/single-fixed-column.html' %} {% load static i18n utils %}
 {% block body_classes %}err403{% endblock %}
 
 {# Content #}
 {% block main %}
+    {% fake_breadcrumb %}
     <div class="msg-403">
           <p class="msg-403__image">
             ❌
           </p>
           <p class="msg-403__text">
-            <strong>404</strong> # {% trans 'No tienes permiso para acceder a esta página. ¿Has hecho login?' %}
+            [<strong>403</strong>] {% trans 'No tienes permiso para acceder a esta página' %}
           <p>
     </div>
 {% endblock %}

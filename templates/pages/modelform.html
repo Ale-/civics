@@ -1,4 +1,4 @@
-{# Modelform generic page #} {% extends 'layouts/single-fixed-column.html' %} {% load utils %}
+{# Modelform generic page #} {% extends 'layouts/single-fixed-column.html' %} {% load utils i18n %}
 {% block body_classes %}modelform--{{ form__html_class }}{% endblock %}
 
 {# Form dependencies #}
@@ -10,6 +10,7 @@
 {% endblock %}
 
 {% block main %}
+    {% fake_breadcrumb %}
     {% include 'pages/title.html' with title=title %}
     {% include 'forms/form.html' with form_class=form__html_class %}
 {% endblock %}

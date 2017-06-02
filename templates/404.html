@@ -1,8 +1,9 @@
-{# Extend basic page #} {% extends 'layouts/single-fixed-column.html' %} {% load static i18n %}
+{# Extend basic page #} {% extends 'layouts/single-fixed-column.html' %} {% load static utils i18n %}
 {% block body_classes %}err404{% endblock %}
 
 {# Content #}
 {% block main %}
+    {% fake_breadcrumb %}
     <div class="msg-404">
           <p class="msg-404__image">
             ❌
