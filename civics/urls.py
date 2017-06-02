@@ -19,5 +19,5 @@ urlpatterns = [
     url(r'^registrate/$', RegistrationView.as_view(form_class=RegistrationFormUniqueEmail), name="registration_register"),
     url(r'', include('registration.backends.default.urls')),
     url(r'^api/', include('apps.api.urls', namespace="api")),
-    url(r'^user/', include('apps.users.urls', namespace="users")),
+    url(r'^', include('apps.users.urls', namespace="users")),
 ]
