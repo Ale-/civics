@@ -90,7 +90,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'apps.utils.context_processors.site_info_processor'
+                'apps.utils.context_processors.site_info_processor',
+                'apps.users.context_processors.current_user_hello',
             ],
         },
     },
