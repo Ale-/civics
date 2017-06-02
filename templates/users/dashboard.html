@@ -1,7 +1,98 @@
-{# Modelform generic page #} {% extends 'layouts/single-fixed-column.html' %} {% load utils i18n static %}
+{# Modelform generic page #} {% extends 'layouts/single-fluid-column.html' %} {% load utils l10n i18n static leaflet_tags %}
 {% block body_classes %}dashboard{% endblock %}
 
+{% block page_header %}
+    {% leaflet_css %}
+{% endblock %}
+
 {% block main %}
-    {% include 'pages/title.html' with title="Dashboard" %}
-    {% lorem %}
+    {% include 'pages/title.html' with title="Mi iniciativa" %}
+    <div class="dashboard-left">
+        <div class="dashboard-left__left">
+            <div class="initiative">
+                <div class="initiative__field initiative__field--name">
+                    <h2>{{ initiative.name }}</h2>
+                    <a class="initiative__edit" target="_blank" href="{% url 'modelforms:edit_initiative' initiative.pk %}">
+                        <span>✏</span>
+                    </a>
+                </div>
+                <figure class="initiative__field initiative__field--image">
+                    <img src="{% get_media_prefix %}{{ initiative.image }}" />
+                </figure>
+                <div class="initiative__field initiative__field--description">
+                    <p class="initiative__field-label">{% trans 'Descripción' %}<p>
+                    {{ initiative.description }}
+                </div>
+                {% if initiative.email %}
+                <div class="initiative__field initiative__field--email">
+                    <p class="initiative__field-label">{% trans 'Email' %}</p>
+                    {{ initiative.email }}
+                </div>
+                {% endif %}
+                {% if initiative.facebook %}
+                <div class="initiative__field initiative__field--facebook">
+                    <p class="initiative__field-label">{% trans 'Facebook' %}</p>
+                    {{ initiative.facebook }}
+                </div>
+                {% endif %}
+                {% if initiative.twitter %}
+                <div class="initiative__field initiative__field--twitter">
+                    <p class="initiative__field-label">{% trans 'Twitter' %}</p>
+                    {{ initiative.twitter }}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="dashboard-left__right">
+            <div class="events">
+                <div class="events__field events__field--name">
+                    <h2>{% trans 'Mis actividades' %}</h2>
+                    <a class="events__create" target="_blank" href="{% url 'modelforms:create_event' %}">
+                        <span class="icon-add"></span>
+                    </a>
+                </div>
+                {% if events.length == 0 %}
+                    {{ events }}
+                {% else %}
+                    <div class="events__field events__field--empty">
+                        {% blocktrans %}
+                            Parece que todavía no has creado eventos asociados a tu iniciativa.<br/>
+                            Puedes clicar en el icono <span class="icon-add"></span> para crear un
+                            nuevo evento.
+                        {% endblocktrans %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="dashboard-right">
+        {% leaflet_map "dashboard_map" %}
+    </div>
+{% endblock %}
+
+{% block page_scripts %}
+    {% leaflet_js %}
+    <script type="text/javascript">
+        window.addEventListener("map:init", function (event)
+        {
+            var map = event.detail.map;
+            var lat = {{ initiative.position.coordinates.1 | unlocalize }};
+            var lng = {{ initiative.position.coordinates.0 | unlocalize }};
+            //Center map in initiative
+            map.setView([lat, lng], 6);
+            L.marker([lat, lng], {
+                icon : L.divIcon({
+                    'type' : 'div',
+                    'iconSize'    : [40, 60],
+                    'iconAnchor'  : [20, 60],
+                    'popupAnchor' : [0, -30],
+                    'message'     : "{{ initiative.name }}",
+                    'html'        : "<div class='initiative-marker'>" +
+                                        "<i class='outer icon-topic-{{ initiative.topic|lower}} icon-agent-{{ initiative.agent|lower }}'></i>" +
+                                        "<i class='inner icon-space-{{ initiative.space|lower }}'></i>" +
+                                     "</div>",
+                }),
+            }).addTo(map);
+        });
+    </script>
 {% endblock %}

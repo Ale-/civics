@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views import View
-from apps.models.models import City
+from apps.models.models import City, Initiative, Event
 from apps.models import categories
 from registration.views import ActivationView as BaseActivationView
 from registration.models import RegistrationProfile
@@ -10,6 +10,8 @@ from django.contrib.sites.shortcuts import get_current_site
 class Dashboard(View):
 
     def get(self, request):
+        initiative = Initiative.objects.filter(user=request.user).first()
+        events     = Event.objects.filter(initiative=initiative)
         return render(request, 'users/dashboard.html', locals())
 
 
