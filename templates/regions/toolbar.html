@@ -21,8 +21,17 @@
     </div>
     <div class="region-{{ region_name }}__right">
         <ul class="user-actions">
-            <li class="user-actions__action">
-                <a href="/login"><span class="icon-login"></span></a>
+            <li class="user-actions__action user-actions__action--hello">
+                {% if request.user.is_authenticated %}
+                    {{ current_user_hello | safe }}
+                {% endif %}
+            </li>
+            <li class="user-actions__action user-actions__action--login-logout">
+                {% if request.user.is_authenticated %}
+                    <a href="/logout"><span class="icon-logout"></span></a>
+                {% else %}
+                    <a href="/login"><span class="icon-login"></span></a>
+                {% endif %}
             </li>
         </ul>
     </div>
