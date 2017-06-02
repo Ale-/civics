@@ -21,6 +21,10 @@ def angular(file):
 def img(file):
     return  STATIC_URL + PROJECT_STATIC_FOLDER + '/img/' + file
 
+@register.inclusion_tag('fake-breadcrumb.html')
+def fake_breadcrumb(text="Volver a la página anterior"):
+    return { 'text' : text }    
+
 @register.inclusion_tag('limited-choices-select.html')
 def limited_choices_select(choices=None, select_name=None, select_class=None, all=False, multiple=False):
     options = [{ 'name' : option[1], 'id' : option[0] } for option in choices ]
