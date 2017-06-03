@@ -107,7 +107,7 @@ class Event(models.Model):
                                   help_text=_('Describe el evento.'))
   image        = models.ImageField(_("Imagen"), blank=True, upload_to="images/initiatives/",
                                     help_text=_("Sube una imagen representativa del evento"))
-  video        = models.CharField(_('Video'), max_length=200, blank=False, null=True,
+  video        = models.CharField(_('Video'), max_length=200, blank=True, null=True,
                                    help_text=_('Inserta la url de un video de Youtube o Vimeo'))
   website      = models.URLField(_('Enlace'), blank=True, null=True,
                                    help_text=_('Especifica opcionalmente un enlace para conocer mejor el evento.'))
@@ -141,3 +141,8 @@ class Event(models.Model):
     """Populate automatically 'slug' field"""
     self.slug = slugify(self.title)
     super(Event, self).save(*args, **kwargs)
+
+  def edit_permissions(self, user):
+    """Returns users allowed to edit an instance of this model."""
+    initiative_user = self.initiative.user
+    return initiative_user == user or user.is_staff
