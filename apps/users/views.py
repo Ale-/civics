@@ -11,7 +11,7 @@ class Dashboard(View):
 
     def get(self, request):
         initiative = Initiative.objects.filter(user=request.user).first()
-        events     = Event.objects.filter(initiative=initiative)
+        events     = Event.objects.filter(initiative=initiative).all()
         return render(request, 'users/dashboard.html', locals())
 
 
