@@ -67,4 +67,6 @@ class EventForm(forms.ModelForm):
         }
 
     def __init__(self, *args, **kwargs):
+        if('initiative' in kwargs['initial']):
+             self.base_fields['initiative'].initial = kwargs['initial']['initiative']
         super(EventForm, self).__init__(*args, **kwargs)

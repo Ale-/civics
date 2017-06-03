@@ -4,6 +4,7 @@ from apps.utils.views import GenericCreate, GenericUpdate, GenericDelete
 from . import forms, models
 from django.urls import reverse_lazy
 from django.shortcuts import get_object_or_404
+from .models import Initiative
 
 # Model related views
 
@@ -110,7 +111,7 @@ class InitiativeEdit(GenericUpdate):
   form__html_class = 'initiative'
   template_name    = modelform_generic_template
   title            = _('Edita la información de la iniciativa ')
-  success_url      = reverse_lazy('front')
+  success_url      = reverse_lazy('users:dashboard')
 
   def get_context_data(self, **kwargs):
     """Pass context data to generic view."""
@@ -154,31 +155,42 @@ class EventCreate(GenericCreate):
   form__html_class = 'event'
   template_name    = modelform_generic_template
   title            = _('Crea un evento ')
-  success_url      = reverse_lazy('front')
+  success_url      = reverse_lazy('users:dashboard')
   dependencies     = ['leaflet']
 
   def get_context_data(self, **kwargs):
     """Pass context data to generic view."""
     context                     = super(EventCreate, self).get_context_data(**kwargs)
     context['form__html_class'] = self.form__html_class
+    context['submit_text'] = _('Publica este evento')
     return context
+
+  def get_initial(self):
+    super(EventCreate, self).get_initial()
+    user = self.request.user
+    initiative = Initiative.objects.filter(user=user).first()
+    return {
+        "initiative"     : initiative
+    }
 
 class EventEdit(GenericUpdate):
   """Generic view to edit Event objects."""
   model = models.Event
   form_class = forms.EventForm
   template_name = modelform_generic_template
+  form__html_class = 'event'
   title = _('Edita la información del evento ')
-  success_url = reverse_lazy('front')
+  success_url = reverse_lazy('users:dashboard')
   dependencies     = ['leaflet']
 
   def get_context_data(self, **kwargs):
     """Pass context data to generic view."""
     context                     = super(EventEdit, self).get_context_data(**kwargs)
-    slug                        = self.kwargs['slug']
-    event                       = get_object_or_404(models.City, slug=slug)
-    context['title']            = self.title + (' ') + event.name
+    pk                          = self.kwargs['pk']
+    event                       = get_object_or_404(models.Event, pk=pk)
+    context['title']            = self.title + (' ') + event.title
     context['form__html_class'] = self.form__html_class
+    context['submit_text'] = _('Edita este evento')
     return context
 
 class EventDelete(GenericDelete):
@@ -193,7 +205,8 @@ class EventDelete(GenericDelete):
   def get_context_data(self, **kwargs):
     """Pass context data to generic view."""
     context          = super(EventDelete, self).get_context_data(**kwargs)
-    slug             = self.kwargs['slug']
-    event            = get_object_or_404(models.Event, slug=slug)
-    context['title'] = self.title + (' ') + event.name
+    pk               = self.kwargs['pk']
+    event            = get_object_or_404(models.Event, pk=pk)
+    context['title'] = self.title + (' ') + event.title
+    context['form__html_class'] = self.form__html_class
     return context

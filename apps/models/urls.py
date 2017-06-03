@@ -16,6 +16,6 @@ urlpatterns = [
     url(r'^bienvenido$', TemplateView.as_view(template_name='pages/initiative-success.html'), name="welcome_initiative"),
 
     url(r'^crea/evento$', views.EventCreate.as_view(), name="create_event"),
-    url(r'^edita/evento/(?P<slug>.+)$', views.EventEdit.as_view(), name="edit_event"),
-    url(r'^borra/evento(?P<slug>.+)$', views.EventDelete.as_view(), name="delete_event"),
+    url(r'^edita/evento/(?P<pk>.+)$', views.EventEdit.as_view(), name="edit_event"),
+    url(r'^borra/evento(?P<pk>.+)$', views.EventDelete.as_view(), name="delete_event"),
 ]
