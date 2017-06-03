@@ -84,13 +84,13 @@ def events_service(request):
             coords        = event_json.position['coordinates']
             cityname      = event_json.city.name if event_json.city else 'none'
             event_json = {
-                'lat'            : coords[0],
-                'lng'            : coords[1 ],
+                'lat'            : coords[1],
+                'lng'            : coords[0],
                 'title'          : event_json.title,
                 'description'    : event_json.description,
-                'topic'          : event_json.topic,
-                'category'       : event_json.category,
-                'agent'          : event_json.agent,
+                'topic'          : event_json.topic.lower(),
+                'category'       : event_json.category.lower(),
+                'agent'          : event_json.agent.lower(),
             }
             events_json.append(event_json)
 
