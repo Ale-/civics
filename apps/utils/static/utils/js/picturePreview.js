@@ -6,11 +6,15 @@
     widgets = document.querySelectorAll('div.field__widget--picture-preview');
     widgets.forEach( function(widget)
     {
-        var input = widget.querySelector('input');
+        var placeholder = widget.querySelector('.placeholder');
+        var input = widget.querySelector('input[type=file]');
+        var image = placeholder.getAttribute('data-image');
+        if(image){
+              placeholder.innerHTML = "<img src='" + image + "' />";
+        }
         input.addEventListener(
             'change',
             function(e) {
-                var placeholder = widget.querySelector('.placeholder');
                 if (input.files && input.files[0])
                 {
                   var reader = new FileReader();

@@ -24,7 +24,9 @@
 
   input[type=submit]
     line-height: 12px
-  input, textarea, select
+  input[type=text],
+  textarea,
+  select
     width: 100% !important
     +border-radius(4px)
   [class^='field-']
@@ -87,14 +89,6 @@
     stroke: rgba(black, .15)
     stroke-width: 10px
 
-.field__widget--picture-preview
-  &:hover
-    cursor: pointer
-    #inner
-      fill: rgba(black, .05)
-    #frame
-      stroke: rgba(black, .05)
-
 .textarea-counter
   font-size: $size_small
   color: #aaa
@@ -108,5 +102,3 @@
 
 .geocode-widget__geometry
   display: none
-.field__widget--picture-preview::hover
-  cursor: pointer !important

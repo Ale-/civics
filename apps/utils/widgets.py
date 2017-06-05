@@ -96,7 +96,7 @@ class VideoWidget(forms.widgets.TextInput):
 
     def render(self, name, value, attrs=None):
         """Render widget"""
-        
+
         parent_widget = super(VideoWidget, self).render(name, value, attrs)
         video_widget = render_to_string("video-widget.html", {
             'parent_widget' : parent_widget,
@@ -106,7 +106,7 @@ class VideoWidget(forms.widgets.TextInput):
         return video_widget
 
 
-class PictureWithPreviewWidget(forms.widgets.FileInput):
+class PictureWithPreviewWidget(forms.widgets.ClearableFileInput):
     """A custom widget, to preview video iframes from an external service as vimeo or youtube"""
 
     class Media:
@@ -116,11 +116,11 @@ class PictureWithPreviewWidget(forms.widgets.FileInput):
     def render(self, name, value, attrs=None):
         """Render widget"""
 
-        attrs['style'] = 'visibility: hidden; position: absolute;'
         parent_widget = super(PictureWithPreviewWidget, self).render(name, value, attrs )
         picture_preview = render_to_string("picture-preview-widget.html", {
-            'id' : attrs['id'],
-            'parent_widget': parent_widget
+            'id'            : attrs['id'],
+            'parent_widget' : parent_widget,
+            'value'         : value
         })
         return picture_preview
 
