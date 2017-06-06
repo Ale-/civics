@@ -89,7 +89,7 @@ def events_service(request):
                 'title'          : event_json.title,
                 'description'    : event_json.description,
                 'topic'          : event_json.topic.lower(),
-                'category'       : event_json.category.lower(),
+                'activity'       : event_json.category.lower(),
                 'agent'          : event_json.agent.lower(),
             }
             events_json.append(event_json)
@@ -199,6 +199,103 @@ def initiatives_service_xls(request):
             ws.write(row_num, col_num, row[col_num], cell_style)
 
         content_length = len( initiative.description )
+        characters_per_line = 100
+        ws.row(row_num).height_mismatch = True
+        ws.row(row_num).height = max(math.ceil(content_length/characters_per_line * 480), 480)
+
+    wb.save(response)
+    return response
+
+def events_service_xls(request):
+    import xlwt
+
+    topics     = request.GET.get('topics').split(',')[0:-1];
+    activities = request.GET.get('activities').split(',')[0:-1];
+    agents     = request.GET.get('agents').split(',')[0:-1];
+
+    events = Event.objects.all()
+    if len(topics) > 0:
+        events = events.filter(topic__in=topics)
+    if len(activities) > 0:
+        events = events.filter(activity__in=activities)
+    if len(agents) > 0:
+        events = events.filter(agent__in=agents)
+
+    response = HttpResponse(content_type='application/ms-excel')
+    filename = 'eventos-civics__' + date.today().isoformat() + '.xls'
+    response['Content-Disposition'] = 'attachment; filename=' + filename
+
+    wb = xlwt.Workbook(encoding='utf-8')
+    ws = wb.add_sheet("Initiatives")
+    ezxf = xlwt.easyxf
+
+    # Write headers
+    count_style = ezxf('font: bold on, name monospace, height 320')
+    ws.write(0, 0, "CIVICS.CC # " + date.today().strftime("%d/%m/%Y"), count_style)
+    count_style = ezxf('font: bold off, name monospace, height 240')
+    count = str(events.count()) + " eventos encontrados en las categorías: "
+    topics_keys = dict(TOPICS)
+    activities_keys = dict(ACTIVITIES)
+    agents_keys = dict(AGENTS)
+    for topic in topics:
+        if topic:
+            count += str(topics_keys[topic]) + " · "
+    for activity in activities:
+        if activity:
+            count += str(activities_keys[activity]) + " · "
+    for agent in agents:
+        if agent:
+            count += str(agents_keys[agent]) + " · "
+
+    ws.write(1, 0, count, count_style)
+    ws.row(0).height_mismatch = True
+    ws.row(1).height_mismatch = True
+    ws.row(0).height = 368
+    ws.row(1).height = 368
+
+    row_num = 4
+    columns = [
+        (u"Título", 12000),
+        (u"Resumen", 25600),
+        (u"Temática", 12000),
+        (u"Actividad", 12000),
+        (u"Agente", 12000),
+        (u"Latitud", 4000),
+        (u"Longitud", 4000),
+        (u"Fecha de creación", 6000),
+    ]
+
+    xlwt.add_palette_colour("header_background", 0x21)
+    wb.set_colour_RGB(0x21, 50, 50, 50)
+    headers_style = ezxf('font: bold on, color white, name monospace, height 200; align: wrap on, horz center, vert center; borders: bottom thin, top thin; pattern: pattern solid, fore_colour header_background')
+
+    for col_num in range(len(columns)):
+        ws.write(row_num, col_num, columns[col_num][0], headers_style)
+        ws.col(col_num).width = columns[col_num][1]
+        ws.row(row_num).height_mismatch = True
+        ws.row(row_num).height = 368
+
+    firstcol_style = ezxf('font: height 200, name monospace, bold on; align: wrap on, vert center, horiz center')
+    cell_style = ezxf('font: height 200, name monospace, bold off; align: wrap on, vert center, horiz center')
+    for event in events:
+        row_num += 1
+        row = [
+            event.title,
+            event.description.strip(),
+            event.get_topic_display(),
+            event.get_category_display(),
+            event.get_agent_display(),
+            event.position['coordinates'][0],
+            event.position['coordinates'][1],
+            event.creation_date.strftime("%d/%m/%Y"),
+        ]
+        # Initiative name
+        ws.write(row_num, 0, row[0], firstcol_style)
+        for col_num in range(1, len(row)):
+            content = row[col_num]
+            ws.write(row_num, col_num, row[col_num], cell_style)
+
+        content_length = len( event.description )
         characters_per_line = 100
         ws.row(row_num).height_mismatch = True
         ws.row(row_num).height = max(math.ceil(content_length/characters_per_line * 480), 480)
