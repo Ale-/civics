@@ -56,6 +56,7 @@ CONTRIB_APPS = [
     'maintenancemode',
     'leaflet',
     'djgeojson',
+    'imagekit',
 ]
 
 PROJECT_APPS = [
