@@ -17,7 +17,7 @@ angular.module('civics.events_service', [])
                             'message'     : marker.title,
                             'html'        : "<div class='initiative-marker'>" +
                                             "<i class='outer icon-topic-" + marker.topic + " icon-agent-" + marker.agent + "'></i>" +
-                                                "<i class='inner icon-category-" + marker.category + "'></i>" +
+                                                "<i class='inner icon-activity-" + marker.activity + "'></i>" +
                                             "</div>",
                         }
                     });
