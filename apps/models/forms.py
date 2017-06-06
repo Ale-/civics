@@ -5,6 +5,9 @@ from apps.utils.fields import GroupedModelChoiceField
 from apps.utils.widgets import VideoWidget, PictureWithPreviewWidget, ReducedLeafletWidget, LimitedTextareaWidget, SelectOrAddWidget, GeocodedLeafletWidget
 
 
+def group_label(country_key):
+    return dict(models.COUNTRIES)[country_key]
+
 class CityForm(forms.ModelForm):
     """Generic modelform to create and update City objects"""
 
@@ -18,9 +21,6 @@ class CityForm(forms.ModelForm):
 
 class InitiativeForm(forms.ModelForm):
     """Generic modelform to create and update Initiative objects"""
-
-    def group_label(country_key):
-        return dict(models.COUNTRIES)[country_key]
 
     city = GroupedModelChoiceField(queryset=models.City.objects.order_by('country', 'name'),
                                    label='Ciudad',
@@ -55,14 +55,16 @@ class EventForm(forms.ModelForm):
         return dict(models.COUNTRIES)[country_key]
 
     city = GroupedModelChoiceField(queryset=models.City.objects.order_by('country', 'name'),
+                                   label='Ciudad',
+                                   help_text=_('Ciudad donde se celebra el evento. Si no encuentras la ciudad en el desplegable usa el botón inferior para añadirla.'),
                                    group_by_field='country', group_label=group_label,
-                                   empty_label=" ")
+                                   empty_label=" ", widget = SelectOrAddWidget(view_name='modelforms:create_city_popup', link_text=_("Añade una ciudad")) )
 
     class Meta:
         model = models.Event
         fields = '__all__'
         widgets = {
-            'position'    : ReducedLeafletWidget(),
+            'position'    : GeocodedLeafletWidget(submit_text='Localiza la dirección de la iniciativa', provider="google", sources="id_address id_city"),
             'video'       : VideoWidget(),
             'image'       : PictureWithPreviewWidget(),
         }

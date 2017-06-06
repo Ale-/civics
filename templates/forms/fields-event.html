@@ -7,6 +7,7 @@
         <div class="fieldset__left--two-col">
             {% include 'forms/field.html' with field=form.title %}
             {% include 'forms/field.html' with field=form.description  %}
+            {% include 'forms/field.html' with field=form.initiative %}
         </div>
         <div class="fieldset__right--two-col">
             {% include 'forms/field.html' with field=form.image  %}
@@ -26,9 +27,16 @@
             {% include 'forms/field.html' with field=form.time %}
         </div>
     </div>
-    <div class="fieldset">
-        {% include 'forms/field.html' with field=form.city %}
-        {% include 'forms/field.html' with field=form.position %}
+    <div class="fieldset--two-col">
+        <div class="fieldset__left--two-col">
+            {% include 'forms/field.html' with field=form.city %}
+        </div>
+        <div class="fieldset__right--two-col">
+            {% include 'forms/field.html' with field=form.address %}
+        </div>
+        <div class="fieldset__full--two-col">
+            {% include 'forms/field.html' with field=form.position %}
+        </div>
     </div>
     {% include 'forms/field.html' with field=form.website %}
 </div>
