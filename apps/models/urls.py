@@ -6,9 +6,6 @@ from .forms import CityForm
 
 urlpatterns = [
     url(r'^crea/ciudad$', PopupFormView.as_view(form_class=CityForm, template_name="forms/city-popup-form.html"), name="create_city_popup"),
-    url(r'^crea/ciudad$', views.CityCreate.as_view(), name="create_city"),
-    url(r'^edita/ciudad/(?P<pk>.+)$', views.CityEdit.as_view(), name="edit_city"),
-    url(r'^borra/ciudad(?P<pk>.+)$', views.CityDelete.as_view(), name="delete_city"),
 
     url(r'^crea/iniciativa$', views.InitiativeCreate.as_view(), name="create_initiative"),
     url(r'^edita/iniciativa/(?P<pk>.+)$', views.InitiativeEdit.as_view(), name="edit_initiative"),

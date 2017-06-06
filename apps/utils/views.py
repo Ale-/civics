@@ -75,7 +75,7 @@ class GenericDelete(LoginRequiredMixin, DeleteView):
     return self.initial
 
 
-class PopupFormView(FormView):
+class PopupFormView(LoginRequiredMixin, FormView):
 
     def form_valid(self, form):
         instance = form.save()

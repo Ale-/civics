@@ -5,73 +5,13 @@ from . import forms, models
 from django.urls import reverse_lazy
 from django.shortcuts import get_object_or_404
 from .models import Initiative
+from django.http import HttpResponseRedirect
+from django.core.exceptions import PermissionDenied
 
 # Model related views
 
 modelform_generic_template = 'pages/modelform.html'
 modelform_delete_template = 'pages/modelform--delete.html'
-
-#
-#  City
-#
-
-
-class CityCreate(GenericCreate):
-  """Generic view to create City objects."""
-
-  model            = models.City
-  form_class       = forms.CityForm
-  form__html_class = 'city'
-  template_name    = modelform_generic_template
-  title            = _('Añade una ciudad')
-  success_url      = reverse_lazy('front')
-
-  """ Pass context data to generic view """
-
-  def get_context_data(self, **kwargs):
-    context = super(CityCreate, self).get_context_data(**kwargs)
-    context['form__html_class'] = self.form__html_class
-    return context
-
-
-class CityEdit(GenericUpdate):
-  """Generic view to edit City objects."""
-
-  model            = models.City
-  form_class       = forms.CityForm
-  form__html_class = 'city'
-  template_name    = modelform_generic_template
-  title            = _('Edita la información de ')
-  success_url      = reverse_lazy('front')
-
-  def get_context_data(self, **kwargs):
-    """ Pass context data to generic view """
-    context = super(CityEdit, self).get_context_data(**kwargs)
-    id = self.kwargs['pk']
-    city = get_object_or_404(models.City, pk=pk)
-    context['title'] = self.title + (' ') + receiver.name
-    context['form__html_class'] = self.form__html_class
-    return context
-
-
-class CityDelete(GenericDelete):
-  """Generic view to delete City objects."""
-
-  model            = models.City
-  form_class       = forms.CityForm
-  form__html_class = 'city'
-  template_name    = modelform_generic_template
-  title            = _('Borra la ciudad ')
-  success_url      = reverse_lazy('front')
-
-  def get_context_data(self, **kwargs):
-    """ Pass context data to generic view """
-    context = super(CityEdit, self).get_context_data(**kwargs)
-    id = self.kwargs['pk']
-    city = get_object_or_404(models.City, pk=pk)
-    context['title'] = self.title + (' ') + receiver.name
-    return context
-
 
 #
 #  Initiative
@@ -86,6 +26,12 @@ class InitiativeCreate(GenericCreate):
   template_name    = modelform_generic_template
   title            = _('Sube tu iniciativa')
   success_url      = reverse_lazy('modelforms:welcome_initiative')
+
+  def get(self, request, *args, **kwargs):
+    # If user has a related initiative already forbid access
+    if Initiative.objects.filter(user=request.user).first():
+        raise PermissionDenied
+    return super().get(self, request, *args, **kwargs)
 
   def form_valid(self, form):
     return super(GenericCreate, self).form_valid(form)
@@ -112,6 +58,11 @@ class InitiativeEdit(GenericUpdate):
   template_name    = modelform_generic_template
   title            = _('Edita la información de la iniciativa ')
   success_url      = reverse_lazy('users:dashboard')
+
+  def get_success_url(self):
+    if Initiative.objects.filter(user = self.request.user).first():
+        return reverse_lazy('users:dashboard')
+    return ('/#!/iniciativas')
 
   def get_context_data(self, **kwargs):
     """Pass context data to generic view."""
@@ -180,8 +131,12 @@ class EventEdit(GenericUpdate):
   template_name = modelform_generic_template
   form__html_class = 'event'
   title = _('Edita la información del evento ')
-  success_url = reverse_lazy('users:dashboard')
   dependencies     = ['leaflet']
+
+  def get_success_url(self):
+    if Initiative.objects.filter(user = self.request.user).first():
+        return reverse_lazy('users:dashboard')
+    return ('/#!/eventos')
 
   def get_context_data(self, **kwargs):
     """Pass context data to generic view."""
