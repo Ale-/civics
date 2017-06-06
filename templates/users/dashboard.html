@@ -12,7 +12,7 @@
             <div class="initiative">
                 <div class="initiative__field initiative__field--name">
                     <h2>{{ initiative.name }}</h2>
-                    <a class="initiative__edit" target="_blank" href="{% url 'modelforms:edit_initiative' initiative.pk %}">
+                    <a class="initiative__edit" href="{% url 'modelforms:edit_initiative' initiative.pk %}">
                         <span>✏</span>
                     </a>
                 </div>
@@ -47,20 +47,37 @@
             <div class="events">
                 <div class="events__field events__field--name">
                     <h2>{% trans 'Mis actividades' %}</h2>
-                    <a class="events__create" target="_blank" href="{% url 'modelforms:create_event' %}">
+                    <a class="events__create" href="{% url 'modelforms:create_event' %}">
                         <span class="icon-add"></span>
                     </a>
                 </div>
                 {% if events.length == 0 %}
-                    {{ events }}
-                {% else %}
                     <div class="events__field events__field--empty">
-                        {% blocktrans %}
-                            Parece que todavía no has creado eventos asociados a tu iniciativa.<br/>
-                            Puedes clicar en el icono <span class="icon-add"></span> para crear un
-                            nuevo evento.
-                        {% endblocktrans %}
+                      {% blocktrans %}
+                      Parece que todavía no has creado eventos asociados a tu iniciativa.<br/>
+                      Puedes clicar en el icono <span class="icon-add"></span> para crear un
+                      nuevo evento.
+                      {% endblocktrans %}
                     </div>
+                {% else %}
+                    {% for event in events %}
+                        <div class="event">
+                            {% if event.image %}
+                            <figure class="event__field event__field--image">
+                                <img src="{{ event.thumbnail.url }}" />
+                            </figure>
+                            {% endif %}
+                            <div class="event__field event__field--edit">
+                              <a href="{% url 'modelforms:edit_event' event.pk %}">✏</a>
+                            </div>
+                            <div class="event__field event__field--date">
+                              {{ event.date }}
+                            </div>
+                            <div class="event__field event__field--title">
+                                {{ event.title }}
+                            </div>
+                        </div>
+                    {% endfor %}
                 {% endif %}
             </div>
         </div>
