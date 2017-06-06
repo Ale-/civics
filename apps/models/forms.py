@@ -39,7 +39,6 @@ class InitiativeForm(forms.ModelForm):
         }
 
     def __init__(self, *args, **kwargs):
-        self.base_fields['user'].widget.attrs['disabled'] = True
         self.base_fields['user'].widget.attrs['readonly'] = True
         self.base_fields['video'].widget.attrs['placeholder'] = _("Por ejemplo 'https://vimeo.com/45130145'")
         if('user' in kwargs['initial']):
@@ -70,8 +69,6 @@ class EventForm(forms.ModelForm):
         }
 
     def __init__(self, *args, **kwargs):
-        if('initiative' in kwargs['initial']):
-             self.base_fields['initiative'].initial = kwargs['initial']['initiative']
         self.base_fields['image'].widget.attrs['accept'] = 'image/*'
         self.base_fields['date'].widget.attrs['placeholder'] = _("Usa el formato dd/mm/aaaa, por ejemplo '05/06/2017'")
         self.base_fields['time'].widget.attrs['placeholder'] = _("Usa el formato hh:mm, por ejemplo '09:00'")

@@ -102,7 +102,7 @@ class Initiative(models.Model):
 class Event(models.Model):
   """Model to represent Event objects"""
 
-  initiative   = models.ForeignKey(Initiative, verbose_name=_("Iniciativa que organiza la actividad"), default=False, null=True,
+  initiative   = models.ForeignKey(Initiative, verbose_name=_("Iniciativa que organiza la actividad"), blank=True, null=True,
                                    help_text=_('¿Qué iniciativa organiza el evento?'))
   title        = models.CharField(_('Título del evento'), max_length = 200, blank=False, null=True,
                                   help_text=_('¿Cuál es el título del evento que quieres organiza?'))

@@ -34,7 +34,8 @@ class InitiativeCreate(GenericCreate):
     return super().get(self, request, *args, **kwargs)
 
   def form_valid(self, form):
-    return super(GenericCreate, self).form_valid(form)
+    form.instance.user = self.request.user
+    return super(InitiativeCreate, self).form_valid(form)
 
   def get_context_data(self, **kwargs):
     """Pass context data to generic view."""
@@ -63,6 +64,10 @@ class InitiativeEdit(GenericUpdate):
     if Initiative.objects.filter(user = self.request.user).first():
         return reverse_lazy('users:dashboard')
     return ('/#!/iniciativas')
+
+  def form_valid(self, form):
+    form.instance.user = self.request.user
+    return super(InitiativeEdit, self).form_valid(form)
 
   def get_context_data(self, **kwargs):
     """Pass context data to generic view."""
@@ -109,6 +114,11 @@ class EventCreate(GenericCreate):
   success_url      = reverse_lazy('users:dashboard')
   dependencies     = ['leaflet']
 
+  def form_valid(self, form):
+    user_initiative = Initiative.objects.filter(user=self.request.user).first()
+    form.instance.initiative = user_initiative
+    return super(EventCreate, self).form_valid(form)
+
   def get_context_data(self, **kwargs):
     """Pass context data to generic view."""
     context                     = super(EventCreate, self).get_context_data(**kwargs)
@@ -132,6 +142,11 @@ class EventEdit(GenericUpdate):
   form__html_class = 'event'
   title = _('Edita la información del evento ')
   dependencies     = ['leaflet']
+
+  def form_valid(self, form):
+    user_initiative = Initiative.objects.filter(user=self.request.user).first()
+    form.instance.initiative = user_initiative
+    return super(EventEdit, self).form_valid(form)
 
   def get_success_url(self):
     if Initiative.objects.filter(user = self.request.user).first():
