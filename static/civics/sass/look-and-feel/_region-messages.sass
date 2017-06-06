@@ -1,0 +1,14 @@
+@import compass/css3/animation
+
+.region-messages
+  text-transform: uppercase
+  font-family: $font_text
+  font-size: $size_small
+  text-transform: uppercase
+  +opacity(0)
+  +animation(hideup 5s 1)
+
+.messages-list__msg.success
+  background: rgba($color_success, .75)
+  padding: $m
+  color: white

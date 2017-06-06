@@ -2,6 +2,7 @@
 @import compass/css3/filter
 @import compass/css3/transform
 @import compass/css3/box-shadow
+@import compass/css3/border-radius
 
 .dashboard main
   background: #eee
@@ -45,12 +46,13 @@
   +box-shadow(0 0 5px rgba(black,.1))
 
 .initiative__field,
-.events__field
+.events__field,
+.event__field
   padding: $m/2
   color: rgba(black, .7)
 
 .initiative__field--name,
-.events__field--name,
+.events__field--name
   position: relative
   background-color: darken($palette_primary, 15%)
   +links_dashboard
@@ -73,7 +75,7 @@
 .events__create
   float: right
 
-.initiative__edit
+.initiative__edit, .event__field--edit
   font-size: 2em
   +transform( rotate(45deg) )
 .events__create
@@ -94,3 +96,22 @@
   span
     font-size: .8em
     margin: 0 $m/4
+
+.event__field--image
+  width: 100px
+  height: 100px
+  float: left
+  margin-right: $m/2
+  img
+    +border-radius(50%)
+.event__field--edit
+  float: right
+
+.events .event
+  clear: both
+.event__field--date
+  font-size: .8em
+  text-transform: uppercase
+.event__field--title
+  font-weight: 400
+  text-transform: uppercase

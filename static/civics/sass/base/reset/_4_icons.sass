@@ -3,20 +3,26 @@
 @import compass/css3/text-shadow
 @import compass/css3/box-shadow
 
-.initiative-marker
+.initiative-marker,
+.event-marker
   text-align: center
   position: relative
 
 .initiative-marker .outer,
 .initiative-marker .inner,
-.initiative-cluster
+.initiative-cluster,
+.event-marker .outer,
+.event-marker .inner,
+.event-cluster
   +icon
 
-.initiative-marker .outer
+.initiative-marker .outer,
+.event-marker .outer
   &::before
     font-size: 60px
     +text-shadow(0 0 5px rgba(black, .5))
-.initiative-marker .inner
+.initiative-marker .inner,
+.event-marker .inner
   text-align: center
   &::before
     font-size: 23px
@@ -207,6 +213,28 @@
 .icon-space-se:before
   content: '\e851'
 
+// Actividades
+
+.icon-activity-au:before
+  content: '\e800'
+.icon-activity-cu:before
+  content: '\e801'
+.icon-activity-di:before
+  content: '\e802'
+.icon-activity-en:before
+  content: '\e803'
+.icon-activity-ev:before
+  content: '\e804'
+.icon-activity-ex:before
+  content: '\e805'
+.icon-activity-fi:before
+  content: '\e806'
+.icon-activity-pu:before
+  content: '\e807'
+.icon-activity-ta:before
+  content: '\e808'
+
+
 .icon-download
   +icon
   &:before
@@ -226,7 +254,6 @@
   +icon
   &:before
     content: '\e818'
-
 
 .icon-login
   &:before
@@ -302,3 +329,16 @@
   +icon
   &:before
     content: '\e814'
+
+.icon-event-address
+  +icon
+  &:before
+    content: '\e81c'
+.icon-event-date
+  +icon
+  &:before
+    content: '\e81d'
+.icon-event-time
+  +icon
+  &:before
+    content: '\e81e'
