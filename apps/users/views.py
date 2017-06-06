@@ -6,13 +6,18 @@ from registration.views import ActivationView as BaseActivationView
 from registration.models import RegistrationProfile
 from registration import signals
 from django.contrib.sites.shortcuts import get_current_site
+from django.http import HttpResponseRedirect
+from django.core.urlresolvers import reverse
 
 class Dashboard(View):
 
     def get(self, request):
         initiative = Initiative.objects.filter(user=request.user).first()
-        events     = Event.objects.filter(initiative=initiative).all()
-        return render(request, 'users/dashboard.html', locals())
+        if initiative:
+            events     = Event.objects.filter(initiative=initiative).all()
+            return render(request, 'users/dashboard.html', locals())
+        else:
+            return HttpResponseRedirect( reverse('modelforms:create_initiative') )
 
 
 # Custom activation view that redirects user to Create Initiative form
