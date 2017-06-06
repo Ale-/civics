@@ -1,9 +1,13 @@
-{# Site front page #} {% extends 'layouts/single-fluid-column.html' %} {% load static utils %}
+{# Site front page #} {% extends 'layouts/single-fluid-column.html' %} {% load static utils i18n %}
 {% block body_classes %}initiative-success{% endblock %}
 
 {% block main %}
     <div class="message-success">
-      <p class="message-success__text">¡Enhorabuena, tu iniciativa ha sido incorporada!</p>
-      <a class="message-success__button" href="/">Ve al perfil de tu iniciativa</a>
+      <p class="message-success__text">
+          {% trans '¡Enhorabuena, tu iniciativa ha sido incorporada!' %}
+      </p>
+      <a class="message-success__button" href="{% url 'users:dashboard' %}">
+          {% trans 'Ve al perfil de tu iniciativa' %}
+      </a>
     </div>
 {% endblock %}
