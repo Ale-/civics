@@ -8,8 +8,7 @@ import json
 from django.utils.text import slugify
 from datetime import date
 import pycountry
-from django.contrib.staticfiles.templatetags.staticfiles import static
-import math
+from django.conf import settings
 
 #
 #  API
@@ -332,5 +331,5 @@ def cities_service(request):
 
 def countries_service(request):
     # TODO: catch exceptions
-    countries_data = open( 'static/civics/geojson/countries-medium--simplified.json' )
+    countries_data = open( settings.STATIC_ROOT + '/civics/geojson/countries-medium--simplified.json' )
     return HttpResponse(countries_data, content_type="application/json")
