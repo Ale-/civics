@@ -7,7 +7,7 @@
         {{ field.label }}
     </p>
     <p class="field__help--{{ fieldname }}">
-        {{ field.help_text }}
+        {{ field.help_text | safe }}
     </p>
     {% if field.errors %}
     <ul class="field__errors--{{ fieldname }}">
@@ -20,7 +20,7 @@
     {% endif %}
     <p class="field__widget--{{ fieldname }}">
         {{ field }}
-    </p>  
+    </p>
 </div>
 
 {% endwith %}

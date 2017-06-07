@@ -2,7 +2,9 @@
 
 .login,
 .registration,
-.registration-complete
+.registration-complete,
+.password-reset,
+.password-reset-done
   .page-title
     font-size: 1.2rem
     text-transform: uppercase
@@ -16,7 +18,8 @@
     +box-shadow(0 0 10px rgba(black, .25))
 
 .form--registration,
-.form--login
+.form--login,
+.form--password-reset
   +generic_form
 
 
@@ -25,7 +28,9 @@
 .loginform-links__link
   font-size: $size_small
 
-.login
+.login,
+.password-reset,
+.password-reset-done
   background: image-url('login-bg.png') repeat #eae9e9
 .registration,
 .registration-complete
@@ -35,3 +40,13 @@
   main
     padding: $m*2
     font-size: 1.25em
+
+.password-reset-instructions
+  margin-bottom: $m*2
+
+.field__help--new_password1 + ul
+  font-size: .85em
+  color: #555
+  text-align: left
+  li::before
+    content: "»   "
