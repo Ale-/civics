@@ -66,6 +66,7 @@ class EventForm(forms.ModelForm):
             'position'    : GeocodedLeafletWidget(submit_text='Localiza la dirección de la iniciativa', provider="google", sources="id_address id_city"),
             'video'       : VideoWidget(),
             'image'       : PictureWithPreviewWidget(),
+            'description' : LimitedTextareaWidget(limit=500),
         }
 
     def __init__(self, *args, **kwargs):

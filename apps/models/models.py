@@ -106,7 +106,7 @@ class Event(models.Model):
                                    help_text=_('¿Qué iniciativa organiza el evento?'))
   title        = models.CharField(_('Título del evento'), max_length = 200, blank=False, null=True,
                                   help_text=_('¿Cuál es el título del evento que quieres organiza?'))
-  description  = models.TextField(_('Descripción de la iniciativa'), blank=False, null=True,
+  description  = models.TextField(_('Describe el evento'), blank=False, null=True,
                                   help_text=_('Describe el evento.'))
   image        = models.ImageField(_("Imagen"), blank=True, upload_to="images/initiatives/",
                                     help_text=_("Sube una imagen representativa del evento"))
