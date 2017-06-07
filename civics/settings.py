@@ -5,12 +5,6 @@ Django settings for civics project
 import os
 from django.utils.translation import ugettext_lazy as _
 
-#
-# Site state settings
-#
-DEBUG       = True
-MAINTENANCE = False
-
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 #
 
@@ -62,6 +56,8 @@ CONTRIB_APPS = [
 PROJECT_APPS = [
     'apps.models',
     'apps.utils',
+    'apps.users',
+    'apps.api',
 ]
 
 INSTALLED_APPS = CONTRIB_APPS + PROJECT_APPS
@@ -145,20 +141,6 @@ LEAFLET_CONFIG = {
     'MIN_ZOOM'      : 2,
     'MAX_ZOOM'      : 18,
 }
-
-#
-# Mail settings
-#
-
-if DEBUG:
-    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-    EMAIL_HOST = 'localhost'
-    DEFAULT_FROM_EMAIL = 'no-reply@civics.localhost'
-else:
-    EMAIL_HOST = 'localhost'
-    DEFAULT_FROM_EMAIL = 'avisos@civics.cc'
-    EMAIL_PORT = '25'
-    EMAIL_USE_TLS = True
 
 #
 # Import private settings
