@@ -84,7 +84,7 @@ function Geocoder(map, marker, geometry_field)
                 var latlng = e.target.getLatLng();
                 geometry_field.value = coords_to_geojson(latlng.lat, latlng.lng);
             });
-            map.addLayer(marker).setView([data.coordinates[0], data.coordinates[1]], 4);
+            map.addLayer(marker).setView([data.coordinates[1], data.coordinates[0]], 4);
         } else {
             var map = L.map('geocode-widget__map').setView([-15, -26], 2);
             var marker = {};
