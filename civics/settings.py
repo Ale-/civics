@@ -156,7 +156,7 @@ if DEBUG:
     DEFAULT_FROM_EMAIL = 'no-reply@civics.localhost'
 else:
     EMAIL_HOST = 'localhost'
-    DEFAULT_FROM_EMAIL = 'no-reply@civics.cc'
+    DEFAULT_FROM_EMAIL = 'avisos@civics.cc'
     EMAIL_PORT = '25'
     EMAIL_USE_TLS = True
 
