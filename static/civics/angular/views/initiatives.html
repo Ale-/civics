@@ -100,9 +100,11 @@
         {{ map.initiative.name }}
     </h2>
     <div class="initiative-header">
-        <img ng-show="map.initiative.img" src="{{ map.initiative.img }}" />
-        <div ng-hide="map.initiative.img" class="initiative_blank-image">
-            <span class="icon-agent"></span>
+        <div class="initiative-image">
+            <img ng-show="map.initiative.img" src="{{ map.initiative.img }}" />
+            <div ng-hide="map.initiative.img" class="initiative-image--blank">
+                <span class="icon-agent"></span>
+            </div>
         </div>
         <div class='initiative-marker'>
             <i class='outer icon-topic-{{ map.initiative.topic }} icon-agent-{{ map.initiative.agent }}'></i>
