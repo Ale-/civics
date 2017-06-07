@@ -29,6 +29,11 @@ angular.module('civics.map_controller', [])
     // Active filter tags
     this.active_filters = [];
 
+    //Set active item in menu
+    var items = document.querySelectorAll('.main-menu__link');
+    items[0].className = 'main-menu__link'
+    items[1].className = 'main-menu__link main-menu__link--active'
+    items[2].className = 'main-menu__link'
 
     /**
      *  Reset categories to default inactive state
