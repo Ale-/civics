@@ -34,13 +34,12 @@
 
 =links_toolbar
   a
-    +transition(color .1s ease)
-    &:link, &:visited
-      color: #333
+    &:link, &:visited, &:hover, &:active
+      color: $color_text
+      border-bottom: 2px solid white
+      +transition(border-color .15s ease)
     &:hover
-      color: #ed61aa
-    &:active
-      color: #333
+      border-bottom: 2px solid #ccc
 
 =links_filters
   a

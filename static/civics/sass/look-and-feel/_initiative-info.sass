@@ -4,17 +4,17 @@
 @import compass/css3/inline-block
 
 .initiative-info
-  height: 100vh
+  height: calc(100vh - 136px)
   position: fixed
   left: -640px
-  top: 135px
+  top: 134px
+  overflow-y: auto
   z-index: 0
   width: 640px
   background-color: #f5f5f5
   +inline-block
   +transition(left .15s ease)
   padding: 0 $m
-  border-right: 1px solid rgba(black, .25)
 
 .initiative-info
   +links_toolbar
@@ -32,8 +32,11 @@
   +inline-block
   float: right
   font-style: normal
+  color: #999
+  +transition(color .15s ease)
   &:hover
     cursor: pointer
+    color: black
   font-size: 2rem
 
 .initiative-info__edit,
@@ -61,18 +64,22 @@
   margin-left: $m/2
   line-height: 30px
 
-.initiative_blank-image
+.initiative-image
   width: 75%
   +inline-block
-  height: 200px
+  img
+    +box-shadow(0 0 5px rgba(black,.25))
+
+.initiative-image--blank
+  color: #ddd
+  text-align: center
   line-height: 200px
   background-color: #eee
   font-size: 100px
-  color: #ddd
-  text-align: center
+  height: 200px
 
 .initiative-header
-  margin-bottom: $m*2
+  margin-bottom: $m
 
 .initiative-header
   .initiative-marker
@@ -96,3 +103,18 @@
     left: 73px
   .initiative-marker__topic
     margin-top: $m/2
+
+.initiative-info__detail
+  margin-bottom: 4px
+  line-height: 26px
+  vertical-align: middle
+
+.initiative-info__description--calendar
+  margin-top: $m
+
+.initiative-info__details--calendar
+  margin-top: $m*2
+
+.initiative-info__detail--initiative
+  font-weight: 400
+  margin-bottom: $m/2

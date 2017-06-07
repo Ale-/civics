@@ -21,3 +21,21 @@
 
 .leaflet-control-layers-overlays
   display: none
+
+//Disable hovers on country choropleths
+path.leaflet-clickable:hover
+  cursor: inherit
+
+#initiatives-map,
+#events-map
+  .leaflet-top
+    top: $m*2
+  .leaflet-top.leaflet-right
+    top: 0
+    left: 10px
+    right: inherit
+  .leaflet-control-attribution
+    +links_normal
+    background-color: white
+    letter-spacing: 1px
+    font-size: $size_small
