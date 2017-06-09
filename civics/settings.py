@@ -34,15 +34,18 @@ REGISTRATION_OPEN = True
 DOCUMENT_TITLE = 'Civics'
 DOCUMENT_DESCRIPTION = _('Aquí podrás encontrar iniciativas ciudadanas existentes en tu ciudad, etc.')
 
+# Sites conf
+SITE_ID = 1
 
 #
 # Application definition
 #
 
 CONTRIB_APPS = [
+    'django.contrib.sites',
     'django.contrib.admin',
-    'django.contrib.auth',
     'registration',
+    'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
