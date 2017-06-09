@@ -17,12 +17,11 @@ angular.module('civics', [
     'civics.categories_service',
     'civics.events_service',
     'civics.cities_service',
-    'civics.countries_service',
     'civics.map_controller',
     'civics.calendar_controller',
   ])
 
-  .run( function(Cities, Countries, Categories, Settings){
+  .run( function(Cities, Categories, Settings){
       Cities.get( function(cities_response){;
           Categories.setCities( cities_response.data );
           Settings.setCities( cities_response.data );
