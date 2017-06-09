@@ -41,8 +41,10 @@
 
 .map-filters__category
   &:hover
-    background-color: darken(#ed61aa, 10%)
+    background-color: rgba(black, .05)
     color: white
+  &.active
+    background-color: rgba(black, .1)
 
 .map-filters__category--calendar
   &:hover
@@ -60,7 +62,7 @@
   font-size: $size_small
   line-height: 32px
   text-transform: capitalize
-  padding: 0 $m
+  padding: 0 $m/2
   color: rgba(black, .75)
   +icon
 
@@ -184,20 +186,16 @@
 
 .map-filters__filter span
   margin-right: $m/3
-  color: rgba(white, .5)
+  color: rgba(black, .25)
 
+.cities-wrapper .map-filters__category
+  display: none
+.cities-wrapper:hover
+  .map-filters__category
+    display: block !important
 .category-country
-  +inline-block
-  width: 175px
-  float: left
-  margin-bottom: 4px
-  text-transform: uppercase
-  font-size: .75em
-  clear: both
-  padding-left: 12px
+  padding: 0 $m/2
   color: $color_text
-.cities-wrapper
-  +inline-block
-  width: calc(100% - 175px)
-.category-city
-  width: 100%
+  font-size: $size_small
+  line-height: 32px
+  text-transform: capitalize

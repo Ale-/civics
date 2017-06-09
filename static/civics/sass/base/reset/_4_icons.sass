@@ -82,8 +82,8 @@
   &:hover
     .initiative-cluster__name,
     .initiative-cluster__count
-      display: blockº
-
+      display: block
+      
 .initiative-marker .inner
   +inline-block
   +border-radius(50%)
@@ -295,6 +295,14 @@
   color: #999
   font-size: 20px
 
+.icon-activity
+  +icon
+  &:before
+    content: '\e822'
+.icon-city
+  +icon
+  &:before
+    content: '⦿'
 .icon-topic
   +icon
   &:before

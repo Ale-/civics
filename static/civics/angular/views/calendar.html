@@ -2,12 +2,12 @@
   <li class="map-filters__filter map-filters__filter--calendar map-filters__filter--cities">
       <p class="map-filters__filter-label"
          ng-init="showing_cities = false" ng-click="showing_cities = !showing_cities">
-         <span class="icon-topic"></span> Ciudad
+         <span class="icon-city"></span> Ciudad
       </p>
       <ul class="map-filters__categories map-filters__categories--calendar" ng-show="showing_cities">
           <div ng-repeat="(country, cities) in calendar.cities">
-              <p class="category-country">{{ country }}</p>
               <div class="cities-wrapper">
+                  <p class="category-country">{{ country }}</p>
                   <li class="map-filters__category map-filters__category--calendar category-city"
                       ng-click="calendar.toggleFilter('city', city, true)"
                       ng-repeat="city in cities"

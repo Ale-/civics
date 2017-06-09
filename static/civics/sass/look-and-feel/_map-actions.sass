@@ -4,11 +4,13 @@
 .map-actions,
 .calendar-actions
   background: #eee
-  height: 36px
+  min-height: 36px
   line-height: 30px
   left: 0
   width: 100%
   padding: 0 $m/2
+  border-bottom: 4px solid #eee
+  position: relative
 
 .markers-count
   +inline-block
@@ -19,8 +21,10 @@
 
 .map-actions__actions,
 .calendar-actions__actions
+  position: absolute
   float: right
-  margin-right: $m
+  right: $m
+  top: 4px
   span
     +transition(color .15s ease)
     &:hover
@@ -35,22 +39,21 @@
   padding-left: $m/3
 
 .filter-tags
-  +inline-block
+  display: inline
 
 .filter-tags li
-  display: inline
+  +inline-block
   text-transform: uppercase
   font-size: .75em
-  margin: 0 4px
-  padding: 4px 8px
+  margin: 0 4px 0
+  padding: 0 8px
+  line-height: $m
   +transition(background-color .15s ease)
+  background: #ddd
+  +border-radius(4px)
   &:hover
     background-color: #fff
     cursor: pointer
-
-.filter-tags__tag
-  background: #ddd
-  +border-radius(4px)
 
 .filter-tags__close
   font-weight: bold
@@ -59,12 +62,6 @@
   line-height: 1em
   margin-left: $m/6
 
-.map-filters__checkmark
-  float: right
-  font-size: 1.5em
-  color: rgba(black, .75) !important
-  &::before
-    content: "☐"
-.active
-  .map-filters__checkmark::before
-    content: "☒"
+.filter-tags__remove
+  background: none !important
+  +h(5)
