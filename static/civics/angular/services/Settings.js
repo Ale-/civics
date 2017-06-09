@@ -92,23 +92,6 @@ angular.module('civics.settings', [])
           }
       };
 
-      this.setCountries = function(countries){
-          this.map_layers.overlays[countries] = {
-              name: 'Civics countries',
-              type: 'geoJSONShape',
-              data: countries,
-              visible: true,
-              layerOptions: {
-                  style: {
-                      color: 'white',
-                      fillColor: 'black',
-                      weight: 1,
-                      fillOpacity: 0.2
-                  }
-              }
-          }
-      }
-
       return this;
 
 });

@@ -27,9 +27,6 @@ angular.module('civics', [
           Categories.setCities( cities_response.data );
           Settings.setCities( cities_response.data );
       });
-      Countries.get( function(countries_response){;
-          Settings.setCountries( countries_response.data );
-      });
   })
 
   .config(['$routeProvider', 'cfpLoadingBarProvider', '$logProvider', '$compileProvider', '$httpProvider', function ($routeProvider, cfpLoadingBarProvider, $logProvider, $compileProvider, $httpProvider) {

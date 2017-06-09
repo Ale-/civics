@@ -1,1 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Oxygen:300,400");
+@font-face {
+  font-family: "civics";
+  src: url('../fonts/civics.woff?1496145147') format('woff'), url('../fonts/civics.ttf?1496145147') format('truetype'), url('../fonts/civics.eot?1496145147') format('embedded-opentype'), url('../fonts/civics.svg?1496145147') format('svg');
+}
