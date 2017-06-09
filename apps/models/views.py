@@ -2,7 +2,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.shortcuts import render
 from apps.utils.views import GenericCreate, GenericUpdate, GenericDelete
 from . import forms, models
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.shortcuts import get_object_or_404
 from .models import Initiative
 from django.http import HttpResponseRedirect
@@ -17,7 +17,7 @@ modelform_delete_template = 'pages/modelform--delete.html'
 #  Initiative
 #
 
-class InitiativeCreate(GenericCreate):
+class OwnInitiativeCreate(GenericCreate):
   """Generic view to create Initiative objects."""
 
   model            = models.Initiative
@@ -29,27 +29,46 @@ class InitiativeCreate(GenericCreate):
 
   def get(self, request, *args, **kwargs):
     # If user has a related initiative already forbid access
+    if request.user.is_staff:
+        raise PermissionDenied
     if Initiative.objects.filter(user=request.user).first():
         raise PermissionDenied
     return super().get(self, request, *args, **kwargs)
 
   def form_valid(self, form):
     form.instance.user = self.request.user
-    return super(InitiativeCreate, self).form_valid(form)
+    return super(OwnInitiativeCreate, self).form_valid(form)
+
+  def get_context_data(self, **kwargs):
+    """Pass context data to generic view."""
+    context = super(OwnInitiativeCreate, self).get_context_data(**kwargs)
+    context['form__html_class'] = self.form__html_class
+    context['submit_text'] = _('Crea tu iniciativa')
+    return context
+
+class InitiativeCreate(GenericCreate):
+  """Generic view to create Initiative objects."""
+
+  model            = models.Initiative
+  form_class       = forms.InitiativeForm
+  form__html_class = 'initiative-staff'
+  template_name    = modelform_generic_template
+  title            = _('Crea una iniciativa')
+  success_url      = reverse_lazy('modelforms:create_initiative_staff')
+
+  def get(self, request, *args, **kwargs):
+    # If user has a related initiative already forbid access
+    if not request.user.is_staff:
+        raise PermissionDenied
+    return super().get(self, request, *args, **kwargs)
 
   def get_context_data(self, **kwargs):
     """Pass context data to generic view."""
     context = super(InitiativeCreate, self).get_context_data(**kwargs)
     context['form__html_class'] = self.form__html_class
-    context['submit_text'] = _('Crea tu iniciativa')
+    context['submit_text'] = _('Crea la iniciativa')
     return context
 
-  def get_initial(self):
-    super(InitiativeCreate, self).get_initial()
-    user = self.request.user
-    return {
-        "user"     : user
-    }
 
 class InitiativeEdit(GenericUpdate):
   """Generic view to edit Initiative objects."""

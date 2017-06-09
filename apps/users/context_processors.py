@@ -8,7 +8,9 @@ def current_user_hello(request):
 
     current_user = request.user
 
-    if current_user.is_authenticated:
+    if current_user.is_staff:
+        current_user_hello = "<a href='" + reverse('modelforms:create_initiative_staff') + "'>Crea una iniciativa</a>"
+    elif current_user.is_authenticated:
         current_user_initiative = Initiative.objects.filter(user=request.user).first()
         current_user_hello = "Hola, "
         if current_user_initiative:
