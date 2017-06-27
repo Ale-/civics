@@ -2,10 +2,10 @@
 bower_components
 
 # Ignore Sass cache
-civics/.sass-cache
+.sass-cache
 
 # Ignore Css files
-civics/css
+css
 
 # Ignore assets other than project's
 admin/*
