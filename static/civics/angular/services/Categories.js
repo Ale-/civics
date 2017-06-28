@@ -55,10 +55,20 @@ angular.module('civics.categories_service', [])
       'ta': 'Taller',
     };
 
-    this.city = {};
+    this.city_initiatives = {};
 
-    this.setCities = function(citylist){
-        this.city = citylist;
+    this.city_events = {};
+
+    this.addInitiativeCity = function(country, city){
+        if(!this.city_initiatives[country])
+            this.city_initiatives[country] = []
+        this.city_initiatives[country].push(city)
+    }
+
+    this.addEventCity = function(country, city){
+        if(!this.city_events[country])
+            this.city_events[country] = []
+        this.city_events[country].push(city)
     }
 
     return this;

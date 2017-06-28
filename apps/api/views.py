@@ -32,33 +32,36 @@ def initiatives_service(request):
         initiatives = initiatives.filter(space__in=spaces)
     if agents != ['all']:
         initiatives = initiatives.filter(topic__in=agents)
+
     if len(initiatives) > 0:
-        initiatives_json = []
+        initiatives_json = {}
         for initiative_json in initiatives:
             coords        = initiative_json.position['coordinates']
             cityname      = initiative_json.city.name if initiative_json.city else 'none'
-            countryname   = initiative_json.city.country if initiative_json.city else 'none'
-            initiative_json = {
-                'lng'            : coords[0],
-                'lat'            : coords[1],
-                'city'           : cityname,
-                'country'        : countryname,
-                'name'           : initiative_json.name,
-                'slug'           : initiative_json.slug,
-                'img'            : initiative_json.image.url if initiative_json.image else '',
-                'id'             : initiative_json.pk,
-                'description'    : initiative_json.description,
-                'topic'          : initiative_json.topic.lower(),
-                'agent'          : initiative_json.agent.lower(),
-                'space'          : initiative_json.space.lower(),
-                'website'        : initiative_json.website,
-                'email'          : initiative_json.email,
-                'address'        : initiative_json.address,
-                'layer'          : cityname,
-            }
-            initiatives_json.append(initiative_json)
+            countryname   = initiative_json.city.get_country_display() if initiative_json.city else 'none'
+            if countryname not in initiatives_json:
+                initiatives_json[countryname] = {}
+            if cityname not in initiatives_json[countryname]:
+                initiatives_json[countryname][cityname] = []
+            initiatives_json[countryname][cityname].append({
+                'id'  : initiative_json.pk,
+                'nam' : initiative_json.name,
+                'slu' : initiative_json.slug,
+                'add' : initiative_json.address,
+                'lng' : coords[0],
+                'lat' : coords[1],
+                'des' : initiative_json.description,
+                'web' : initiative_json.website,
+                'ema' : initiative_json.email,
+                'top' : initiative_json.topic.lower(),
+                'age' : initiative_json.agent.lower(),
+                'spa' : initiative_json.space.lower(),
+            })
 
-        return HttpResponse(json.dumps(initiatives_json, indent=4), content_type="application/json")
+            # if 'image' in initiative_json:
+            #     initiatives_json[countryname][cityname]['img'] = initiative_json.image.url
+
+        return HttpResponse(json.dumps(initiatives_json), content_type="application/json")
 
     return HttpResponse(no_results)
 
@@ -78,34 +81,39 @@ def events_service(request):
         events = events.filter(category__in=categories)
     if agents != ['all']:
         events = events.filter(topic__in=agents)
+
     if len(events) > 0:
-        events_json = []
+        events_json = {}
         for event_json in events:
             coords        = event_json.position['coordinates']
             cityname      = event_json.city.name if event_json.city else 'none'
-            event_json = {
-                'lat'          : coords[1],
-                'lng'          : coords[0],
-                'id'           : event_json.id,
-                'title'        : event_json.title,
-                'img'          : event_json.image_medium.url if event_json.image_medium else '',
-                'description'  : event_json.description,
-                'topic'        : event_json.topic.lower(),
-                'activity'     : event_json.category.lower(),
-                'agent'        : event_json.agent.lower(),
-                'city'         : event_json.city.name,
-                'country'      : event_json.city.get_country_display(),
-                'date'         : event_json.date.strftime('%d %B %Y'),
-                'time'         : str(event_json.time),
-                'address'      : event_json.address if event_json.address else '',
-                'initiative'   : event_json.initiative.name,
-                'init_website' : event_json.initiative.website,
-                'init_email'   : event_json.initiative.email,
-                'init_address' : event_json.initiative.address,
-            }
-            events_json.append(event_json)
+            countryname   = event_json.city.get_country_display() if event_json.city else 'none'
+            if countryname not in events_json:
+                events_json[countryname] = {}
+            if cityname not in events_json[countryname]:
+                events_json[countryname][cityname] = []
+            events_json[countryname][cityname].append({
+                'id'    : event_json.id,
+                'tit'   : event_json.title,
+                'add'   : event_json.address if event_json.address else '',
+                'lng'   : coords[0],
+                'lat'   : coords[1],
+                'dat'   : event_json.date.strftime('%d %B %Y'),
+                'tim'   : str(event_json.time),
+                'des'   : event_json.description,
+                'ini'   : event_json.initiative.name,
+                'ini_w' : event_json.initiative.website,
+                'ini_e' : event_json.initiative.email,
+                'ini_a' : event_json.initiative.address,
+                'top'   : event_json.topic.lower(),
+                'act'   : event_json.category.lower(),
+                'age'   : event_json.agent.lower(),
+            })
 
-        return HttpResponse(json.dumps(events_json, indent=4), content_type="application/json")
+            # if 'image' in event_json:
+            #     events_json[countryname][cityname]['img'] = event_json.image.url
+
+        return HttpResponse(json.dumps(events_json), content_type="application/json")
 
     return HttpResponse(no_results)
 

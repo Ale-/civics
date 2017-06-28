@@ -14,10 +14,10 @@
 #events-map
   &.collapsed
     left: 480px
-    .leaflet-marker-icon
-      opacity: .25 !important
-    .leaflet-marker-icon.selected
-      opacity: 1 !important
+    // .leaflet-marker-icon
+    //   opacity: .25 !important
+    // .leaflet-marker-icon.selected
+    //   opacity: 1 !important
 
 .leaflet-control-layers-overlays
   display: none
@@ -39,3 +39,11 @@ path.leaflet-clickable:hover
     background-color: white
     letter-spacing: 1px
     font-size: $size_small
+
+.prunecluster
+  background: white !important
+  line-height: 44px
+  text-align: center
+  +border-radius(50%)
+  +box-shadow(0 0 10px rgba(black, .5))
+  font-family: $font_text

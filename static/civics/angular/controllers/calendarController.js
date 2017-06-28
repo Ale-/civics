@@ -1,24 +1,22 @@
 angular.module('civics.calendar_controller', [])
 
-.controller("CalendarController", function(Events, Settings, events, $scope, Categories, leafletData)
+.controller("CalendarController", function($scope, Settings, Events, events, Categories, leafletData)
 {
-    this.markers  = events;
+
     this.defaults = Settings.map_defaults.defaults;
     this.center   = Settings.map_defaults.center;
-    this.layers   = Settings.map_layers;
     this.controls = Settings.map_controls;
-
-    this.events_count = this.markers.length;
+    this.layers   = Settings.map_layers;
 
     // Section state
     this.showing_map = true;
     this.showing_initiative = false;
-    this.initiatives_count = this.markers.length;
+    this.events_count = Events.count;
 
     // Filter categories
-    this.cities = Categories.city;
-    this.topics = Categories.topic;
-    this.agents = Categories.agent;
+    this.cities     = Categories.city_events;
+    this.topics     = Categories.topic;
+    this.agents     = Categories.agent;
     this.activities = Categories.activity;
     this.active_categories = {
       'city'     : {},
@@ -63,41 +61,38 @@ angular.module('civics.calendar_controller', [])
      */
     this.filterMarkers = function()
     {
-        var count = this.markers.length;
+        var count = Events.count;
         var filters_length = this.active_filters.length;
-        if(filters_length > 0){
-            this.markers.forEach( angular.bind(this, function(marker)
-            {
-                let visible = false;
-                for(let i = 0; i < filters_length; i++){
-                    let filter = this.active_filters[i];
-                    if(marker[filter.k] == filter.v){
-                        visible = true;
-                        break;
-                    };
-                }
-                if(visible){
-                    if(marker.layer != marker.city)
-                         marker.layer = marker.city;
-                } else {
-                    marker.layer = 'hidden';
-                    count--;
-                }
-            }));
-        } else {
-            this.markers.forEach( function(marker){
-                if(marker.layer != marker.city)
-                     marker.layer = marker.city;
-            });
+
+        for(city in Events.clusters){
+            var markers = Events.clusters[city].Cluster._markers;
+            if(filters_length > 0){
+                markers.forEach( angular.bind(this, function(marker){
+                    marker.filtered = false;
+                    for(var i = 0; i < filters_length; i++){
+                        var filter = this.active_filters[i];
+                        if(marker.data[filter.k] != filter.v){
+                            marker.filtered = true
+                            count--;
+                            break;
+                        }
+                    }
+                }));
+            } else {
+                markers.forEach( angular.bind(this, function(marker){
+                    marker.filtered = false;
+                }));
+            }
+            Events.clusters[city].ProcessView();
         }
-        this.initiatives_count = count;
+        this.events_count = count;
     };
 
     /**
      *  Toggle a filter
      */
     this.toggleFilter = function(category, subcategory, city){
-        const new_state = !this.active_categories[category][subcategory];
+        var new_state = !this.active_categories[category][subcategory];
         this.active_categories[category][subcategory] = new_state;
         if(new_state)
             this.active_filters.push({ 'k' : category, 'v': subcategory, 'n' : city ? subcategory : Categories[category][subcategory] });
@@ -128,22 +123,15 @@ angular.module('civics.calendar_controller', [])
     }
 
     /**
-     *   Add click event to map markers to show initiative related information
+     *   Show initiative information
      */
-    var current_marker = {};
-
-    $scope.$on('leafletDirectiveMarker.events-map.click', angular.bind(this, function(event, args){
-        this.showing_initiative      = true;
-        this.initiative              = args.model;
-        this.initiative_topicname    = Categories.topic[args.model.topic];
-        this.initiative_agentname    = Categories.agent[args.model.agent];
-        this.initiative_activityname = Categories.activity[args.model.activity];
-        if(current_marker)
-            current_marker.className = 'leaflet-marker-icon leaflet-div-icon leaflet-zoom-animated leaflet-clickable';
-        current_marker              = args.leafletObject._icon;
-        current_marker.className    += ' selected';
-    }));
-
+     $scope.$on('open-marker', angular.bind(this, function(event, args){
+          this.showing_initiative = true;
+          this.initiative = args;
+          this.initiative_topicname   = Categories.topics[ this.initiative.topic ];
+          this.initiative_agentname   = Categories.agents[ this.initiative.agent ];
+          this.initiative_spacename   = Categories.spaces[ this.initiative.space ];
+     }));
 
     /**
      *   Close initiative information
@@ -154,17 +142,6 @@ angular.module('civics.calendar_controller', [])
         leafletData.getMap().then(function(map) {
             map.closePopup();
         });
-    };
-
-    /**
-     *   Close initiative information
-     */
-    this.showInitiativeInfo = function(initiative){
-          this.showing_initiative = true
-          this.initiative = initiative;
-          this.initiative_topicname   = Categories.topics[initiative.topic];
-          this.initiative_agentname   = Categories.agents[initiative.agent];
-          this.initiative_spacename   = Categories.spaces[initiative.space];
     };
 
     /**
@@ -185,5 +162,13 @@ angular.module('civics.calendar_controller', [])
               base_url += agent.toUpperCase() + ",";
         window.open(base_url);
     };
+
+    // Add event info to map
+    leafletData.getMap("events-map").then(function(map)
+    {
+        for(city in events){
+            map.addLayer( events[city] );
+        }
+    });
 
 });

@@ -13,20 +13,12 @@ angular.module('civics', [
     'angular-loading-bar',
     'leaflet-directive',
     'civics.settings',
-    'civics.initiatives_service',
     'civics.categories_service',
+    'civics.initiatives_service',
     'civics.events_service',
-    'civics.cities_service',
-    'civics.map_controller',
+    'civics.initiatives_controller',
     'civics.calendar_controller',
   ])
-
-  .run( function(Cities, Categories, Settings){
-      Cities.get( function(cities_response){;
-          Categories.setCities( cities_response.data );
-          Settings.setCities( cities_response.data );
-      });
-  })
 
   .config(['$routeProvider', 'cfpLoadingBarProvider', '$logProvider', '$compileProvider', '$httpProvider', function ($routeProvider, cfpLoadingBarProvider, $logProvider, $compileProvider, $httpProvider) {
 
@@ -48,12 +40,12 @@ angular.module('civics', [
     $routeProvider
       .when('/iniciativas', {
           templateUrl : templates_url + 'initiatives.html',
-          controller  : 'MapController',
+          controller  : 'InitiativesController',
           controllerAs: 'map',
           resolve: {
-              initiatives: function(Initiatives) {
-                  return Initiatives.setup();
-              }
+               initiatives: function(Initiatives) {
+                   return Initiatives.setup()
+               }
           }
       })
       .when('/eventos', {

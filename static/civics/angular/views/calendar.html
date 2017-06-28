@@ -64,7 +64,7 @@
 <div class="map-actions">
     <div class="markers-count">
         <span class="markers-count__label">Mostrando </span>
-        <span class="markers-count__number">{{ calendar.initiatives_count }}</span>
+        <span class="markers-count__number">{{ calendar.events_count }}</span>
         <span class="markers-count__label"> eventos</span>
     </div>
     <ul class="filter-tags">
@@ -144,7 +144,7 @@
 </div>
 
 <leaflet id="events-map" ng-class="{ 'collapsed' : calendar.showing_initiative }" height="480px" width="100%"
-          center="calendar.center" controls="calendar.controls" defaults="calendar.defaults" layers="calendar.layers" markers="calendar.markers" >
+          center="calendar.center" controls="calendar.controls" layers="calendar.layers" defaults="calendar.defaults" >
 </leaflet>
 
 <div class="initiatives-grid" ng-if="!calendar.showing_map" ng-class="{ 'collapsed' : calendar.showing_initiative }">

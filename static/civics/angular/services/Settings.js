@@ -44,52 +44,12 @@ angular.module('civics.settings', [])
                   type : 'xyz',
               },
           },
-          overlays: {
-              hidden: {
-                  name    : 'Hidden markers',
-                  visible : false,
-                  type    : 'group',
-              }
-          }
       };
 
       this.map_controls = {
           custom: [
               L.control.locate({ follow: true })
           ]
-      };
-
-      this.setCities = function(cities)
-      {
-          for(country in cities){
-              cities[country].forEach( angular.bind(this, function(city){
-                  this.map_layers.overlays[city] = {
-                      name                    : city,
-                      visible                 : true,
-                      type                    : "markercluster",
-                      layerOptions            : {
-                          disableClusteringAtZoom : 10,
-                          iconCreateFunction: function(cluster) {
-                               return L.divIcon({
-                                  iconSize   : [40, 60],
-                                  iconAnchor : [20, 40],
-                                  className  : 'city',
-                                  html: '<div class="initiative-cluster"> \
-                                              <div class="inner"></div> \
-                                              <p class="initiative-cluster__name">' +
-                                                  city +
-                                              '</p>\
-                                              <p class="initiative-cluster__count">' +
-                                                  cluster.getChildCount() + ' iniciativas\
-                                              </p>\
-                                         </div>'
-                               });
-                          },
-                          showCoverageOnHover : false,
-                      },
-                  }
-              }));
-          }
       };
 
       return this;
