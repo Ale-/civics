@@ -89,23 +89,6 @@ angular.module('civics.calendar_controller', [])
     };
 
     /**
-     *  Toggle a filter
-     */
-    this.toggleFilter = function(category, subcategory, city){
-        var new_state = !this.active_categories[category][subcategory];
-        this.active_categories[category][subcategory] = new_state;
-        if(new_state)
-            this.active_filters.push({ 'k' : category, 'v': subcategory, 'n' : city ? subcategory : Categories[category][subcategory] });
-        else {
-            var index = this.active_filters.findIndex(function(filter){
-                return filter.v == subcategory;
-            });
-            this.active_filters.splice(index, 1);
-        }
-        this.filterMarkers();
-    }
-
-    /**
      *  Remove a filter
      */
     this.removeFilter = function(index){
@@ -163,12 +146,46 @@ angular.module('civics.calendar_controller', [])
         window.open(base_url);
     };
 
+    var _map = {};
+
     // Add event info to map
     leafletData.getMap("events-map").then(function(map)
     {
+        _map = map;
         for(city in events){
             map.addLayer( events[city] );
         }
     });
+
+    /**
+     *  Toggle a filter
+     */
+    this.toggleFilter = function(category, subcategory, city, coordinates){
+        var new_state = !this.active_categories[category][subcategory];
+        for(var s in this.active_categories[category]){
+            if(this.active_categories[category][s]){
+               this.active_categories[category][s] = false;
+               for(var i = 0; i < this.active_filters.length; i++ )
+                  if(this.active_filters[i].k == category && this.active_filters[i].v == s){
+                      this.active_filters.splice(i,1);
+                      break;
+                  }
+               break;
+             }
+        }
+        this.active_categories[category][subcategory] = new_state;
+        if(new_state)
+            this.active_filters.push({ 'k' : category, 'v': subcategory, 'n' : city ? subcategory : Categories[category][subcategory] });
+        else {
+            var index = this.active_filters.findIndex(function(filter){
+                return filter.v == subcategory;
+            });
+            this.active_filters.splice(index, 1);
+        }
+        this.filterMarkers();
+        if(coordinates){
+            _map.setView(coordinates, 10);
+        }
+    }
 
 });

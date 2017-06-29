@@ -14,10 +14,10 @@ angular.module('civics.initiatives_service', [])
                 for(var country in response.data){
                     for(var city in response.data[country]){
                         /** Update initiative cities category for the filters */
-                        Categories.addInitiativeCity(country, city);
+                        Categories.addInitiativeCity(country, city, response.data[country][city]['coordinates']);
                         /** Setup clusters */
                         this.clusters[city] = new PruneClusterForLeaflet();
-                        this.clusters[city].PrepareLeafletMarker = function(leafletMarker, data) {
+                        this.clusters[city].PrepareLeafletMarker = function(leafletMarker, data){
                             leafletMarker.setIcon( L.divIcon({
                                 'type' : 'div',
                                 'iconSize'    : [40, 60],
@@ -35,8 +35,8 @@ angular.module('civics.initiatives_service', [])
                         this.clusters[city].Cluster.Size = 8;
 
                         /** Setup markers */
-                        for(var i = 0, l = response.data[country][city].length; i < l; i++){
-                            var marker = response.data[country][city][i];
+                        for(var i = 0, l = response.data[country][city]['items'].length; i < l; i++){
+                            var marker = response.data[country][city]['items'][i];
                             var m = new PruneCluster.Marker(marker.lat, marker.lng, {
                                 id          : marker.id,
                                 name        : marker.nam,

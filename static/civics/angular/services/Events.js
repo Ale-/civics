@@ -13,9 +13,8 @@ angular.module('civics.events_service', [])
                 this.count    = 0;
                 for(var country in response.data){
                     for(var city in response.data[country]){
-
                         /** Update initiative cities category for the filters */
-                        Categories.addEventCity(country, city);
+                        Categories.addEventCity(country, city, response.data[country][city]['coordinates']);
                         /** Setup clusters */
                         this.clusters[city] = new PruneClusterForLeaflet();
                         this.clusters[city].PrepareLeafletMarker = function(leafletMarker, data){
@@ -26,18 +25,19 @@ angular.module('civics.events_service', [])
                                 'popupAnchor' : [0, -30],
                                 'html'        : "<div class='initiative-marker'>" +
                                                 "<i class='outer icon-topic-" + data.topic + " icon-agent-" + data.agent + "'></i>" +
-                                                    "<i class='inner icon-space-" + data.space + "'></i>" +
+                                                    "<i class='inner icon-activity-" + data.activity + "'></i>" +
                                                  "</div>",
                             }));
                             leafletMarker.on('click', function(e){
                                  $rootScope.$broadcast('open-marker', data);
                             });
                         };
+                        console.log(this.clusters);
                         this.clusters[city].Cluster.Size = 8;
 
                         /** Setup markers */
-                        for(var i = 0, l = response.data[country][city].length; i < l; i++){
-                            var marker = response.data[country][city][i];
+                        for(var i = 0, l = response.data[country][city]['items'].length; i < l; i++){
+                            var marker = response.data[country][city]['items'][i];
                             var m = new PruneCluster.Marker(marker.lat, marker.lng, {
                                 id          : marker.id,
                                 name        : marker.nam,
@@ -50,8 +50,8 @@ angular.module('civics.events_service', [])
                                 website     : marker.web,
                                 email       : marker.ema,
                                 topic       : marker.top,
-                                space       : marker.spa,
                                 agent       : marker.age,
+                                activity    : marker.act,
                             });
                           this.clusters[city].RegisterMarker(m);
                           this.count++;

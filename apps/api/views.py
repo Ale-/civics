@@ -42,8 +42,12 @@ def initiatives_service(request):
             if countryname not in initiatives_json:
                 initiatives_json[countryname] = {}
             if cityname not in initiatives_json[countryname]:
-                initiatives_json[countryname][cityname] = []
-            initiatives_json[countryname][cityname].append({
+                initiatives_json[countryname][cityname] = {}
+            city_coords = initiative_json.city.position['coordinates']
+            initiatives_json[countryname][cityname]['coordinates'] = [ city_coords[1], city_coords[0] ];
+            if 'items' not in initiatives_json[countryname][cityname]:
+                initiatives_json[countryname][cityname]['items'] = [];
+            initiatives_json[countryname][cityname]['items'].append({
                 'id'  : initiative_json.pk,
                 'nam' : initiative_json.name,
                 'slu' : initiative_json.slug,
@@ -91,8 +95,12 @@ def events_service(request):
             if countryname not in events_json:
                 events_json[countryname] = {}
             if cityname not in events_json[countryname]:
-                events_json[countryname][cityname] = []
-            events_json[countryname][cityname].append({
+                events_json[countryname][cityname] = {}
+            city_coords = event_json.city.position['coordinates']
+            events_json[countryname][cityname]['coordinates'] = [ city_coords[1], city_coords[0] ];
+            if 'items' not in events_json[countryname][cityname]:
+                events_json[countryname][cityname]['items'] = [];
+            events_json[countryname][cityname]['items'].append({
                 'id'    : event_json.id,
                 'tit'   : event_json.title,
                 'add'   : event_json.address if event_json.address else '',
