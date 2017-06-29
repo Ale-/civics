@@ -1,33 +1,10 @@
 @import compass/css3/transition
 
-#initiatives-map,
-#events-map
+#civics-map
   width: 100%
   position: relative
   height: calc(100vh - 130px) !important
-  +transition(left .15s ease)
 
-#initiatives-map,
-#events-map
-  &.collapsed
-    left: 100%
-    +breakpoint('sm')
-      left: 480px
-      width: calc(100% - 480px) !important
-    // .leaflet-marker-icon
-    //   opacity: .25 !important
-    // .leaflet-marker-icon.selected
-    //   opacity: 1 !important
-
-.leaflet-control-layers-overlays
-  display: none
-
-//Disable hovers on country choropleths
-path.leaflet-clickable:hover
-  cursor: inherit
-
-#initiatives-map,
-#events-map
   .leaflet-top
     top: 74px
   .leaflet-top.leaflet-right
@@ -39,38 +16,82 @@ path.leaflet-clickable:hover
     background-color: white
     letter-spacing: 1px
     font-size: $size_small
-
-.prunecluster
-  background: white !important
-  line-height: 42px
-  text-align: center
-  +border-radius(50%)
-  +box-shadow(0 0 10px rgba(black, .5))
-  font-family: $font_text
-  font-weight: bold
-  color: #333
-
-.leaflet-bottom.leaflet-right
-  left: 0
-  right: inherit
-
-#initiatives-map,
-#events-map
   .leaflet-control-layers-toggle
     background-image: url('../img/layers.png') !important
     background-size: cover
     width: 26px
     height: 26px
+  .leaflet-bottom.leaflet-right
+    left: 0
+    right: inherit
+  .leaflet-control-layers-overlays
+    display: none
+  .prunecluster
+    background: white !important
+    line-height: 42px
+    text-align: center
+    +border-radius(50%)
+    +box-shadow(0 0 10px rgba(black, .5))
+    font-family: $font_text
+    font-weight: bold
+    color: #333
+  .leaflet-expand
+    position: absolute
+    top: 46px
+    left: 10px
+    text-align: center
+    z-index: 100
+    width: 26px
+    line-height: 26px
+    background: white
+    +box-shadow(0 0 10px rgba(black, .5))
+    &:hover
+      cursor: pointer
 
-.leaflet-expand
-  position: absolute
-  top: 46px
-  left: 10px
+  .leaflet-div-icon
+    border: 0 !important
+    background: none !important
+
+  .initiative-marker .inner
+    +inline-block
+    +border-radius(50%)
+    width: 24px
+    height: 24px
+    background-color: #eee
+    position: absolute
+    top: 11px
+    left: 8px
+
+.initiative-marker,
+.event-marker
   text-align: center
-  z-index: 100
-  width: 26px
-  line-height: 26px
-  background: white
-  +box-shadow(0 0 10px rgba(black, .5))
-  &:hover
-    cursor: pointer
+  position: relative
+
+.initiative-marker .outer,
+.event-marker .outer
+  &::before
+    font-size: 60px
+    +text-shadow(0 0 5px rgba(black, .5))
+.initiative-marker .inner,
+.event-marker .inner
+  text-align: center
+  &::before
+    font-size: 23px
+    line-height: 23px
+    color: rgba(black, .75)
+.initiative-marker [class*='icon-activity'].inner
+  &::before
+    font-size: 36px
+    line-height: 30px
+    left: 1px
+
+.fa-map-marker,
+.fa-spinner
+  +i("◎")
+  color: $color_text !important
+
+.initiative-marker .outer,
+.initiative-marker .inner,
+.event-marker .outer,
+.event-marker .inner,
+  +icon

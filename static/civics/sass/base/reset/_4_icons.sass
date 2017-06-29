@@ -3,363 +3,193 @@
 @import compass/css3/text-shadow
 @import compass/css3/box-shadow
 
-.initiative-marker,
-.event-marker
-  text-align: center
-  position: relative
+=icon
+  &::before
+    font-family: $font_icons
+    speak: none
+    font-style: normal
+    font-weight: normal
+    font-variant: normal
+    text-transform: none
+    line-height: 1
+    position: relative
+    /* Better Font Rendering ===========
+    -webkit-font-smoothing: antialiased
+    -moz-osx-font-smoothing: grayscale
 
-.initiative-marker .outer,
-.initiative-marker .inner,
-.initiative-cluster,
-.event-marker .outer,
-.event-marker .inner,
-.event-cluster
+[class*='icon-'],
   +icon
 
-.initiative-marker .outer,
-.event-marker .outer
+=i($content)
   &::before
-    font-size: 60px
-    +text-shadow(0 0 5px rgba(black, .5))
-.initiative-marker .inner,
-.event-marker .inner
-  text-align: center
-  &::before
-    font-size: 23px
-    line-height: 23px
-    color: rgba(black, .75)
-.initiative-marker [class*='icon-activity'].inner
-  &::before
-    font-size: 36px
-    line-height: 30px
-    left: 1px
+    content: $content
 
-.initiative-cluster
-  &::before
-    font-size: 60px
-    content: "\e812"
-    color: #ED61AA
-    +text-shadow(0 0 5px rgba(black, .5))
 
-.fa-map-marker,
-.fa-spinner
-  &::before
-    content: "◎"
-    color: $color_text !important
-
-.initiative-cluster .inner
-  +border-radius(50%)
-  background-color: rgba(white, .5)
-  width: 20px
-  height: 20px
-  position: absolute
-  top: 10px
-  left: 10px
-
-.initiative-cluster__name,
-.initiative-cluster__count
-  display: none
-  background: white
-  width: 100px
-  text-align: center
-  text-transform: uppercase
-  text-align: center
-  font-size: $size_small
-  padding: $m/4 $m/3
-.initiative-cluster__name
-  font-weight: bold
-
-.city:hover
-  .initiative-cluster__name,
-  .initiative-cluster__count
-    display: block
-
-.leaflet-div-icon
-  border: 0 !important
-  background: none !important
-
-.initiative-cluster
-  &:hover
-    .initiative-cluster__name,
-    .initiative-cluster__count
-      display: block
-
-.initiative-marker .inner
-  +inline-block
-  +border-radius(50%)
-  width: 24px
-  height: 24px
-  background-color: #eee
-  position: absolute
-  top: 11px
-  left: 8px
+// Agentes
+//
 
 // Iniciativas municipales
-.icon-agent-im:before
-  content: "\e80b"
-
+.icon-agent-im
+  +i("\e80b")
 // Universidades
-.icon-agent-uo:before
-  content: "\e813"
-
+.icon-agent-uo
+  +i("\e813")
 // Organismos internacionales
-.icon-agent-oi:before
-  content: "\e80e"
-
+.icon-agent-oi
+  +i("\e80e")
 // Empresas sociales
-.icon-agent-es:before
-  content: "\e812"
-
+.icon-agent-es
+  +i("\e812")
 // Iniciativas ciudadanas
-.icon-agent-ic:before
-  content: "\e80a"
-
+.icon-agent-ic
+  +i("\e80a")
 // Juntas y asociaciones de vecinos
-.icon-agent-ja:before
-  content: "\e815"
-
+.icon-agent-ja
+  +i("\e815")
 // Conquistas ciudadanas
-.icon-agent-cc:before
-  content: "\e80a"
+.icon-agent-cc
+  +i("\e80a")
 
 
-// Temáticas -- colores sobre la forma exterior
-// desarrollo comunitario
+// Temáticas
+//
+
+=t($col, $bg)
+  color: $col
+  + .inner
+    background-color: $bg
+
 .icon-topic-dc
-  color: #fdea14
-  + .inner
-    background-color: #fefac4
-  // arte urbano
+  +t(#fdea14, #fefac4)
 .icon-topic-au
-  color: #f8b835
-  + .inner
-    background-color: #fdedcc
-  // cultura libre
+  +t(#f8b835, #fdedcc)
 .icon-topic-cl
-  color: #ec6851
-  + .inner
-    background-color: #fad9d3
-  // deporte / salud / cuidados
+  +t(#ec6851, #fad9d3)
 .icon-topic-ds
-  color: #f3a498
-  + .inner
-    background-color: #fce8e5
-  // igualdad / derechos / memoria
+  +t(#f3a498, #fce8e5)
 .icon-topic-id
-  color: #e1517c
-  + .inner
-    background-color: #f7d3de
-  // ecología / consumo
+  +t(#e1517c, #f7d3de)
 .icon-topic-ec
-  color: #932c49
-  + .inner
-    background-color: #e4cad1
-  // otras economías
+  +t(#932c49, #e4cad1)
 .icon-topic-oe
-  color: #8e8e16
-  + .inner
-    background-color: #e3e3c5
-  // educación expandida
+  +t(#8e8e16, #e3e3c5)
 .icon-topic-ee
-  color: #b7d69c
-  + .inner
-    background-color: #edf5e6
-  // ciencia / tecnología
+  +t(#b7d69c, #edf5e6)
 .icon-topic-ct
-  color: #2cae87
-  + .inner
-    background-color: #edf5e6
-  // movilidad sostenible
+  +t(#2cae87, #edf5e6)
 .icon-topic-ms
-  color: #40bfef
-  + .inner
-    background-color: #cfeffb
-  // política y gobernanza
+  +t(#40bfef, #cfeffb)
 .icon-topic-pg
-  color: #0079ba
-  + .inner
-    background-color: #bfddee
-  // urbanismo / patrimonio
+  +t(#0079ba, #bfddee)
 .icon-topic-up
-  color: #587e74
-  + .inner
-    background-color: #d5dfdc
-  // periodismo comunitario
+  +t(#587e74, #d5dfdc)
 .icon-topic-pc
-  color: #f87dcc
-  + .inner
-    background-color: #f7d3de
-
+  +t(#f87dcc, #f7d3de)
 
 // Espacios
-
-.icon-space-cc:before
-  content: '\e846'
-.icon-space-em:before
-  content: '\e847'
-.icon-space-mc:before
-  content: '\e848'
-.icon-space-di:before
-  content: '\e849'
-.icon-space-ei:before
-  content: '\e84a'
-.icon-space-ea:before
-  content: '\e84b'
-.icon-space-ep:before
-  content: '\e84c'
-.icon-space-hu:before
-  content: '\e84d'
-.icon-space-it:before
-  content: '\e84e'
-.icon-space-iu:before
-  content: '\e84f'
-.icon-space-ms::before
-  content: '\e850'
-.icon-space-se:before
-  content: '\e851'
+//
+.icon-space-cc
+  +i('\e846')
+.icon-space-em
+  +i('\e847')
+.icon-space-mc
+  +i('\e848')
+.icon-space-di
+  +i('\e849')
+.icon-space-ei
+  +i('\e84a')
+.icon-space-ea
+  +i('\e84b')
+.icon-space-ep
+  +i('\e84c')
+.icon-space-hu
+  +i('\e84d')
+.icon-space-it
+  +i('\e84e')
+.icon-space-iu
+  +i('\e84f')
+.icon-space-ms
+  +i('\e850')
+.icon-space-se
+  +i('\e851')
 
 // Actividades
+//
+.icon-activity-au
+  +i('\e800')
+.icon-activity-cu
+  +i('\e801')
+.icon-activity-di
+  +i('\e802')
+.icon-activity-en
+  +i('\e803')
+.icon-activity-ev
+  +i('\e804')
+.icon-activity-ex
+  +i('\e805')
+.icon-activity-fi
+  +i('\e806')
+.icon-activity-pu
+  +i('\e807')
+.icon-activity-ta
+  +i('\e808')
 
-.icon-activity-au:before
-  content: '\e800'
-.icon-activity-cu:before
-  content: '\e801'
-.icon-activity-di:before
-  content: '\e802'
-.icon-activity-en:before
-  content: '\e803'
-.icon-activity-ev:before
-  content: '\e804'
-.icon-activity-ex:before
-  content: '\e805'
-.icon-activity-fi:before
-  content: '\e806'
-.icon-activity-pu:before
-  content: '\e807'
-.icon-activity-ta:before
-  content: '\e808'
-
-
+// Auxiliares
+//
 .icon-download
-  +icon
-  &:before
-    content: '\e811'
-
+  +i('\e811')
 .icon-share
-  +icon
-  &:before
-    content: '\e817'
-
+  +i('\e817')
 .icon-twitter
-  +icon
-  &:before
-    content: '\e81a'
-
+  +i('\e81a')
 .icon-facebook
-  +icon
-  &:before
-    content: '\e818'
-
+  +i('\e818')
 .icon-github
-  +icon
-  &:before
-    content: '\e830'
-
+  +i('\e830')
 .icon-mail
-  +icon
-  &:before
-    content: '\e819'
-
+  +i('\e819')
 .icon-expand
-  +icon
-  &:before
-    content: '\e836'
-
+  +i('\e836')
 .icon-login
-  &:before
-    font-size: 2.25em
-  +icon
-  &:before
-    content: '\e832'
-
+  +i('\e832')
+  font-size: 2.25em
 .icon-logout
-  &:before
-    font-size: 2.25em
-  +icon
-  &:before
-    content: '\e833'
-
+  +i('\e833')
+  font-size: 2.25em
 .icon-email
-  +icon
-  &:before
-    content: '\e819'
-
+  +i('\e819')
 .icon-website
-  +icon
-  &:before
-    content: '\e82e'
-
+  +i('\e82e')
 .icon-address
-  +icon
-  &:before
-    content: '\e81c'
-
+  +i('\e81c')
 .icon-email,
 .icon-website,
 .icon-address
   color: #999
   font-size: 20px
-
 .icon-activity
-  +icon
-  &:before
-    content: '\e822'
+  +i('\e822')
 .icon-city
-  +icon
-  &:before
-    content: '⦿'
+  +i('⦿')
 .icon-topic
-  +icon
-  &:before
-    content: '\e820'
+  +i('\e820')
 .icon-space
-  +icon
-  &:before
-    content: '\e81f'
+  +i('\e81f')
 .icon-agent
-  +icon
-  &:before
-    content: '\e821'
+  +i('\e821')
 .icon-add
-  +icon
-  &:before
-    content: '\e825'
+  +i('\e825')
 .icon-calendar
-  +icon
-  &:before
-    content: '\e81d'
+  +i('\e81d')
 .icon-map
-  +icon
-  &:before
-    content: '\e816'
+  +i('\e816')
 .icon-info
-  +icon
-  &:before
-    content: 'ℹ'
+  +i('ℹ')
 .icon-list
-  +icon
-  &:before
-    content: '\e814'
-
+  +i('\e814')
 .icon-event-address
-  +icon
-  &:before
-    content: '\e81c'
+  +i('\e81c')
 .icon-event-date
-  +icon
-  &:before
-    content: '\e81d'
+  +i('\e81d')
 .icon-event-time
-  +icon
-  &:before
-    content: '\e81e'
+  +i('\e81e')
