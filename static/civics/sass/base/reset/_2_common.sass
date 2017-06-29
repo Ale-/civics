@@ -41,6 +41,16 @@
     &:hover
       border-bottom: 2px solid #ccc
 
+=links_social
+  a
+    +transition(color .15s ease)
+    &:link, &:visited
+      color: #111
+    &:hover
+      color: #555
+    &:active
+      color: #111
+
 =links_filters
   a
     +transition(color .1s ease)
@@ -68,6 +78,17 @@
     color: $color_text
     &:hover
       background-color: darken(#f9afea, 10%)
+
+=links_user_responsive
+  a
+    +transition(color .1s ease)
+    &:link, &:visited
+      color: white
+    &:hover
+      color: $palette_primary
+    &:active
+      color: white
+
 
 =icon
   &:before
