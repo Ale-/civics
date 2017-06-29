@@ -58,11 +58,6 @@ angular.module('civics', [
               }
           }
       })
-      .when('/about', {
-        templateUrl : templates_url + 'about.html',
-        controller  : 'MapController',
-        controllerAs: 'map',
-      })
       .otherwise({
         redirectTo: '/iniciativas'
       });
