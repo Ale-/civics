@@ -18,6 +18,7 @@ angular.module('civics', [
     'civics.events_service',
     'civics.initiatives_controller',
     'civics.calendar_controller',
+    'civics.directives',
   ])
 
   .config(['$routeProvider', 'cfpLoadingBarProvider', '$logProvider', '$compileProvider', '$httpProvider', function ($routeProvider, cfpLoadingBarProvider, $logProvider, $compileProvider, $httpProvider) {
