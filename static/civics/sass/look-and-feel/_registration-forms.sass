@@ -12,10 +12,12 @@
   main
     text-align: center
     padding: $m
+    margin: 2*$m $m
     background-color: white
-    width: 360px
-    float: right
     +box-shadow(0 0 10px rgba(black, .25))
+    +breakpoint('sm')
+      width: 360px
+      float: right
 
 .form--registration,
 .form--login,

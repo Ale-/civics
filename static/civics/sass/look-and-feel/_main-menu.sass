@@ -1,5 +1,43 @@
+.main-menu
+  display: none !important
+  +breakpoint('sm')
+    display: inline-block !important
+  &.active
+    display: block !important
+    width: 100%
+    position: absolute
+    left: 0
+    top: 40px
+    width: 100%
+    background: white
+    z-index: 11000
+    height: calc(100vh - 40px)
+    padding-top: $m*4
+    .main-menu__link
+      height: 40px
+
 .main-menu__link
   +links_toolbar
+
 .main-menu__link--active
   a
     border-color: $color_text !important
+
+.main-menu__link
+  width: 100%
+  +breakpoint('sm')
+    margin: 0 $m/2
+    display: inline-block
+    width: 33%
+    margin: 0
+
+#main-menu-trigger
+  cursor: pointer
+  float: right
+  p
+    width: $m
+    height: 4px
+    background-color: #333
+    margin: 4px 0
+  +breakpoint('sm')
+    display: none

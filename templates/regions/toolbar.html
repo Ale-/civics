@@ -3,10 +3,13 @@
 {% block region_content %}
     <div class="region-{{ region_name }}__left">
         <a href="{% url 'front' %}">
-            <img src="{% img 'logo-civics.png' %}" />
+            <object data="{% static 'civics/img/logo-civics.svg' %}"></object>
         </a>
     </div>
-    <div class="region-{{ region_name }}__center">
+    <div class="region-{{ region_name }}__right">
+        <div id="main-menu-trigger" onclick="document.querySelector('.main-menu').classList.toggle('active')">
+            <p></p><p></p><p></p>
+        </div>
         <ul class="main-menu">
             <li class="main-menu__link">
                 <a href="{% url 'about' %}">{% trans 'Acerca' %}</a>
@@ -18,8 +21,6 @@
                 <a href="/#!/eventos">{% trans 'Agenda' %}</a>
             </li>
         </ul>
-    </div>
-    <div class="region-{{ region_name }}__right">
         <ul class="user-actions">
             <li class="user-actions__action user-actions__action--hello">
                 {% if request.user.is_authenticated %}

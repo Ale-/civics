@@ -1,25 +1,29 @@
 @import compass/css3/inline-block
 
 .region-toolbar
-  padding: 6px $m
+  padding: $m/2 0
+  +breakpoint('sm')
+    padding: 6px 0
 
 [class^='region-toolbar__']
   +inline-block
 
-.region-toolbar__right,
 .region-toolbar__left
-  width: 25%
+  width: 200px
+  padding: 0 $m/2
+  text-align: left
+  float: left
 
 .region-toolbar__right
-  text-align: right
-
-
-.region-toolbar__center
-  width: 49%
-  text-align: center
+  width: calc(100% - 200px)
+  padding: 0 $m/2
+  display: inline-block
   text-transform: uppercase
-
-.main-menu__link
-  +inline-block
-  width: 33%
-  float: left
+  ul
+    display: inline-block
+  .main-menu
+    width: calc(100% - 200px)
+    text-align: center
+  .user-actions
+    width: 200px
+    float: right

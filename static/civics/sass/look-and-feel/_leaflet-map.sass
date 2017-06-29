@@ -2,18 +2,18 @@
 
 #initiatives-map,
 #events-map
-  position: fixed
-  top: 134px
-  left: 0
-  right: 100vw
-  height: calc(100vh - 136px) !important
-  z-index: -1
+  width: 100%
+  position: relative
+  height: calc(100vh - 130px) !important
   +transition(left .15s ease)
 
 #initiatives-map,
 #events-map
   &.collapsed
-    left: 480px
+    left: 100%
+    +breakpoint('sm')
+      left: 480px
+      width: calc(100% - 480px) !important
     // .leaflet-marker-icon
     //   opacity: .25 !important
     // .leaflet-marker-icon.selected
@@ -29,7 +29,7 @@ path.leaflet-clickable:hover
 #initiatives-map,
 #events-map
   .leaflet-top
-    top: $m*2
+    top: 74px
   .leaflet-top.leaflet-right
     top: 0
     left: 10px
@@ -42,8 +42,35 @@ path.leaflet-clickable:hover
 
 .prunecluster
   background: white !important
-  line-height: 44px
+  line-height: 42px
   text-align: center
   +border-radius(50%)
   +box-shadow(0 0 10px rgba(black, .5))
   font-family: $font_text
+  font-weight: bold
+  color: #333
+
+.leaflet-bottom.leaflet-right
+  left: 0
+  right: inherit
+
+#initiatives-map,
+#events-map
+  .leaflet-control-layers-toggle
+    background-image: url('../img/layers.png') !important
+    background-size: cover
+    width: 26px
+    height: 26px
+
+.leaflet-expand
+  position: absolute
+  top: 46px
+  left: 10px
+  text-align: center
+  z-index: 100
+  width: 26px
+  line-height: 26px
+  background: white
+  +box-shadow(0 0 10px rgba(black, .5))
+  &:hover
+    cursor: pointer

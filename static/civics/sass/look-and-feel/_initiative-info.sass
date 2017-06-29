@@ -4,18 +4,18 @@
 @import compass/css3/inline-block
 
 .initiative-info
-  height: calc(100vh - 136px)
-  position: fixed
-  left: -480px
-  top: 134px
+  min-height: calc(100vh - 136px)
+  position: absolute
+  left: -100%
   overflow-y: auto
   z-index: 0
-  width: 480px
-  max-width: 100%
   background-color: #f5f5f5
   +inline-block
   +transition(left .15s ease)
   padding: 0 $m
+  +breakpoint('sm')
+    width: 480px
+    left: -480px
 
 .initiative-info
   +links_toolbar

@@ -18,6 +18,23 @@
   &:hover
     cursor: pointer
 
+.map-filters__filter [class^='icon-']::before
+  //color: #111
+  margin-right: $m/3
+
+.map-filters__filter-name
+  display: none
+
++breakpoint('sm')
+  .map-filters__filter:hover
+    .map-filters__categories
+      display: block !important
+  .map-filters__filter-name
+    display: inline
+  .map-filters__filter [class^='icon-']::before
+    color: white
+
+
 .map-filters__filter
   background-color: #ed61aa
   &:hover
@@ -31,10 +48,15 @@
 .map-filters__categories
   text-align: left
   position: absolute
-  z-index: 100
-  width: 25%
+  z-index: 10000
+  left: 0
   outline: 1px solid rgba(black, .05)
+  width: 100%
   background-color: lighten(#ed61aa, 10%)
+  +breakpoint('md')
+    width: 25%
+    left: inherit
+
 
 .map-filters__categories--calendar
   background-color: lighten(#02cfc2, 10%)
@@ -183,10 +205,6 @@
   content: "\e857"
 .category-agent-cc:before
   content: "\e852"
-
-.map-filters__filter span
-  margin-right: $m/3
-  color: rgba(black, .25)
 
 .cities-wrapper .map-filters__category
   display: none
