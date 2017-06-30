@@ -1,9 +1,12 @@
 .user-actions
-  text-align: right
-  display: none !important
-  height: 20px
+  display: none
   +breakpoint('sm')
-    display: inline-block !important
+    height: 20px
+    text-align: right
+    display: inline-block
+    float: right
+    width: 300px
+    font-size: $size_smaller
 
 .main-menu.active + .user-actions
   display: block !important
@@ -16,7 +19,6 @@
 .user-actions__action--hello,
 .user-actions__action--admin
   text-transform: uppercase
-  font-size: $size_smaller
   +breakpoint('sm')
     +links_normal
 

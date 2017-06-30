@@ -1,0 +1,45 @@
+.navigation-trigger
+  cursor: pointer
+  position: fixed
+  z-index: 1000
+  background: white
+  padding: $m/2
+  top: 0
+  right: 0
+  p
+    width: $m
+    height: 4px
+    background-color: #333
+    margin-bottom: 4px
+    +transition(transform .25s ease)
+    //transform-origin: 50% 50%
+  +breakpoint('sm')
+    display: none
+
+.active
+  .main-menu
+    display: block !important
+    .main-menu__link
+      line-height: $m*2
+      padding: $m/2
+      border-bottom: 1px dotted $color_text
+  .b1
+    +transform(translateY(6px) rotate(45deg))
+  .b2
+    opacity: 0
+  .b3
+    +transform(translateY(-10px) rotate(-45deg))
+  .user-actions
+    display: block !important
+
+.region-toolbar
+  background: white
+
+.region-toolbar__right.active
+  position: fixed
+  left: 0
+  top: 40px
+  width: 100%
+  background: white
+  height: 100vh
+  z-index: 11000

@@ -7,9 +7,10 @@
 
 .fieldset__left--two-col,
 .fieldset__right--two-col
-  +inline-block
-  float: left
-  width: 50%
+  +breakpoint('sm')
+    +inline-block
+    float: left
+    width: 50%
 
 .fieldset__left--two-col
   padding-right: $m/4
@@ -25,4 +26,3 @@
     +flex-direction(row)
   > div
     +flex(1 0)
-  > div:not(:last-child)
