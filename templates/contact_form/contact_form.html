@@ -1,0 +1,9 @@
+{# Extend basic page #}
+{% extends 'layouts/single-fixed-column.html' %} {% load i18n %}
+{% block body_classes %}contact{% endblock %} {% block htmltitle %}Contacta{% endblock %}
+
+{# Content #}
+{% block main %}
+    {% trans 'Contacta con Civics.cc' as title_text %} {% include 'pages/title.html' with title=title_text %}
+    {% include 'forms/regular-form.html' with form_title="contact" form=form form_class="contact generic" submit_text="Manda el mensaje" %}
+{% endblock %}

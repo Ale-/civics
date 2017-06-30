@@ -2,11 +2,12 @@ appdirs==1.4.3
 coverage==4.3.4
 Django==1.10.6
 django-appconf==1.0.2
+django-contact-form==1.4.2
 django-geojson==2.10.0
 django-imagekit==4.0.1
 django-leaflet==0.21.0
 django-maintenancemode==0.11.2
-django-registration-redux==1.6
+django-registration-redux==1.5
 IPy==0.83
 jsonfield==2.0.1
 olefile==0.44

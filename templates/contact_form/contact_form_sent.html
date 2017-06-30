@@ -1,0 +1,16 @@
+{# Extend basic page #}
+{% extends 'layouts/single-fixed-column.html' %} {% load i18n %}
+{% block body_classes %}contact{% endblock %} {% block htmltitle %}Contacta{% endblock %}
+
+{# Content #}
+{% block main %}
+    {% trans 'Gracias!' as title_text %} {% include 'pages/title.html' with title=title_text %}
+    <div class="contact-sent">{% blocktrans trimmed %}
+        Gracias por contactar con nosotr-s.
+        Te hemos enviado un correo de confirmación. ¡Gracias por el interés!
+        {% endblocktrans %}
+        <p class="contact-sent__exit">
+            <a href="#" onclick="history.go(-2)">{% trans 'Volver' %}</a>
+        <p>
+    </div>
+{% endblock %}

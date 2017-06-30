@@ -4,14 +4,15 @@
 .registration,
 .registration-complete,
 .password-reset,
-.password-reset-done
+.password-reset-done,
+.contact
   .page-title
     font-size: 1.2rem
     text-transform: uppercase
-    margin: $m 0
+    padding: $m 0
   main
     text-align: center
-    padding: $m
+    padding: $m*2 $m !important
     margin: 2*$m $m
     background-color: white
     +box-shadow(0 0 10px rgba(black, .25))
@@ -21,7 +22,8 @@
 
 .form--registration,
 .form--login,
-.form--password-reset
+.form--password-reset,
+.form--contact
   +generic_form
 
 
@@ -35,7 +37,8 @@
 .password-reset-done
   background: image-url('login-bg.png') repeat #eae9e9
 .registration,
-.registration-complete
+.registration-complete,
+.contact
   background: image-url('signin-bg.png') repeat #eae9e9
 
 .registration-complete
@@ -52,3 +55,8 @@
   text-align: left
   li::before
     content: "»   "
+
+.contact-sent__exit
+  margin: $m*2 0
+  text-transform: uppercase
+  +links_normal

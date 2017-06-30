@@ -26,6 +26,9 @@ urlpatterns = [
     url(r'', include('registration.backends.default.urls')),
     url(r'^api/', include('apps.api.urls', namespace="api")),
     url(r'^', include('apps.users.urls', namespace="users")),
+
+    # Contact form
+    url(r'^contacta/', include('contact_form.urls')),
 ]
 
 if settings.DEBUG == True:
