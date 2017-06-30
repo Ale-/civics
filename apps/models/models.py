@@ -47,6 +47,8 @@ class Initiative(models.Model):
                                    help_text=_('¿Cuál es el nombre de tu iniciativa?'))
   slug          = models.SlugField(editable=False, blank=True)
   creation_date = models.DateField(editable=False, default=timezone.now)
+  featured      = models.BooleanField(_('Destacado'), blank=True, default=False,
+                                     help_text=_('Indica si es una iniciativa destacada'))
   user          = models.ForeignKey(User, verbose_name=_('Gestor'), blank=True, null=True, on_delete=models.SET_NULL)
   image         = models.ImageField(_("Imagen"), blank=True, upload_to="images/initiatives/",
                                     help_text=_("Sube una imagen representativa de la iniciativa haciendo click en la imagen inferior."))
@@ -106,6 +108,8 @@ class Event(models.Model):
                                    help_text=_('¿Qué iniciativa organiza el evento?'))
   title        = models.CharField(_('Título del evento'), max_length = 200, blank=False, null=True,
                                   help_text=_('¿Cuál es el título del evento que quieres organiza?'))
+  featured     = models.BooleanField(_('Destacado'), blank=True, default=False,
+                                     help_text=_('Indica si es un evento destacado'))
   description  = models.TextField(_('Describe el evento'), blank=False, null=True,
                                   help_text=_('Describe el evento.'))
   image        = models.ImageField(_("Imagen"), blank=True, upload_to="images/initiatives/",

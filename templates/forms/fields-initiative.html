@@ -6,6 +6,9 @@
     <div class="fieldset--two-col">
         <div class="fieldset__left--two-col">
             {% include 'forms/field.html' with field=form.name %}
+            {% if request.user.is_staff %}
+                {% include 'forms/field.html' with field=form.user %}
+            {% endif %}
             {% include 'forms/field.html' with field=form.email %}
             {% include 'forms/field.html' with field=form.description  %}
         </div>
@@ -35,4 +38,9 @@
         {% include 'forms/field.html' with field=form.twitter %}
         {% include 'forms/field.html' with field=form.facebook %}
     </div>
+    {% if request.user.is_staff %}
+        <div class="fieldset--one-col">
+            {% include 'forms/field.html' with field=form.featured %}
+        </div>
+    {% endif %}
 </div>

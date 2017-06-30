@@ -17,50 +17,20 @@ modelform_delete_template = 'pages/modelform--delete.html'
 #  Initiative
 #
 
-class OwnInitiativeCreate(GenericCreate):
+class InitiativeCreate(GenericCreate):
   """Generic view to create Initiative objects."""
 
   model            = models.Initiative
   form_class       = forms.InitiativeForm
   form__html_class = 'initiative'
   template_name    = modelform_generic_template
-  title            = _('Sube tu iniciativa')
-  success_url      = reverse_lazy('modelforms:welcome_initiative')
-
-  def get(self, request, *args, **kwargs):
-    # If user has a related initiative already forbid access
-    if request.user.is_staff:
-        raise PermissionDenied
-    if Initiative.objects.filter(user=request.user).first():
-        raise PermissionDenied
-    return super().get(self, request, *args, **kwargs)
-
-  def form_valid(self, form):
-    form.instance.user = self.request.user
-    return super(OwnInitiativeCreate, self).form_valid(form)
-
-  def get_context_data(self, **kwargs):
-    """Pass context data to generic view."""
-    context = super(OwnInitiativeCreate, self).get_context_data(**kwargs)
-    context['form__html_class'] = self.form__html_class
-    context['submit_text'] = _('Crea tu iniciativa')
-    return context
-
-class InitiativeCreate(GenericCreate):
-  """Generic view to create Initiative objects."""
-
-  model            = models.Initiative
-  form_class       = forms.InitiativeForm
-  form__html_class = 'initiative-staff'
-  template_name    = modelform_generic_template
   title            = _('Crea una iniciativa')
-  success_url      = reverse_lazy('modelforms:create_initiative_staff')
 
-  def get(self, request, *args, **kwargs):
-    # If user has a related initiative already forbid access
-    if not request.user.is_staff:
-        raise PermissionDenied
-    return super().get(self, request, *args, **kwargs)
+  def get_success_url(self):
+      if self.request.user.is_staff:
+          return reverse_lazy('modelforms:create_initiative_staff')
+      else:
+          return reverse_lazy('modelforms:welcome_initiative')
 
   def get_context_data(self, **kwargs):
     """Pass context data to generic view."""

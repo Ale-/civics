@@ -37,5 +37,12 @@
             {% include 'forms/field.html' with field=form.position %}
         </div>
     </div>
-    {% include 'forms/field.html' with field=form.website %}
+    <div class="fieldset--one-col">
+        {% include 'forms/field.html' with field=form.website %}
+    </div>
+    {% if request.user.is_staff %}
+        <div class="fieldset--one-col">
+            {% include 'forms/field.html' with field=form.featured %}
+        </div>
+    {% endif %}
 </div>
