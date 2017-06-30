@@ -9,9 +9,9 @@
     <!-- Map actions -->
     <div map-actions></div>
     <!-- Leaflet map -->
-    <leaflet id="civics-map" ng-if="map.showing_map" ng-class="{ 'collapsed' : map.showing_initiative }" height="480px" width="100%"
+    <leaflet ng-if="map.showing_map" id="civics-map" ng-class="{ 'collapsed' : map.showing_initiative }" height="480px" width="100%"
               lf-center="map.center" defaults="map.defaults" controls="map.controls" layers="map.layers">
-          <div leaflet-expand></div>
+              <div leaflet-expand></div>
     </leaflet>
 </div>
 

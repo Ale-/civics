@@ -21,7 +21,7 @@ angular.module('civics', [
     'civics.directives',
   ])
 
-  .config(['$routeProvider', 'cfpLoadingBarProvider', '$logProvider', '$compileProvider', '$httpProvider', function ($routeProvider, cfpLoadingBarProvider, $logProvider, $compileProvider, $httpProvider) {
+.config(['$routeProvider', 'cfpLoadingBarProvider', '$logProvider', '$compileProvider', '$httpProvider', function ($routeProvider, cfpLoadingBarProvider, $logProvider, $compileProvider, $httpProvider) {
 
     //To avoid excessive amounts of logs coming from the events in leaflet-directive
     $logProvider.debugEnabled(false);
@@ -41,20 +41,20 @@ angular.module('civics', [
     $routeProvider
       .when('/iniciativas', {
           templateUrl : templates_url + 'initiatives.html',
-          controller  : 'InitiativesController',
+          controller  : 'MapController',
           controllerAs: 'map',
           resolve: {
-               initiatives: function(Initiatives) {
+               items: function(Initiatives) {
                    return Initiatives.setup()
                }
           }
       })
       .when('/eventos', {
-          templateUrl : templates_url + 'calendar.html',
-          controller  : 'CalendarController',
-          controllerAs: 'calendar',
+          templateUrl : templates_url + 'events.html',
+          controller  : 'MapController',
+          controllerAs: 'map',
           resolve: {
-              events: function(Events) {
+              items: function(Events) {
                   return Events.setup();
               }
           }
@@ -62,4 +62,9 @@ angular.module('civics', [
       .otherwise({
         redirectTo: '/iniciativas'
       });
-  }]);
+}])
+
+.value("meta", {
+    'count' : 0,
+    'showing' : '',
+});

@@ -1,13 +1,13 @@
 @import compass/css3/transition
 
-.map-filters
+[class^='map-filters--']
   width: 100%
   height: 48px
   color: white
   border-bottom: 1px solid rgba(black, .05)
   +links_filters
 
-.map-filters__filter
+[class^='map-filters__filter--']
   +inline-block
   width: 25%
   float: left
@@ -17,35 +17,13 @@
   +transition(background-color .1s ease)
   &:hover
     cursor: pointer
-
-.map-filters__filter [class^='icon-']::before
-  //color: #111
-  margin-right: $m/3
+  [class^='icon-']::before
+    margin-right: $m/3
 
 .map-filters__filter-name
   display: none
 
-+breakpoint('sm')
-  .map-filters__filter:hover
-    .map-filters__categories
-      display: block !important
-  .map-filters__filter-name
-    display: inline
-  .map-filters__filter [class^='icon-']::before
-    color: white
-
-
-.map-filters__filter
-  background-color: #ed61aa
-  &:hover
-    background-color: #ea4a9e
-
-.map-filters__filter--calendar
-  background-color: #02cfc2 !important
-  &:hover
-    background-color: #02b6aa !important
-
-.map-filters__categories
+[class^='map-filters__categories']
   text-align: left
   position: absolute
   z-index: 10000
@@ -53,12 +31,31 @@
   outline: 1px solid rgba(black, .05)
   width: 100%
   background-color: lighten(#ed61aa, 10%)
+  display: none
   +breakpoint('md')
     width: 25%
     left: inherit
 
++breakpoint('sm')
+  [class^='map-filters__filter']:hover
+    [class^='map-filters__categories']
+      display: block !important
+  .map-filters__filter-name
+    display: inline
+  [class^='map-filters__filter'] [class^='icon-']::before
+    color: white
 
-.map-filters__categories--calendar
+.map-filters__filter--initiatives
+  background-color: #ed61aa
+  &:hover
+    background-color: #ea4a9e
+
+.map-filters__filter--events
+  background-color: #02cfc2 !important
+  &:hover
+    background-color: #02b6aa !important
+
+.map-filters__categories--events
   background-color: lighten(#02cfc2, 10%)
 
 .map-filters__category
@@ -67,10 +64,6 @@
     color: white
   &.active
     background-color: rgba(black, .1)
-
-.map-filters__category--calendar
-  &:hover
-    background-color: darken(#02cfc2, 10%)
 
 .map-filters__filter:hover
   .map-filters__filter-label

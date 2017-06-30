@@ -1,5 +1,6 @@
 @import compass/css3/transition
 
+//Map common elements and resets
 #civics-map
   width: 100%
   position: relative
@@ -47,12 +48,25 @@
     +box-shadow(0 0 10px rgba(black, .5))
     &:hover
       cursor: pointer
-
   .leaflet-div-icon
     border: 0 !important
     background: none !important
+  .fa-map-marker,
+  .fa-spinner
+    +i("◎")
+    color: $color_text !important
 
-  .initiative-marker .inner
+//Map markers
+.leaflet-marker-icon.cm
+  text-align: center
+  position: relative
+  .outer
+    +icon
+    &::before
+      font-size: 60px
+      +text-shadow(0 0 5px rgba(black, .5))
+  .inner
+    +icon
     +inline-block
     +border-radius(50%)
     width: 24px
@@ -61,37 +75,12 @@
     position: absolute
     top: 11px
     left: 8px
-
-.initiative-marker,
-.event-marker
-  text-align: center
-  position: relative
-
-.initiative-marker .outer,
-.event-marker .outer
-  &::before
-    font-size: 60px
-    +text-shadow(0 0 5px rgba(black, .5))
-.initiative-marker .inner,
-.event-marker .inner
-  text-align: center
-  &::before
-    font-size: 23px
-    line-height: 23px
-    color: rgba(black, .75)
-.initiative-marker [class*='icon-activity'].inner
-  &::before
+    text-align: center
+    &::before
+      font-size: 23px
+      line-height: 23px
+      color: rgba(black, .75)
+  [class*='icon-activity'].inner::before
     font-size: 36px
     line-height: 30px
     left: 1px
-
-.fa-map-marker,
-.fa-spinner
-  +i("◎")
-  color: $color_text !important
-
-.initiative-marker .outer,
-.initiative-marker .inner,
-.event-marker .outer,
-.event-marker .inner,
-  +icon

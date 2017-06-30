@@ -2,7 +2,7 @@ angular.module('civics.categories_service', [])
 
 .factory('Categories', function(){
 
-    this.topic = {
+    this.topics = {
       'dc': 'Desarrollo comunitario',
       'au': 'Arte urbano',
       'cl': 'Cultura libre',
@@ -18,7 +18,7 @@ angular.module('civics.categories_service', [])
       'pc': 'Periodismo comunitario',
     };
 
-    this.space = {
+    this.spaces = {
       'cc': 'Centro cultural/comunitario',
       'ei': 'Efímero e itinerante',
       'it': 'Intercambio / Trueque',
@@ -33,7 +33,7 @@ angular.module('civics.categories_service', [])
       'em': 'Labs / Colaborativos / Maker',
     };
 
-    this.agent = {
+    this.agents = {
       'im': 'Iniciativas municipales / Gobierno',
       'uo': 'Universidades / ONG / Fundaciones',
       'oi': 'Organismos internacionales',
@@ -43,7 +43,7 @@ angular.module('civics.categories_service', [])
       'cc': 'Conquistas ciudadanas del pasado'
     };
 
-    this.activity = {
+    this.activities = {
       'au': 'Audiovisual',
       'cu': 'Curso / Convocatoria',
       'di': 'Digital',

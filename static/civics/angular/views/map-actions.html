@@ -1,0 +1,26 @@
+<!-- Renders a block with user actions and the state of map filters -->
+
+<div class="map-actions">
+    <div class="markers-count">
+        <span class="markers-count__label">Mostrando </span>
+        <span class="markers-count__number">{{ map.initiatives_count }}</span>
+        <span class="markers-count__label"> iniciativas</span>
+    </div>
+    <ul class="filter-tags">
+        <li class="filter-tags__tag"
+            ng-repeat="filter in map.active_filters"
+            ng-click="map.removeFilter($index)">
+            {{ filter.n }} <span class="filter-tags__close">×</span>
+        </li>
+        <li class="filter-tags__remove"
+            ng-show="map.active_filters.length > 0"
+            ng-click="map.removeFilters()">
+            Eliminar filtros
+        </li>
+    </ul>
+    <div class="map-actions__actions">
+        <span ng-click="map.showing_map=true" class="map-actions__action--map icon-map"></span>
+        <span ng-click="map.showing_map=false" class="map-actions__action--grid icon-list"></span>
+        <span ng-click="map.download_xls()" class="map-actions__action--download icon-download"></span>
+    </div>
+</div>
