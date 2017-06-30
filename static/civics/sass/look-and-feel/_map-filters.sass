@@ -22,6 +22,12 @@
 
 .map-filters__filter-name
   display: none
+  +breakpoint('sm')
+    display: inline
+
++breakpoint('xs')
+  .filter-tags__tag
+    display: none !important
 
 [class^='map-filters__categories']
   text-align: left
@@ -36,12 +42,9 @@
     width: 25%
     left: inherit
 
-+breakpoint('sm')
-  [class^='map-filters__filter']:hover
-    [class^='map-filters__categories']
-      display: block !important
-  .map-filters__filter-name
-    display: inline
+[class^='map-filters__filter']:hover
+  [class^='map-filters__categories']
+    display: block !important
   [class^='map-filters__filter'] [class^='icon-']::before
     color: white
 
