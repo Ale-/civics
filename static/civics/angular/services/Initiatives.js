@@ -23,7 +23,7 @@ angular.module('civics.initiatives_service', [])
                                 'iconSize'    : [40, 60],
                                 'iconAnchor'  : [20, 60],
                                 'popupAnchor' : [0, -30],
-                                'className'   : 'civics-marker',
+                                'className'   : 'cm',
                                 'html'        : "<i class='outer i-to-" + data.topics + " i-ag-" + data.agents + "'></i>" +
                                                 "<i class='inner i-sp-" + data.spaces + "'></i>",
                             }));
