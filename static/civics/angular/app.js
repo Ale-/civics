@@ -16,8 +16,7 @@ angular.module('civics', [
     'civics.categories_service',
     'civics.initiatives_service',
     'civics.events_service',
-    'civics.initiatives_controller',
-    'civics.calendar_controller',
+    'civics.map_controller',
     'civics.directives',
   ])
 

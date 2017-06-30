@@ -1,4 +1,4 @@
-angular.module('civics.initiatives_controller', [])
+angular.module('civics.map_controller', [])
 
 .controller("MapController", function($scope, Settings, Initiatives, Categories, leafletData, items, meta)
 {
