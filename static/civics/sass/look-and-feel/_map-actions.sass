@@ -1,16 +1,46 @@
 @import compass/css3/inline-block
 @import compass/css3/border-radius
 
-.map-actions,
-.calendar-actions
-  background: #eee
+[class^='map-actions--']
+  z-index: 1
   min-height: 36px
   line-height: 30px
   left: 0
   width: 100%
   padding: 0 $m/2
-  border-bottom: 4px solid #eee
   position: relative
+  outline: 1px solid rgba(black, .1)
+
+//[class^='map-actions--']
+  background: #eee
+  .markers-count__label
+    color: #555
+  .filter-tags li
+    background: white
+  .filter-tags__close
+    color: #555
+  .map-actions__search-input
+    border: 1px dashed $color_text
+
+.map-actions--initiatives
+  background-color: #dc5099
+  color: white
+  .map-actions__search
+    border-color: white
+  .filter-tags li
+    background: rgba(black, .25)
+  .map-actions__search-input
+    border: 1px dotted white
+
+.map-actions--events
+  background-color: #01beb1
+  color: white
+  .map-actions__search
+    border-color: white
+  .filter-tags li
+    background: rgba(black, .25)
+  .map-actions__search-input
+    border: 1px dotted white
 
 .expanded + .kk > .map-actions
   left: 480px
@@ -19,9 +49,6 @@
 .markers-count
   +inline-block
   margin-right: $m/2
-
-.markers-count__label
-  color: #555
 
 .map-actions__actions
   +inline-block
@@ -45,7 +72,7 @@
   padding: 0 8px
   line-height: $m
   +transition(background-color .15s ease)
-  background: #ddd
+  background: white
   +border-radius(4px)
   &:hover
     background-color: #fff
@@ -54,7 +81,6 @@
 .filter-tags__close
   font-weight: bold
   font-size: 1.25em
-  color: #555
   line-height: 1em
   margin-left: $m/6
 
@@ -66,18 +92,19 @@
   float: right
 .map-actions__search-label
   text-transform: uppercase
-  font-size: $size_small
-  letter-spacing: 1px
+  +h(5)
+  font-size: .75em
 .map-actions__search-input
-  border: 1px dashed $color_text
-  border-width: 0 0 1px 0
+  border-width: 0 0 1px 0 !important
   background: none
 .map-actions__search-results
   position: absolute
   top: $m*2
-  right: $m*3
+  right: $m/2
   z-index: 100
   background: white
+  max-height: 400px
+  overflow-y: auto
   +border-radius(4px)
   padding: $m/2
   +box-shadow(0 0 10px rgba(black, .25))

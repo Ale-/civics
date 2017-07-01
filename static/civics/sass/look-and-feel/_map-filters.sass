@@ -2,17 +2,21 @@
 
 [class^='map-filters--']
   width: 100%
-  height: 48px
+  height: 36px
+  z-index: 1
   color: white
   border-bottom: 1px solid rgba(black, .05)
   +links_filters
+
+.map-filters--initiatives
+  background-color: #ed61aa
 
 [class^='map-filters__filter--']
   +inline-block
   width: 25%
   float: left
   text-align: center
-  line-height: 48px
+  line-height: 36px
   text-transform: uppercase
   +transition(background-color .1s ease)
   &:hover
@@ -48,15 +52,13 @@
   [class^='map-filters__filter'] [class^='icon-']::before
     color: white
 
-.map-filters__filter--initiatives
-  background-color: #ed61aa
-  &:hover
-    background-color: #ea4a9e
+// .map-filters__filter--initiatives
+//   background-color: #ed61aa
+//   &:hover
+//     background-color: #ea4a9e
 
 .map-filters__filter--events
   background-color: #02cfc2 !important
-  &:hover
-    background-color: #02b6aa !important
 
 .map-filters__categories--events
   background-color: lighten(#02cfc2, 10%)
@@ -75,6 +77,9 @@
 .map-filters__filter--calendar:hover
   .map-filters__filter-label
     background-color: darken(#02cfc2, 5%)
+
+.map-filters__label
+  outline: 1px solid rgba(white, .1)
 
 .map-filters__category
   font-size: $size_small

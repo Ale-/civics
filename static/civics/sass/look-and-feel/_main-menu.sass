@@ -6,22 +6,76 @@
   padding: $m
   text-align: center
   margin-top: $m*2
+  +links_social
   +breakpoint('sm')
     margin-top: 0
     width: calc(100% - 300px)
     display: inline-block !important
     padding: inherit
 
-.main-menu__link
-  +links_toolbar
+.main-menu__link.active > span
+  +h(5)
 
-.main-menu__link--active
-  a
-    border-color: $color_text !important
+.main-menu__link--initiatives,
+.main-menu__link--events
+  &.active::after
+    content: " "
+    +transform(rotate(45deg))
+    display: block
+    width: $m
+    height: $m
+    position: absolute
+    left: calc(50% - #{$m/2})
+    z-index: 0
+    border: 1px solid rgba(black, .1)
+    border-width: 1px 0 0 1px
+
+.main-menu__link--about.active
+  +h(5)
+
+.main-menu__link--initiatives.active
+  color: darken(#ed61aa, 10%)
+  &::after
+    background: #ed61aa
+.main-menu__link--events.active
+  color: darken(#02cfc2, 10%)
+  &::after
+    background: #02cfc2
 
 .main-menu__link
   width: 100%
+  line-height: 41px
+  position: relative
   +breakpoint('sm')
     display: inline-block
     width: 32%
     margin: 0
+  &:hover
+    .main-menu__submenu
+      display: block
+.main-menu__submenu
+  position: absolute
+  background: white
+  padding: $m/2
+  z-index: 10000
+  width: $m*10
+  top: 36px
+  left: calc(50% - 100px)
+  font-size: .8em
+  display: none
+  text-transform: capitalize
+  border: 1px solid rgba(black, .1)
+  border-width: 0 1px 1px
+  text-align: left
+  text-transform: uppercase
+  i
+    display: inline-block
+    width: $m/2
+    margin-right: $m/2
+    text-align: center
+    color: #ccc
+.main-menu__submenu-link
+  line-height: $m
+
+.civics-logo--toolbar
+  height: 40px
