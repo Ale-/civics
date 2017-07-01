@@ -23,9 +23,18 @@ def img(file):
 
 @register.inclusion_tag('fake-breadcrumb.html')
 def fake_breadcrumb(text="Volver a la página anterior"):
-    return { 'text' : text }    
+    return { 'text' : text }
 
 @register.inclusion_tag('limited-choices-select.html')
 def limited_choices_select(choices=None, select_name=None, select_class=None, all=False, multiple=False):
     options = [{ 'name' : option[1], 'id' : option[0] } for option in choices ]
     return  { 'options' : options, 'select_name' : select_name, 'select_class' : select_class, 'all' : all, 'multiple' : multiple}
+
+@register.filter
+def get_range(max):
+    return range(max)
+
+@register.filter
+def addstr(arg1, arg2):
+    """concatenate arg1 & arg2"""
+    return str(arg1) + str(arg2)

@@ -43,6 +43,13 @@
         {% block layout %}{% endblock %}
 
         {# Scripts #}
+        <!-- Active section detection script -->
+        <script type="text/javascript">
+            switch(window.location.pathname){
+                case '/acerca':
+                    document.querySelectorAll('.main-menu__link')[0].classList.add('active'); break;
+            }
+        </script>
         {% block page_scripts %}{% endblock %}
     </body>
 </html>

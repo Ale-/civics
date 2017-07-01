@@ -1,42 +1,104 @@
-{# Site front page #} {% extends 'layouts/single-fluid-column.html' %} {% load static utils %}
+{# About page #}
+{% extends 'layouts/single-fluid-column.html' %} {% load static utils i18n %}
+{% block body_classes %}about{% endblock %}
 
 {% block main %}
     <div class="civics-about">
-        <p class="civics-about__text">
-          Muchos ciudadanos trabajan de forma colectiva para construir una ciudad más inclusiva, ética, sostenible,
-          participativa y habitable, desvelando un mapa emergente de tu ciudad.
-          Aquí podrás encontrar iniciativas y actividades existentes en tu calle, barrio, etc. Ayúdanos a conectar
-          gente con ideas e ideas que buscan gente, que juntas hacen cosas como [huertos urbanos/rutas en bici/solidaridad vecinal, etc].
-          Si formas parte de un colectivo, iniciativa, asociación, comunidad, etc. anímate a compartir vuestras actividades, proyectos
-          y eventos. Cuantos más seamos, más ganamos todos.
-        </p>
+        <object class="civics-logo--about" data="{% static 'civics/img/logo-civics.svg' %}"></object>
+        <p class="civics-about__text">{% blocktrans trimmed %}
+            Son miles las vecinas y vecinos que trabajan de forma colectiva para
+            construir una ciudad más habitable, sostenible, inclusiva y participativa.
+            Antes que ellos, otros hicieron lo mismo reivindicando viviendas dignas,
+            calles sin barro, más espacios comunes o servicios básicos. 
+            Civics es el mapa de todas la innovación ciudadana que cotidianamente
+            desarrollan miles de ciudadanos en todo Iberoamérica. El millar de espacios
+            que aparecen en este mapa muestran la existencia de una ciudad efervescente
+            pero muchas veces invisibilizada. Espacios y proyectos que pretenden poner
+            en valor la potencia de una ciudadanía crítica y activa que ha creado nuevos
+            entornos de posibilidad, mediante la autogestión y la participación.
+            La potencia de los proyectos mapeados, la riqueza de una colección de
+            espacios que hablan por sí mismos podría ser suficiente, pero también
+            apostamos por la oportunidad que genera un mapa como dispositivo de
+            apertura y encuentro. Un mapa que construye un relato común a los
+            países Iberoamericanos.<br/>
+            <em>Ayúdanos a conectar gente con ideas e ideas que buscan gente,
+            que juntas hacen cosas como [huertos urbanos/rutas en bici/solidaridad
+            vecinal, etc]. Si formas parte de un colectivo, iniciativa, asociación,
+            comunidad, etc. anímate a compartir vuestras actividades, proyectos
+            y eventos. Cuantos más seamos, más ganamos todos.</em>
+        {% endblocktrans %}</p>
         <div class="civics-about__icons">
             <div class="civics-about__icons-item">
                 <p class="icon-map"></p>
                 <p class="civics-about__icon-text">
-                    Mapa de iniciativas
+                    {% trans 'Mapa de iniciativas' %}
                 </p>
             </div>
             <span class="plus-icon">+</span>
             <div class="civics-about__icons-item">
                 <p class="icon-calendar"></p>
                 <p class="civics-about__icon-text">
-                    Mapa de actividades
+                    {% trans 'Mapa de actividades' %}
                 </p>
             </div>
             <span class="plus-icon">+</span>
             <div class="civics-about__icons-item">
                 <p class="icon-info"></p>
                 <p class="civics-about__icon-text">
-                    Información
+                    {% trans 'Información' %}
                 </p>
             </div>
         </div>
-        <div class="civics-credits">
-            <h5 class="civics-credits__title">- Logos de espacios amigos -</h5>
-            <div class="civics-credits__logos">
-                [ logos ]
+        <div class="civics-about__ethic-code">{% blocktrans trimmed %}
+            <h4>Código ético y de convivencia en el proyecto CIVICS</h4>
+            <ol>
+                <li>Nos centramos en la colaboración, y no en la competición.</li>
+                <li>Las ideas tienen valor en sí mismas, y no por quien las propone.
+                No potenciamos gurúes, sino el bien común.</li>
+                <li>Defendemos el derecho a la información, el conocimiento y a la
+                participación. El diálogo y el libre intercambio guían nuestras actividades.</li>
+                <li>En CIVICS estimulamos las licencias libres y los repositorios
+                abiertos como forma de transparentar y difundir el conocimiento.</li>
+                <li>No se aceptan iniciativas que fomenten expresiones de odio o
+                intolerancia en temas de género, raza, etnia, posición social, orientación
+                sexual, religiosa, o de procedencia.</li>
+                <li>El registro es libre y facilita que el sistema facilite un panel
+                de organización de actividades, temática de la iniciativa, para poder
+                ser modificable por el propio usuario.</li>
+            </ol>
+        {% endblocktrans %}</div>
+        <div class="civics-about__team">{% blocktrans trimmed %}
+            <h4>Equipo</h4>
+            Esaú Acosta (dirección y gestión estratégica), Mauro Gil-Fournier (comunicación),
+            Miguel Jaenicke (talleres), wwb.cc (desarrollo de la plataforma digital),
+            Javier Esquillor (métricas e impacto), Ana Espejo (marketing), Mariluz Arranz
+            (relaciones internacionales), Alejandro Zappala (desarrollo y programación fase beta),
+            Alfonzo Urzábal (github fase beta), Chema Blanco (desarrollo y documentación),
+            David Ruíz (desarrollo front-end), Carlos Salgado (desarrollo front-end beta),
+            David Moreno (desarrollo back-end), Alejandro Martín (desarrollo back-end beta),
+            Julián Pérez (diseño gráfico e IU beta), Ines Gil (trabajo campo iniciativas),
+            Héctor Sánchez (trabajo campo iniciativas), Sergio López (trabajo de campo
+            iniciativas) y David González (mapas iniciales).
+        {% endblocktrans %}</div>
+        <div class="civics-about__credits">
+            {% trans 'Este proyecto está siendo desarrollado mediante la colaboración de:' %}
+            <div class="civics-about__logos">
+                {% for i in 38|get_range %}
+                    {% with 'logos/'|addstr:forloop.counter|add:'.png' as url %}
+                    <img class="civics-about__logo" src="{% img url %}" />
+                    {% endwith %}
+                {% endfor %}
             </div>
         </div>
+        <div class="civics-about__license-text">{% blocktrans trimmed %}
+            <h4>Licencias</h4>
+            Esta obra está bajo <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank">
+            Licencia Creative Commons Atribución-CompartirIgual 4.0 internacional</a>
+            Los datos recopilados están bajo <a href="https://opendatacommons.org/licenses/odbl/1.0/" target="_blank">
+            licencia ODbL 1.0.</a>
+            El código fuente de la plataforma está disponible bajo una licencia
+            <a href="https://www.gnu.org/licenses/gpl.html" target="_blank">
+            General Public License 3.0</a>.
+        {% endblocktrans %}</div>
     </div>
 {% endblock %}

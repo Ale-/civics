@@ -1,14 +1,19 @@
 @import compass/css3/inline-block
 
+body.about
+  background: image-url('signin-bg.png') repeat #eae9e9
+  background-attachment: fixed
+
 .civics-about
-  position: fixed
   top: 50px
-  left: 0
+  margin: 0 auto
   min-height: 100vh
-  width: 100vw
+  width: 780px
+  max-width: 100%
   text-align: justify
-  padding: $m*7 calc(50vw - 240px) 25vw
-  background: url('../img/logo_civics-150x58.png') no-repeat center $m*3 #eee
+  background: white
+  padding: $m*2
+  +box-shadow(0 0 10px rgba(black, .25))
 
 .close-about
   position: absolute
@@ -18,8 +23,16 @@
   &:hover
     cursor: pointer
 
+.civics-about__text
+  font-size: 1.2em
+
+.civics-about__ethic-code
+  li
+    list-style: inherit
+    margin-bottom: $m/4
+
 .civics-about__icons
-  margin-top: $m
+  margin: $m*2 0
   +clearfix
 
   [class^='icon-']
@@ -35,15 +48,23 @@
   padding: 0 $m
   text-align: center
 
-
 .civics-about__icon-text
   text-transform: uppercase
   font-size: $size_small
 
-.civics-credits
+.civics-about__credits
+  margin-top: $m*2
   text-align: center
-  margin-top: $m*3
 
-.civics-credits__title
-  clear: both
-  text-transform: uppercase
+.civics-about__logo
+  margin: $m/3
+
+.civics-about__logos
+  margin-top: $m
+
+.civics-about__license-text
+  +links_normal
+
+.civics-logo--about
+  height: 75px
+  margin-bottom: $m
