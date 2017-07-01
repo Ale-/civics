@@ -102,6 +102,8 @@ angular.module('civics.directives', [])
             leafletData.getMap('civics-map').then(function(map){
                 map.setView([response.data.lat, response.data.lng], 15)
             });
+            this.results = [];
+            this.name    = '';
         }));
      };
 })
