@@ -14,7 +14,7 @@
 
 .expanded + .kk > .map-actions
   left: 480px
-  width: calc(100% - 480px) 
+  width: calc(100% - 480px)
 
 .markers-count
   +inline-block
@@ -23,24 +23,16 @@
 .markers-count__label
   color: #555
 
-.map-actions__actions,
-.calendar-actions__actions
-  position: absolute
-  float: right
-  right: $m
-  top: 4px
+.map-actions__actions
+  +inline-block
   span
     +transition(color .15s ease)
     &:hover
       cursor: pointer
       color: #555
 
-.map-actions__action--share,
-.calendar-actions__action--share
-  +inline-block
-
 [class^='map-actions__action']
-  padding-left: $m/3
+  padding-right: $m/4
 
 .filter-tags
   display: inline
@@ -69,3 +61,34 @@
 .filter-tags__remove
   background: none !important
   +h(5)
+
+.map-actions__search
+  float: right
+.map-actions__search-label
+  text-transform: uppercase
+  font-size: $size_small
+  letter-spacing: 1px
+.map-actions__search-input
+  border: 1px dashed $color_text
+  border-width: 0 0 1px 0
+  background: none
+.map-actions__search-results
+  position: absolute
+  top: $m*2
+  right: $m*3
+  z-index: 100
+  background: white
+  +border-radius(4px)
+  padding: $m/2
+  +box-shadow(0 0 10px rgba(black, .25))
+  &::before
+    content: "▲"
+    color: white
+    position: absolute
+    top: -$m
+    font-size: 2em
+.map-actions__search-result
+  color: #555
+  &:hover
+    color: black
+    cursor: pointer

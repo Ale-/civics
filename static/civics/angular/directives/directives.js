@@ -28,9 +28,9 @@ angular.module('civics.directives', [])
      $scope.$on('open-marker', angular.bind(this, function(event, args){
           this.expanded = true;
           this.marker = args;
-          this.marker.topicname = Categories.topic[ this.marker.topic ];
-          this.marker.agentname = Categories.agent[ this.marker.agent ];
-          this.marker.spacename = Categories.space[ this.marker.space ];
+          this.marker.topicname = Categories.topics[ this.marker.topic ];
+          this.marker.agentname = Categories.agents[ this.marker.agent ];
+          this.marker.spacename = Categories.spaces[ this.marker.space ];
           this.showing = meta.showing;
      }));
 })
@@ -66,4 +66,42 @@ angular.module('civics.directives', [])
         replace: true,
         templateUrl: 'static/civics/angular/views/map-filters.html'
     }
-});
+})
+
+/**
+ *  Marker information in the maps
+ */
+.directive('search', function(){
+    return {
+        restrict: 'A',
+        replace: true,
+        controller: 'SearchController',
+        controllerAs: 'search',
+        templateUrl: 'static/civics/angular/views/search.html'
+    }
+})
+
+.controller('SearchController', function($scope, $http, $rootScope, leafletData){
+     this.results = [];
+
+     this.query = function(){
+        if(this.name.length > 3){
+            console.log(this.name);
+            $http.get('/api/autocomplete?n=' + this.name).then( angular.bind(this, function(response){
+                if(response.data.length > 0)
+                    this.results = response.data;
+            }));
+        } else {
+            this.results = [];
+        }
+     };
+
+     this.set = function(id){
+        $http.get('/api/initiative?id=' + id).then( angular.bind(this, function(response){
+            $rootScope.$broadcast('open-marker', response.data);
+            leafletData.getMap('civics-map').then(function(map){
+                map.setView([response.data.lat, response.data.lng], 15)
+            });
+        }));
+     };
+})

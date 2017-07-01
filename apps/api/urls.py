@@ -3,6 +3,7 @@ from apps.models.models import Initiative
 from . import views
 
 urlpatterns = [
+    url(r'^initiative$', views.initiative_service, name='get_initiative'),
     url(r'^initiatives$', views.initiatives_service, name='get_initiatives'),
     url(r'^initiatives_list$', views.initiatives_list_service, name='get_initiatives_list'),
     url(r'^events$', views.events_service, name='get_events'),

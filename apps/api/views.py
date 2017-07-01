@@ -450,23 +450,32 @@ def autocomplete_service(request):
     initiatives_json = []
     # TODO: map this!
     for initiative in initiatives:
-        coords        = initiative.position['coordinates']
-        cityname      = initiative.city.name if initiative.city else 'none'
-        countryname   = initiative.city.get_country_display() if initiative.city else 'none'
         initiatives_json.append({
             'id'  : initiative.pk,
             'nam' : initiative.name,
-            'slu' : initiative.slug,
-            'add' : initiative.address,
-            'cit' : cityname,
-            'cou' : countryname,
-            'lng' : coords[0],
-            'lat' : coords[1],
-            'des' : initiative.description,
-            'web' : initiative.website,
-            'ema' : initiative.email,
-            'top' : initiative.topic.lower(),
-            'age' : initiative.agent.lower(),
-            'spa' : initiative.space.lower(),
         })
-    return HttpResponse(json.dumps(list(initiatives_json), indent=4), content_type="application/json")
+    return HttpResponse(json.dumps(initiatives_json), content_type="application/json")
+
+def initiative_service(request):
+    id = request.GET.get('id')
+    initiative    = Initiative.objects.filter(pk=id).first()
+    coords        = initiative.position['coordinates']
+    cityname      = initiative.city.name if initiative.city else 'none'
+    countryname   = initiative.city.get_country_display() if initiative.city else 'none'
+    initiative_json = {
+        'id'  : initiative.pk,
+        'nam' : initiative.name,
+        'slu' : initiative.slug,
+        'add' : initiative.address,
+        'cit' : cityname,
+        'cou' : countryname,
+        'lng' : coords[0],
+        'lat' : coords[1],
+        'des' : initiative.description,
+        'web' : initiative.website,
+        'ema' : initiative.email,
+        'topic' : initiative.topic.lower(),
+        'agent' : initiative.agent.lower(),
+        'space' : initiative.space.lower(),
+    }
+    return HttpResponse(json.dumps(initiative_json), content_type="application/json")
