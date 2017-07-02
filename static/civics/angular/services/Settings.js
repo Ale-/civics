@@ -12,7 +12,7 @@ angular.module('civics.settings', [])
               markerZoomAnimation : true,
               zoomAnimation       : true,
               scrollWheelZoom     : true,
-              minZoom             : 2,
+              minZoom             : 3,
               maxZoom             : 18,
           }
       };
