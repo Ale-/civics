@@ -6,6 +6,7 @@ angular.module('civics.initiatives_service', [])
         clusters : {},
 
         setup    : function(){
+            PruneCluster.Cluster.ENABLE_MARKERS_LIST = true;
             return $http.get('/api/initiatives?city=all&topics=all&spaces=all&agents=all').then(angular.bind(this, function(response){
                 this.clusters = {};
                 meta.count = 0;
@@ -17,12 +18,11 @@ angular.module('civics.initiatives_service', [])
                         Categories.addInitiativeCity(country, city, response.data[country][city]['coordinates']);
                         /** Setup clusters */
                         this.clusters[city] = new PruneClusterForLeaflet();
+                        /* Cluster marker icons */
                         this.clusters[city].PrepareLeafletMarker = function(leafletMarker, data){
                             leafletMarker.setIcon( L.divIcon({
-                                'type' : 'div',
                                 'iconSize'    : [40, 60],
                                 'iconAnchor'  : [20, 60],
-                                'popupAnchor' : [0, -30],
                                 'className'   : 'cm',
                                 'html'        : "<i class='outer i-to-" + data.topics + " i-ag-" + data.agents + "'></i>" +
                                                 "<i class='inner i-sp-" + data.spaces + "'></i>",
@@ -31,6 +31,18 @@ angular.module('civics.initiatives_service', [])
                                  $rootScope.$broadcast('open-marker', data);
                             });
                         };
+
+                        /* Cluster icons */
+                        this.clusters[city].BuildLeafletClusterIcon = function(cluster) {
+                            var markers = cluster.GetClusterMarkers();
+                            return L.divIcon({
+                                'iconSize'    : [40, 40],
+                                'iconAnchor'  : [20, 40],
+                                'html'        : "<p class='prunecluster'>" + cluster.population + "</p>" +
+                                                "<p class='prunecluster__city'>" + markers[0].data.cities + "</p>",
+                            });
+                        };
+
                         this.clusters[city].Cluster.Size = 8;
 
                         /** Setup markers */

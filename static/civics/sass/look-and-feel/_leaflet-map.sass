@@ -27,15 +27,6 @@
     right: inherit
   .leaflet-control-layers-overlays
     display: none
-  .prunecluster
-    background: white !important
-    line-height: 42px
-    text-align: center
-    +border-radius(50%)
-    +box-shadow(0 0 10px rgba(black, .5))
-    font-family: $font_text
-    font-weight: bold
-    color: #333
   .leaflet-expand
     position: absolute
     top: 46px
@@ -55,6 +46,27 @@
   .fa-spinner
     +i("◎")
     color: $color_text !important
+
+//Map clusters
+.prunecluster
+  background: white !important
+  line-height: 42px
+  text-align: center
+  +border-radius(50%)
+  +box-shadow(0 0 10px rgba(black, .5))
+  font-weight: bold
+  color: #333
+
+.prunecluster__city
+  display: none
+  font-family: $font_text
+  background: white
+  position: absolute
+  padding: $m/3
+
+.show-city-labels
+  .prunecluster:hover + .prunecluster__city
+    display: block
 
 //Map markers
 .leaflet-marker-icon.cm
