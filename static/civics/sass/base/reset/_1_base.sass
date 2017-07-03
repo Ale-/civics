@@ -77,7 +77,18 @@ select
     cursor: pointer
 
 // SELECTION COLORS
-::-moz-selection,
+::-moz-selection
+  background: $color_selection_background
+  color     : $color_selection_text
 ::selection
   background: $color_selection_background
   color     : $color_selection_text
+
+// CHROME SCROLLBARS
+::-webkit-scrollbar
+  height: $m
+  width: $m/2
+  background: rgba(black, .15)
+
+::-webkit-scrollbar-thumb
+  background-color: white

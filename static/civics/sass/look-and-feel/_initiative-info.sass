@@ -17,9 +17,11 @@
   margin-top: $m/2
   font-size: 1.3rem
 
+.initiative-actions
+  text-align: right
+
 .initiative-action__close
   +inline-block
-  float: right
   font-style: normal
   color: #999
   +transition(color .15s ease)
@@ -78,20 +80,16 @@
     margin-top: $m/2
     text-align: center
     +inline-block
-    & .outer:before
+    .outer::before
       +text-shadow(none)
     p
       margin-bottom: $m/6
       font-size: $size_small *.9
       text-transform: uppercase
-      &::before
-        content: "· "
-    & .outer:before
-      +text-shadow(none)
-  .inner
-    left: 53px
-  .initiative-marker__topic
-    margin-top: $m/2
+    .inner
+      left: 29px !important
+    .initiative-marker__topic
+      margin-top: $m/2
 
 .initiative-info__detail
   margin-bottom: 4px

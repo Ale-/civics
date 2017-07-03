@@ -72,11 +72,10 @@
   padding: 0 8px
   line-height: $m
   +transition(background-color .15s ease)
-  background: white
   +border-radius(4px)
   &:hover
-    background-color: #fff
     cursor: pointer
+    background: rgba(black, .5)
 
 .filter-tags__close
   font-weight: bold
@@ -89,7 +88,9 @@
   +h(5)
 
 .map-actions__search
-  float: right
+  text-align: center
+  +breakpoint('sm')
+    float: right
 .map-actions__search-label
   text-transform: uppercase
   +h(5)
@@ -99,23 +100,56 @@
   background: none
 .map-actions__search-results
   position: absolute
-  top: $m*2
-  right: $m/2
   z-index: 100
   background: white
   max-height: 400px
   overflow-y: auto
-  +border-radius(4px)
   padding: $m/2
   +box-shadow(0 0 10px rgba(black, .25))
+  +border-radius(4px)
+  top: $m*3
+  right: $m/2
+  max-width: 400px
   &::before
     content: "▲"
     color: white
     position: absolute
     top: -$m
     font-size: 2em
+  +breakpoint('sm')
+    top: $m*2
+
 .map-actions__search-result
   color: #555
   &:hover
     color: black
     cursor: pointer
+
+.legend-help
+  display: inline-block
+.legend-help__icon
+  margin-right: $m/3
+  padding: 0 $m/3
+  line-height: 20px
+  background: rgba(black, .25)
+  vertical-align: middle
+  +border-radius(4px)
+.legend-help__icon:hover
+  cursor: pointer
+.legend-help__text
+  position: absolute
+  background: white
+  left: $m*2
+  top: 0
+  line-height: 1.2
+  width: 200px
+  color: $color_text
+  padding: $m/2 $m
+  +border-radius(4px)
+  +box-shadow(0 0 10px rgba(black, .25))
+.legend-help__text::before
+  content: "◀"
+  color: white
+  position: absolute
+  left: -8px
+  top: 4px

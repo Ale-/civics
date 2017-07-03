@@ -1,5 +1,6 @@
 .user-actions
   display: none
+  text-align: center
   +breakpoint('sm')
     height: 20px
     text-align: right
@@ -13,8 +14,9 @@
 
 .user-actions__action
   display: inline
-  margin-left: $m/2
   vertical-align: middle
+  +breakpoint('sm')
+    margin-left: $m/2
 
 .user-actions__action--hello,
 .user-actions__action--admin
