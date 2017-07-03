@@ -3,8 +3,14 @@
 <div class="initiative-info" ng-class="{ 'expanded' : info.expanded }">
     <!-- User actions -->
     <div class="initiative-actions">
-        <a class="initiative-action__edit" href="/edita/iniciativa/{{ info.marker.id }}">✏</a>
-        <a class="initiative-action__remove" href="/borra/iniciativa/{{ info.marker.id }}">⤫</a>
+        <a ng-if="info.showing=='initiatives'"
+           class="initiative-action__edit" href="/edita/iniciativa/{{ info.marker.id }}">✏</a>
+        <a ng-if="info.showing=='initiatives'"
+           class="initiative-action__remove" href="/borra/iniciativa/{{ info.marker.id }}">⤫</a>
+        <a ng-if="info.showing=='events'"
+          class="initiative-action__edit" href="/edita/evento/{{ info.marker.id }}">✏</a>
+        <a ng-if="info.showing=='events'"
+          class="initiative-action__remove" href="/borra/evento/{{ info.marker.id }}">⤫</a>
         <i class="initiative-action__close" ng-click="info.expanded = false">×</i>
     </div>
 
