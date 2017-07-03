@@ -1,40 +1,61 @@
-angular.module('civics.map_controller', [])
+angular.module('civics.list_controller', [])
 
-.controller("MapController", function($scope, Settings, Initiatives, Categories, leafletData, items, meta)
+/**
+ *   Controller for list displays
+ */
+.controller("ListController", function(items, Categories, meta, $rootScope, $http)
 {
     /**
-     *  Map setup
+     *  Content setup
      */
-    // Inject resolved data into the map
-    var _map = {};
-    leafletData.getMap("civics-map").then(angular.bind(this, function(map)
-    {
-        _map = map;
-        for(city in items){
-            map.addLayer( items[city] );
-        }
-    }));
-    // Map defaults
-    this.defaults = Settings.map_defaults.defaults;
-    this.center   = Settings.map_defaults.center;
-    this.controls = Settings.map_controls;
-    this.layers   = Settings.map_layers;
+    this.markers = items;
+    for(i in this.markers)
+      this.markers[i].filtered = false;  // Show markers by default
 
     /**
      *  Section state
      */
-    this.count = meta.count;
+    this.showing_map = true;
+    this.count = this.markers.length;
     this.section = meta.showing;
-    this.format  = 'map';
+    this.format  = 'list';
     // Set active links in Django menu
     var links = document.querySelectorAll('.main-menu__link');
     links.forEach( function(link){ link.classList.remove('active') })
     if(this.section == 'initiatives')
         links[1].classList.add('active')
     else
-      links[2].classList.add('active')
+        links[2].classList.add('active')
     // Close responsive menu popup if open
     document.querySelector('.region-toolbar__right').classList.remove('active')
+
+    /**
+     *  Pager setup and methods
+     */
+    this.starting_index = 0;
+    this.items_per_page = 50;
+    this.starting_index = 0;
+    this.ending_index   = this.items_per_page;
+    this.current_items  = 0;
+
+    // Get previous results
+    this.previousPage = function(){
+        var next_index = this.starting_index - this.items_per_page;
+        this.starting_index = next_index < 0 ? 0 : next_index;
+        this.set_current_items();
+    }
+    // Get next results
+    this.nextPage = function(){
+        var next_index = this.starting_index + this.items_per_page;
+        this.starting_index = next_index > this.count ? this.starting_index : next_index;
+        this.set_current_items();
+    }
+    // Get number of current displayed elements
+    this.set_current_items = function(){
+        var factor = parseFloat(this.count - this.starting_index)/parseFloat(this.items_per_page);
+        this.current_items = factor > 1 ? this.items_per_page : this.count - this.starting_index;
+    }
+    this.set_current_items();
 
     /**
      *  Setup categories and filter settings
@@ -43,9 +64,9 @@ angular.module('civics.map_controller', [])
         this.cities = Categories.city_initiatives;
     else
         this.cities = Categories.city_events;
-    this.topics = Categories.topics;
-    this.spaces = Categories.spaces;
-    this.agents = Categories.agents;
+    this.topics     = Categories.topics;
+    this.spaces     = Categories.spaces;
+    this.agents     = Categories.agents;
     this.activities = Categories.activities;
 
     if(this.section == 'initiatives')
@@ -57,6 +78,7 @@ angular.module('civics.map_controller', [])
     for(i in categories)
         this.active_categories[ categories[i] ] = {}
 
+    // Active filter tags
     this.active_filters = [];
 
     /**
@@ -83,35 +105,33 @@ angular.module('civics.map_controller', [])
     this.filterMarkers = function()
     {
         this.count = meta.count;
+        this.starting_index = 0;
+        console.log(this.active_filters);
         var filters_length = this.active_filters.length;
-
-        for(city in items){
-            var markers = items[city].Cluster._markers;
-            if(filters_length > 0){
-                markers.forEach( angular.bind(this, function(marker){
-                    marker.filtered = false;
-                    for(var i = 0; i < filters_length; i++){
-                        var filter = this.active_filters[i];
-                        if(marker.data[filter.k] != filter.v){
-                            marker.filtered = true
-                            this.count--;
-                            break;
-                        }
+        if(filters_length > 0){
+            this.markers.forEach( angular.bind(this, function(marker){
+                marker.filtered = false;
+                for(var i = 0; i < filters_length; i++){
+                    var filter = this.active_filters[i];
+                    if(marker[filter.k] != filter.v){
+                        marker.filtered = true
+                        this.count--;
+                        break;
                     }
-                }));
-            } else {
-                markers.forEach( angular.bind(this, function(marker){
-                    marker.filtered = false;
-                }));
-            }
-            items[city].ProcessView();
+                }
+            }));
+        } else {
+            this.markers.forEach( angular.bind(this, function(marker){
+                marker.filtered = false;
+            }));
         }
+        this.set_current_items();
     };
 
     /**
      *  Toggle a filter
      */
-    this.toggleFilter = function(category, subcategory, city, coordinates){
+    this.toggleFilter = function(category, subcategory, city){
         var new_state = !this.active_categories[category][subcategory];
         for(var s in this.active_categories[category]){
             if(this.active_categories[category][s]){
@@ -134,9 +154,6 @@ angular.module('civics.map_controller', [])
             this.active_filters.splice(index, 1);
         }
         this.filterMarkers();
-        if(coordinates){
-            _map.setView(coordinates, 10);
-        }
     }
 
     /**
@@ -154,6 +171,18 @@ angular.module('civics.map_controller', [])
         this.active_filters = [];
         this.resetCategories();
         this.filterMarkers();
+    }
+
+    /**
+     *  Show popup of selected markers
+     */
+    this.show = function(marker){
+         var url = '/api/initiative?id=';
+         if(this.section == 'events')
+            url = '/api/event?id=';
+         $http.get(url + marker.id).then( angular.bind(this, function(response){
+             $rootScope.$broadcast('open-marker', response.data);
+         }));
     }
 
     /**
@@ -190,10 +219,4 @@ angular.module('civics.map_controller', [])
         window.open(base_url);
     };
 
-    /**
-     *   Reset map view to initial state
-     */
-    this.expand = function(){
-        _map.setView([0, -26], 3);
-    }
 });

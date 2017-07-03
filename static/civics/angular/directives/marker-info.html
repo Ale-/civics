@@ -14,14 +14,16 @@
             {{ info.marker.nam }}
         </h2>
         <div class="initiative-image">
-            <img ng-show="info.marker.img" src="{{ info.marker.img }}" />
+            <img ng-show="info.marker.img" ng-src="{{ info.marker.img }}" />
             <div ng-hide="info.marker.img" class="initiative-image--blank">
                 <span class="icon-agent"></span>
             </div>
         </div>
         <div class='initiative-marker'>
-            <i class='outer icon-topic-{{ info.marker.top }} icon-agent-{{ info.marker.age }}'></i>
-            <i class='inner icon-space-{{ info.marker.spa }}'></i>
+            <div class="leaflet-marker-icon cm">
+                <i class='outer i-to-{{ info.marker.topics }} i-ag-{{ info.marker.agents }}'></i>
+                <i class='inner i-sp-{{ info.marker.spaces }}'></i>
+            </div>
             <p class="initiative-marker__topic">{{ info.marker.topicname }}</p>
             <p class="initiative-marker__space">{{ info.marker.spacename }}</p>
             <p class="initiative-marker__agent">{{ info.marker.agentname }}</p>

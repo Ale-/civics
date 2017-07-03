@@ -1,0 +1,36 @@
+<!-- Renders a block with user actions and the state of map filters -->
+
+<div class="map-actions--{{content.section}}">
+    <div class="legend-help"
+         ng-init="show_legend=false">
+        <span class="legend-help__icon icon-info"
+              ng-click="show_legend = !show_legend">
+        </span>
+        <div class="legend-help__text"
+             ng-show="show_legend">
+             Usa la leyenda para filtrar los contenidos según tus intereses.
+        </div>
+    </div>
+    <div class="map-actions__actions">
+        <span ng-click="content.download_xls()" class="map-actions__action--download icon-download"></span>
+    </div>
+    <div class="markers-count">
+        <span class="markers-count__label">Mostrando </span>
+        <span class="markers-count__number">{{ content.count }}</span>
+        <span ng-if="content.section=='initiatives'" class="markers-count__label">iniciativas</span>
+        <span ng-if="content.section=='events'" class="markers-count__label">eventos</span>
+    </div>
+    <ul class="filter-tags">
+        <li class="filter-tags__tag"
+            ng-repeat="filter in content.active_filters"
+            ng-click="content.removeFilter($index)">
+            {{ filter.n }} <span class="filter-tags__close">×</span>
+        </li>
+        <li class="filter-tags__remove"
+            ng-show="content.active_filters.length > 0"
+            ng-click="content.removeFilters()">
+            Eliminar filtros
+        </li>
+    </ul>
+    <div search></div>
+</div>

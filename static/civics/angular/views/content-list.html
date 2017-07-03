@@ -1,0 +1,48 @@
+<!-- Map filters -->
+<div map-filters></div>
+
+<!-- Profile of selected marker -->
+<div marker-info></div>
+
+<!-- Map viewport container including map and user actions over it -->
+<div class="map-container">
+    <!-- Map actions -->
+    <div map-actions></div>
+    <!-- Leaflet map -->
+    <!-- Grid display of elements -->
+    <div class="initiatives-grid">
+        <div class="initiatives-grid__pager">
+            <p class="initiatives-grid__pager-info">
+                Mostrando {{ content.starting_index }}‒{{ content.starting_index + content.current_items }}
+                de {{ content.count }} elementos filtrados.
+            </p>
+            <p class="initiatives-grid__pager-links">
+                <span class="initiatives-grid__pager-link"
+                      ng-hide="content.starting_index == 0"
+                      ng-click="content.previousPage()">
+                    Ver página anterior
+                </span>
+                <span class="initiatives-grid__pager-link"
+                      ng-hide="content.current_items < content.items_per_page"
+                      ng-click="content.nextPage()">
+                    Ver página siguiente
+                </span>
+            </p>
+        </div>
+        <div class="initiatives-grid__item"
+             ng-repeat="marker in content.markers | filter: { filtered : false } | limitTo:content.current_items:content.starting_index"
+             ng-click="content.show(marker)">
+            <img ng-show="marker.img" ng-src="{{ marker.img }}" />
+            <div ng-hide="marker.img" class="initiative_blank-image">
+                <span class="icon-agent"></span>
+            </div>
+            <div class="initiative-caption">
+              <p class="initiative-name">{{ marker.nam }}</p>
+              <p class="initiative-city">{{ marker.cities }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Social widgets block -->
+<div social></div>

@@ -1,11 +1,10 @@
 <!-- Search widget -->
 
-<div class="map-actions__search">
+<div class="map-actions__search" ng-if="content.format == 'map'">
     <input class="map-actions__search-input" type="text"
            ng-change="search.query()"
-           ng-model="search.name"
-           ng-blur="search.reset()" />
-    <label class="map-actions__search-label">Busca</label>
+           ng-model="search.name"/>
+    <label class="map-actions__search-label">Busca por nombre</label>
     <div class="map-actions__search-results" ng-show="search.results.length > 0">
         <p class="map-actions__search-result" ng-repeat="result in search.results" ng-click="search.set(result.id)">
             {{ result.nam }}

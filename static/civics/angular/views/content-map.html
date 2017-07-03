@@ -9,12 +9,12 @@
     <!-- Map actions -->
     <div map-actions></div>
     <!-- Leaflet map -->
-    <leaflet id="civics-map"
-              ng-if="content.showing_map" height="480px" width="100%"
-              class="zoom_" ng-class="{ 'collapsed' : content.showing_initiative }"
-              lf-center="content.center" defaults="content.defaults"
-              controls="content.controls" layers="content.layers">
-          <div leaflet-expand></div>
+    <leaflet id="civics-map" height="480px" width="100%"
+             ng-class="{ 'collapsed' : content.showing_initiative }"
+             center="content.center" defaults="content.defaults"
+             controls="content.controls" layers="content.layers">
+             <!-- Add custom control -->
+             <div leaflet-expand></div>
     </leaflet>
 </div>
 

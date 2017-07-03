@@ -6,7 +6,7 @@ angular.module('civics.directives', [])
 .directive('social', function(){
     return {
       restrict: 'A',
-      templateUrl: 'static/civics/angular/views/social_widget.html'
+      templateUrl: 'static/civics/angular/directives/social_widget.html'
     }
 })
 
@@ -18,7 +18,7 @@ angular.module('civics.directives', [])
         restrict: 'A',
         controller: 'MarkerinfoController',
         controllerAs: 'info',
-        templateUrl: 'static/civics/angular/views/marker-info.html',
+        templateUrl: 'static/civics/angular/directives/marker-info.html',
         replace: true
     }
 })
@@ -28,9 +28,9 @@ angular.module('civics.directives', [])
      $scope.$on('open-marker', angular.bind(this, function(event, args){
           this.expanded = true;
           this.marker = args;
-          this.marker.topicname = Categories.topics[ this.marker.topic ];
-          this.marker.agentname = Categories.agents[ this.marker.agent ];
-          this.marker.spacename = Categories.spaces[ this.marker.space ];
+          this.marker.topicname = Categories.topics[ this.marker.topics ];
+          this.marker.agentname = Categories.agents[ this.marker.agents ];
+          this.marker.spacename = Categories.spaces[ this.marker.spaces ];
           this.showing = meta.showing;
      }));
 })
@@ -42,7 +42,7 @@ angular.module('civics.directives', [])
     return {
         restrict: 'A',
         replace: true,
-        templateUrl: 'static/civics/angular/views/map-actions.html'
+        templateUrl: 'static/civics/angular/directives/map-actions.html'
     }
 })
 
@@ -53,7 +53,7 @@ angular.module('civics.directives', [])
     return {
         restrict: 'A',
         replace: true,
-        template: '<div class="leaflet-expand" ng-click="map.expand()"><span class="icon-expand"></span></div>',
+        template: '<div class="leaflet-expand" ng-click="content.expand()"><span class="icon-expand"></span></div>',
     }
 })
 
@@ -64,7 +64,7 @@ angular.module('civics.directives', [])
     return {
         restrict: 'A',
         replace: true,
-        templateUrl: 'static/civics/angular/views/map-filters.html'
+        templateUrl: 'static/civics/angular/directives/map-filters.html'
     }
 })
 
@@ -77,7 +77,7 @@ angular.module('civics.directives', [])
         replace: true,
         controller: 'SearchController',
         controllerAs: 'search',
-        templateUrl: 'static/civics/angular/views/search.html'
+        templateUrl: 'static/civics/angular/directives/search.html'
     }
 })
 
@@ -86,7 +86,6 @@ angular.module('civics.directives', [])
 
      this.query = function(){
         if(this.name.length > 3){
-            console.log(this.name);
             $http.get('/api/autocomplete?n=' + this.name).then( angular.bind(this, function(response){
                 if(response.data.length > 0)
                     this.results = response.data;
@@ -97,13 +96,13 @@ angular.module('civics.directives', [])
      };
 
      this.set = function(id){
-        $http.get('/api/initiative?id=' + id).then( angular.bind(this, function(response){
+        $http.get('/api/initiative?id=' + id).then( angular.bind(this, function(response){;
             $rootScope.$broadcast('open-marker', response.data);
             leafletData.getMap('civics-map').then(function(map){
-                map.setView([response.data.lat, response.data.lng], 15)
+                map.setView([response.data.lat, response.data.lng], 18)
             });
             this.results = [];
             this.name    = '';
         }));
      };
-})
+});
