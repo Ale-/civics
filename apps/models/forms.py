@@ -48,9 +48,6 @@ class InitiativeForm(forms.ModelForm):
 class EventForm(forms.ModelForm):
     """Generic modelform to create and update Event objects"""
 
-    def group_label(country_key):
-        return dict(models.COUNTRIES)[country_key]
-
     city = GroupedModelChoiceField(queryset=models.City.objects.order_by('country', 'name'),
                                    label='Ciudad',
                                    help_text=_('Ciudad donde se celebra el evento. Si no encuentras la ciudad en el desplegable usa el botón inferior para añadirla.'),
