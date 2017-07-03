@@ -76,7 +76,7 @@ def initiatives_list_service(request):
     spaces = request.GET.get('spaces').split(',');
     agents = request.GET.get('agents').split(',');
     cities = City.objects.annotate(num_refs=Count('initiative')).filter(num_refs__gt=10)
-    initiatives = Initiative.objects.filter(city__in=cities)
+    initiatives = Initiative.objects.filter(city__in=cities).order_by('name')
     if city   != 'all':
         initiatives = initiatives.filter(city=city);
     if topics != ['all']:
@@ -94,16 +94,11 @@ def initiatives_list_service(request):
             initiatives_json.append({
                 'id'  : initiative_json.pk,
                 'nam' : initiative_json.name,
-                'slu' : initiative_json.slug,
-                'add' : initiative_json.address,
-                'cit' : cityname,
                 'cou' : countryname,
-                'des' : initiative_json.description,
-                'web' : initiative_json.website,
-                'ema' : initiative_json.email,
-                'top' : initiative_json.topic.lower(),
-                'age' : initiative_json.agent.lower(),
-                'spa' : initiative_json.space.lower(),
+                'cities' : cityname,
+                'topics' : initiative_json.topic.lower(),
+                'agents' : initiative_json.agent.lower(),
+                'spaces' : initiative_json.space.lower(),
             })
 
             # if 'image' in initiative_json:
@@ -119,7 +114,7 @@ def events_service(request):
     topics     = request.GET.get('topics').split(',');
     categories = request.GET.get('categories').split(',');
     agents     = request.GET.get('agents').split(',');
-    cities     = City.objects.annotate(num_refs=Count('initiative')).filter(num_refs__gt=10)
+    cities     = City.objects.annotate(num_refs=Count('initiative')).filter(num_refs__gt=0)
     events     = Event.objects.filter(city__in=cities)
     if city   != 'all':
         events = events.filter(city=city);
@@ -129,7 +124,6 @@ def events_service(request):
         events = events.filter(category__in=categories)
     if agents != ['all']:
         events = events.filter(topic__in=agents)
-
     if len(events) > 0:
         events_json = {}
         for event_json in events:
@@ -174,8 +168,8 @@ def events_list_service(request):
     topics     = request.GET.get('topics').split(',');
     categories = request.GET.get('categories').split(',');
     agents     = request.GET.get('agents').split(',');
-    cities     = City.objects.annotate(num_refs=Count('initiative')).filter(num_refs__gt=10)
-    events     = Event.objects.filter(city__in=cities)
+    # cities     = City.objects.annotate(num_refs=Count('initiative')).filter(num_refs__gt=10)
+    events     = Event.objects.all()
     if city   != 'all':
         events = events.filter(city=city);
     if topics != ['all']:
@@ -192,19 +186,12 @@ def events_list_service(request):
             cityname      = event_json.city.name if event_json.city else 'none'
             countryname   = event_json.city.get_country_display() if event_json.city else 'none'
             events_json.append({
-                'id'    : event_json.id,
-                'tit'   : event_json.title,
-                'add'   : event_json.address if event_json.address else '',
-                'dat'   : event_json.date.strftime('%d %B %Y'),
-                'tim'   : str(event_json.time),
-                'des'   : event_json.description,
-                'ini'   : event_json.initiative.name,
-                'web'   : event_json.initiative.website,
-                'ema'   : event_json.initiative.email,
-                'i_add' : event_json.initiative.address + ", " + cityname + "(" + countryname + ")",
-                'top'   : event_json.topic.lower(),
-                'act'   : event_json.category.lower(),
-                'age'   : event_json.agent.lower(),
+                'nam'    : event_json.title,
+                'id'     : event_json.pk,
+                'cities' : cityname,
+                'top'    : event_json.topic.lower(),
+                'act'    : event_json.category.lower(),
+                'age'    : event_json.agent.lower(),
             })
 
             # if 'image' in event_json:
@@ -467,15 +454,41 @@ def initiative_service(request):
         'nam' : initiative.name,
         'slu' : initiative.slug,
         'add' : initiative.address,
-        'cit' : cityname,
         'cou' : countryname,
         'lng' : coords[0],
         'lat' : coords[1],
         'des' : initiative.description,
         'web' : initiative.website,
         'ema' : initiative.email,
-        'topic' : initiative.topic.lower(),
-        'agent' : initiative.agent.lower(),
-        'space' : initiative.space.lower(),
+        'cities' : cityname,
+        'topics' : initiative.topic.lower(),
+        'agents' : initiative.agent.lower(),
+        'spaces' : initiative.space.lower(),
     }
     return HttpResponse(json.dumps(initiative_json), content_type="application/json")
+
+def event_service(request):
+    id = request.GET.get('id')
+    event         = Event.objects.filter(pk=id).first()
+    coords        = event.position['coordinates']
+    cityname      = event.city.name if event.city else 'none'
+    countryname   = event.city.get_country_display() if event.city else 'none'
+    event_json = {
+        'id'    : event.pk,
+        'nam'   : event.title,
+        'slu'   : event.slug,
+        'add'   : event.address,
+        'cou'   : countryname,
+        'lng'   : coords[0],
+        'lat'   : coords[1],
+        'des'   : event.description,
+        'ini'   : event.initiative.name,
+        'web'   : event.initiative.website,
+        'ema'   : event.initiative.email,
+        'i_add' : event.initiative.address + ", " + cityname + "(" + countryname + ")",
+        'cities' : cityname,
+        'topics' : event.topic.lower(),
+        'agents' : event.agent.lower(),
+        'categories' : event.category.lower(),
+    }
+    return HttpResponse(json.dumps(event_json), content_type="application/json")
