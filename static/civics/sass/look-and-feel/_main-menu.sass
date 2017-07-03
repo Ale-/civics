@@ -16,32 +16,13 @@
 .main-menu__link.active > span
   +h(5)
 
-.main-menu__link--initiatives,
-.main-menu__link--events
-  +breakpoint('sm')
-    &.active::after
-      content: " "
-      +transform(rotate(45deg))
-      display: block
-      width: $m
-      height: $m
-      position: absolute
-      left: calc(50% - #{$m/2})
-      z-index: 0
-      border: 1px solid rgba(black, .1)
-      border-width: 1px 0 0 1px
-
 .main-menu__link--about.active
   +h(5)
 
 .main-menu__link--initiatives.active
   color: darken(#ed61aa, 10%)
-  &::after
-    background: #ed61aa
 .main-menu__link--events.active
   color: darken(#02cfc2, 10%)
-  &::after
-    background: #02cfc2
 
 .main-menu__link
   width: 100%

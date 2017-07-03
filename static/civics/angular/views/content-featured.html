@@ -1,0 +1,52 @@
+<!-- Profile of selected marker -->
+<div marker-info></div>
+
+<!-- Map viewport container including map and user actions over it -->
+<div class="map-container">
+    <!-- Grid display of elements -->
+    <div class="grid featured">
+        <h5 class="grid__subtitle--{{content.section}}">
+            <span ng-if="content.section == 'initiatives'">
+                Iniciativas ciudadanas destacadas
+            </span>
+            <span ng-if="content.section == 'events'">
+                Actividades ciudadanas destacadas
+            </span>
+        </h5>
+        <div class="grid__item"
+             ng-repeat="marker in content.featured_items"
+             ng-click="content.show(marker)">
+            <img ng-show="marker.img" ng-src="{{ marker.img }}" />
+            <div ng-hide="marker.img" class="grid__item-blank-image">
+                <span class="icon-agent"></span>
+            </div>
+            <div class="grid__item-caption">
+              <p class="grid__item-name">{{ marker.nam }}</p>
+              <p class="grid__item-city">{{ marker.cities }}</p>
+            </div>
+        </div>
+        <h5 class="grid__subtitle--{{content.section}}">
+            <span ng-if="content.section == 'initiatives'">
+                Últimas iniciativas ciudadanas incorporadas
+            </span>
+            <span ng-if="content.section == 'events'">
+                Próximas actividades ciudadanas
+            </span>
+        </h5>
+        <div class="grid__item"
+             ng-repeat="marker in content.last_items"
+             ng-click="content.show(marker)">
+            <img ng-show="marker.img" ng-src="{{ marker.img }}" />
+            <div ng-hide="marker.img" class="grid__item-blank-image">
+                <span class="icon-agent"></span>
+            </div>
+            <div class="grid__item-caption">
+              <p class="grid__item-name">{{ marker.nam }}</p>
+              <p class="grid__item-city">{{ marker.cities }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Social widgets block -->
+<div social></div>

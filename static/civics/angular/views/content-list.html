@@ -10,7 +10,7 @@
     <div map-actions></div>
     <!-- Leaflet map -->
     <!-- Grid display of elements -->
-    <div class="initiatives-grid">
+    <div class="grid">
         <div class="initiatives-grid__pager">
             <p class="initiatives-grid__pager-info">
                 Mostrando {{ content.starting_index }}‒{{ content.starting_index + content.current_items }}
@@ -29,16 +29,16 @@
                 </span>
             </p>
         </div>
-        <div class="initiatives-grid__item"
+        <div class="grid__item"
              ng-repeat="marker in content.markers | filter: { filtered : false } | limitTo:content.current_items:content.starting_index"
              ng-click="content.show(marker)">
             <img ng-show="marker.img" ng-src="{{ marker.img }}" />
-            <div ng-hide="marker.img" class="initiative_blank-image">
+            <div ng-hide="marker.img" class="grid__item-blank-image">
                 <span class="icon-agent"></span>
             </div>
-            <div class="initiative-caption">
-              <p class="initiative-name">{{ marker.nam }}</p>
-              <p class="initiative-city">{{ marker.cities }}</p>
+            <div class="grid__item-caption">
+              <p class="grid__item-name">{{ marker.nam }}</p>
+              <p class="grid__item-city">{{ marker.cities }}</p>
             </div>
         </div>
     </div>

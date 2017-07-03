@@ -16,9 +16,11 @@ angular.module('civics', [
     'civics.categories_service',
     'civics.initiatives_service',
     'civics.list_service',
+    'civics.featured_service',
     'civics.events_service',
     'civics.map_controller',
     'civics.list_controller',
+    'civics.featured_controller',
     'civics.directives',
   ])
 
@@ -60,15 +62,22 @@ angular.module('civics', [
                }
           }
       })
+      .when('/iniciativas-destacadas', {
+          templateUrl : templates_url + 'content-featured.html',
+          controller  : 'FeaturedController',
+          controllerAs: 'content',
+          resolve: {
+               items: function(Lists) {
+                   return Lists.setup('/api/initiatives_featured', 'initiatives')
+               }
+          }
+      })
       .when('/eventos', {
           templateUrl : templates_url + 'content-map.html',
           controller  : 'MapController',
           controllerAs: 'content',
           resolve: {
               items: function(Events) {
-                  var links = document.querySelectorAll('.main-menu__link');
-                  links.forEach( function(link){ link.classList.remove('active') })
-                  links[2].classList.add('active')
                   return Events.setup();
               }
           }
@@ -79,10 +88,17 @@ angular.module('civics', [
           controllerAs: 'content',
           resolve: {
                items: function(Lists) {
-                   var links = document.querySelectorAll('.main-menu__link');
-                   links.forEach( function(link){ link.classList.remove('active') })
-                   links[2].classList.add('active')
                    return Lists.setup('/api/events_list?city=all&topics=all&categories=all&agents=all', 'events')
+               }
+          }
+      })
+      .when('/eventos-destacados', {
+          templateUrl : templates_url + 'content-featured.html',
+          controller  : 'FeaturedController',
+          controllerAs: 'content',
+          resolve: {
+               items: function(Lists) {
+                   return Lists.setup('/api/events_featured', 'events')
                }
           }
       })

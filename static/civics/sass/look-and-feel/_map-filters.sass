@@ -7,6 +7,27 @@
   color: white
   border-bottom: 1px solid rgba(black, .05)
   +links_filters
+  +breakpoint('sm')
+    &:before
+      content: " "
+      +transform(rotate(45deg))
+      display: block
+      width: $m
+      height: $m
+      position: absolute
+      background-color: black
+      top: 45px
+      z-index: 0
+      border: 1px solid rgba(black, .1)
+      border-width: 1px 0 0 1px
+
+.map-filters--initiatives::before
+  background-color: #ed61aa
+  left: calc(50% - 65px)
+
+.map-filters--events::before
+  background-color: #02cfc2
+  left: calc(83% - 250px)
 
 .map-filters--initiatives
   background-color: #ed61aa
