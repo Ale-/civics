@@ -7,7 +7,6 @@ from django.db.models import Count
 import json
 from django.utils.text import slugify
 from datetime import date
-import pycountry
 from django.conf import settings
 import math
 
@@ -404,28 +403,6 @@ def events_service_xls(request):
 
     wb.save(response)
     return response
-
-
-def cities_service(request):
-    cities = City.objects.annotate(num_refs=Count('initiative')).filter(num_refs__gt=10)
-    if len(cities) > 0:
-        cities_json = {}
-        for city in cities:
-            coords  = city.position['coordinates']
-            country = pycountry.countries.get(alpha_2=city.country).name
-            if(country in cities_json):
-                cities_json[country].append( city.name )
-            else:
-                cities_json[country] = [ city.name ]
-        return HttpResponse(json.dumps(cities_json, indent=4), content_type="application/json")
-
-    return HttpResponse(no_results)
-
-def countries_service(request):
-    # TODO: catch exceptions
-    countries_data = open( settings.STATIC_ROOT + '/civics/geojson/countries-medium--simplified.json' )
-    return HttpResponse(countries_data, content_type="application/json")
-
 
 def autocomplete_service(request):
     """ Returns initiatives with names beginning with the query characters. """
