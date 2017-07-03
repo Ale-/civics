@@ -3,10 +3,12 @@ from django import forms
 from . import models
 from apps.utils.fields import GroupedModelChoiceField
 from apps.utils.widgets import VideoWidget, PictureWithPreviewWidget, ReducedLeafletWidget, LimitedTextareaWidget, SelectOrAddWidget, GeocodedLeafletWidget
-
+from django_countries import countries
 
 def group_label(country_key):
-    return dict(models.COUNTRIES)[country_key]
+    if country_key:
+        return dict(countries)[country_key]
+    return None
 
 class CityForm(forms.ModelForm):
     """Generic modelform to create and update City objects"""

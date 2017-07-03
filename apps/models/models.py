@@ -1,6 +1,5 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
-from . import geography_utils as geo
 from . import categories
 from djgeojson.fields import PointField
 from leaflet.forms.widgets import LeafletWidget
@@ -9,9 +8,7 @@ from django.utils import timezone
 from django.utils.text import slugify
 from imagekit.models import ImageSpecField
 from imagekit.processors import ResizeToFill, ResizeToCover
-
-COUNTRIES = geo.countries_as_tuple()
-
+from django_countries.fields import CountryField
 
 #
 #  City
@@ -22,10 +19,8 @@ class City(models.Model):
 
   name     = models.CharField(_('Nombre de la ciudad'), max_length = 200, blank = False, null = True,
                               help_text = _('Especifica el nombre de la ciudad.'))
-  country  = models.CharField(_('País'), max_length = 2, choices = COUNTRIES, blank = False, null = True,
-                              help_text = _('¿A qué país pertenece la ciudad?'))
-  position = PointField(_("Ubicación"), blank=False, null=True,
-                        help_text=_("Añade la ubicación de la ciudad."))
+  country = CountryField(_('País'), null=True, help_text = _('¿A qué país pertenece la ciudad?'))
+  position = PointField(_("Ubicación"), blank=False, null=True, help_text=_("Añade la ubicación de la ciudad."))
 
   class Meta:
     verbose_name = _('Ciudad')
