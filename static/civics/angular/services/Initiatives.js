@@ -7,7 +7,7 @@ angular.module('civics.initiatives_service', [])
 
         setup    : function(){
             PruneCluster.Cluster.ENABLE_MARKERS_LIST = true;
-            return $http.get('/api/initiatives?city=all&topics=all&spaces=all&agents=all').then(angular.bind(this, function(response){
+            return $http.get('/api/initiatives').then(angular.bind(this, function(response){
                 this.clusters = {};
                 meta.count = 0;
                 meta.showing = 'initiatives';
@@ -28,7 +28,9 @@ angular.module('civics.initiatives_service', [])
                                                 "<i class='inner i-sp-" + data.spaces + "'></i>",
                             }));
                             leafletMarker.on('click', function(e){
-                                 $rootScope.$broadcast('open-marker', data);
+                                $http.get('/api/initiative?id=' + data.id).then( angular.bind(this, function(response){;
+                                    $rootScope.$broadcast('open-marker', response.data);
+                                }));
                             });
                         };
 
@@ -48,20 +50,8 @@ angular.module('civics.initiatives_service', [])
                         /** Setup markers */
                         for(var i = 0, l = response.data[country][city]['items'].length; i < l; i++){
                             var marker = response.data[country][city]['items'][i];
-                            // We use three-letter keys to get a lighter data-structure
-                            // But we keep full names in categories because they're needed
-                            // that way in the controller. @see MapController.js
-                            // TODO: get a coherent name logic for controller, categories and markers
                             var m = new PruneCluster.Marker(marker.lat, marker.lng, {
-                                id  : marker.id,
-                                nam : marker.nam,
-                                slu : marker.slu,
-                                cou : country,
-                                add : marker.add,
-                                des : marker.des,
-                                //img         : marker.img,
-                                web : marker.web,
-                                ema : marker.ema,
+                                id     : marker.id,
                                 cities : city,
                                 topics : marker.top,
                                 spaces : marker.spa,

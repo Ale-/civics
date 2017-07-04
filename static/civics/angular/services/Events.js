@@ -28,7 +28,9 @@ angular.module('civics.events_service', [])
                                                 "<i class='inner i-ac-" + data.activities + "'></i>",
                             }));
                             leafletMarker.on('click', function(e){
-                                 $rootScope.$broadcast('open-marker', data);
+                                $http.get('/api/event?id=' + data.id).then( angular.bind(this, function(response){;
+                                    $rootScope.$broadcast('open-marker', response.data);
+                                }));
                             });
                         };
                         this.clusters[city].Cluster.Size = 8;
@@ -36,24 +38,8 @@ angular.module('civics.events_service', [])
                         /** Setup markers */
                         for(var i = 0, l = response.data[country][city]['items'].length; i < l; i++){
                             var marker = response.data[country][city]['items'][i];
-                            // We use three-letter keys to get a lighter data-structure
-                            // But we keep full names in categories because they're needed
-                            // that way in the controller. @see MapController.js
-                            // TODO: get a coherent name logic for controller, categories and markers
                             var m = new PruneCluster.Marker(marker.lat, marker.lng, {
                                 id    : marker.id,
-                                nam   : marker.tit,
-                                slu   : marker.slu,
-                                add   : marker.add,
-                                cou   : country,
-                                dat   : marker.dat,
-                                tim   : marker.tim,
-                                des   : marker.des,
-                                //img         : marker.img,
-                                web   : marker.web,
-                                ema   : marker.ema,
-                                ini   : marker.ini,
-                                i_add : marker.i_add,
                                 cities     : city,
                                 topics     : marker.top,
                                 agents     : marker.age,
