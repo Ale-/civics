@@ -96,3 +96,13 @@
     font-size: 36px
     line-height: 30px
     left: 1px
+
+.initiative-marker .leaflet-marker-icon.cm .outer::before
+  +text-shadow(none)
+.initiative-marker .leaflet-marker-icon.cm .inner
+  &::before
+    font-size: 2em
+
+.initiative-info--events .initiative-marker .leaflet-marker-icon.cm .inner
+  left: 30px !important
+  +big_icon

@@ -30,8 +30,12 @@ angular.module('civics.directives', [])
           this.marker = args;
           this.marker.topicname = Categories.topics[ this.marker.topics ];
           this.marker.agentname = Categories.agents[ this.marker.agents ];
-          this.marker.spacename = Categories.spaces[ this.marker.spaces ];
+          if(this.marker.spaces)
+              this.marker.spacename = Categories.spaces[ this.marker.spaces ];
+          if(this.marker.activities)
+              this.marker.activitiesname = Categories.activities[ this.marker.activities ];
           this.showing = meta.showing;
+          console.log(this.marker);
      }));
 })
 
@@ -105,4 +109,21 @@ angular.module('civics.directives', [])
             this.name    = '';
         }));
      };
-});
+})
+
+// /**
+//  *  Marker information in the maps
+//  */
+// .directive('timesearch', function(){
+//     return {
+//         restrict: 'A',
+//         replace: true,
+//         controller: 'TimesearchController',
+//         controllerAs: 'search',
+//         templateUrl: 'static/civics/angular/directives/timesearch.html'
+//     }
+// })
+//
+// .controller('TimesearchController', function($scope, $http, $rootScope, leafletData){
+//
+// });

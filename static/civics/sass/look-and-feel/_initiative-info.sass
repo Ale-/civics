@@ -7,9 +7,7 @@
   background-color: #f5f5f5
   +inline-block
   padding: 0 $m
-
-.initiative-info
-  +links_toolbar
+  +links_info
 
 .initiative-info__name
   text-align: center
@@ -34,6 +32,7 @@
 .initiative-action__remove
   font-size: 2rem
   display: none
+  float: left
 .initiative-action__edit
   +transform(rotate(45deg))
 .staff-user
@@ -83,8 +82,8 @@
     .outer::before
       +text-shadow(none)
     p
-      margin-bottom: $m/6
-      font-size: $size_small *.9
+      margin-bottom: $m/8
+      font-size: $size_small *.8
       text-transform: uppercase
     .inner
       left: 29px !important
@@ -105,3 +104,19 @@
 .initiative-info__detail--initiative
   font-weight: 400
   margin-bottom: $m/2
+
+.initiative-info__description
+  margin-top: $m
+
+[class^='initiative-info__detail--']
+  margin: $m/3 0
+  span
+    display: inline-block
+    width: $m
+    text-align: center
+    color: #555
+
+.initiative-info__detail--initiative
+  border-bottom: 1px dotted $color_text
+  padding-bottom: $m/3
+  text-transform: uppercase

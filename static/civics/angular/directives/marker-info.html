@@ -1,6 +1,6 @@
 <!-- Popup that displays marker info in leaflet maps -->
 
-<div class="initiative-info" ng-class="{ 'expanded' : info.expanded }">
+<div class="initiative-info initiative-info--{{content.section}}" ng-class="{ 'expanded' : info.expanded }">
     <!-- User actions -->
     <div class="initiative-actions">
         <a ng-if="info.showing=='initiatives'"
@@ -28,11 +28,13 @@
         <div class='initiative-marker'>
             <div class="leaflet-marker-icon cm">
                 <i class='outer i-to-{{ info.marker.topics }} i-ag-{{ info.marker.agents }}'></i>
-                <i class='inner i-sp-{{ info.marker.spaces }}'></i>
+                <i ng-if="content.section == 'initiatives'" class='inner i-sp-{{ info.marker.spaces }}'></i>
+                <i ng-if="content.section == 'events'" class='inner i-ac-{{ info.marker.activities }}'></i>
             </div>
-            <p class="initiative-marker__topic">{{ info.marker.topicname }}</p>
-            <p class="initiative-marker__space">{{ info.marker.spacename }}</p>
-            <p class="initiative-marker__agent">{{ info.marker.agentname }}</p>
+            <p class="initiative-marker__topic">- {{ info.marker.topicname }}</p>
+            <p class="initiative-marker__agent">- {{ info.marker.agentname }}</p>
+            <p ng-if="content.section=='initiatives'" class="initiative-marker__space">- {{ info.marker.spacename }}</p>
+            <p ng-if="content.section=='events'" class="initiative-marker__activity">- {{ info.marker.activitiesname }}</p>
         </div>
     </div>
 
@@ -57,16 +59,13 @@
     <!-- Profile details -->
     <div class='initiative-info__details'>
         <p class="initiative-info__detail--initiative" ng-if="info.showing=='events'">
-            Promueve: {{ info.marker.ini }}
+            {{ info.marker.ini }}
         </p>
         <p class="initiative-info__detail--website" ng-show="info.marker.web">
             <span class="icon-website"></span> <a href="{{ marker_website }}" target="_blank">{{ info.marker.web }}</a>
         </p>
         <p class="initiative-info__detail--email" ng-show="info.marker.ema">
             <span class="icon-email"></span> <a href="mailto:{{ info.marker.email }}" target="_blank">{{ info.marker.ema }}</a>
-        </p>
-        <p class="initiative-info__detail--address" ng-show="info.marker.add">
-            <span class="icon-address"></span> {{ info.marker.add }}
         </p>
         <p class="initiative-info__detail--address" ng-show="info.marker.i_add">
             <span class="icon-address"></span> {{ info.marker.i_add }}

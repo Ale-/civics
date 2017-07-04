@@ -385,6 +385,8 @@ def event_service(request):
         'slu'   : event.slug,
         'img'   : event.image_medium.url if event.image else None,
         'add'   : event.address,
+        'dat'   : event.date.strftime("%d/%b/%Y"),
+        'tim'   : event.time.strftime("%H:%M"),
         'cou'   : countryname,
         'lng'   : coords[0],
         'lat'   : coords[1],
@@ -393,10 +395,10 @@ def event_service(request):
         'web'   : event.initiative.website,
         'ema'   : event.initiative.email,
         'i_add' : event.initiative.address + ", " + cityname + "(" + countryname + ")",
-        'cities' : cityname,
-        'topics' : event.topic.lower(),
-        'agents' : event.agent.lower(),
-        'categories' : event.category.lower(),
+        'cities'     : cityname,
+        'topics'     : event.topic.lower(),
+        'agents'     : event.agent.lower(),
+        'activities' : event.category.lower(),
     }
     return HttpResponse(json.dumps(event), content_type="application/json")
 
