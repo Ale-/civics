@@ -1,39 +1,62 @@
+// Dashboard styles
+
 @import compass/css3/inline-block
 @import compass/css3/filter
 @import compass/css3/transform
 @import compass/css3/box-shadow
 @import compass/css3/border-radius
 
-.dashboard main
-  background: #eee
+.dashboard,
+.dashboard-staff
+  main
+    background: #eee
 
-.dashboard .page-title
-  text-align: center
-  text-transform: uppercase
-  font-size: 1.25rem
-  margin-bottom: $m*2
-  &:before
-    content: "- "
-  &:after
-    content: " -"
+.dashboard,
+.dashboard-staff
+  .page-title
+    text-align: center
+    text-transform: uppercase
+    font-size: 1.25rem
+    margin-bottom: $m*2
+    &:before
+      content: "- "
+    &:after
+      content: " -"
 
-.dashboard .layout-main
-  margin: 0
-  padding-top: $m*2
-  min-height: calc(100vh - 50px)
+.dashboard,
+.dashboard-staff
+  .layout-main
+    margin: 0
+    padding-top: $m*2
+    min-height: calc(100vh - 56px)
 
 .dashboard-left,
 .dashboard-right,
 .dashboard-left__left,
 .dashboard-left__right
   +inline-block
-  width: calc(50% - #{$m})
   margin: 0 $m/2
-  min-height: calc(100vh - 240px)
+  +breakpoint('xs')
+    display: block
+
+.dashboard-left,
+.dashboard-right
+  +breakpoint('sm')
+    width: calc(50% - #{$m})
+.dashboard-left__left,
+.dashboard-left__right
+  +breakpoint('md')
+    width: calc(50% - #{$m})
+.dashboard-left__right,
+.dashboard-right
+  +breakpoint('xs')
+    margin-top: $m
+    width: calc(100% - #{$m})
 
 .dashboard-left,
 .dashboard-left__left
-  float: left
+  +breakpoint('sm')
+    float: left
 
 .dashboard-left__left
   background-color: $palette_primary
@@ -41,45 +64,97 @@
 .dashboard-left__right
   background-color: $palette_secondary
 
-//.dashboard-left__left,
-  .dashboard-left__right
-  +box-shadow(0 0 5px rgba(black,.1))
-
-.initiative__field,
-.events__field,
-.event__field
+[class$='--dashboard__title']
+  position: relative
+  +links_dashboard
   padding: $m/2
   color: rgba(black, .7)
-
-.initiative__field--name,
-.events__field--name
-  position: relative
-  background-color: darken($palette_primary, 15%)
-  +links_dashboard
   h2
     margin: 0
     text-transform: uppercase
     font-size: 1.25rem
     display: inline
-.initiative__field-label
-  text-transform: uppercase
-  font-size: .9em
-  margin-bottom: $m/3
 
-.initiative__field--name,
+.initiatives--dashboard__title,
+.single-initiative--dashboard__title
   background-color: darken($palette_primary, 15%)
-.events__field--name
+.events--dashboard__title
   background-color: darken($palette_secondary, 15%)
 
-.initiative__edit,
-.events__create
+[class$='--dashboard__create']
   float: right
 
-.initiative__edit, .event__field--edit
+[class$='--dashboard__items'],
+.single-initiative--dashboard__fields
+  +no_links(rgba(black, .75))
+  max-height: calc(100vh - 288px)
+  overflow-y: auto
+  +breakpoint('sm')
+    height: calc(100vh - 288px)
+
+[class$='--dashboard__item']
+  padding: $m/2
+  position: relative
+
+[class$='--dashboard__item']:hover
+  background: rgba(black, .25)
+  color: white !important
+  [class$='--dashboard__edit']
+    visibility: visible
+    opacity: 1
+[class$='--dashboard__edit']
+  position: absolute
+  right: $m/3
+  top: $m/3
+  z-index: 10
+  background-color: #555
+  color: white
+  visibility: hidden
+  opacity: 0
+  line-height: 100%
+  padding: $m/4
+  +h(6)
+  +transition(opacity .25s ease)
+  text-transform: uppercase
+
+[class$='--dashboard__item-name']
+  margin: 0 0 $m/4
+
+[class$='--dashboard__item-date']
+  text-transform: uppercase
+  font-size: .8em
+
+[class$='--dashboard__item-image']
+  float: left
+  background: #ddd
+  color: #999
+  width: $m*2
+  height: $m*2
+  text-align: center
+  line-height: $m*2
+  font-size: $m
+  margin-right: $m/2
+  +border-radius(50%)
+  img
+    +border-radius(50%)
+  display: inline-block
+  + div
+    display: inline-block
+    width: calc(100% - #{$m*2.5})
+
+.events--dashboard__items-empty
+  font-size: 1.25em
+  padding: $m*2
+  text-align: center
+  span
+    font-size: .8em
+    margin: 0 $m/4
+
+.events--dashboard__edit-event
   font-size: 2em
   +transform( rotate(45deg) )
-.events__create
-  margin-top: 8px
+  float: right
+  line-height: 1em
 
 #dashboard_map
   +box-shadow(0 0 5px rgba(black,.1))
@@ -89,32 +164,11 @@
   .leaflet-tile
     +filter( grayscale(100%) !important)
 
-.events__field--empty
-  font-size: 1.25em
-  padding: $m*2
-  text-align: center
-  span
-    font-size: .8em
-    margin: 0 $m/4
-
-.event__field--image
-  width: 100px
-  height: 100px
-  float: left
-  margin-right: $m/2
-  img
-    +border-radius(50%)
-.event__field--edit
-  float: right
-
-.events .event
-  clear: both
-.event__field--date
-  font-size: .8em
-  text-transform: uppercase
-.event__field--title
-  font-weight: 400
-  text-transform: uppercase
+[class^='single-initiative--dashboard__']
+  padding: $m/2
+  p
+    +h(6)
+    text-transform: uppercase
 
 .facebook-events
   padding: $m
@@ -123,9 +177,11 @@
   margin-top: $m/2
 .facebook-events__item
   margin-top: $m/2
-  padding-bottom: $m/2
-  border: 1px dashed rgba(black, .25)
-  border-width: 1px 0
+  padding: $m/2
+  &:hover
+    cursor: pointer
+    background: rgba(black, .25)
+    color: white
 .facebook-events__item-name
   +h(5)
 .facebook-events__item-add

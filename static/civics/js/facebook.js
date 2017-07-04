@@ -31,7 +31,7 @@ function fb_login(){
       fjs.parentNode.insertBefore(js, fjs);
   }(document, 'script', 'facebook-jssdk'));
 
-  //For getting CSRF token
+  //Get the CSRF token
   function getCookie(name) {
           var cookieValue = null;
           if (document.cookie && document.cookie != '') {
@@ -63,42 +63,39 @@ function fb_login(){
   // Here we run a very simple test of the Graph API after login is
   // successful.  See statusChangeCallback() for when this call is made.
   function fetchEvents(id) {
-    FB.api('/me/events', function(response){
-        events = response.data;
-        $('.facebook-events__help').hide();
-        $.get('/api/events_fb_id', {}, function(response){
-            console.log(response);
-            for(i in events){
-                var e = events[i];
-                console.log(e);
-                //if(response.indexOf(e.id) > -1 || response.length == 0){
-                    var date = new Date(e.start_time)
-                    var event = {
-                        name           : e.name,
-                        description    : e.description,
-                        formatted_date : date.getFullYear()  + "-" + pad(date.getMonth()+1) + "-" + pad(date.getDate()),
-                        time           : date.toLocaleTimeString(),
-                        lat            : e.place.location.latitude,
-                        lon            : e.place.location.longitude,
-                        city           : e.place.location.city,
-                        address        : e.place.name,
-                        facebook_id    : e.id,
-                        initiative_id  : id,
-                    };
-                    fb_events.push(event);
-                    var element = '<li class="facebook-events__item">' +
-                      "<p class='facebook-events__item-name'>" + event.name + "</p>" +
-                      "<p class='facebook-events__item-date'>" + event.formatted_date +
-                      " a las " + event.time + "</p>" +
-                      "<p class='facebook-events__item-add' onclick='add_to_events(i)'>" +
-                      "<span class='icon-add'></span> Añádelo a civics.cc" +
-                      "</p></li>";
-                    $('.facebook-events__list').append(element);
-                //}
-            }
-            if(fb_events.length == 0){
-
-            }
-        });
-    });
+      FB.api('/me/events', function(response){
+          events = response.data;
+          $('.facebook-events__help').hide();
+          $.get('/api/events_fb_id', {}, function(response){
+              for(i in events){
+                  var e = events[i];
+                  if(response.indexOf(e.id) > -1 || response.length == 0){
+                      var date = new Date(e.start_time)
+                      var event = {
+                          name           : e.name,
+                          description    : e.description,
+                          formatted_date : date.getFullYear()  + "-" + pad(date.getMonth()+1) + "-" + pad(date.getDate()),
+                          time           : date.toLocaleTimeString(),
+                          lat            : e.place.location.latitude,
+                          lon            : e.place.location.longitude,
+                          city           : e.place.location.city,
+                          address        : e.place.name,
+                          facebook_id    : e.id,
+                          initiative_id  : id,
+                      };
+                      fb_events.push(event);
+                      console.log(fb_events);
+                      var element = '<li class="facebook-events__item" onclick="add_to_events(i)">' +
+                        "<p class='facebook-events__item-name'>" + event.name + "</p>" +
+                        "<p class='facebook-events__item-date'>Fecha: " + event.formatted_date +
+                        " a las " + event.time + "</p>" +
+                        "<p class='facebook-events__item-add'></li>";
+                      $('.facebook-events__list').append(element);
+                  }
+              }
+              if(fb_events.length == 0){
+                    $('.facebook-events__empty').show();
+              }
+          });
+      });
   }
