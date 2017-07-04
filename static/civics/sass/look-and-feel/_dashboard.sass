@@ -179,9 +179,7 @@
   margin-top: $m/2
   padding: $m/2
   &:hover
-    cursor: pointer
-    background: rgba(black, .25)
-    color: white
+    outline: 1px solid $color_text
 .facebook-events__item-name
   +h(5)
 .facebook-events__item-add
@@ -194,3 +192,14 @@
 .facebook-events__empty
   display: none
   font-size: 1.2em
+.facebook-events__select select
+  margin: $m/4 0
+  +appearance(none)
+  border-width: 0 0 1px 0
+  text-align: center
+  background: none
+.facebook-events__select+ span
+  +h(6)
+  text-transform: uppercase
+  &:hover
+    cursor: pointer

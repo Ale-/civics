@@ -452,6 +452,12 @@ def events_featured_service(request):
 
 @csrf_protect
 def create_event(request):
+    """
+    Create an event in database.
+    To be triggered by ajax calls from static/js/facebook.js
+
+    """
+
     if request.method == 'POST':
         if request.is_ajax:
             initiative_id = request.POST.get('initiative_id')
@@ -465,13 +471,21 @@ def create_event(request):
                 facebook_id = request.POST.get('facebook_id'),
                 initiative  = initiative,
                 address     = request.POST.get('address'),
+                topic       = initiative.topic,
+                agent       = initiative.agent,
                 city        = initiative.city,
+                category    = request.POST.get('category'),
             )
             return HttpResponse(e.id, content_type="application/json")
     else:
         return HttpResponse("Prohibido", content_type="application/json")
 
 def events_by_fb_id_service(request):
+    """
+    Get Facebook id's of events in database.
+
+    """
+
     events = Event.objects.filter(facebook_id__isnull=False)
     events_json = []
     for event in events:
