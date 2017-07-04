@@ -4,6 +4,7 @@ from apps.models.categories import *
 from django.utils.translation import ugettext_lazy as _
 from django.http import HttpResponse
 from django.db.models import Count
+from django.views.decorators.csrf import csrf_protect
 import json
 from django.utils.text import slugify
 from datetime import date
@@ -510,4 +511,32 @@ def events_featured_service(request):
             'cities' : event.city.name if event.city else 'none'
         })
 
+    return HttpResponse(json.dumps(events_json), content_type="application/json")
+
+@csrf_protect
+def create_event(request):
+    if request.method == 'POST':
+        if request.is_ajax:
+            initiative_id = request.POST.get('initiative_id')
+            initiative = Initiative.objects.filter(pk=initiative_id).first()
+            e = Event.objects.create(
+                title       = request.POST.get('name'),
+                description = request.POST.get('description'),
+                date        = request.POST.get('formatted_date'),
+                time        = request.POST.get('time'),
+                position    = json.loads('{ "type": "Point", "coordinates": [' + request.POST.get('lon') + ',' + request.POST.get('lat') +'] }'),
+                facebook_id = request.POST.get('facebook_id'),
+                initiative  = initiative,
+                address     = request.POST.get('address'),
+                city        = initiative.city,
+            )
+            return HttpResponse(e.id, content_type="application/json")
+    else:
+        return HttpResponse("Prohibido", content_type="application/json")
+
+def events_by_fb_id_service(request):
+    events = Event.objects.filter(facebook_id__isnull=False)
+    events_json = []
+    for event in events:
+        events_json.append(event.facebook_id)
     return HttpResponse(json.dumps(events_json), content_type="application/json")

@@ -79,6 +79,22 @@
                         </div>
                     {% endfor %}
                 {% endif %}
+                <div class="facebook-events">
+                    <h5 class="facebook-events__title">
+                        {% trans 'Importa eventos desde Facebook' %}
+                    </h5>
+                    <p class="facebook-events__help">
+                        {% blocktrans %}
+                        No estás conectado a Facebook. Si quieres importar eventos desde
+                        tu agenda de FB has de <a href="#" onclick="fb_login()">hacer login</a>
+                        {% endblocktrans %}
+                    </p>
+                    <ul class="facebook-events__list">
+                    </ul>
+                    <p class="facebook-events__empty">
+                        {% trans 'No hay eventos a publicar' %}
+                    </p>
+                </div>
             </div>
         </div>
     </div>
@@ -89,6 +105,21 @@
 
 {% block page_scripts %}
     {% leaflet_js %}
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src=" {% js 'facebook.js' %}"></script>
+    <script type="text/javascript">
+        window.fbAsyncInit = function() {
+            FB.init({
+                appId      : '322456914577117',
+                cookie     : true,  // enable cookies to allow the server to access the session
+                xfbml      : true,  // parse social plugins on this page
+                version    : 'v2.8' // use graph api version 2.8
+            });
+            FB.getLoginStatus(function(response) {
+                statusChangeCallback(response, {{initiative.id}});
+            });
+        };
+    </script>
     <script type="text/javascript">
         window.addEventListener("map:init", function (event)
         {

@@ -127,10 +127,11 @@ class Event(models.Model):
                                   help_text=_('¿A qué hora se celebra el evento?'))
   city         = models.ForeignKey(City, verbose_name=_('Ciudad'), blank=False, null=True, on_delete=models.SET_NULL,
                                      help_text=_('Ciudad donde se encuentra la iniciativa. Si no la encuentras en la lista puedes añadir una nueva.'))
-  address       = models.CharField(_('Dirección'), max_length = 200, blank=False, null=True,
+  address      = models.CharField(_('Dirección'), max_length = 200, blank=False, null=True,
                                    help_text=_('Dirección de la iniciativa. No es necesario que vuelvas a introducir la ciudad de la iniciativa.'))
   position     = PointField(_("Ubicación"), blank=False, null=True,
                             help_text=_("Añade la ubicación de la actividad. Si lo dejas en blanco se usará la ubicación de la iniciativa asociada."))
+  facebook_id  = models.PositiveIntegerField(blank=True, null=True)
 
   slug          = models.SlugField(editable=False, blank=True)
   creation_date = models.DateField(editable=False, default=timezone.now)
