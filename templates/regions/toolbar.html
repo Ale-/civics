@@ -44,21 +44,30 @@
                 </li>
             </ul>
         <ul class="user-actions">
-            <li class="user-actions__action user-actions__action--hello">
+            <li class="user-actions__hello">
                 {% if request.user.is_authenticated %}
                     {{ current_user_hello | safe }}
                 {% endif %}
             </li>
-            <li class="user-actions__action user-actions__action--admin">
+            <li class="user-actions__admin">
                 {% if request.user.is_staff %}
-                    <a href="{% url 'admin:index' %}">· {% trans 'Administra' %} ·</a>
+                    <a href="{% url 'admin:index' %}"
+                       title="{% trans 'Ve a la zona administrativa de Civics' %}">
+                        {% trans 'Administra' %}
+                    </a>
                 {% endif %}
             </li>
-            <li class="user-actions__action user-actions__action--login-logout">
+            <li class="user-actions__io">
                 {% if request.user.is_authenticated %}
-                    <a href="{% url 'auth_logout' %}">{% trans 'Logout' %}</a>
+                    <a href="{% url 'auth_logout' %}"
+                       title="{% trans 'Sal de la plataforma' %}">
+                        {% trans 'Logout' %}
+                    </a>
                 {% else %}
-                    <a href="{% url 'auth_login' %}">{% trans 'Login/Signin' %}</span></a>
+                    <a href="{% url 'auth_login' %}"
+                       title="{% trans 'Entra en la plataforma o regístrate en ella' %}">
+                        {% trans 'Login/Signin' %}
+                    </a>
                 {% endif %}
             </li>
         </ul>

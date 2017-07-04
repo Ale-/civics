@@ -11,12 +11,12 @@ def current_user_hello(request):
     current_user_hello = None
 
     if current_user.is_staff:
-        current_user_hello = _("Hola <a href='%(link)s'>%(name)s</a>") % { 'link' : reverse('users:dashboard') , 'name' : request.user.username }
+        current_user_hello = _("Hola <a class='username' title='Ve a tu perfil de usuari@' href='%(link)s'>%(name)s</a>") % { 'link' : reverse('users:dashboard') , 'name' : request.user.username }
     elif current_user.is_authenticated:
         current_user_initiative = Initiative.objects.filter(user=request.user).first()
         if current_user_initiative:
-            current_user_hello = _("Hola <a href='%(link)s'>%(name)s</a>") % { 'link' : reverse('users:dashboard') , 'name' : current_user_initiative.name }
+            current_user_hello = _("Hola <a class='username' title='Ve al perfil de tu iniciativa' href='%(link)s'>%(name)s</a>") % { 'link' : reverse('users:dashboard') , 'name' : current_user_initiative.name }
         else:
-            current_user_hello = _("Hola, <a href='%(link)s'>¿creaste tu iniciativa?</a>") % { 'link' : reverse('modelforms:create_initiative') }
+            current_user_hello = _("Hola %(name)s, <br/><a class='create-link' href='%(link)s'>¿creaste tu iniciativa?</a>") % { 'link' : reverse('modelforms:create_initiative'), 'name' : request.user.username }
 
     return { 'current_user_hello' : current_user_hello }

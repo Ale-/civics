@@ -1,3 +1,5 @@
+// User general actions (login, logout, profile) block
+
 .user-actions
   display: none
   text-align: center
@@ -12,18 +14,15 @@
 .main-menu.active + .user-actions
   display: block !important
 
-.user-actions__action
-  display: inline
-  vertical-align: middle
-  +breakpoint('sm')
-    margin-left: $m/2
+.user-actions
+  +links_toolbar
 
-.user-actions__action--hello,
-.user-actions__action--admin
+.user-actions__hello,
+.user-actions__admin
   text-transform: uppercase
-  +breakpoint('sm')
-    +links_toolbar
-
-.user-actions__action--login-logout
-  +links_social
+.user-actions__hello .create-link,
+.user-actions__admin
+  position: absolute
+  right: $m*4
+.user-actions__io
   font-weight: 700
