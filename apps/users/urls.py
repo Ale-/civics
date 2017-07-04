@@ -3,5 +3,6 @@ from apps.models.models import Initiative
 from . import views
 
 urlpatterns = [
-    url(r'^mi-perfil$', views.Dashboard.as_view(), name='dashboard'),
+    url(r'^mi-iniciativa$', views.Dashboard.as_view(), name='dashboard'),
+    url(r'^mi-perfil$', views.DashboardStaff.as_view(), name='dashboard_staff'),
 ]

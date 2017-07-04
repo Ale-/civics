@@ -1,28 +1,56 @@
 from django.shortcuts import render
 from django.views import View
-from apps.models.models import City, Initiative, Event
-from apps.models import categories
-from registration.views import ActivationView as BaseActivationView
-from registration.models import RegistrationProfile
-from registration import signals
 from django.contrib.sites.shortcuts import get_current_site
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
+
+from registration.views import ActivationView as BaseActivationView
+from registration.models import RegistrationProfile
+from registration import signals
+
+from apps.models.models import City, Initiative, Event
+from apps.models import categories
+
 
 class Dashboard(View):
+    """
+    Get initiative profile
 
+    """
+
+    @method_decorator(login_required)
     def get(self, request):
         initiative = Initiative.objects.filter(user=request.user).first()
         if initiative:
-            events     = Event.objects.filter(initiative=initiative).all()
+            events      = Event.objects.filter(initiative=initiative).all()
             return render(request, 'users/dashboard.html', locals())
-        else:
-            return HttpResponseRedirect( reverse('modelforms:create_initiative') )
+
+        return HttpResponseRedirect( reverse('modelforms:create_initiative') )
 
 
-# Custom activation view that redirects user to Create Initiative form
+class DashboardStaff(View):
+    """
+    Get user profile
+
+    """
+
+    @method_decorator(login_required)
+    def get(self, request):
+        initiatives = Initiative.objects.filter(user=request.user).all()
+        if initiatives:
+            events      = Event.objects.filter(initiative__in=initiatives).all()
+            return render(request, 'users/dashboard-staff.html', locals())
+
+        return HttpResponseRedirect( reverse('modelforms:create_initiative') )
+
 
 class ActivationView(BaseActivationView):
+    """
+    Custom activation view that redirects user to Create Initiative form
+
+    """
 
     registration_profile = RegistrationProfile
 

@@ -11,7 +11,7 @@ def current_user_hello(request):
     current_user_hello = None
 
     if current_user.is_staff:
-        current_user_hello = _("Hola <a class='username' title='Ve a tu perfil de usuari@' href='%(link)s'>%(name)s</a>") % { 'link' : reverse('users:dashboard') , 'name' : request.user.username }
+        current_user_hello = _("Hola <a class='username' title='Ve a tu perfil de usuari@' href='%(link)s'>%(name)s</a>") % { 'link' : reverse('users:dashboard_staff') , 'name' : request.user.username }
     elif current_user.is_authenticated:
         current_user_initiative = Initiative.objects.filter(user=request.user).first()
         if current_user_initiative:
