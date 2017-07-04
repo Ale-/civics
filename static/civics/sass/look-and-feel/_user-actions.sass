@@ -16,13 +16,17 @@
 
 .user-actions
   +links_toolbar
+  line-height: $m*1.5
+  +breakpoint('sm')
+    line-height: 20px
 
 .user-actions__hello,
 .user-actions__admin
   text-transform: uppercase
 .user-actions__hello .create-link,
 .user-actions__admin
-  position: absolute
-  right: $m*4
+  +breakpoint('sm')
+    position: absolute
+    right: $m*3
 .user-actions__io
   font-weight: 700
