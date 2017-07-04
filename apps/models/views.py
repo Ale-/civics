@@ -28,9 +28,13 @@ class InitiativeCreate(GenericCreate):
 
   def get_success_url(self):
       if self.request.user.is_staff:
-          return reverse_lazy('modelforms:create_initiative_staff')
+          return reverse_lazy('dashboard')
       else:
           return reverse_lazy('modelforms:welcome_initiative')
+
+  def form_valid(self, form):
+    form.instance.user = self.request.user
+    return super(InitiativeCreate, self).form_valid(form)
 
   def get_context_data(self, **kwargs):
     """Pass context data to generic view."""
