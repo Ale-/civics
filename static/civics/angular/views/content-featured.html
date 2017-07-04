@@ -20,6 +20,14 @@
             <div ng-hide="marker.img" class="grid__item-blank-image">
                 <span class="icon-agent"></span>
             </div>
+            <div class="grid__item-date" ng-if="content.section == 'events'">
+                <p class="grid__item-date-day">
+                    {{ marker.day }}
+                </p>
+                <p class="grid__item-date-month">
+                    {{ marker.month }}
+                </p>
+            </div>
             <div class="grid__item-caption">
               <p class="grid__item-name">{{ marker.nam }}</p>
               <p class="grid__item-city">{{ marker.cities }}</p>
@@ -39,6 +47,14 @@
             <img ng-show="marker.img" ng-src="{{ marker.img }}" />
             <div ng-hide="marker.img" class="grid__item-blank-image">
                 <span class="icon-agent"></span>
+            </div>
+            <div class="grid__item-date" ng-if="content.section == 'events'">
+                <p class="grid__item-date-day">
+                    {{ marker.day }}
+                </p>
+                <p class="grid__item-date-month">
+                    {{ marker.month }}
+                </p>
             </div>
             <div class="grid__item-caption">
               <p class="grid__item-name">{{ marker.nam }}</p>

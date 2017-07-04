@@ -117,6 +117,7 @@ def events_list_service(request):
                 'nam'        : event.title,
                 'id'         : event.pk,
                 'img'        : event.image_medium.url if event.image else None,
+                'i_img'      : event.initiative.image_medium.url if event.image else None,
                 'cities'     : cityname,
                 'topics'     : event.topic.lower(),
                 'activities' : event.category.lower(),
@@ -423,19 +424,25 @@ def initiatives_featured_service(request):
 def events_featured_service(request):
     events_json = {}
     events_json['featured'] = []
-    events_featured = Event.objects.filter(featured=True)[:3]
+    events_featured = Event.objects.filter(featured=True).order_by('-date')[:3]
     for event in events_featured:
         events_json['featured'].append({
             'nam'    : event.title,
             'id'     : event.id,
+            'img'    : event.image_medium.url if event.image else None,
+            'day'    : event.date.strftime('%d'),
+            'month'  : event.date.strftime('%b'),
             'cities' : event.city.name if event.city else 'none'
         })
     events_json['last'] = []
-    events_last = Event.objects.order_by('creation_date')[:3]
+    events_last = Event.objects.filter(date__gte=date.today()).order_by('date')[:3]
     for event in events_last:
         events_json['last'].append({
             'nam'    : event.title,
             'id'     : event.id,
+            'img'    : event.image_medium.url if event.image else None,
+            'day'    : event.date.strftime('%d'),
+            'month'  : event.date.strftime('%b'),
             'cities' : event.city.name if event.city else 'none'
         })
 
