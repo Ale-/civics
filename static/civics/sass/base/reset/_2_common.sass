@@ -34,12 +34,11 @@
 
 =links_toolbar
   a
-    &:link, &:visited, &:hover, &:active
-      color: $color_text
-      border-bottom: 2px solid white
-      +transition(border-color .15s ease)
+    color: #dc5099
+    font-weight: 700
+    +transition(color .1s ease)
     &:hover
-      border-bottom: 2px solid #ccc
+      color: darken(#dc5099, 20%)
 
 =links_social
   a

@@ -1,5 +1,6 @@
 from apps.models.models import Initiative
 from django.urls import reverse
+from django.utils.translation import ugettext_lazy as _
 
 # current_user_initiative_name_processor
 
@@ -10,13 +11,12 @@ def current_user_hello(request):
     current_user_hello = None
 
     if current_user.is_staff:
-        current_user_hello = "<a href='" + reverse('modelforms:create_initiative') + "'>Crea una iniciativa</a>"
+        current_user_hello = _("Hola <a href='%(link)s'>%(name)s</a>") % { 'link' : reverse('users:dashboard') , 'name' : request.user.username }
     elif current_user.is_authenticated:
         current_user_initiative = Initiative.objects.filter(user=request.user).first()
-        current_user_hello = "Hola, "
         if current_user_initiative:
-            current_user_hello += "<a href='" + reverse('users:dashboard') + "'>" + current_user_initiative.name + "</a>"
+            current_user_hello = _("Hola <a href='%(link)s'>%(name)s</a>") % { 'link' : reverse('users:dashboard') , 'name' : current_user_initiative.name }
         else:
-            current_user_hello = "Hola, <a href='" + reverse('modelforms:create_initiative') + "'>¿creaste tu iniciativa</a>?"
+            current_user_hello = _("Hola, <a href='%(link)s'>¿creaste tu iniciativa?</a>") % { 'link' : reverse('modelforms:create_initiative') }
 
     return { 'current_user_hello' : current_user_hello }
