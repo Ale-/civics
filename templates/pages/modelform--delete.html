@@ -5,7 +5,9 @@
     {% include 'pages/title.html' with title=title %}
     <form enctype="multipart/form-data" action="{{ action }}" method="post" class="form--{{ form__html_class }}">
         {% csrf_token %}
+        {{ question }}
         <input class="form__submit" type="submit" value="{{ submit_text }}" />
+        <span class="form__cancel" onclick="history.go(-1)">{{ cancel_text }}</span>
     </form>
 
 {% endblock %}

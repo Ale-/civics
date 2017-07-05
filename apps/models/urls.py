@@ -14,5 +14,5 @@ urlpatterns = [
 
     url(r'^crea/evento$', views.EventCreate.as_view(), name="create_event"),
     url(r'^edita/evento/(?P<pk>.+)$', views.EventEdit.as_view(), name="edit_event"),
-    url(r'^borra/evento(?P<pk>.+)$', views.EventDelete.as_view(), name="delete_event"),
+    url(r'^borra/evento/(?P<pk>.+)$', views.EventDelete.as_view(), name="delete_event"),
 ]

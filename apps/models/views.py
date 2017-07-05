@@ -91,6 +91,10 @@ class InitiativeDelete(GenericDelete):
     context['submit_text'] = _('¿Estás seguro de que quieres borrar esta iniciativa?')
     return context
 
+  def get_success_url(self):
+    if self.request.user.is_staff:
+      return reverse_lazy('users:dashboard_staff')
+    return reverse_lazy('users:dashboard')
 
 #
 #  Event
@@ -137,14 +141,15 @@ class EventEdit(GenericUpdate):
   dependencies     = ['leaflet']
 
   def form_valid(self, form):
-    user_initiative = Initiative.objects.filter(user=self.request.user).first()
-    form.instance.initiative = user_initiative
+    if not self.request.user.is_staff:
+      user_initiative = Initiative.objects.filter(user=self.request.user).first()
+      form.instance.initiative = user_initiative
     return super(EventEdit, self).form_valid(form)
 
   def get_success_url(self):
-    if Initiative.objects.filter(user = self.request.user).first():
-        return reverse_lazy('users:dashboard')
-    return ('/#!/eventos')
+    if self.request.user.is_staff:
+      return reverse_lazy('users:dashboard_staff')
+    return reverse_lazy('users:dashboard')
 
   def get_context_data(self, **kwargs):
     """Pass context data to generic view."""
@@ -163,7 +168,7 @@ class EventDelete(GenericDelete):
   title            = _('Borra el evento ')
   form__html_class = 'event'
   success_url      = reverse_lazy('front')
-  template_name    = modelform_generic_template
+  template_name    = modelform_delete_template
 
   def get_context_data(self, **kwargs):
     """Pass context data to generic view."""
@@ -172,4 +177,12 @@ class EventDelete(GenericDelete):
     event            = get_object_or_404(models.Event, pk=pk)
     context['title'] = self.title + (' ') + event.title
     context['form__html_class'] = self.form__html_class
+    context['question'] = _('¿Estás seguro de que quieres borrar este evento?')
+    context['submit_text'] = _('Sí, quiero borrar este evento')
+    context['cancel_text'] = _('No, no estoy seguro.')
     return context
+
+  def get_success_url(self):
+    if self.request.user.is_staff:
+      return reverse_lazy('users:dashboard_staff')
+    return reverse_lazy('users:dashboard')

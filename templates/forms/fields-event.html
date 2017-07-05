@@ -7,6 +7,9 @@
         <div class="fieldset__left--two-col">
             {% include 'forms/field.html' with field=form.title %}
             {% include 'forms/field.html' with field=form.description %}
+            {% if request.user.is_staff %}
+                {% include 'forms/field.html' with field=form.initiative %}
+            {% endif %}
         </div>
         <div class="fieldset__right--two-col">
             {% include 'forms/field.html' with field=form.image  %}
