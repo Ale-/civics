@@ -12,13 +12,14 @@
                 <div class="initiatives--dashboard__title">
                     <h2>{% trans 'Mis iniciativas' %}</h2>
                      <span class="initiatives--dashboard__count">({{ initiatives|length }})</span>
-                     <a class="initiatives--dashboard__create" href="{% url 'modelforms:create_event' %}">
+                     <a class="initiatives--dashboard__create" title="{% trans 'Crea una iniciativa' %}"
+                        href="{% url 'modelforms:create_initiative' %}">
                         <span class="icon-add"></span>
                      </a>
                 </div>
                 <div class="initiatives--dashboard__items">
                     {% for initiative in initiatives %}
-                    <a href="">
+                    <a href="{% url 'modelforms:edit_initiative' initiative.pk %}">
                         <div class="initiatives--dashboard__item">
                             <figure class="initiatives--dashboard__item-image">
                                 {% if initiative.image %}
