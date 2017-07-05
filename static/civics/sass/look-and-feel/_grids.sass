@@ -62,9 +62,12 @@
   margin-bottom: $m*2
   text-transform: uppercase
   font-size: .9em
+.initiatives-grid__pager.bottom
+  margin-top: $m*2
 
 .initiatives-grid__pager-link
-  margin-left: $m/2
+  &:first-child
+    margin-right: $m/2
   background-color: white
   +border-radius(4px)
   padding: 4px 8px
@@ -72,11 +75,18 @@
     cursor: pointer
 
 .initiatives-grid__pager-links
-  float: right
-  display: inline
+  +breakpoint('xs')
+    margin-top: $m
+    text-align: center
+  +breakpoint('sm')
+    float: right
+    display: inline
 
 .initiatives-grid__pager-info
-  display: inline
+  text-align: center
+  +breakpoint('sm')
+    display: inline
+
 
 .grid__item-date
   position: absolute

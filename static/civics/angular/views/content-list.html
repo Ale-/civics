@@ -47,6 +47,24 @@
               <p class="grid__item-city">{{ marker.cities }}</p>
             </div>
         </div>
+        <div class="initiatives-grid__pager bottom">
+            <p class="initiatives-grid__pager-info">
+                Mostrando {{ content.starting_index }}‒{{ content.starting_index + content.current_items }}
+                de {{ content.count }} elementos filtrados.
+            </p>
+            <p class="initiatives-grid__pager-links">
+                <span class="initiatives-grid__pager-link"
+                      ng-hide="content.starting_index == 0"
+                      ng-click="content.previousPage()">
+                    Ver página anterior
+                </span>
+                <span class="initiatives-grid__pager-link"
+                      ng-hide="content.current_items < content.items_per_page"
+                      ng-click="content.nextPage()">
+                    Ver página siguiente
+                </span>
+            </p>
+        </div>
     </div>
 </div>
 

@@ -35,7 +35,7 @@ angular.module('civics.list_controller', [])
      *  Pager setup and methods
      */
     this.starting_index = 0;
-    this.items_per_page = 50;
+    this.items_per_page = 48;
     this.starting_index = 0;
     this.ending_index   = this.items_per_page;
     this.current_items  = 0;
