@@ -47,7 +47,7 @@ class Initiative(models.Model):
   user          = models.ForeignKey(User, verbose_name=_('Gestor'), blank=True, null=True, on_delete=models.SET_NULL)
   image         = models.ImageField(_("Imagen"), blank=True, upload_to="images/initiatives/",
                                     help_text=_("Sube una imagen representativa de la iniciativa haciendo click en la imagen inferior."))
-  image_medium = ImageSpecField(source="image", processors=[ResizeToCover(600, 300)], format='JPEG', options={'quality': 90})
+  image_medium = ImageSpecField(source="image", processors=[ResizeToFill(600, 300)], format='JPEG', options={'quality': 90})
   video         = models.CharField(_('Video'), max_length=200, blank=True, null=True,
                                    help_text=_('Inserta la url de un video de Youtube o Vimeo'))
   description   = models.TextField(_('Descripción de la iniciativa'), blank=False, null=True,
@@ -109,7 +109,7 @@ class Event(models.Model):
                                   help_text=_('Describe el evento.'))
   image        = models.ImageField(_("Imagen"), blank=True, upload_to="images/initiatives/",
                                     help_text=_("Sube una imagen representativa del evento"))
-  image_medium = ImageSpecField(source="image", processors=[ResizeToCover(600, 300)], format='JPEG', options={'quality': 90})
+  image_medium = ImageSpecField(source="image", processors=[ResizeToFill(600, 300)], format='JPEG', options={'quality': 90})
   thumbnail    = ImageSpecField(source="image", processors=[ResizeToFill(100, 100)], format='JPEG', options={'quality': 90})
   video        = models.CharField(_('Video'), max_length=200, blank=True, null=True,
                                    help_text=_('Inserta la url de un video de Youtube o Vimeo'))

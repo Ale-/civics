@@ -17,9 +17,7 @@
              ng-repeat="marker in content.featured_items"
              ng-click="content.show(marker)">
             <img ng-show="marker.img" ng-src="{{ marker.img }}" />
-            <div ng-hide="marker.img" class="grid__item-blank-image">
-                <span class="icon-agent"></span>
-            </div>
+            <img ng-hide="marker.img" src="/static/civics/img/blank.png" />
             <div class="grid__item-date" ng-if="content.section == 'events'">
                 <p class="grid__item-date-day">
                     {{ marker.day }}
