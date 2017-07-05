@@ -54,9 +54,16 @@ def initiatives_list_service(request):
     initiatives = Initiative.objects.filter(city__in=cities).order_by('name')
 
     if len(initiatives) > 0:
-        initiatives_json = []
+        initiatives_json = {}
         for initiative in initiatives:
-            initiatives_json.append({
+            coords        = initiative.position['coordinates']
+            cityname      = initiative.city.name if initiative.city else 'none'
+            countryname   = initiative.city.get_country_display() if initiative.city else 'none'
+            if countryname not in initiatives_json:
+                initiatives_json[countryname] = {}
+            if cityname not in initiatives_json[countryname]:
+                initiatives_json[countryname][cityname] = []
+            initiatives_json[countryname][cityname].append({
                 'id'     : initiative.pk,
                 'nam'    : initiative.name,
                 'img'    : initiative.image_medium.url if initiative.image else None,
@@ -94,6 +101,7 @@ def events_service(request):
                 'id'    : event.id,
                 'lng'   : coords[0],
                 'lat'   : coords[1],
+                'dat'   : str(event.date),
                 'top'   : event.topic.lower(),
                 'act'   : event.category.lower(),
                 'age'   : event.agent.lower(),
@@ -108,14 +116,20 @@ def events_list_service(request):
     events     = Event.objects.all()
 
     if len(events) > 0:
-        events_json = []
+        events_json = {}
         for event in events:
-            coords        = event.position['coordinates']
             cityname      = event.city.name if event.city else 'none'
             countryname   = event.city.get_country_display() if event.city else 'none'
-            events_json.append({
+            if countryname not in events_json:
+                events_json[countryname] = {}
+            if cityname not in events_json[countryname]:
+                events_json[countryname][cityname] = []
+            events_json[countryname][cityname].append({
                 'nam'        : event.title,
                 'id'         : event.pk,
+                'dat'        : str(event.date),
+                'day'        : event.date.strftime('%d'),
+                'month'      : event.date.strftime('%b'),
                 'img'        : event.image_medium.url if event.image else None,
                 'i_img'      : event.initiative.image_medium.url if event.image else None,
                 'cities'     : cityname,

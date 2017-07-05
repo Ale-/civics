@@ -87,11 +87,13 @@
   background: none !important
   +h(5)
 
-.map-actions__search
+.map-actions__search,
+.time-filter,
   text-align: center
   +breakpoint('sm')
     float: right
-.map-actions__search-label
+.map-actions__search-label,
+.time-filter__label
   text-transform: uppercase
   +h(5)
   font-size: .75em
@@ -124,6 +126,19 @@
   &:hover
     color: black
     cursor: pointer
+
+.time-filter__widget
+  +appearance(none)
+  background: none
+  border-width: 0 0 1px 0
+  text-align: center
+  padding: 0 $m/2
+  option:empty
+    display: none
+  &:-moz-focusring
+    color: transparent
+  +text-shadow(0 0 0 white)
+
 
 .legend-help
   display: inline-block

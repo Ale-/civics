@@ -11,9 +11,9 @@
                 <div class="cities-wrapper">
                     <p class="category-country">{{ country }}</p>
                     <li class="map-filters__category category-city"
-                        ng-click="content.toggleFilter('cities', city, true, coords)"
+                        ng-click="console.log('eh'); content.toggleFilter('cities', city, true, coords)"
                         ng-repeat="(city,coords) in cities"
-                        ng-class="{ 'active' : content.active_categories['cities'][city] }">
+                        ng-class="{ 'active' : content.active_legend_items['cities'][city] }">
                         {{ city }}
                     </li>
                 </div>
@@ -29,7 +29,7 @@
             <li class="map-filters__category category-topic-{{key}}"
                 ng-repeat="(key,name) in content.topics"
                 ng-click="content.toggleFilter('topics', key)"
-                ng-class="{'active' : content.active_categories['topics'][key]}">
+                ng-class="{ 'active' : content.active_legend_items['topics'][key] }">
                 {{ name }}
             </li>
         </ul>
@@ -43,7 +43,7 @@
             <li class="map-filters__category category-space-{{key}}"
                 ng-repeat="(key,name) in content.spaces"
                 ng-click="content.toggleFilter('spaces', key)"
-                ng-class="{'active': content.active_categories['spaces'][key]}">
+                ng-class="{'active': content.active_legend_items['spaces'][key]}">
                 {{ name }}
             </li>
         </ul>
@@ -57,7 +57,7 @@
             <li class="map-filters__category category-activity-{{key}}"
                 ng-repeat="(key, name) in content.activities"
                 ng-click="content.toggleFilter('activities', key)"
-                ng-class="{'active': content.active_categories['activities'][key]}">
+                ng-class="{'active': content.active_legend_items['activities'][key]}">
                 {{ name }}
             </li>
         </ul>
@@ -71,7 +71,7 @@
             <li class="map-filters__category category-agent-{{key}}"
                 ng-repeat="(key,name) in content.agents"
                 ng-click="content.toggleFilter('agents', key)"
-                ng-class="{'active': content.active_categories['agents'][key]}">
+                ng-class="{'active': content.active_legend_items['agents'][key]}">
                 {{ name }}
             </li>
         </ul>

@@ -1,6 +1,6 @@
 angular.module('civics.map_controller', [])
 
-.controller("MapController", function($scope, Settings, Initiatives, Categories, leafletData, items, meta)
+.controller("MapController", function($scope, Settings, Initiatives, Categories, leafletData, items, meta, DateRanger)
 {
     /**
      *  Map setup
@@ -49,89 +49,108 @@ angular.module('civics.map_controller', [])
     this.activities = Categories.activities;
 
     if(this.section == 'initiatives')
-      categories = ['topics', 'spaces', 'agents' ]
+      categories = ['cities', 'topics', 'spaces', 'agents' ]
     else
-      categories = ['topics', 'activities', 'agents' ]
+      categories = ['cities', 'topics', 'activities', 'agents' ]
 
-    this.active_categories = { 'cities' : {} }
+    // Selected categories
+    this.selected_categories = {};
     for(i in categories)
-        this.active_categories[ categories[i] ] = {}
+        this.selected_categories[ categories[i] ] = []
 
-    this.active_filters = [];
+    // Selected category tabs
+    this.selected_tabs = [];
+
+    // Active elements in legend
+    this.active_legend_items = {};
+
+    // Needed to filter events by date ranges
+    this.time_scope = 'all';
 
     /**
      *  Reset categories to default inactive state
      */
-    this.resetCategories = function(){
-        for(var country in this.cities){
-            for(var i in this.cities[country]){
-                this.active_categories['cities'][ this.cities[country][i] ] = false;
+    this.resetLegend = function(){
+        for(var i in categories){
+            this.active_legend_items[categories[i]] = {};
+            for(var s in this[categories[i]]){
+                this.active_legend_items[categories[i]][s] = false;
             }
-        }
-        for(var cat in categories){
-            for(var val in this[cat])
-                this.active_categories[cat][val] = false;
         }
     }
 
     // Apply default state
-    this.resetCategories();
+    this.resetLegend();
 
     /**
      *  Filter markers by active categories
      */
     this.filterMarkers = function()
     {
-        this.count = meta.count;
-        var filters_length = this.active_filters.length;
+        var c = meta.count;
+        var filters_length = this.selected_tabs.length;
+        var today = new Date();
 
         for(city in items){
             var markers = items[city].Cluster._markers;
             if(filters_length > 0){
                 markers.forEach( angular.bind(this, function(marker){
-                    marker.filtered = false;
-                    for(var i = 0; i < filters_length; i++){
-                        var filter = this.active_filters[i];
-                        if(marker.data[filter.k] != filter.v){
-                            marker.filtered = true
-                            this.count--;
+                    for(var cat in this.selected_categories){
+                        // Every marker is visible by default in each category
+                        marker.filtered = false;
+                        // If marker category is not in active list filter it
+                        if(this.selected_categories[cat].length > 0 &&
+                           this.selected_categories[cat].indexOf(marker.data[cat]) == -1){
+                            marker.filtered = true;
+                            c--;
                             break;
                         }
+                    }
+                    // Filter by date ranges
+                    if(this.time_scope != 'all' && !DateRanger.check[this.time_scope](today, new Date(marker.dat))){
+                        marker.filtered = true;
+                        c--;
                     }
                 }));
             } else {
                 markers.forEach( angular.bind(this, function(marker){
                     marker.filtered = false;
+                    // Filter by date ranges
+                    if(this.time_scope != 'all' && !DateRanger.check[this.time_scope](today, new Date(marker.dat))){
+                        marker.filtered = true;
+                        c--;
+                    }
                 }));
+                for(var cat in this.selected_categories){
+                    this.selected_categories[cat] = [];
+                }
             }
+            this.count = c;
             items[city].ProcessView();
         }
     };
 
     /**
+     *   Time filters
+     */
+    $scope.$on('filter_by_date', angular.bind(this, function(event, args){
+        this.time_scope = args.query;
+        this.filterMarkers();
+    }));
+
+    /**
      *  Toggle a filter
      */
     this.toggleFilter = function(category, subcategory, city, coordinates){
-        var new_state = !this.active_categories[category][subcategory];
-        for(var s in this.active_categories[category]){
-            if(this.active_categories[category][s]){
-               this.active_categories[category][s] = false;
-               for(var i = 0; i < this.active_filters.length; i++ )
-                  if(this.active_filters[i].k == category && this.active_filters[i].v == s){
-                      this.active_filters.splice(i,1);
-                      break;
-                  }
-               break;
-             }
-        }
-        this.active_categories[category][subcategory] = new_state;
-        if(new_state)
-            this.active_filters.push({ 'k' : category, 'v': subcategory, 'n' : city ? subcategory : Categories[category][subcategory] });
-        else {
-            var index = this.active_filters.findIndex(function(filter){
-                return filter.v == subcategory;
-            });
-            this.active_filters.splice(index, 1);
+        var i = this.selected_categories[category].indexOf(subcategory);
+
+        this.active_legend_items[category][subcategory] = !this.active_legend_items[category][subcategory];
+        if(i == -1){
+            this.selected_categories[category].push(subcategory);
+            this.selected_tabs.push({ 'k' : category, 'v': subcategory, 'n' : city ? subcategory : Categories[category][subcategory] });
+        } else {
+            var i = this.selected_categories[category].indexOf(subcategory);
+            this.selected_categories[category].splice(i, 1);
         }
         this.filterMarkers();
         if(coordinates){
@@ -143,7 +162,10 @@ angular.module('civics.map_controller', [])
      *  Remove a filter
      */
     this.removeFilter = function(index){
-        this.active_filters.splice(index, 1);
+        var f = this.selected_tabs.splice(index, 1);
+        var i = this.selected_categories[f[0].k].indexOf(f[0].v);
+        this.selected_categories[f[0].k].splice(i, 1);
+        this.active_legend_items[f[0].k][f[0].v] = false;
         this.filterMarkers();
     }
 
@@ -151,8 +173,8 @@ angular.module('civics.map_controller', [])
      *  Remove all filters
      */
     this.removeFilters = function(){
-        this.active_filters = [];
-        this.resetCategories();
+        this.selected_tabs = [];
+        this.resetLegend();
         this.filterMarkers();
     }
 
@@ -167,23 +189,23 @@ angular.module('civics.map_controller', [])
             base_url = "api/events_xls?topics=";
 
         // Build url
-        for(var topic in this.active_categories.topics)
-            if( this.active_categories.topics[topic] )
+        for(var topic in this.selected_categories.topics)
+            if( this.selected_categories.topics[topic] )
               base_url += topic.toUpperCase() + ",";
         if(this.section == 'initiatives'){
             base_url += "&spaces=";
-            for(var space in this.active_categories.spaces)
-                if( this.active_categories.spaces[space] )
+            for(var space in this.selected_categories.spaces)
+                if( this.selected_categories.spaces[space] )
                   base_url += space.toUpperCase() + ",";
         } else {
           base_url += "&activities=";
-          for(var activity in this.active_categories.activities)
-              if( this.active_categories.activities[activity] )
+          for(var activity in this.selected_categories.activities)
+              if( this.selected_categories.activities[activity] )
                 base_url += activity.toUpperCase() + ",";
         }
         base_url += "&agents=";
-        for(var agent in this.active_categories.agent)
-            if( this.active_categories.agent[agent] )
+        for(var agent in this.selected_categories.agent)
+            if( this.selected_categories.agent[agent] )
               base_url += agent.toUpperCase() + ",";
 
         // Get items in new window

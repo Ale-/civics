@@ -1,0 +1,15 @@
+<!-- Widget to filter elements by date -->
+
+<div class="time-filter">
+    <select class="time-filter__widget" ng-model="timefilter.query" ng-change="timefilter.filter()">
+        <option value="all">Todas</option>
+        <option value="today">Hoy</option>
+        <option value="tomorrow">Mañana</option>
+        <option value="next_week">Próximos 7 días</option>
+        <option value="next_month">Próximos 30 días</option>
+        <option value="past">Pasadas</option>
+    </select>
+    <label class="time-filter__label">
+        Filtra por fecha
+    </label>
+</div>

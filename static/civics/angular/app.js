@@ -58,7 +58,7 @@ angular.module('civics', [
           controllerAs: 'content',
           resolve: {
                items: function(Lists) {
-                   return Lists.setup('/api/initiatives_list?city=all&topics=all&spaces=all&agents=all', 'initiatives')
+                   return Lists.setup('/api/initiatives_list', 'initiatives')
                }
           }
       })
@@ -88,7 +88,7 @@ angular.module('civics', [
           controllerAs: 'content',
           resolve: {
                items: function(Lists) {
-                   return Lists.setup('/api/events_list?city=all&topics=all&categories=all&agents=all', 'events')
+                   return Lists.setup('/api/events_list', 'events')
                }
           }
       })

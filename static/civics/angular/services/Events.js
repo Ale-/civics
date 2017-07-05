@@ -6,7 +6,7 @@ angular.module('civics.events_service', [])
         clusters : {},
 
         setup    : function(){
-            return $http.get('/api/events?city=all&topics=all&categories=all&agents=all').then(angular.bind(this, function(response){
+            return $http.get('/api/events').then(angular.bind(this, function(response){
                 this.clusters = {};
                 meta.count    = 0;
                 meta.showing  = 'events';

@@ -22,15 +22,16 @@
     </div>
     <ul class="filter-tags">
         <li class="filter-tags__tag"
-            ng-repeat="filter in content.active_filters"
+            ng-repeat="filter in content.selected_tabs"
             ng-click="content.removeFilter($index)">
             {{ filter.n }} <span class="filter-tags__close">×</span>
         </li>
         <li class="filter-tags__remove"
-            ng-show="content.active_filters.length > 0"
+            ng-show="content.selected_tabs.length > 0"
             ng-click="content.removeFilters()">
             Eliminar filtros
         </li>
     </ul>
-    <div search></div>
+    <div search ng-show="content.section == 'initiatives'"></div>
+    <div time-filter ng-show="content.section == 'events'"></div>
 </div>
