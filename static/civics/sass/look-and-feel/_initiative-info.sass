@@ -120,3 +120,12 @@
   border-bottom: 1px dotted $color_text
   padding-bottom: $m/3
   text-transform: uppercase
+
+.initiative-marker .leaflet-marker-icon.cm .outer::before
+  +text-shadow(none)
+
+.initiative-info--events .initiative-marker .leaflet-marker-icon.cm .inner
+  left: 30px !important
+  +big_icon
+  &::before
+    font-size: 2em
