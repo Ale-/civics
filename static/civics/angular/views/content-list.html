@@ -11,7 +11,7 @@
     <!-- Leaflet map -->
     <!-- Grid display of elements -->
     <div class="grid">
-        <div class="initiatives-grid__pager">
+        <div class="initiatives-grid__pager" ng-hide="content.markers.length == 0">
             <p class="initiatives-grid__pager-info">
                 Mostrando {{ content.starting_index }}‒{{ content.starting_index + content.current_items }}
                 de {{ content.count }} elementos filtrados.
@@ -28,6 +28,9 @@
                     Ver página siguiente
                 </span>
             </p>
+        </div>
+        <div class="grid__no-results" ng-if="content.markers.length == 0">
+            Parece que todavía no se han generado contenidos de este tipo.
         </div>
         <div class="grid__item"
              ng-repeat="marker in content.markers | filter: { filtered : false } | limitTo:content.current_items:content.starting_index"
@@ -47,7 +50,7 @@
               <p class="grid__item-city">{{ marker.cities }}</p>
             </div>
         </div>
-        <div class="initiatives-grid__pager bottom">
+        <div class="initiatives-grid__pager bottom" ng-hide="content.markers.length == 0">
             <p class="initiatives-grid__pager-info">
                 Mostrando {{ content.starting_index }}‒{{ content.starting_index + content.current_items }}
                 de {{ content.count }} elementos filtrados.

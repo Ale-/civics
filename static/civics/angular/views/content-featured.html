@@ -13,6 +13,9 @@
                 Actividades ciudadanas destacadas
             </span>
         </h5>
+        <div class="grid__no-results" ng-if="content.featured_items.length == 0">
+            Parece que todavía no se han generado contenidos de este tipo.
+        </div>
         <div class="grid__item"
              ng-repeat="marker in content.featured_items"
              ng-click="content.show(marker)">
@@ -39,6 +42,9 @@
                 Próximas actividades ciudadanas
             </span>
         </h5>
+        <div class="grid__no-results" ng-if="content.last_items.length == 0">
+            Parece que todavía no se han generado contenidos de este tipo.
+        </div>
         <div class="grid__item"
              ng-repeat="marker in content.last_items"
              ng-click="content.show(marker)">

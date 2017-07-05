@@ -62,13 +62,15 @@ angular.module('civics.categories_service', [])
     this.addInitiativeCity = function(country, city, coords){
         if(!this.city_initiatives[country])
             this.city_initiatives[country] = {}
-        this.city_initiatives[country][city] = coords;
+        if(!this.city_initiatives[country][city])
+            this.city_initiatives[country][city] = coords;
     }
 
     this.addEventCity = function(country, city, coords){
         if(!this.city_events[country])
             this.city_events[country] = {}
-        this.city_events[country][city] = coords;
+        if(!this.city_initiatives[country][city])
+            this.city_events[country][city] = coords;
     }
 
     return this;
