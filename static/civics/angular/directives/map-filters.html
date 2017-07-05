@@ -7,16 +7,20 @@
             <span class="map-filters__filter-name">Ciudad</span>
         </p>
         <ul class="map-filters__categories--{{content.section}}">
-            <div ng-repeat="(country,cities) in content.cities">
-                <div class="cities-wrapper">
-                    <p class="category-country">{{ country }}</p>
-                    <li class="map-filters__category category-city"
-                        ng-click="console.log('eh'); content.toggleFilter('cities', city, true, coords)"
-                        ng-repeat="(city,coords) in cities"
-                        ng-class="{ 'active' : content.active_legend_items['cities'][city] }">
-                        {{ city }}
-                    </li>
-                </div>
+            <div class="cities-wrapper"
+                 ng-repeat="(country,cities) in content.cities"
+                 ng-init="show_cities=false">
+                <p class="category-country"
+                   ng-mousedown="show_cities= !show_cities">
+                   {{ country }}
+                </p>
+                <li class="map-filters__category category-city"
+                    ng-click="content.toggleFilter('cities', city, true, coords)"
+                    ng-repeat="(city,coords) in cities"
+                    ng-class="{ 'active' : content.active_legend_items['cities'][city] }"
+                    ng-show="show_cities">
+                    {{ city }}
+                </li>
             </div>
         </ul>
     </li>
