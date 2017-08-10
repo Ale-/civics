@@ -25,11 +25,17 @@ body.about
 
 .civics-about__text
   font-size: 1.2em
+  strong
+    display: inline-block
+    margin-top: $m/2 !important
 
 .civics-about__ethic-code
   li
-    list-style: inherit
+    list-style: none
     margin-bottom: $m/4
+    padding-left: $m
+    &:before
+      content: "- "
 
 .civics-about__icons
   margin: $m*2 0
@@ -54,7 +60,9 @@ body.about
 
 .civics-about__credits
   margin-top: $m*2
+.civics-about__logos
   text-align: center
+  margin: $m/2 0 $m*2
 
 .civics-about__logo
   margin: $m/3
@@ -63,8 +71,15 @@ body.about
   margin-top: $m
 
 .civics-about__license-text
+  margin-top: $m*2
   +links_normal
 
 .civics-logo--about
   height: 75px
   margin-bottom: $m
+
+.civics-about__team
+  strong
+    display: inline-block
+    margin-bottom: $m/2
+    text-align: center
