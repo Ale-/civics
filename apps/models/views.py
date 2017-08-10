@@ -28,7 +28,7 @@ class InitiativeCreate(GenericCreate):
 
   def get_success_url(self):
       if self.request.user.is_staff:
-          return reverse_lazy('dashboard')
+          return reverse_lazy('users:dashboard_staff')
       else:
           return reverse_lazy('modelforms:welcome_initiative')
 
