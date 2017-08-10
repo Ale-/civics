@@ -1,6 +1,6 @@
 angular.module('civics.map_controller', [])
 
-.controller("MapController", function($scope, Settings, Initiatives, Categories, leafletData, items, meta, DateRanger)
+.controller("MapController", function($scope, Settings, Initiatives, Categories, leafletData, items, meta, DateRanger, XlsDownloader)
 {
     /**
      *  Map setup
@@ -181,36 +181,10 @@ angular.module('civics.map_controller', [])
     /**
      *   Download XLS with filtered initiatives
      */
-    this.download_xls = function()
-    {
-        // Check section and build base URL for the query
-        var base_url = "api/initiatives_xls?topics=";
-        if(this.section == 'events')
-            base_url = "api/events_xls?topics=";
+    this.download_xls = function(){
+        XlsDownloader.get(this.section, this.selected_categories);
+    }
 
-        // Build url
-        for(var topic in this.selected_categories.topics)
-            if( this.selected_categories.topics[topic] )
-              base_url += topic.toUpperCase() + ",";
-        if(this.section == 'initiatives'){
-            base_url += "&spaces=";
-            for(var space in this.selected_categories.spaces)
-                if( this.selected_categories.spaces[space] )
-                  base_url += space.toUpperCase() + ",";
-        } else {
-          base_url += "&activities=";
-          for(var activity in this.selected_categories.activities)
-              if( this.selected_categories.activities[activity] )
-                base_url += activity.toUpperCase() + ",";
-        }
-        base_url += "&agents=";
-        for(var agent in this.selected_categories.agent)
-            if( this.selected_categories.agent[agent] )
-              base_url += agent.toUpperCase() + ",";
-
-        // Get items in new window
-        window.open(base_url);
-    };
 
     /**
      *   Reset map view to initial state

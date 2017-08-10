@@ -3,7 +3,7 @@ angular.module('civics.list_controller', [])
 /**
  *   Controller for list displays
  */
-.controller("ListController", function(items, Categories, meta, $scope, $rootScope, $http, DateRanger)
+.controller("ListController", function(items, Categories, meta, $scope, $rootScope, $http, DateRanger, XlsDownloader)
 {
     /**
      *  Content setup
@@ -197,46 +197,18 @@ angular.module('civics.list_controller', [])
      *  Show popup of selected markers
      */
     this.show = function(marker){
-         var url = '/api/initiative?id=';
-         if(this.section == 'events')
-            url = '/api/event?id=';
-         $http.get(url + marker.id).then( angular.bind(this, function(response){
-             $rootScope.$broadcast('open-marker', response.data);
-         }));
+        var url = '/api/initiative?id=';
+        if(this.section == 'events')
+          url = '/api/event?id=';
+        $http.get(url + marker.id).then( angular.bind(this, function(response){
+          $rootScope.$broadcast('open-marker', response.data);
+        }));
     }
 
     /**
      *   Download XLS with filtered initiatives
      */
-    this.download_xls = function()
-    {
-        // Check section and build base URL for the query
-        var base_url = "api/initiatives_xls?topics=";
-        if(this.section == 'events')
-            base_url = "api/events_xls?topics=";
-
-        // Build url
-        for(var topic in this.selected_categories.topics)
-            if( this.selected_categories.topics[topic] )
-              base_url += topic.toUpperCase() + ",";
-        if(this.section == 'initiatives'){
-            base_url += "&spaces=";
-            for(var space in this.selected_categories.spaces)
-                if( this.selected_categories.spaces[space] )
-                  base_url += space.toUpperCase() + ",";
-        } else {
-          base_url += "&activities=";
-          for(var activity in this.selected_categories.activities)
-              if( this.selected_categories.activities[activity] )
-                base_url += activity.toUpperCase() + ",";
-        }
-        base_url += "&agents=";
-        for(var agent in this.selected_categories.agent)
-            if( this.selected_categories.agent[agent] )
-              base_url += agent.toUpperCase() + ",";
-
-        // Get items in new window
-        window.open(base_url);
-    };
-
+    this.download_xls = function(){
+        XlsDownloader.get(this.section, this.selected_categories);
+    }
 });
