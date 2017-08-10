@@ -2,9 +2,11 @@
 
 {% block region_content %}
     <div class="region-{{ region_name }}__left">
-        <a href="{% url 'front' %}">
-            <object class="civics-logo--toolbar" data="{% static 'civics/img/logo-civics.svg' %}"></object>
-        </a>
+        <figure class="civics-logo">
+            <a href="{% url 'front' %}" title="{% trans 'Ir a la pantalla de inicio' %}">
+                <img src="{% static 'civics/img/logo-civics.svg' %}" alt="Kiwi standing on oval" />
+            </a>
+        </figure>
     </div>
     <div class="region-{{ region_name }}__right">
             <div class="navigation-trigger" onclick="document.querySelector('.region-toolbar__right').classList.toggle('active')">

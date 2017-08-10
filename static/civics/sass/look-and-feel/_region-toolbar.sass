@@ -1,3 +1,15 @@
+// Toolbar region
+
+@import compass/css3/transition
+
 .region-toolbar
   background: white
   font-family: $font_text
+
+.civics-logo
+  +transition(opacity .5s ease)
+  img
+    height: 40px
+    width: auto
+  &:hover
+    opacity: .75
