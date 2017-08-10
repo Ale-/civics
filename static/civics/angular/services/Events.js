@@ -29,7 +29,9 @@ angular.module('civics.events_service', [])
                                                     "<i class='inner i-ac-" + data.activities + "'></i>",
                                 }));
                                 leafletMarker.on('click', function(e){
-                                    $http.get('/api/event?id=' + data.id).then( angular.bind(this, function(response){;
+                                    $http.get('/api/event?id=' + data.id, {
+                                        ignoreLoadingBar: true,
+                                    }).then( angular.bind(this, function(response){;
                                         $rootScope.$broadcast('open-marker', response.data);
                                     }));
                                 });

@@ -89,7 +89,9 @@ angular.module('civics.directives', [])
 
      this.query = function(){
         if(this.name.length > 3){
-            $http.get('/api/autocomplete?n=' + this.name).then( angular.bind(this, function(response){
+            $http.get('/api/autocomplete?n=' + this.name, {
+                ignoreLoadingBar: true,
+            }).then( angular.bind(this, function(response){
                 if(response.data.length > 0)
                     this.results = response.data;
             }));

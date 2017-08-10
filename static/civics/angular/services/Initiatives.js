@@ -28,7 +28,9 @@ angular.module('civics.initiatives_service', [])
                                                 "<i class='inner i-sp-" + data.spaces + "'></i>",
                             }));
                             leafletMarker.on('click', function(e){
-                                $http.get('/api/initiative?id=' + data.id).then( angular.bind(this, function(response){;
+                                $http.get('/api/initiative?id=' + data.id, {
+                                    ignoreLoadingBar: true,
+                                }).then( angular.bind(this, function(response){
                                     $rootScope.$broadcast('open-marker', response.data);
                                 }));
                             });
