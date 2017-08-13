@@ -1,4 +1,4 @@
 {% load i18n %}
 {% blocktrans %}
-Gracias por contactar con {{ site }}!
+Mensaje nuevo de contacto en civics.cc
 {% endblocktrans %}

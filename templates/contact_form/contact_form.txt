@@ -1,11 +1,9 @@
 {% load i18n %}
 
 {% blocktrans %}
-{{ name }}, Hemos recibido un mensaje de contacto en la plataforma CIVICS.CC. Te contestaremos
-con la mayor brevedad.
+Hay un nuevo mensaje de contacto en la plataforma CIVICS.CC.
 
-Mensaje:
-{{ body }}
+Mensaje de {{ name }} [{{email}}]:
+"{{ body }}"
 
-Gracias.
 {% endblocktrans %}
