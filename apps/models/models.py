@@ -9,6 +9,7 @@ from django.utils.text import slugify
 from imagekit.models import ImageSpecField
 from imagekit.processors import ResizeToFill, ResizeToCover
 from django_countries.fields import CountryField
+from django.core.mail import send_mail
 
 #
 #  City
@@ -86,6 +87,13 @@ class Initiative(models.Model):
   def save(self, *args, **kwargs):
     """Populate automatically 'slug' field"""
     self.slug = slugify(self.name)
+    # Notify by mail
+    send_mail( 'Se ha creado una iniciativa nueva en civics.cc: ' + self.name,
+        'El ' + str(self.creation_date) + ' se creó la iniciativa ' + self.name + '.',
+        'civics.cc <no-reply@civics.cc>',
+        ['civics.info@gmail.com'],
+        fail_silently=False,
+    );
     super(Initiative, self).save(*args, **kwargs)
 
   def edit_permissions(self, user):
@@ -147,6 +155,13 @@ class Event(models.Model):
   def save(self, *args, **kwargs):
     """Populate automatically 'slug' field"""
     self.slug = slugify(self.title)
+    # Notify by mail
+    send_mail( 'Se ha creado un evento nuevo en civics.cc: ' + self.title,
+        'El ' + str(self.creation_date) + ' se creó el evento ' + self.title + '.',
+        'civics.cc <no-reply@civics.cc>',
+        ['civics.info@gmail.com'],
+        fail_silently=False,
+    );
     super(Event, self).save(*args, **kwargs)
 
   def edit_permissions(self, user):
