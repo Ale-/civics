@@ -52,11 +52,14 @@
 
 .map-actions__actions
   +inline-block
+  +links_filters
   span
-    +transition(color .15s ease)
-    &:hover
-      cursor: pointer
-      color: #555
+    +transition(color .1s ease)
+  a
+    margin-right: $m/3
+
+.map-actions__action--download:hover
+  cursor: pointer
 
 [class^='map-actions__action']
   padding-right: $m/4

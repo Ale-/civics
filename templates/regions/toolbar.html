@@ -17,7 +17,9 @@
                     <a href="{% url 'about' %}">{% trans 'Acerca' %}</a>
                 </li>
                 <li class="main-menu__link main-menu__link--initiatives">
-                    <span>{% trans 'Iniciativas' %}</span>
+                    <a href="/#!/iniciativas">
+                        {% trans 'Iniciativas' %}
+                    </a>
                     <ul class="main-menu__submenu">
                         <li class="main-menu__submenu-link">
                             <a href="/#!/iniciativas">{% trans 'Mapa' %}</a>
@@ -31,7 +33,9 @@
                     </ul>
                 </li>
                 <li class="main-menu__link main-menu__link--events">
-                    <span>{% trans 'Agenda' %}</span>
+                    <a href="/#!/eventos">
+                        {% trans 'Agenda' %}
+                    </a>
                     <ul class="main-menu__submenu">
                         <li class="main-menu__submenu-link">
                             <a href="/#!/eventos">{% trans 'Mapa' %}</a>

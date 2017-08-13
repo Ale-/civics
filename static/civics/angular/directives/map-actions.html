@@ -12,7 +12,33 @@
         </div>
     </div>
     <div class="map-actions__actions">
-        <span ng-click="content.download_xls()" class="map-actions__action--download icon-download"></span>
+        <a href="/#!/iniciativas" title="Ver las iniciativas en formato mapa"
+           ng-if="content.section == 'initiatives' && content.format == 'list'">
+           <span class="icon-map"></span>
+        </a>
+        <a href="/#!/iniciativas-lista" title="Ver las iniciativas en formato lista"
+           ng-if="content.section == 'initiatives' && content.format == 'map'">
+           <span class="icon-list"></span>
+        </a>
+        <a href="/#!/iniciativas-destacadas" title="Ver las iniciativas destacadas"
+           ng-if="content.section == 'initiatives'">
+           <span class="icon-star"></span>
+        </a>
+        <a href="/#!/eventos" title="Ver los eventos en formato mapa"
+           ng-if="content.section == 'events' && content.format == 'list'">
+           <span class="icon-map"></span>
+        </a>
+        <a href="/#!/eventos-lista" title="Ver los eventos en formato lista"
+           ng-if="content.section == 'events' && content.format == 'map'">
+           <span class="icon-list"></span>
+        </a>
+        <a href="/#!/eventos-destacadas" title="Ver los eventos destacadas"
+           ng-if="content.section == 'events'">
+           <span class="icon-star"></span>
+        </a>
+        <a ng-click="content.download_xls()" class="map-actions__action--download icon-download"
+            title="Descargar la vista en XLS">
+        </a>
     </div>
     <div class="markers-count">
         <span class="markers-count__label">Mostrando </span>
