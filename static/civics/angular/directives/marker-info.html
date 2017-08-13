@@ -31,10 +31,10 @@
                 <i ng-if="content.section == 'initiatives'" class='inner i-sp-{{ info.marker.spaces }}'></i>
                 <i ng-if="content.section == 'events'" class='inner i-ac-{{ info.marker.activities }}'></i>
             </div>
-            <p class="initiative-marker__topic">- {{ info.marker.topicname }}</p>
-            <p class="initiative-marker__agent">- {{ info.marker.agentname }}</p>
-            <p ng-if="content.section=='initiatives'" class="initiative-marker__space">- {{ info.marker.spacename }}</p>
-            <p ng-if="content.section=='events'" class="initiative-marker__activity">- {{ info.marker.activitiesname }}</p>
+            <p class="initiative-marker__topic">{{ info.marker.topicname }}</p>
+            <p class="initiative-marker__agent">{{ info.marker.agentname }}</p>
+            <p ng-if="content.section=='initiatives'" class="initiative-marker__space">{{ info.marker.spacename }}</p>
+            <p ng-if="content.section=='events'" class="initiative-marker__activity">{{ info.marker.activitiesname }}</p>
         </div>
     </div>
 

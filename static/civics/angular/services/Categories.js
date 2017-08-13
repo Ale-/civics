@@ -19,13 +19,13 @@ angular.module('civics.categories_service', [])
     };
 
     this.spaces = {
-      'cc': 'Centro cultural/comunitario',
+      'cc': 'Centro cultural / comunitario',
       'ei': 'Efímero e itinerante',
       'it': 'Intercambio / Trueque',
       'di': 'Digital',
       'ea': 'Encuentros / Acciones',
       'ep': 'Escuelas populares',
-      'hu': 'Huerto urbano/rural',
+      'hu': 'Huerto urbano / rural',
       'iu': 'Intervenciones urbanas',
       'mc': 'Medios de comunicación comunitaria',
       'ms': 'Mercado social / Comercios',
