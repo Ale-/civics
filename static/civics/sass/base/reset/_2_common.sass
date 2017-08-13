@@ -21,6 +21,26 @@
 
 // Link style mixins
 
+=links_initiatives
+  a
+    +transition(color .1s ease)
+    &:link, &:visited
+      color: #DC5099
+    &:hover
+      color: lighten(#DC5099, 10%)
+    &:active
+      color: #DC5099
+
+=links_events
+  a
+    +transition(color .1s ease)
+    &:link, &:visited
+      color: #01BEB1
+    &:hover
+      color: lighten(#01BEB1, 10%)
+    &:active
+      color: #01BEB1
+
 =links_normal
   a
     +transition(color .1s ease)
