@@ -69,7 +69,7 @@ angular.module('civics.categories_service', [])
     this.addEventCity = function(country, city, coords){
         if(!this.city_events[country])
             this.city_events[country] = {}
-        if(!this.city_initiatives[country][city])
+        if(!this.city_events[country][city])
             this.city_events[country][city] = coords;
     }
 
