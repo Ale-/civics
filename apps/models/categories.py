@@ -21,7 +21,7 @@ TOPICS = (
 )
 
 SPACES = (
-    ('CC', _('Centro cultural/comunitario')),
+    ('CC', _('Centro cultural / comunitario')),
     ('EI', _('Efímero e itinerante')),
     ('IT', _('Intercambio / Trueque')),
     ('DI', _('Digital')),
