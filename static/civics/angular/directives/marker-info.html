@@ -62,13 +62,22 @@
             {{ info.marker.ini }}
         </p>
         <p class="initiative-info__detail--website" ng-show="info.marker.web">
-            <span class="icon-website"></span> <a href="{{ marker_website }}" target="_blank">{{ info.marker.web }}</a>
+            <span class="icon-website"></span> <a href="{{ info.marker.web }}" target="_blank">{{ info.marker.web }}</a>
+        </p>
+        <p class="initiative-info__detail--twitter" ng-show="info.marker.twi">
+            <span class="icon-twitter"></span> <a href="https://twitter.com/{{ info.marker.twi }}" target="_blank">{{ info.marker.twi }}</a>
+        </p>
+        <p class="initiative-info__detail--facebook" ng-show="info.marker.fac">
+            <span class="icon-facebook"></span> <a href="{{ info.marker.fac }}" target="_blank">{{ info.marker.fac }}</a>
         </p>
         <p class="initiative-info__detail--email" ng-show="info.marker.ema">
-            <span class="icon-email"></span> <a href="mailto:{{ info.marker.email }}" target="_blank">{{ info.marker.ema }}</a>
+            <span class="icon-email"></span> <a href="mailto:{{ info.marker.ema }}" target="_blank">{{ info.marker.ema }}</a>
         </p>
         <p class="initiative-info__detail--address" ng-show="info.marker.i_add">
             <span class="icon-address"></span> {{ info.marker.i_add }}
+        </p>
+        <p class="initiative-info__detail--address" ng-show="info.showing != 'events'">
+            <span class="icon-address"></span> {{ info.marker.add }} ({{ info.marker.cities }})
         </p>
     </div>
 </div>

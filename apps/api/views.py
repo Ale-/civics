@@ -19,7 +19,7 @@ no_results = _("No se han encontrado resultados que cumplan con todas las condic
 
 def initiatives_service(request):
     cities = City.objects.annotate(num_refs=Count('initiative')).filter(num_refs__gt=10)
-    initiatives = Initiative.objects.filter(city__in=cities)
+    initiatives = Initiative.objects.filter(city__in=cities)[:100]
 
     if len(initiatives) > 0:
         initiatives_json = {}
@@ -380,6 +380,8 @@ def initiative_service(request):
         'img' : initiative.image.url if initiative.image else None,
         'web' : initiative.website,
         'ema' : initiative.email,
+        'twi' : initiative.twitter,
+        'fac' : initiative.facebook,
         'cities' : cityname,
         'topics' : initiative.topic.lower(),
         'agents' : initiative.agent.lower(),
