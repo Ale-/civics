@@ -80,6 +80,9 @@
   background-color: darken($palette_primary, 15%)
 .events--dashboard__title
   background-color: darken($palette_secondary, 15%)
+.events-map--dashboard__title
+  background-color: #ccc
+  margin-right: $m/2
 
 [class$='--dashboard__create']
   float: right
@@ -158,11 +161,19 @@
 
 #dashboard_map
   +box-shadow(0 0 5px rgba(black,.1))
-  margin: 0 $m/2
   max-width: 100%
-  min-height: calc(100vh - 240px)
+  min-height: calc(100vh - 290px)
+  margin-right: $m/2
   .leaflet-tile
     +filter( grayscale(100%) !important)
+  .leaflet-popup-content-wrapper
+    +border-radius(0)
+    h5
+      margin-bottom: $m/4
+    p
+      text-align: right
+      text-transform: uppercase
+      font-weight: bold
 
 [class^='single-initiative--dashboard__']
   padding: $m/2

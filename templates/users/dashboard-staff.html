@@ -95,6 +95,9 @@
         </div>
     </div>
     <div class="dashboard-right">
+        <div class="events-map--dashboard__title">
+            <h2>{% trans 'Mapa de iniciativas' %}</h2>
+        </div>
         {% leaflet_map "dashboard_map" %}
     </div>
 {% endblock %}
@@ -108,6 +111,8 @@
             //Center map in initiative
             map.setView([0, -26], 3);
             {% for initiative in initiatives %}
+                var popup = "<h5>{{ initiative.name }}</h5>" +
+                            "<p><a href={% url 'modelforms:edit_initiative' initiative.pk %}>Editar</a></p>";
                 L.marker([ {{ initiative.position.coordinates.1 | unlocalize }}, {{  initiative.position.coordinates.0 | unlocalize }} ], {
                     icon : L.divIcon({
                         'type' : 'div',
@@ -115,13 +120,12 @@
                         'iconAnchor'  : [20, 60],
                         'popupAnchor' : [0, -30],
                         'className'   : 'cm',
-                        'message'     : "{{ initiative.name }}",
                         'html'        : "<div class='initiative-marker'>" +
                                             "<i class='outer i-to-{{ initiative.topic|lower}} i-ag-{{ initiative.agent|lower }}'></i>" +
                                             "<i class='inner i-sp-{{ initiative.space|lower }}'></i>" +
                                          "</div>",
                     }),
-                }).addTo(map);
+                }).bindPopup(popup).addTo(map);
             {% endfor %}
         });
     </script>
