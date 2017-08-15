@@ -69,7 +69,7 @@ class InitiativeEdit(GenericUpdate):
     initiative                  = get_object_or_404(models.Initiative, pk=pk)
     context['title']            = self.title + (' ') + initiative.name
     context['form__html_class'] = self.form__html_class
-    context['submit_text'] = _('Edita esta iniciativa')
+    context['submit_text'] = _('Guarda los cambios')
     return context
 
 class InitiativeDelete(GenericDelete):
@@ -140,7 +140,7 @@ class EventEdit(GenericUpdate):
   form_class = forms.EventForm
   template_name = modelform_generic_template
   form__html_class = 'event'
-  title = _('Edita la información del evento ')
+  title = _('Guarda los cambios')
   dependencies     = ['leaflet']
 
   def form_valid(self, form):
