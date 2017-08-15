@@ -69,4 +69,6 @@ class EventForm(forms.ModelForm):
         self.base_fields['date'].widget.attrs['placeholder'] = _("Usa el formato dd/mm/aaaa, por ejemplo '05/06/2017'")
         self.base_fields['time'].widget.attrs['placeholder'] = _("Usa el formato hh:mm, por ejemplo '09:00'")
         self.base_fields['video'].widget.attrs['placeholder'] = _("Por ejemplo 'https://vimeo.com/45130145'")
+        self.base_fields['initiative'].queryset = models.Initiative.objects.order_by('name')
+        self.base_fields['initiative'].empty_label = None
         super(EventForm, self).__init__(*args, **kwargs)
