@@ -38,7 +38,7 @@ class DashboardStaff(View):
 
     @method_decorator(login_required)
     def get(self, request):
-        initiatives = Initiative.objects.filter(user=request.user).all()
+        initiatives = Initiative.objects.filter(user=request.user).order_by('name')
         if initiatives:
             events      = Event.objects.filter(initiative__in=initiatives).all()
             return render(request, 'users/dashboard-staff.html', locals())
