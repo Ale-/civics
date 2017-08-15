@@ -56,3 +56,11 @@ AGENTS = (
     ('JA', _('Juntas / Asociaciones de vecinos')),
     ('CC', _('Conquistas ciudadanas del pasado'))
 )
+
+PERIODICITY = (
+    ('DI', _('Diaria')),
+    ('SE', _('Semanal')),
+    ('QU', _('Quincenal')),
+    ('ME', _('Mensual')),
+    ('AN', _('Anual')),
+)

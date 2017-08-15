@@ -133,6 +133,8 @@ class Event(models.Model):
                                   help_text=_('¿Qué día se celebra el evento?'))
   time         = models.TimeField(_('Hora del evento'),
                                   help_text=_('¿A qué hora se celebra el evento?'))
+  periodicity  = models.CharField(_('Periodicidad'), max_length=2, choices=categories.PERIODICITY, blank=True, null=True,
+                                  help_text=_('Especifica, en ese caso, la periodicidad del evento.'))
   city         = models.ForeignKey(City, verbose_name=_('Ciudad'), blank=False, null=True, on_delete=models.SET_NULL,
                                      help_text=_('Ciudad donde se encuentra la iniciativa. Si no la encuentras en la lista puedes añadir una nueva.'))
   address      = models.CharField(_('Dirección'), max_length = 200, blank=False, null=True,
