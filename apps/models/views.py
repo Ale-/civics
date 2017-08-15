@@ -89,6 +89,7 @@ class InitiativeDelete(GenericDelete):
     context['title'] = self.title + (' ') + initiative.name
     context['form__html_class'] = self.form__html_class
     context['submit_text'] = _('¿Estás seguro de que quieres borrar esta iniciativa?')
+    context['cancel_text'] = _('No, no estoy seguro.')
     return context
 
   def get_success_url(self):
