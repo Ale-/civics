@@ -5,6 +5,7 @@ angular.module('civics.list_controller', [])
  */
 .controller("ListController", function(items, Categories, meta, $scope, $rootScope, $http, DateRanger, XlsDownloader)
 {
+
     /**
      *  Content setup
      */
@@ -77,7 +78,7 @@ angular.module('civics.list_controller', [])
     if(this.section == 'initiatives')
       categories = ['cities', 'topics', 'spaces', 'agents' ]
     else
-      categories = ['cities', 'topics', 'activities', 'agents' ]
+      categories = ['cit', 'top', 'act', 'age' ]
 
     // Selected categories
     this.selected_categories = {};
@@ -118,11 +119,13 @@ angular.module('civics.list_controller', [])
             items.forEach( angular.bind(this, function(marker){
                 // Filter by category
                 for(var cat in this.selected_categories){
+                    // We use shorter indices in the API/markers to lighten API calls
+                    var m_cat = cat.substring(0, 3);
                     // Every marker is visible by default in each category
                     marker.filtered = false;
                     // If marker category is not in active list filter it
                     if(this.selected_categories[cat].length > 0 &&
-                       this.selected_categories[cat].indexOf(marker[cat]) == -1){
+                       this.selected_categories[cat].indexOf(marker[m_cat]) == -1){
                         marker.filtered = true;
                         c--;
                         break;

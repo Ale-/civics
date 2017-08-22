@@ -19,7 +19,7 @@ no_results = _("No se han encontrado resultados que cumplan con todas las condic
 
 def initiatives_service(request):
     cities = City.objects.annotate(num_refs=Count('initiative')).filter(num_refs__gt=10)
-    initiatives = Initiative.objects.filter(city__in=cities)[:100]
+    initiatives = Initiative.objects.filter(city__in=cities)[:1000]
 
     if len(initiatives) > 0:
         initiatives_json = {}
@@ -39,6 +39,8 @@ def initiatives_service(request):
                 'id'  : initiative_json.pk,
                 'lng' : coords[0],
                 'lat' : coords[1],
+                'img' : initiative_json.image_medium.url if initiative_json.image else None,
+                'cit' : initiative_json.city.name if initiative_json.city else 'none',
                 'top' : initiative_json.topic.lower(),
                 'age' : initiative_json.agent.lower(),
                 'spa' : initiative_json.space.lower(),
@@ -47,37 +49,6 @@ def initiatives_service(request):
         return HttpResponse(json.dumps(initiatives_json), content_type="application/json")
 
     return HttpResponse(no_results)
-
-
-def initiatives_list_service(request):
-    cities = City.objects.annotate(num_refs=Count('initiative')).filter(num_refs__gt=10)
-    initiatives = Initiative.objects.filter(city__in=cities).order_by('name')
-
-    if len(initiatives) > 0:
-        initiatives_json = {}
-        for initiative in initiatives:
-            coords        = initiative.position['coordinates']
-            cityname      = initiative.city.name if initiative.city else 'none'
-            countryname   = initiative.city.get_country_display() if initiative.city else 'none'
-            if countryname not in initiatives_json:
-                initiatives_json[countryname] = {}
-            if cityname not in initiatives_json[countryname]:
-                initiatives_json[countryname][cityname] = []
-            initiatives_json[countryname][cityname].append({
-                'id'     : initiative.pk,
-                'nam'    : initiative.name,
-                'img'    : initiative.image_medium.url if initiative.image else None,
-                'cou'    : initiative.city.get_country_display() if initiative.city else 'none',
-                'cities' : initiative.city.name if initiative.city else 'none',
-                'topics' : initiative.topic.lower(),
-                'agents' : initiative.agent.lower(),
-                'spaces' : initiative.space.lower(),
-            })
-
-        return HttpResponse(json.dumps(initiatives_json), content_type="application/json")
-
-    return HttpResponse(no_results)
-
 
 def events_service(request):
     cities     = City.objects.annotate(num_refs=Count('initiative')).filter(num_refs__gt=0)
@@ -105,37 +76,6 @@ def events_service(request):
                 'top'   : event.topic.lower(),
                 'act'   : event.category.lower(),
                 'age'   : event.agent.lower(),
-            })
-
-        return HttpResponse(json.dumps(events_json), content_type="application/json")
-
-    return HttpResponse(no_results)
-
-def events_list_service(request):
-    cities     = City.objects.annotate(num_refs=Count('initiative')).filter(num_refs__gt=10)
-    events     = Event.objects.all()
-
-    if len(events) > 0:
-        events_json = {}
-        for event in events:
-            cityname      = event.city.name if event.city else 'none'
-            countryname   = event.city.get_country_display() if event.city else 'none'
-            if countryname not in events_json:
-                events_json[countryname] = {}
-            if cityname not in events_json[countryname]:
-                events_json[countryname][cityname] = []
-            events_json[countryname][cityname].append({
-                'nam'        : event.title,
-                'id'         : event.pk,
-                'dat'        : str(event.date),
-                'day'        : event.date.strftime('%d'),
-                'month'      : event.date.strftime('%b'),
-                'img'        : event.image_medium.url if event.image else None,
-                'i_img'      : event.initiative.image_medium.url if event.image else None,
-                'cities'     : cityname,
-                'topics'     : event.topic.lower(),
-                'activities' : event.category.lower(),
-                'agents'     : event.agent.lower(),
             })
 
         return HttpResponse(json.dumps(events_json), content_type="application/json")

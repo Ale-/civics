@@ -3,7 +3,7 @@ angular.module('civics.featured_controller', [])
 /**
  *   Controller for list displays
  */
-.controller("FeaturedController", function(items, $http, $rootScope, meta)
+.controller("FeaturedController", function(items, $http, $rootScope, meta, $window)
 {
     /**
      *  Section state
@@ -20,6 +20,13 @@ angular.module('civics.featured_controller', [])
         links[2].classList.add('active')
     // Close responsive menu popup if open
     document.querySelector('.region-toolbar__right').classList.remove('active')
+
+    /**
+     *  Breadcrumb
+     */
+    this.goBack = function(){
+        $window.history.back();
+    }
 
     /**
      *  Show popup of selected markers

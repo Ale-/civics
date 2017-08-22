@@ -1,6 +1,6 @@
 angular.module('civics.map_controller', [])
 
-.controller("MapController", function($scope, Settings, Initiatives, Categories, leafletData, items, meta, DateRanger, XlsDownloader)
+.controller("MapController", function($scope, Settings, Initiatives, Categories, leafletData, items, meta, DateRanger, XlsDownloader, $route)
 {
     /**
      *  Map setup
@@ -129,6 +129,8 @@ angular.module('civics.map_controller', [])
             items[city].ProcessView();
         }
     };
+
+    this.filterMarkers();
 
     /**
      *   Time filters
