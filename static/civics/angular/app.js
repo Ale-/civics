@@ -15,9 +15,8 @@ angular.module('civics', [
     'civics.settings',
     'civics.categories_service',
     'civics.initiatives_service',
-    'civics.list_service',
-    'civics.featured_service',
     'civics.events_service',
+    'civics.featured_service',
     'civics.xls_downloader',
     'civics.map_controller',
     'civics.list_controller',
@@ -49,7 +48,7 @@ angular.module('civics', [
           controllerAs: 'content',
           resolve: {
                items: function(Initiatives) {
-                   return Initiatives.setup()
+                   return Initiatives.setup('map');
                }
           }
       })
@@ -58,8 +57,8 @@ angular.module('civics', [
           controller  : 'ListController',
           controllerAs: 'content',
           resolve: {
-               items: function(Lists) {
-                   return Lists.setup('/api/initiatives_list', 'initiatives')
+               items: function(Initiatives) {
+                   return Initiatives.setup('list');
                }
           }
       })
@@ -68,8 +67,8 @@ angular.module('civics', [
           controller  : 'FeaturedController',
           controllerAs: 'content',
           resolve: {
-               items: function(Lists) {
-                   return Lists.setup('/api/initiatives_featured', 'initiatives')
+               items: function(Featured) {
+                   return Featured.setup('/api/initiatives_featured', 'initiatives')
                }
           }
       })
@@ -79,7 +78,7 @@ angular.module('civics', [
           controllerAs: 'content',
           resolve: {
               items: function(Events) {
-                  return Events.setup();
+                  return Events.setup('map');
               }
           }
       })
@@ -88,8 +87,8 @@ angular.module('civics', [
           controller  : 'ListController',
           controllerAs: 'content',
           resolve: {
-               items: function(Lists) {
-                   return Lists.setup('/api/events_list', 'events')
+               items: function(Events) {
+                   return Events.setup('list')
                }
           }
       })
@@ -98,8 +97,8 @@ angular.module('civics', [
           controller  : 'FeaturedController',
           controllerAs: 'content',
           resolve: {
-               items: function(Lists) {
-                   return Lists.setup('/api/events_featured', 'events')
+               items: function(Featured) {
+                   return Featured.setup('/api/events_featured', 'events')
                }
           }
       })
