@@ -14,7 +14,9 @@ angular.module('civics.featured_service', [])
                     } else {
                         for(var country in response.data){
                             for(var city in response.data[country]){
-                                items.push(...response.data[country][city]);
+                                for(i in response.data[country][city]){
+                                    items.push(response.data[country][city][i]);
+                                }
                                 if(section == 'initiatives')
                                     Categories.addInitiativeCity(country, city, 0);
                                 else

@@ -3,7 +3,7 @@ angular.module('civics.initiatives_service', [])
 .factory('Initiatives', function($http, Settings, Categories, $rootScope, $q, meta)
 {
     return {
-      
+
         // Cached data of initiatives
         data : {},
 
@@ -22,7 +22,9 @@ angular.module('civics.initiatives_service', [])
             var items = [];
             for(var country in this.data){
                 for(var city in this.data[country]){
-                    items.push(...this.data[country][city]['items']);
+                    for(i in this.data[country][city]['items']){
+                        items.push(this.data[country][city]['items'][i]);
+                    }
                 }
             }
             meta.count = items.length;

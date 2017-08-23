@@ -28,11 +28,15 @@ angular.module('civics.map_controller', [])
     this.format  = 'map';
     // Set active links in Django menu
     var links = document.querySelectorAll('.main-menu__link');
-    links.forEach( function(link){ link.classList.remove('active') })
+    for(var i=0; i < links.length; ++i){
+        links[i].classList.remove('active');
+    }
+
     if(this.section == 'initiatives')
         links[1].classList.add('active')
     else
       links[2].classList.add('active')
+
     // Close responsive menu popup if open
     document.querySelector('.region-toolbar__right').classList.remove('active')
 
