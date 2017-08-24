@@ -10,6 +10,12 @@ from imagekit.models import ImageSpecField
 from imagekit.processors import ResizeToFill, ResizeToCover
 from django_countries.fields import CountryField
 from django.core.mail import send_mail
+from django.conf import settings
+
+if settings.DEBUG:
+    notification_email_to = 'ale <ale@wwb.cc>'
+else:
+    notification_email_to = 'ale <a@414c45.net>'
 
 #
 #  City
@@ -88,17 +94,20 @@ class Initiative(models.Model):
     """Populate automatically 'slug' field"""
     self.slug = slugify(self.name)
     # Notify by mail
-    send_mail( 'Se ha creado una iniciativa nueva en civics.cc: ' + self.name,
-        'El ' + str(self.creation_date) + ' se creó la iniciativa ' + self.name + '.',
+    send_mail( 'Se ha creado una iniciativa nueva en civics.cc: ' + str(self.name),
+        'El ' + str(self.creation_date) + ' se creó la iniciativa ' + str(self.name) + '.',
         'civics.cc <no-reply@civics.cc>',
-        ['civics.info@gmail.com'],
+        [notification_email_to],
         fail_silently=False,
     );
     super(Initiative, self).save(*args, **kwargs)
 
   def edit_permissions(self, user):
     """Returns users allowed to edit an instance of this model."""
-    return self.user == user or user.is_staff
+    if user.is_staff or (self.user and self.user == user):
+      return True
+    return False
+
 
 #
 #  Event
@@ -158,15 +167,16 @@ class Event(models.Model):
     """Populate automatically 'slug' field"""
     self.slug = slugify(self.title)
     # Notify by mail
-    send_mail( 'Se ha creado un evento nuevo en civics.cc: ' + self.title,
-        'El ' + str(self.creation_date) + ' se creó el evento ' + self.title + '.',
+    send_mail( 'Se ha creado un evento nuevo en civics.cc: ' + str(self.title),
+        'El ' + str(self.creation_date) + ' se creó el evento ' + str(self.title) + '.',
         'civics.cc <no-reply@civics.cc>',
-        ['civics.info@gmail.com'],
+        [ notification_email_to ],
         fail_silently=False,
     );
     super(Event, self).save(*args, **kwargs)
 
   def edit_permissions(self, user):
     """Returns users allowed to edit an instance of this model."""
-    initiative_user = self.initiative.user
-    return initiative_user == user or user.is_staff
+    if user.is_staff or (self.initiative and self.initiative.user and self.initiative.user == user):
+        return True
+    return False

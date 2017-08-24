@@ -7,6 +7,7 @@ from django.shortcuts import get_object_or_404
 from .models import Initiative
 from django.http import HttpResponseRedirect
 from django.core.exceptions import PermissionDenied
+from django.contrib.auth.mixins import UserPassesTestMixin
 
 # Model related views
 
