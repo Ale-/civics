@@ -68,11 +68,12 @@ class GenericDelete(LoginRequiredMixin, DeleteView):
     messages.success(self.request, _('Contenido borrado con éxito'))
     return super(DeleteView, self).form_valid(form)
 
-  def get_initial(self):
-    super(GenericUpdate, self).get_initial()
-    if not self.object.edit_permissions(self.request.user):
+  def get_object(self, queryset=None):
+    """ Check permissions. Don't use get_initial cause it's not inherited by DeleteView"""
+    obj = super(GenericDelete, self).get_object()
+    if not obj.edit_permissions(self.request.user):
       raise PermissionDenied
-    return self.initial
+    return obj
 
 
 class PopupFormView(LoginRequiredMixin, FormView):
