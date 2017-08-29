@@ -35,7 +35,7 @@ class City(models.Model):
 
   def __str__(self):
     """String representation of this model objects."""
-    return self.name
+    return self.name or '---'
 
 
 #
@@ -88,7 +88,7 @@ class Initiative(models.Model):
 
   def __str__(self):
     """String representation of this model objects."""
-    return self.name
+    return self.name or '---'
 
   def save(self, *args, **kwargs):
     """Populate automatically 'slug' field"""
@@ -161,7 +161,7 @@ class Event(models.Model):
 
   def __str__(self):
     """String representation of this model objects."""
-    return self.title
+    return self.title or '---'
 
   def save(self, *args, **kwargs):
     """Populate automatically 'slug' field"""

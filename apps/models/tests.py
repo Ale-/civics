@@ -36,7 +36,7 @@ class CityTest(TestCase):
 
     def test_node_creation(self):
         """ Test instance creation """
-        node = mommy.make("models.City", position ="POINT (0.0 0.0)")
+        node = mommy.make("models.City", name="test", position ="POINT (0.0 0.0)")
         self.assertTrue(isinstance(node, models.City))
         # Check string representation
         self.assertEqual(node.__str__(), node.name)
@@ -47,7 +47,7 @@ class InitiativeTest(TestCase):
 
     def test_node_creation(self):
         """ Test instance creation """
-        node = mommy.make("models.Initiative", position ="POINT (0.0 0.0)")
+        node = mommy.make("models.Initiative", name="test", position ="POINT (0.0 0.0)")
         self.assertTrue(isinstance(node, models.Initiative))
         # Check string representation
         self.assertEqual(node.__str__(), node.name)
@@ -96,7 +96,7 @@ class EventTest(TestCase):
 
     def test_node_creation(self):
         """ Test instance creation """
-        node = mommy.make("models.Event", position ="POINT (0.0 0.0)")
+        node = mommy.make("models.Event", title="test", position ="POINT (0.0 0.0)")
         self.assertTrue(isinstance(node, models.Event))
         # Check string representation
         self.assertEqual(node.__str__(), node.title)
