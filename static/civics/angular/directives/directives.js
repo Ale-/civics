@@ -1,3 +1,11 @@
+/**
+ *  Get this script path to use relative paths for templates and avoid breaking
+ *  the site because of the changes i18n introduces in paths (language prefixes)
+ *  @see https://stackoverflow.com/questions/21103724/angular-directive-templateurl-relative-to-js-file
+ */
+var scripts = document.getElementsByTagName("script")
+var path    = scripts[scripts.length-1].src;  //last script is the one being evaluated
+
 angular.module('civics.directives', [])
 
 /**
@@ -6,7 +14,8 @@ angular.module('civics.directives', [])
 .directive('social', function(){
     return {
       restrict: 'A',
-      templateUrl: 'static/civics/angular/directives/social_widget.html'
+      templateUrl: path.replace('directives.js', 'social_widget.html')
+      //templateUrl: 'static/civics/angular/directives/social_widget.html'
     }
 })
 
@@ -18,7 +27,8 @@ angular.module('civics.directives', [])
         restrict: 'A',
         controller: 'MarkerinfoController',
         controllerAs: 'info',
-        templateUrl: 'static/civics/angular/directives/marker-info.html',
+        templateUrl: path.replace('directives.js', 'marker-info.html'),
+        //templateUrl: 'static/civics/angular/directives/marker-info.html',
         replace: true
     }
 })
@@ -45,7 +55,8 @@ angular.module('civics.directives', [])
     return {
         restrict: 'A',
         replace: true,
-        templateUrl: 'static/civics/angular/directives/map-actions.html'
+        templateUrl: path.replace('directives.js', 'map-actions.html'),
+        //templateUrl: 'static/civics/angular/directives/map-actions.html'
     }
 })
 
@@ -67,7 +78,8 @@ angular.module('civics.directives', [])
     return {
         restrict: 'A',
         replace: true,
-        templateUrl: 'static/civics/angular/directives/map-filters.html'
+        templateUrl: path.replace('directives.js', 'map-filters.html'),
+        //templateUrl: 'static/civics/angular/directives/map-filters.html'
     }
 })
 
@@ -80,7 +92,8 @@ angular.module('civics.directives', [])
         replace: true,
         controller: 'SearchController',
         controllerAs: 'search',
-        templateUrl: 'static/civics/angular/directives/search.html'
+        templateUrl: path.replace('directives.js', 'search.html'),
+        //templateUrl: 'static/civics/angular/directives/search.html'
     }
 })
 
@@ -121,7 +134,8 @@ angular.module('civics.directives', [])
         replace: true,
         controller: 'TimefilterController',
         controllerAs: 'timefilter',
-        templateUrl: 'static/civics/angular/directives/time-filter.html'
+        templateUrl: path.replace('directives.js', 'time-filter.html'),
+        //templateUrl: 'static/civics/angular/directives/time-filter.html'
     }
 })
 

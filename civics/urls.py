@@ -1,15 +1,23 @@
+# Import django apps
 from django.conf.urls import url, include
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.views.generic.base import TemplateView
 from django.contrib.auth import views as auth_views
+from django.conf.urls.i18n import i18n_patterns
+# Import contrib apps
 from registration.forms import RegistrationFormUniqueEmail
 from registration.backends.default.views import RegistrationView
+# Import custom apps
 from apps.users.views import ActivationView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^i18n/', include('django.conf.urls.i18n')),
+]
+
+urlpatterns += i18n_patterns(
     url(r'^$', TemplateView.as_view(template_name='pages/front.html'), name="front"),
     url(r'^', include('apps.models.urls', namespace='modelforms')),
 
@@ -29,7 +37,7 @@ urlpatterns = [
 
     # Contact form
     url(r'^contacta/', include('contact_form.urls')),
-]
+)
 
 if settings.DEBUG == True:
   urlpatterns += static( settings.STATIC_URL, document_root = settings.STATIC_ROOT )

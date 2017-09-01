@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-07-03 14:05+0000\n"
+"POT-Creation-Date: 2017-09-01 09:12+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,18 +17,2106 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-#: forms.py:23
+
+#: apps/api/views.py:18
+msgid ""
+"No se han encontrado resultados que cumplan con todas las condiciones de "
+"filtrado."
+msgstr ""
+
+#: apps/models/categories.py:8
+msgid "Desarrollo comunitario"
+msgstr ""
+
+#: apps/models/categories.py:9
+msgid "Arte urbano"
+msgstr ""
+
+#: apps/models/categories.py:10
+msgid "Cultura libre"
+msgstr ""
+
+#: apps/models/categories.py:11
+msgid "Deporte / Salud / Cuidados"
+msgstr ""
+
+#: apps/models/categories.py:12
+msgid "Igualdad / Derechos / Memoria"
+msgstr ""
+
+#: apps/models/categories.py:13
+msgid "Ecología / Consumo"
+msgstr ""
+
+#: apps/models/categories.py:14
+msgid "Otras economías"
+msgstr ""
+
+#: apps/models/categories.py:15
+msgid "Educación expandida"
+msgstr ""
+
+#: apps/models/categories.py:16
+msgid "Ciencia / Tecnología"
+msgstr ""
+
+#: apps/models/categories.py:17
+msgid "Movilidad sostenible"
+msgstr ""
+
+#: apps/models/categories.py:18
+msgid "Política y gobernanza"
+msgstr ""
+
+#: apps/models/categories.py:19
+msgid "Urbanismo / Patrimonio"
+msgstr ""
+
+#: apps/models/categories.py:20
+msgid "Periodismo comunitario"
+msgstr ""
+
+#: apps/models/categories.py:24
+msgid "Centro cultural / comunitario"
+msgstr ""
+
+#: apps/models/categories.py:25
+msgid "Efímero e itinerante"
+msgstr ""
+
+#: apps/models/categories.py:26
+msgid "Intercambio / Trueque"
+msgstr ""
+
+#: apps/models/categories.py:27 apps/models/categories.py:41
+msgid "Digital"
+msgstr ""
+
+#: apps/models/categories.py:28
+msgid "Encuentros / Acciones"
+msgstr ""
+
+#: apps/models/categories.py:29
+msgid "Escuelas populares"
+msgstr ""
+
+#: apps/models/categories.py:30
+msgid "Huerto urbano/rural"
+msgstr ""
+
+#: apps/models/categories.py:31
+msgid "Intervenciones urbanas"
+msgstr ""
+
+#: apps/models/categories.py:32
+msgid "Medios de comunicación comunitaria"
+msgstr ""
+
+#: apps/models/categories.py:33
+msgid "Mercado social / Comercios"
+msgstr ""
+
+#: apps/models/categories.py:34
+msgid "Solares / Espacios recuperados"
+msgstr ""
+
+#: apps/models/categories.py:35
+msgid "Labs / Colaborativos / Maker"
+msgstr ""
+
+#: apps/models/categories.py:39
+msgid "Audiovisual"
+msgstr ""
+
+#: apps/models/categories.py:40
+msgid "Curso / Convocatoria"
+msgstr ""
+
+#: apps/models/categories.py:42
+msgid "Encuentro"
+msgstr ""
+
+#: apps/models/categories.py:43
+msgid "Evento"
+msgstr ""
+
+#: apps/models/categories.py:44
+msgid "Exposicion"
+msgstr ""
+
+#: apps/models/categories.py:45
+msgid "Fiesta / Concierto"
+msgstr ""
+
+#: apps/models/categories.py:46
+msgid "Publicación"
+msgstr ""
+
+#: apps/models/categories.py:47
+msgid "Taller"
+msgstr ""
+
+#: apps/models/categories.py:51
+msgid "Iniciativas municipales / Gobierno"
+msgstr ""
+
+#: apps/models/categories.py:52
+msgid "Universidades / ONG / Fundaciones"
+msgstr ""
+
+#: apps/models/categories.py:53
+msgid "Organismos internacionales"
+msgstr ""
+
+#: apps/models/categories.py:54
+msgid "Empresa social / Startup"
+msgstr ""
+
+#: apps/models/categories.py:55
+msgid "Iniciativa ciudadana"
+msgstr ""
+
+#: apps/models/categories.py:56
+msgid "Juntas / Asociaciones de vecinos"
+msgstr ""
+
+#: apps/models/categories.py:57
+msgid "Conquistas ciudadanas del pasado"
+msgstr ""
+
+#: apps/models/categories.py:61
+msgid "Diaria"
+msgstr ""
+
+#: apps/models/categories.py:62
+msgid "Semanal"
+msgstr ""
+
+#: apps/models/categories.py:63
+msgid "Quincenal"
+msgstr ""
+
+#: apps/models/categories.py:64
+msgid "Mensual"
+msgstr ""
+
+#: apps/models/categories.py:65
+msgid "Anual"
+msgstr ""
+
+#: apps/models/forms.py:29
+msgid ""
+"Ciudad donde se encuentra la iniciativa. Si no encuentras la ciudad en el "
+"desplegable usa el botón inferior para añadirla."
+msgstr ""
+
+#: apps/models/forms.py:31 apps/models/forms.py:55
+msgid "Añade una ciudad"
+msgstr ""
+
+#: apps/models/forms.py:44 apps/models/forms.py:71
+msgid "Por ejemplo 'https://vimeo.com/45130145'"
+msgstr ""
+
+#: apps/models/forms.py:53
+msgid ""
+"Ciudad donde se celebra el evento. Si no encuentras la ciudad en el "
+"desplegable usa el botón inferior para añadirla."
+msgstr ""
+
+#: apps/models/forms.py:69
+msgid "Usa el formato dd/mm/aaaa, por ejemplo '05/06/2017'"
+msgstr ""
+
+#: apps/models/forms.py:70
+msgid "Usa el formato hh:mm, por ejemplo '09:00'"
+msgstr ""
+
+#: apps/models/models.py:27
+msgid "Nombre de la ciudad"
+msgstr ""
+
+#: apps/models/models.py:28
+msgid "Especifica el nombre de la ciudad."
+msgstr ""
+
+#: apps/models/models.py:29
+msgid "País"
+msgstr ""
+
+#: apps/models/models.py:29
+msgid "¿A qué país pertenece la ciudad?"
+msgstr ""
+
+#: apps/models/models.py:30 apps/models/models.py:82 apps/models/models.py:151
+msgid "Ubicación"
+msgstr ""
+
+#: apps/models/models.py:30
+msgid "Añade la ubicación de la ciudad."
+msgstr ""
+
+#: apps/models/models.py:33 apps/models/models.py:76 apps/models/models.py:147
+msgid "Ciudad"
+msgstr ""
+
+#: apps/models/models.py:34
+msgid "Ciudades"
+msgstr ""
+
+#: apps/models/models.py:48
+msgid "Nombre de la iniciativa"
+msgstr ""
+
+#: apps/models/models.py:49
+msgid "¿Cuál es el nombre de tu iniciativa?"
+msgstr ""
+
+#: apps/models/models.py:52 apps/models/models.py:123
+msgid "Destacado"
+msgstr ""
+
+#: apps/models/models.py:53
+msgid "Indica si es una iniciativa destacada"
+msgstr ""
+
+#: apps/models/models.py:54
+msgid "Gestor"
+msgstr ""
+
+#: apps/models/models.py:55 apps/models/models.py:127
+msgid "Imagen"
+msgstr ""
+
+#: apps/models/models.py:56
+msgid ""
+"Sube una imagen representativa de la iniciativa haciendo click en la imagen "
+"inferior."
+msgstr ""
+
+#: apps/models/models.py:58 apps/models/models.py:131
+msgid "Video"
+msgstr ""
+
+#: apps/models/models.py:59 apps/models/models.py:132
+msgid "Inserta la url de un video de Youtube o Vimeo"
+msgstr ""
+
+#: apps/models/models.py:60
+msgid "Descripción de la iniciativa"
+msgstr ""
+
+#: apps/models/models.py:61
+msgid "Describe los objetivos y actividad de la iniciativa."
+msgstr ""
+
+#: apps/models/models.py:62
+msgid "Website"
+msgstr ""
+
+#: apps/models/models.py:63
+msgid "Especifica opcionalmente una web para conocer mejor la iniciativa."
+msgstr ""
+
+#: apps/models/models.py:64 templates/users/dashboard.html:39
+msgid "Twitter"
+msgstr ""
+
+#: apps/models/models.py:65
+msgid "Si tienes una cuenta de Twitter, pon aquí el nombre de usuario."
+msgstr ""
+
+#: apps/models/models.py:66 templates/users/dashboard.html:33
+msgid "Facebook"
+msgstr ""
+
+#: apps/models/models.py:67
+msgid "Si tienes un perfil de Facebook pon aquí el enlace completo a la misma."
+msgstr ""
+
+#: apps/models/models.py:68
+msgid "Correo electrónico"
+msgstr ""
+
+#: apps/models/models.py:69
+msgid "Especifica un correo de contacto para la iniciativa."
+msgstr ""
+
+#: apps/models/models.py:70
+msgid "Tema"
+msgstr ""
+
+#: apps/models/models.py:71
+msgid "El tema de la iniciativa"
+msgstr ""
+
+#: apps/models/models.py:72
+msgid "Tipo de espacio"
+msgstr ""
+
+#: apps/models/models.py:73
+msgid "El tipo de espacio asociado a la iniciativa"
+msgstr ""
+
+#: apps/models/models.py:74 apps/models/models.py:139
+msgid "tipo de agente"
+msgstr ""
+
+#: apps/models/models.py:75
+msgid "El tipo de agente involucrado en la iniciativa"
+msgstr ""
+
+#: apps/models/models.py:77
+msgid ""
+"Ciudad donde se encuentra la iniciativa. Si no encuentras la ciudad en el "
+"desplegable usa el botón inferior para añadir una nueva ciudad y "
+"seleccionarla"
+msgstr ""
+
+#: apps/models/models.py:78 apps/models/models.py:149
+msgid "Dirección"
+msgstr ""
+
+#: apps/models/models.py:79 apps/models/models.py:150
+msgid ""
+"Dirección de la iniciativa. No es necesario que vuelvas a introducir la "
+"ciudad de la iniciativa."
+msgstr ""
+
+#: apps/models/models.py:80
+msgid "Distrito"
+msgstr ""
+
+#: apps/models/models.py:81
+msgid "¿En qué barrio de la ciudad se sitúa la iniciativa?"
+msgstr ""
+
+#: apps/models/models.py:83
+msgid ""
+"Tras añadir ciudad y dirección puedes ubicar la iniciativa pulsando el botón "
+"inferior y ajustando la posición del marcador posteriormente."
+msgstr ""
+
+#: apps/models/models.py:86
+msgid "Iniciativa"
+msgstr ""
+
+#: apps/models/models.py:87 templates/regions/toolbar.html:21
+msgid "Iniciativas"
+msgstr ""
+
+#: apps/models/models.py:119
+msgid "Iniciativa que organiza la actividad"
+msgstr ""
+
+#: apps/models/models.py:120
+msgid "¿Qué iniciativa organiza el evento?"
+msgstr ""
+
+#: apps/models/models.py:121
+msgid "Título del evento"
+msgstr ""
+
+#: apps/models/models.py:122
+msgid "¿Cuál es el título del evento que quieres organiza?"
+msgstr ""
+
+#: apps/models/models.py:124
+msgid "Indica si es un evento destacado"
+msgstr ""
+
+#: apps/models/models.py:125
+msgid "Describe el evento"
+msgstr ""
+
+#: apps/models/models.py:126
+msgid "Describe el evento."
+msgstr ""
+
+#: apps/models/models.py:128
+msgid "Sube una imagen representativa del evento"
+msgstr ""
+
+#: apps/models/models.py:133
+msgid "Enlace"
+msgstr ""
+
+#: apps/models/models.py:134
+msgid "Especifica opcionalmente un enlace para conocer mejor el evento."
+msgstr ""
+
+#: apps/models/models.py:135
+msgid "Temática del evento"
+msgstr ""
+
+#: apps/models/models.py:136
+msgid "El tema de la actividad"
+msgstr ""
+
+#: apps/models/models.py:137
+msgid "Tipo de actividad"
+msgstr ""
+
+#: apps/models/models.py:138
+msgid "El tipo de actividad que quieres organizar"
+msgstr ""
+
+#: apps/models/models.py:140
+msgid "El tipo de agente involucrado en la actividad"
+msgstr ""
+
+#: apps/models/models.py:141
+msgid "Fecha del evento"
+msgstr ""
+
+#: apps/models/models.py:142
+msgid "¿Qué día se celebra el evento?"
+msgstr ""
+
+#: apps/models/models.py:143
+msgid "Hora del evento"
+msgstr ""
+
+#: apps/models/models.py:144
+msgid "¿A qué hora se celebra el evento?"
+msgstr ""
+
+#: apps/models/models.py:145
+msgid "Periodicidad"
+msgstr ""
+
+#: apps/models/models.py:146
+msgid "Especifica, en ese caso, la periodicidad del evento."
+msgstr ""
+
+#: apps/models/models.py:148
+msgid ""
+"Ciudad donde se encuentra la iniciativa. Si no la encuentras en la lista "
+"puedes añadir una nueva."
+msgstr ""
+
+#: apps/models/models.py:152
+msgid ""
+"Añade la ubicación de la actividad. Si lo dejas en blanco se usará la "
+"ubicación de la iniciativa asociada."
+msgstr ""
+
+#: apps/models/models.py:159
+msgid "Actividad"
+msgstr ""
+
+#: apps/models/models.py:160
+msgid "Actividades"
+msgstr ""
+
+#: apps/models/views.py:28 templates/users/dashboard-staff.html:15
+msgid "Crea una iniciativa"
+msgstr ""
+
+#: apps/models/views.py:44
+msgid "Crea la iniciativa"
+msgstr ""
+
+#: apps/models/views.py:54
+msgid "Edita la información de la iniciativa "
+msgstr ""
+
+#: apps/models/views.py:73 apps/models/views.py:144
+msgid "Guarda los cambios"
+msgstr ""
+
+#: apps/models/views.py:82
+msgid "Borra la iniciativa "
+msgstr ""
+
+#: apps/models/views.py:92
+msgid "¿Estás seguro de que quieres borrar esta iniciativa?"
+msgstr ""
+
+#: apps/models/views.py:93 apps/models/views.py:186
+msgid "No, no estoy seguro."
+msgstr ""
+
+#: apps/models/views.py:112
+msgid "Crea un evento "
+msgstr ""
+
+#: apps/models/views.py:125
+msgid "Publica este evento"
+msgstr ""
+
+#: apps/models/views.py:165
+msgid "Edita este evento"
+msgstr ""
+
+#: apps/models/views.py:172
+msgid "Borra el evento "
+msgstr ""
+
+#: apps/models/views.py:184
+msgid "¿Estás seguro de que quieres borrar este evento?"
+msgstr ""
+
+#: apps/models/views.py:185
+msgid "Sí, quiero borrar este evento"
+msgstr ""
+
+#: apps/users/context_processors.py:14
+#, python-format
+msgid ""
+"Hola <a class='username' title='Ve a tu perfil de usuari@' href='%(link)s'>"
+"%(name)s <span class='icon-agent'></span></a>"
+msgstr ""
+
+#: apps/users/context_processors.py:18
+#, python-format
+msgid ""
+"Hola <a class='username' title='Ve al perfil de tu iniciativa' "
+"href='%(link)s'>%(name)s <span class='icon-agent'></span></a>"
+msgstr ""
+
+#: apps/users/context_processors.py:20
+#, python-format
+msgid ""
+"Hola %(name)s, <br/><a class='create-link' href='%(link)s'>¿creaste tu "
+"iniciativa?</a>"
+msgstr ""
+
+#: apps/utils/templates/fake-breadcrumb.html:5
+msgid "Volver a la página anterior"
+msgstr ""
+
+#: apps/utils/templates/limited-choices-select.html:5
+msgid "Todas las opciones"
+msgstr ""
+
+#: apps/utils/templates/limited-textarea-widget.html:6
+msgid "Has escrito"
+msgstr ""
+
+#: apps/utils/templates/limited-textarea-widget.html:6
+msgid "caracteres. Tienes un límite de "
+msgstr ""
+
+#: apps/utils/templates/share.html:4
+msgid "Comparte"
+msgstr ""
+
+#: apps/utils/views.py:28
+msgid "Contenido creado con éxito"
+msgstr ""
+
+#: apps/utils/views.py:46
+msgid "Contenido editado con éxito"
+msgstr ""
+
+#: apps/utils/views.py:68
+msgid "Contenido borrado con éxito"
+msgstr ""
+
+#: civics/settings.py:37
+msgid ""
+"Aquí podrás encontrar iniciativas ciudadanas existentes en tu ciudad, etc."
+msgstr ""
+
+#: civics/settings.py:128
+msgid "Español"
+msgstr ""
+
+#: civics/settings.py:129
+msgid "Portugués"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/contact_form/forms.py:23
 msgid "Your name"
-msgstr "Tu nombre"
+msgstr ""
 
-#: forms.py:25
+#: env/lib/python3.5/site-packages/contact_form/forms.py:25
 msgid "Your email address"
-msgstr "Tu correo electrónico"
+msgstr ""
 
-#: forms.py:27
+#: env/lib/python3.5/site-packages/contact_form/forms.py:27
 msgid "Your message"
-msgstr "Tu mensaje"
+msgstr ""
 
-#: forms.py:142
+#: env/lib/python3.5/site-packages/contact_form/forms.py:142
 msgid "Your message was classified as spam."
-msgstr "Parece que tu mensaje ha sido clasificado como spam."
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/contrib/messages/apps.py:7
+msgid "Messages"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/contrib/sitemaps/apps.py:7
+msgid "Site Maps"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/contrib/staticfiles/apps.py:7
+msgid "Static Files"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/contrib/syndication/apps.py:7
+msgid "Syndication"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/core/validators.py:33
+msgid "Enter a valid value."
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/core/validators.py:106
+#: env/lib/python3.5/site-packages/django/forms/fields.py:663
+msgid "Enter a valid URL."
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/core/validators.py:159
+msgid "Enter a valid integer."
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/core/validators.py:170
+msgid "Enter a valid email address."
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/core/validators.py:243
+msgid ""
+"Enter a valid 'slug' consisting of letters, numbers, underscores or hyphens."
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/core/validators.py:250
+msgid ""
+"Enter a valid 'slug' consisting of Unicode letters, numbers, underscores, or "
+"hyphens."
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/core/validators.py:255
+#: env/lib/python3.5/site-packages/django/core/validators.py:274
+msgid "Enter a valid IPv4 address."
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/core/validators.py:260
+#: env/lib/python3.5/site-packages/django/core/validators.py:275
+msgid "Enter a valid IPv6 address."
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/core/validators.py:270
+#: env/lib/python3.5/site-packages/django/core/validators.py:273
+msgid "Enter a valid IPv4 or IPv6 address."
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/core/validators.py:305
+#: env/lib/python3.5/site-packages/django/db/models/fields/__init__.py:1110
+msgid "Enter only digits separated by commas."
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/core/validators.py:311
+#, python-format
+msgid "Ensure this value is %(limit_value)s (it is %(show_value)s)."
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/core/validators.py:342
+#, python-format
+msgid "Ensure this value is less than or equal to %(limit_value)s."
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/core/validators.py:351
+#, python-format
+msgid "Ensure this value is greater than or equal to %(limit_value)s."
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/core/validators.py:361
+#, python-format
+msgid ""
+"Ensure this value has at least %(limit_value)d character (it has "
+"%(show_value)d)."
+msgid_plural ""
+"Ensure this value has at least %(limit_value)d characters (it has "
+"%(show_value)d)."
+msgstr[0] ""
+msgstr[1] ""
+
+#: env/lib/python3.5/site-packages/django/core/validators.py:376
+#, python-format
+msgid ""
+"Ensure this value has at most %(limit_value)d character (it has "
+"%(show_value)d)."
+msgid_plural ""
+"Ensure this value has at most %(limit_value)d characters (it has "
+"%(show_value)d)."
+msgstr[0] ""
+msgstr[1] ""
+
+#: env/lib/python3.5/site-packages/django/core/validators.py:396
+#, python-format
+msgid "Ensure that there are no more than %(max)s digit in total."
+msgid_plural "Ensure that there are no more than %(max)s digits in total."
+msgstr[0] ""
+msgstr[1] ""
+
+#: env/lib/python3.5/site-packages/django/core/validators.py:401
+#, python-format
+msgid "Ensure that there are no more than %(max)s decimal place."
+msgid_plural "Ensure that there are no more than %(max)s decimal places."
+msgstr[0] ""
+msgstr[1] ""
+
+#: env/lib/python3.5/site-packages/django/core/validators.py:406
+#, python-format
+msgid ""
+"Ensure that there are no more than %(max)s digit before the decimal point."
+msgid_plural ""
+"Ensure that there are no more than %(max)s digits before the decimal point."
+msgstr[0] ""
+msgstr[1] ""
+
+#: env/lib/python3.5/site-packages/django/db/models/base.py:1191
+#: env/lib/python3.5/site-packages/django/forms/models.py:734
+msgid "and"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/db/models/base.py:1193
+#, python-format
+msgid "%(model_name)s with this %(field_labels)s already exists."
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/db/models/fields/__init__.py:110
+#, python-format
+msgid "Value %(value)r is not a valid choice."
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/db/models/fields/__init__.py:111
+msgid "This field cannot be null."
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/db/models/fields/__init__.py:112
+msgid "This field cannot be blank."
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/db/models/fields/__init__.py:113
+#, python-format
+msgid "%(model_name)s with this %(field_label)s already exists."
+msgstr ""
+
+#. Translators: The 'lookup_type' is one of 'date', 'year' or 'month'.
+#. Eg: "Title must be unique for pub_date year"
+#: env/lib/python3.5/site-packages/django/db/models/fields/__init__.py:117
+#, python-format
+msgid ""
+"%(field_label)s must be unique for %(date_field_label)s %(lookup_type)s."
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/db/models/fields/__init__.py:134
+#, python-format
+msgid "Field of type: %(field_type)s"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/db/models/fields/__init__.py:881
+#: env/lib/python3.5/site-packages/django/db/models/fields/__init__.py:1788
+msgid "Integer"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/db/models/fields/__init__.py:885
+#: env/lib/python3.5/site-packages/django/db/models/fields/__init__.py:1786
+#, python-format
+msgid "'%(value)s' value must be an integer."
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/db/models/fields/__init__.py:960
+#: env/lib/python3.5/site-packages/django/db/models/fields/__init__.py:1857
+msgid "Big (8 byte) integer"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/db/models/fields/__init__.py:972
+#, python-format
+msgid "'%(value)s' value must be either True or False."
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/db/models/fields/__init__.py:974
+msgid "Boolean (Either True or False)"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/db/models/fields/__init__.py:1040
+#, python-format
+msgid "String (up to %(max_length)s)"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/db/models/fields/__init__.py:1094
+msgid "Comma-separated integers"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/db/models/fields/__init__.py:1151
+#, python-format
+msgid ""
+"'%(value)s' value has an invalid date format. It must be in YYYY-MM-DD "
+"format."
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/db/models/fields/__init__.py:1153
+#: env/lib/python3.5/site-packages/django/db/models/fields/__init__.py:1298
+#, python-format
+msgid ""
+"'%(value)s' value has the correct format (YYYY-MM-DD) but it is an invalid "
+"date."
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/db/models/fields/__init__.py:1156
+msgid "Date (without time)"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/db/models/fields/__init__.py:1296
+#, python-format
+msgid ""
+"'%(value)s' value has an invalid format. It must be in YYYY-MM-DD HH:MM[:ss[."
+"uuuuuu]][TZ] format."
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/db/models/fields/__init__.py:1300
+#, python-format
+msgid ""
+"'%(value)s' value has the correct format (YYYY-MM-DD HH:MM[:ss[.uuuuuu]]"
+"[TZ]) but it is an invalid date/time."
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/db/models/fields/__init__.py:1304
+msgid "Date (with time)"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/db/models/fields/__init__.py:1454
+#, python-format
+msgid "'%(value)s' value must be a decimal number."
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/db/models/fields/__init__.py:1456
+msgid "Decimal number"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/db/models/fields/__init__.py:1607
+#, python-format
+msgid ""
+"'%(value)s' value has an invalid format. It must be in [DD] [HH:[MM:]]ss[."
+"uuuuuu] format."
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/db/models/fields/__init__.py:1610
+msgid "Duration"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/db/models/fields/__init__.py:1662
+msgid "Email address"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/db/models/fields/__init__.py:1686
+msgid "File path"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/db/models/fields/__init__.py:1752
+#, python-format
+msgid "'%(value)s' value must be a float."
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/db/models/fields/__init__.py:1754
+msgid "Floating point number"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/db/models/fields/__init__.py:1872
+msgid "IPv4 address"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/db/models/fields/__init__.py:1903
+msgid "IP address"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/db/models/fields/__init__.py:1985
+#, python-format
+msgid "'%(value)s' value must be either None, True or False."
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/db/models/fields/__init__.py:1987
+msgid "Boolean (Either True, False or None)"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/db/models/fields/__init__.py:2054
+msgid "Positive integer"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/db/models/fields/__init__.py:2066
+msgid "Positive small integer"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/db/models/fields/__init__.py:2079
+#, python-format
+msgid "Slug (up to %(max_length)s)"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/db/models/fields/__init__.py:2113
+msgid "Small integer"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/db/models/fields/__init__.py:2120
+msgid "Text"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/db/models/fields/__init__.py:2146
+#, python-format
+msgid ""
+"'%(value)s' value has an invalid format. It must be in HH:MM[:ss[.uuuuuu]] "
+"format."
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/db/models/fields/__init__.py:2148
+#, python-format
+msgid ""
+"'%(value)s' value has the correct format (HH:MM[:ss[.uuuuuu]]) but it is an "
+"invalid time."
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/db/models/fields/__init__.py:2151
+msgid "Time"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/db/models/fields/__init__.py:2279
+msgid "URL"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/db/models/fields/__init__.py:2302
+msgid "Raw binary data"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/db/models/fields/__init__.py:2349
+#, python-format
+msgid "'%(value)s' is not a valid UUID."
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/db/models/fields/files.py:225
+msgid "File"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/db/models/fields/files.py:387
+msgid "Image"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/db/models/fields/related.py:734
+#, python-format
+msgid "%(model)s instance with %(field)s %(value)r does not exist."
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/db/models/fields/related.py:736
+msgid "Foreign Key (type determined by related field)"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/db/models/fields/related.py:974
+msgid "One-to-one relationship"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/db/models/fields/related.py:1049
+#, python-format
+msgid "%(from)s-%(to)s relationship"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/db/models/fields/related.py:1050
+#, python-format
+msgid "%(from)s-%(to)s relationships"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/db/models/fields/related.py:1092
+msgid "Many-to-many relationship"
+msgstr ""
+
+#. Translators: If found as last label character, these punctuation
+#. characters will prevent the default label_suffix to be appended to the label
+#: env/lib/python3.5/site-packages/django/forms/boundfield.py:156
+msgid ":?.!"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/forms/fields.py:56
+msgid "This field is required."
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/forms/fields.py:250
+msgid "Enter a whole number."
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/forms/fields.py:295
+#: env/lib/python3.5/site-packages/django/forms/fields.py:332
+msgid "Enter a number."
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/forms/fields.py:410
+#: env/lib/python3.5/site-packages/django/forms/fields.py:1136
+msgid "Enter a valid date."
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/forms/fields.py:434
+#: env/lib/python3.5/site-packages/django/forms/fields.py:1137
+msgid "Enter a valid time."
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/forms/fields.py:456
+msgid "Enter a valid date/time."
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/forms/fields.py:485
+msgid "Enter a valid duration."
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/forms/fields.py:542
+msgid "No file was submitted. Check the encoding type on the form."
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/forms/fields.py:543
+msgid "No file was submitted."
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/forms/fields.py:544
+msgid "The submitted file is empty."
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/forms/fields.py:546
+#, python-format
+msgid "Ensure this filename has at most %(max)d character (it has %(length)d)."
+msgid_plural ""
+"Ensure this filename has at most %(max)d characters (it has %(length)d)."
+msgstr[0] ""
+msgstr[1] ""
+
+#: env/lib/python3.5/site-packages/django/forms/fields.py:549
+msgid "Please either submit a file or check the clear checkbox, not both."
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/forms/fields.py:611
+msgid ""
+"Upload a valid image. The file you uploaded was either not an image or a "
+"corrupted image."
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/forms/fields.py:767
+#: env/lib/python3.5/site-packages/django/forms/fields.py:863
+#: env/lib/python3.5/site-packages/django/forms/models.py:1240
+#, python-format
+msgid "Select a valid choice. %(value)s is not one of the available choices."
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/forms/fields.py:864
+#: env/lib/python3.5/site-packages/django/forms/fields.py:979
+#: env/lib/python3.5/site-packages/django/forms/models.py:1239
+msgid "Enter a list of values."
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/forms/fields.py:980
+msgid "Enter a complete value."
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/forms/fields.py:1195
+msgid "Enter a valid UUID."
+msgstr ""
+
+#. Translators: This is the default suffix added to form field labels
+#: env/lib/python3.5/site-packages/django/forms/forms.py:84
+msgid ":"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/forms/forms.py:199
+#, python-format
+msgid "(Hidden field %(name)s) %(error)s"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/forms/formsets.py:97
+msgid "ManagementForm data is missing or has been tampered with"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/forms/formsets.py:350
+#, python-format
+msgid "Please submit %d or fewer forms."
+msgid_plural "Please submit %d or fewer forms."
+msgstr[0] ""
+msgstr[1] ""
+
+#: env/lib/python3.5/site-packages/django/forms/formsets.py:357
+#, python-format
+msgid "Please submit %d or more forms."
+msgid_plural "Please submit %d or more forms."
+msgstr[0] ""
+msgstr[1] ""
+
+#: env/lib/python3.5/site-packages/django/forms/formsets.py:385
+#: env/lib/python3.5/site-packages/django/forms/formsets.py:387
+msgid "Order"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/forms/formsets.py:389
+msgid "Delete"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/forms/models.py:729
+#, python-format
+msgid "Please correct the duplicate data for %(field)s."
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/forms/models.py:733
+#, python-format
+msgid "Please correct the duplicate data for %(field)s, which must be unique."
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/forms/models.py:739
+#, python-format
+msgid ""
+"Please correct the duplicate data for %(field_name)s which must be unique "
+"for the %(lookup)s in %(date_field)s."
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/forms/models.py:748
+msgid "Please correct the duplicate values below."
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/forms/models.py:1072
+msgid "The inline foreign key did not match the parent instance primary key."
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/forms/models.py:1133
+msgid "Select a valid choice. That choice is not one of the available choices."
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/forms/models.py:1242
+#, python-format
+msgid "\"%(pk)s\" is not a valid value for a primary key."
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/forms/utils.py:172
+#, python-format
+msgid ""
+"%(datetime)s couldn't be interpreted in time zone %(current_timezone)s; it "
+"may be ambiguous or it may not exist."
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/forms/widgets.py:364
+msgid "Currently"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/forms/widgets.py:365
+msgid "Change"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/forms/widgets.py:366
+msgid "Clear"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/forms/widgets.py:590
+msgid "Unknown"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/forms/widgets.py:591
+msgid "Yes"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/forms/widgets.py:592
+msgid "No"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/template/defaultfilters.py:848
+msgid "yes,no,maybe"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/template/defaultfilters.py:877
+#: env/lib/python3.5/site-packages/django/template/defaultfilters.py:894
+#, python-format
+msgid "%(size)d byte"
+msgid_plural "%(size)d bytes"
+msgstr[0] ""
+msgstr[1] ""
+
+#: env/lib/python3.5/site-packages/django/template/defaultfilters.py:896
+#, python-format
+msgid "%s KB"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/template/defaultfilters.py:898
+#, python-format
+msgid "%s MB"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/template/defaultfilters.py:900
+#, python-format
+msgid "%s GB"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/template/defaultfilters.py:902
+#, python-format
+msgid "%s TB"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/template/defaultfilters.py:904
+#, python-format
+msgid "%s PB"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/utils/dateformat.py:66
+msgid "p.m."
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/utils/dateformat.py:67
+msgid "a.m."
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/utils/dateformat.py:72
+msgid "PM"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/utils/dateformat.py:73
+msgid "AM"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/utils/dateformat.py:158
+msgid "midnight"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/utils/dateformat.py:160
+msgid "noon"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/utils/dates.py:6
+msgid "Monday"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/utils/dates.py:6
+msgid "Tuesday"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/utils/dates.py:6
+msgid "Wednesday"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/utils/dates.py:6
+msgid "Thursday"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/utils/dates.py:6
+msgid "Friday"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/utils/dates.py:7
+msgid "Saturday"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/utils/dates.py:7
+msgid "Sunday"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/utils/dates.py:10
+msgid "Mon"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/utils/dates.py:10
+msgid "Tue"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/utils/dates.py:10
+msgid "Wed"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/utils/dates.py:10
+msgid "Thu"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/utils/dates.py:10
+msgid "Fri"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/utils/dates.py:11
+msgid "Sat"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/utils/dates.py:11
+msgid "Sun"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/utils/dates.py:18
+msgid "January"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/utils/dates.py:18
+msgid "February"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/utils/dates.py:18
+msgid "March"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/utils/dates.py:18
+msgid "April"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/utils/dates.py:18
+msgid "May"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/utils/dates.py:18
+msgid "June"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/utils/dates.py:19
+msgid "July"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/utils/dates.py:19
+msgid "August"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/utils/dates.py:19
+msgid "September"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/utils/dates.py:19
+msgid "October"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/utils/dates.py:19
+msgid "November"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/utils/dates.py:20
+msgid "December"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/utils/dates.py:23
+msgid "jan"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/utils/dates.py:23
+msgid "feb"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/utils/dates.py:23
+msgid "mar"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/utils/dates.py:23
+msgid "apr"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/utils/dates.py:23
+msgid "may"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/utils/dates.py:23
+msgid "jun"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/utils/dates.py:24
+msgid "jul"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/utils/dates.py:24
+msgid "aug"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/utils/dates.py:24
+msgid "sep"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/utils/dates.py:24
+msgid "oct"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/utils/dates.py:24
+msgid "nov"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/utils/dates.py:24
+msgid "dec"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/utils/dates.py:31
+msgctxt "abbrev. month"
+msgid "Jan."
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/utils/dates.py:32
+msgctxt "abbrev. month"
+msgid "Feb."
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/utils/dates.py:33
+msgctxt "abbrev. month"
+msgid "March"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/utils/dates.py:34
+msgctxt "abbrev. month"
+msgid "April"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/utils/dates.py:35
+msgctxt "abbrev. month"
+msgid "May"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/utils/dates.py:36
+msgctxt "abbrev. month"
+msgid "June"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/utils/dates.py:37
+msgctxt "abbrev. month"
+msgid "July"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/utils/dates.py:38
+msgctxt "abbrev. month"
+msgid "Aug."
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/utils/dates.py:39
+msgctxt "abbrev. month"
+msgid "Sept."
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/utils/dates.py:40
+msgctxt "abbrev. month"
+msgid "Oct."
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/utils/dates.py:41
+msgctxt "abbrev. month"
+msgid "Nov."
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/utils/dates.py:42
+msgctxt "abbrev. month"
+msgid "Dec."
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/utils/dates.py:45
+msgctxt "alt. month"
+msgid "January"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/utils/dates.py:46
+msgctxt "alt. month"
+msgid "February"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/utils/dates.py:47
+msgctxt "alt. month"
+msgid "March"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/utils/dates.py:48
+msgctxt "alt. month"
+msgid "April"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/utils/dates.py:49
+msgctxt "alt. month"
+msgid "May"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/utils/dates.py:50
+msgctxt "alt. month"
+msgid "June"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/utils/dates.py:51
+msgctxt "alt. month"
+msgid "July"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/utils/dates.py:52
+msgctxt "alt. month"
+msgid "August"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/utils/dates.py:53
+msgctxt "alt. month"
+msgid "September"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/utils/dates.py:54
+msgctxt "alt. month"
+msgid "October"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/utils/dates.py:55
+msgctxt "alt. month"
+msgid "November"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/utils/dates.py:56
+msgctxt "alt. month"
+msgid "December"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/utils/ipv6.py:12
+msgid "This is not a valid IPv6 address."
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/utils/text.py:78
+#, python-format
+msgctxt "String to return when truncating text"
+msgid "%(truncated_text)s..."
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/utils/text.py:248
+msgid "or"
+msgstr ""
+
+#. Translators: This string is used as a separator between list elements
+#: env/lib/python3.5/site-packages/django/utils/text.py:267
+#: env/lib/python3.5/site-packages/django/utils/timesince.py:71
+msgid ", "
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/utils/timesince.py:11
+#, python-format
+msgid "%d year"
+msgid_plural "%d years"
+msgstr[0] ""
+msgstr[1] ""
+
+#: env/lib/python3.5/site-packages/django/utils/timesince.py:12
+#, python-format
+msgid "%d month"
+msgid_plural "%d months"
+msgstr[0] ""
+msgstr[1] ""
+
+#: env/lib/python3.5/site-packages/django/utils/timesince.py:13
+#, python-format
+msgid "%d week"
+msgid_plural "%d weeks"
+msgstr[0] ""
+msgstr[1] ""
+
+#: env/lib/python3.5/site-packages/django/utils/timesince.py:14
+#, python-format
+msgid "%d day"
+msgid_plural "%d days"
+msgstr[0] ""
+msgstr[1] ""
+
+#: env/lib/python3.5/site-packages/django/utils/timesince.py:15
+#, python-format
+msgid "%d hour"
+msgid_plural "%d hours"
+msgstr[0] ""
+msgstr[1] ""
+
+#: env/lib/python3.5/site-packages/django/utils/timesince.py:16
+#, python-format
+msgid "%d minute"
+msgid_plural "%d minutes"
+msgstr[0] ""
+msgstr[1] ""
+
+#: env/lib/python3.5/site-packages/django/utils/timesince.py:60
+msgid "0 minutes"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/views/csrf.py:109
+msgid "Forbidden"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/views/csrf.py:110
+msgid "CSRF verification failed. Request aborted."
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/views/csrf.py:114
+msgid ""
+"You are seeing this message because this HTTPS site requires a 'Referer "
+"header' to be sent by your Web browser, but none was sent. This header is "
+"required for security reasons, to ensure that your browser is not being "
+"hijacked by third parties."
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/views/csrf.py:119
+msgid ""
+"If you have configured your browser to disable 'Referer' headers, please re-"
+"enable them, at least for this site, or for HTTPS connections, or for 'same-"
+"origin' requests."
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/views/csrf.py:124
+msgid ""
+"You are seeing this message because this site requires a CSRF cookie when "
+"submitting forms. This cookie is required for security reasons, to ensure "
+"that your browser is not being hijacked by third parties."
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/views/csrf.py:129
+msgid ""
+"If you have configured your browser to disable cookies, please re-enable "
+"them, at least for this site, or for 'same-origin' requests."
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/views/csrf.py:134
+msgid "More information is available with DEBUG=True."
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/views/debug.py:521
+msgid "Welcome to Django"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/views/debug.py:522
+msgid "It worked!"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/views/debug.py:523
+msgid "Congratulations on your first Django-powered page."
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/views/debug.py:525
+msgid ""
+"Of course, you haven't actually done any work yet. Next, start your first "
+"app by running <code>python manage.py startapp [app_label]</code>."
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/views/debug.py:529
+msgid ""
+"You're seeing this message because you have <code>DEBUG = True</code> in "
+"your Django settings file and you haven't configured any URLs. Get to work!"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/views/generic/dates.py:48
+msgid "No year specified"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/views/generic/dates.py:104
+msgid "No month specified"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/views/generic/dates.py:163
+msgid "No day specified"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/views/generic/dates.py:219
+msgid "No week specified"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/views/generic/dates.py:378
+#: env/lib/python3.5/site-packages/django/views/generic/dates.py:406
+#, python-format
+msgid "No %(verbose_name_plural)s available"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/views/generic/dates.py:660
+#, python-format
+msgid ""
+"Future %(verbose_name_plural)s not available because %(class_name)s."
+"allow_future is False."
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/views/generic/dates.py:694
+#, python-format
+msgid "Invalid date string '%(datestr)s' given format '%(format)s'"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/views/generic/detail.py:55
+#, python-format
+msgid "No %(verbose_name)s found matching the query"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/views/generic/list.py:76
+msgid "Page is not 'last', nor can it be converted to an int."
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/views/generic/list.py:81
+#, python-format
+msgid "Invalid page (%(page_number)s): %(message)s"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/views/generic/list.py:171
+#, python-format
+msgid "Empty list and '%(class_name)s.allow_empty' is False."
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/views/static.py:58
+msgid "Directory indexes are not allowed here."
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/views/static.py:60
+#, python-format
+msgid "\"%(path)s\" does not exist"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/django/views/static.py:100
+#, python-format
+msgid "Index of %(directory)s"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/djgeojson/fields.py:58
+msgid "Geometry as GeoJSON"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/imagekit/admin.py:10
+msgid "Thumbnail"
+msgstr ""
+
+#: env/lib/python3.5/site-packages/jsonfield/fields.py:34
+#: env/lib/python3.5/site-packages/jsonfield/fields.py:46
+#: env/lib/python3.5/site-packages/jsonfield/fields.py:85
+msgid "Enter valid JSON"
+msgstr ""
+
+#: templates/403.html:12
+msgid "No tienes permiso para acceder a esta página"
+msgstr ""
+
+#: templates/404.html:12
+msgid "La página que buscas no existe. ¿Las has escrito correctamente?"
+msgstr ""
+
+#: templates/503.html:9 templates/503.html:27
+msgid "En mantenimiento"
+msgstr ""
+
+#: templates/contact_form/contact_form.html:7
+msgid "Contacta con Civics.cc"
+msgstr ""
+
+#: templates/contact_form/contact_form.txt:3
+#, python-format
+msgid ""
+"\n"
+"Hay un nuevo mensaje de contacto en la plataforma CIVICS.CC.\n"
+"\n"
+"Mensaje de %(name)s [%(email)s]:\n"
+"\"%(body)s\"\n"
+"\n"
+msgstr ""
+
+#: templates/contact_form/contact_form_sent.html:7
+msgid "Gracias!"
+msgstr ""
+
+#: templates/contact_form/contact_form_sent.html:8
+msgid ""
+"Gracias por contactar con nosotr-s. Te hemos enviado un correo de "
+"confirmación. ¡Gracias por el interés!"
+msgstr ""
+
+#: templates/contact_form/contact_form_sent.html:13
+msgid "Volver"
+msgstr ""
+
+#: templates/contact_form/contact_form_subject.txt:2
+msgid ""
+"\n"
+"Mensaje nuevo de contacto en civics.cc\n"
+msgstr ""
+
+#: templates/forms/city-popup-form.html:14
+msgid "Envía"
+msgstr ""
+
+#: templates/forms/form.html:6 templates/forms/regular-form.html:6
+msgid "Parece que hay un error en el formulario. Revísalo, por favor."
+msgstr ""
+
+#: templates/forms/form.html:8 templates/forms/regular-form.html:8
+msgid "Parece que hay errores en el formulario. Revísalo, por favor.."
+msgstr ""
+
+#: templates/pages/about.html:8
+msgid ""
+"Son miles las vecinas y vecinos que trabajan de forma colectiva para "
+"construir una ciudad más habitable, sostenible, inclusiva y participativa. "
+"Antes que ellos, otros hicieron lo mismo reivindicando viviendas dignas, "
+"calles sin barro, más espacios comunes o servicios básicos. CIVICS es un "
+"primer mapa de la innovación ciudadana que cotidianamente desarrollan los "
+"ciudadanos en todo Iberoamérica. Es una herramienta digital de automapeo en "
+"formato de agenda-geolocalizada donde encontrar y añadir toda la innovación "
+"ciudadana que existe en nuestras ciudades, localizar sus eventos asociados y "
+"participar en ellos. CIVICS es, la herramienta de mapeo que más información "
+"tiene condensada sobre la actualidad de la innovación ciudadana. Los "
+"espacios que aparecen en este mapa muestran la existencia de una ciudad "
+"efervescente pero muchas veces invisibilizada. Espacios y proyectos que "
+"pretenden ponen en valor la potencia de una ciudadanía crítica y activa que "
+"ha creado nuevos entornos de posibilidad, mediante la autogestión y la "
+"participación. Apostamos por la oportunidad que genera un mapa construido "
+"por los ciudadanos como dispositivo de apertura y encuentro. Una cartografía "
+"que construye un relato común a los países Iberoamericanos. Un mapa que, "
+"mapeando, genera impacto social.<br/> <strong>Ayúdanos a conectar gente con "
+"ideas e ideas que buscan gente, que juntas hacen cosas como [huertos urbanos/"
+"rutas en bici/solidaridad vecinal, etc]. Si formas parte de un colectivo, "
+"iniciativa, asociación, comunidad, etc. anímate a compartir vuestras "
+"actividades, proyectos y eventos. Cuantos más seamos, más ganamos todos.</"
+"strong>"
+msgstr ""
+
+#: templates/pages/about.html:39 templates/users/dashboard-staff.html:99
+msgid "Mapa de iniciativas"
+msgstr ""
+
+#: templates/pages/about.html:46
+msgid "Mapa de actividades"
+msgstr ""
+
+#: templates/pages/about.html:53
+msgid "Información"
+msgstr ""
+
+#: templates/pages/about.html:57
+msgid ""
+"<h5>Código ético y de convivencia en el proyecto CIVICS</h5> <ul> <li>No se "
+"aceptan iniciativas que fomenten expresiones de odio o intolerancia en temas "
+"de género, raza, etnia, posición social, orientación sexual, religiosa, o de "
+"procedencia.</li> <li>El registro es libre y te facilita que el sistema cree "
+"un panel de organización de actividades, temática de la iniciativa, para "
+"poder ser modificable por el propio usuario.</li> </ul>"
+msgstr ""
+
+#: templates/pages/about.html:69
+msgid "Este proyecto está siendo desarrollado mediante la colaboración de:"
+msgstr ""
+
+#: templates/pages/about.html:78
+msgid ""
+"<strong>Son muchas las personas que de una manera y otra han contribuido el "
+"desarrollo de esta plataforma digital colaborativa:</strong><br/> Esaú "
+"Acosta, Mauro Gil-Fournier, Miguel Jaenicke, Ale, Javier Esquillor, Ana "
+"Espejo, Mariluz Arranz, Alejandro Zappala, Alfonzo Urzábal, Chema Blanco, "
+"David Ruíz, Carlos Salgado, David Moreno, Alejandro Martín, Julián Pérez, "
+"Adriano Belisario, Ines Gil, Héctor Sánchez, Sergio López y David González."
+msgstr ""
+
+#: templates/pages/about.html:87
+msgid ""
+"Esta obra está bajo <a href=\"https://creativecommons.org/licenses/by-sa/4.0/"
+"\" target=\"_blank\"> Licencia Creative Commons Atribución-CompartirIgual "
+"4.0 internacional</a> Los datos recopilados están bajo <a href=\"https://"
+"opendatacommons.org/licenses/odbl/1.0/\" target=\"_blank\"> licencia ODbL "
+"1.0.</a> El código fuente de la plataforma está disponible bajo una licencia "
+"<a href=\"https://www.gnu.org/licenses/gpl.html\" target=\"_blank\"> General "
+"Public License 3.0</a>."
+msgstr ""
+
+#: templates/pages/initiative-success.html:7
+msgid "¡Enhorabuena, tu iniciativa ha sido incorporada!"
+msgstr ""
+
+#: templates/pages/initiative-success.html:10
+msgid "Ve al perfil de tu iniciativa"
+msgstr ""
+
+#: templates/regions/toolbar.html:6
+msgid "Ir a la pantalla de inicio"
+msgstr ""
+
+#: templates/regions/toolbar.html:17
+msgid "Acerca"
+msgstr ""
+
+#: templates/regions/toolbar.html:25 templates/regions/toolbar.html:41
+msgid "Mapa"
+msgstr ""
+
+#: templates/regions/toolbar.html:28 templates/regions/toolbar.html:44
+msgid "Lista"
+msgstr ""
+
+#: templates/regions/toolbar.html:31
+msgid "Destacadas"
+msgstr ""
+
+#: templates/regions/toolbar.html:37
+msgid "Agenda"
+msgstr ""
+
+#: templates/regions/toolbar.html:47
+msgid "Destacados"
+msgstr ""
+
+#: templates/regions/toolbar.html:61
+msgid "Sal de la plataforma"
+msgstr ""
+
+#: templates/regions/toolbar.html:62
+msgid "Logout"
+msgstr ""
+
+#: templates/regions/toolbar.html:66
+msgid "Entra en la plataforma o regístrate en ella"
+msgstr ""
+
+#: templates/regions/toolbar.html:67
+msgid "Login/Signin"
+msgstr ""
+
+#: templates/regions/toolbar.html:74
+msgid "Ve a la zona administrativa de Civics"
+msgstr ""
+
+#: templates/regions/toolbar.html:75
+msgid "Administra"
+msgstr ""
+
+#: templates/registration/activation_complete.html:9
+msgid "Bienvenid@"
+msgstr ""
+
+#: templates/registration/activation_complete.html:14
+msgid "Has activado la cuenta."
+msgstr ""
+
+#: templates/registration/activation_email.html:2
+#, python-format
+msgid ""
+"\n"
+"    Alguien ha registrado un usuario/a en la plataforma civics.cc usando "
+"este correo.\n"
+"    Si eres tú, visita este enlace para activar la cuenta haciendo login con "
+"los datos\n"
+"    que has registrado:\n"
+"        http://%(site)s/activate/%(activation_key)s\n"
+"\n"
+msgstr ""
+
+#: templates/registration/activation_email.html:9
+#, python-format
+msgid ""
+"\n"
+"  Este enlace es válido por %(expiration_days)s días.\n"
+msgstr ""
+
+#: templates/registration/login.html:11
+#: templates/registration/password_reset_complete.html:9
+#: templates/registration/password_reset_confirm.html:9
+#: templates/registration/password_reset_form.html:9
+#: templates/registration/registration_form.html:9
+msgid "Ya estás autenticado en la plataforma."
+msgstr ""
+
+#: templates/registration/login.html:24
+msgid "¿Has olvidado tu nombre de usuari@ o contraseña?"
+msgstr ""
+
+#: templates/registration/login.html:29
+msgid "Regístrate en la plataforma"
+msgstr ""
+
+#: templates/registration/password_reset_complete.html:19
+#, python-format
+msgid ""
+"La contraseña se ha cambiado con éxito. Ahora puedes <a href=\"%(login_url)s"
+"\">hacer login</a> en la plataforma."
+msgstr ""
+
+#: templates/registration/password_reset_confirm.html:18
+msgid ""
+"Introduce la nueva contraseña. Hazlo por duplicado para comprobar que la has "
+"escrito bien."
+msgstr ""
+
+#: templates/registration/password_reset_done.html:8
+msgid ""
+"Te hemos enviado instrucciones para cambiar tu contraseña a tu correo "
+"electrónico. <br/> <em>Si no encuentras el correo comprueba el correo "
+"electrónico que has introducido se corresponde al de un usuari@ y no se te "
+"olvide comprobar la bandeja de spam</em>."
+msgstr ""
+
+#: templates/registration/password_reset_email.html:4
+#, python-format
+msgid ""
+"\n"
+"Has recibido este correo porque has requerido un cambio de contraseña para "
+"tu cuenta de usuari@ en %(site_name)s.\n"
+msgstr ""
+
+#: templates/registration/password_reset_email.html:8
+msgid "Usa el siguiente enlace para escoger una contraseña nueva:"
+msgstr ""
+
+#: templates/registration/password_reset_email.html:14
+msgid "Tu nombre de usuari@ en caso de que lo hayas olvidado es:"
+msgstr ""
+
+#: templates/registration/password_reset_email.html:17
+msgid "Gracias por ser parte de civics.cc"
+msgstr ""
+
+#: templates/registration/password_reset_form.html:18
+msgid ""
+"Si has olvidado tu contraseña introduce el correo electrónico asociado a la "
+"cuenta y recibirás en el mismo instrucciones para cambiarla."
+msgstr ""
+
+#: templates/registration/registration_complete.html:8
+msgid ""
+"Has completado el registro con éxito. Hemos enviado a tu buzón de correo "
+"electrónico un correo con un enlace para activar tu cuenta. Vísitalo para "
+"activar la cuenta y poder registrar tu iniciativa en la plataforma. <br/"
+"><em>Si no encuentras el correo, no se te olvide comprobar la bandeja de "
+"spam</em>."
+msgstr ""
+
+#: templates/users/dashboard-staff.html:7
+msgid "Mi perfil"
+msgstr ""
+
+#: templates/users/dashboard-staff.html:13
+msgid "Mis iniciativas"
+msgstr ""
+
+#: templates/users/dashboard-staff.html:36
+msgid "Fecha de alta:"
+msgstr ""
+
+#: templates/users/dashboard-staff.html:40
+#: templates/users/dashboard-staff.html:87 templates/users/dashboard.html:85
+msgid "Editar"
+msgstr ""
+
+#: templates/users/dashboard-staff.html:51 templates/users/dashboard.html:49
+msgid "Mis actividades"
+msgstr ""
+
+#: templates/users/dashboard-staff.html:53 templates/users/dashboard.html:51
+msgid "Crea un evento"
+msgstr ""
+
+#: templates/users/dashboard-staff.html:61 templates/users/dashboard.html:59
+msgid ""
+"\n"
+"                          Parece que todavía no has creado eventos asociados "
+"a tu iniciativa.<br/>\n"
+"                          Puedes clicar en el icono <span class=\"icon-add"
+"\"></span> para crear un\n"
+"                          nuevo evento.\n"
+"                          "
+msgstr ""
+
+#: templates/users/dashboard-staff.html:83 templates/users/dashboard.html:81
+msgid "Fecha del evento:"
+msgstr ""
+
+#: templates/users/dashboard.html:6
+msgid "Mi iniciativa"
+msgstr ""
+
+#: templates/users/dashboard.html:12
+msgid "Edita tu iniciativa"
+msgstr ""
+
+#: templates/users/dashboard.html:22
+msgid "Descripción"
+msgstr ""
+
+#: templates/users/dashboard.html:27
+msgid "Email"
+msgstr ""
+
+#: templates/users/dashboard.html:93
+msgid "Importa eventos desde Facebook"
+msgstr ""
+
+#: templates/users/dashboard.html:96
+msgid ""
+"\n"
+"                            No estás conectado a Facebook. Si quieres "
+"importar eventos desde\n"
+"                            tu agenda de FB has de <a href=\"#\" onclick="
+"\"fb_login()\">hacer login</a>\n"
+"                            "
+msgstr ""
+
+#: templates/users/dashboard.html:104
+msgid "No hay eventos nuevos"
+msgstr ""

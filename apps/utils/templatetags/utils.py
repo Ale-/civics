@@ -38,3 +38,9 @@ def get_range(max):
 def addstr(arg1, arg2):
     """concatenate arg1 & arg2"""
     return str(arg1) + str(arg2)
+
+@register.filter(name='remove_i18n_prefix')
+def remove_i18n_prefix(value):
+    if value.startswith('/en') or value.startswith('/es'):
+        value = value[3::]
+    return value

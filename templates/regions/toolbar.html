@@ -55,14 +55,6 @@
                     {{ current_user_hello | safe }}
                 {% endif %}
             </li>
-            <li class="user-actions__admin">
-                {% if request.user.is_staff %}
-                    <a href="{% url 'admin:index' %}"
-                       title="{% trans 'Ve a la zona administrativa de Civics' %}">
-                        {% trans 'Administra' %}
-                    </a>
-                {% endif %}
-            </li>
             <li class="user-actions__io">
                 {% if request.user.is_authenticated %}
                     <a href="{% url 'auth_logout' %}"
@@ -76,6 +68,15 @@
                     </a>
                 {% endif %}
             </li>
+            <li class="user-actions__admin">
+                {% if request.user.is_staff %}
+                    <a href="{% url 'admin:index' %}"
+                       title="{% trans 'Ve a la zona administrativa de Civics' %}">
+                        {% trans 'Administra' %}
+                    </a>
+                {% endif %}
+            </li>
         </ul>
+        {% include 'forms/language-switcher.html' %}
     </div>
 {% endblock %}

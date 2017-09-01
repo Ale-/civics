@@ -2,13 +2,15 @@
 
 .user-actions
   display: none
-  text-align: center
+  text-align: right
+  +clearfix
   +breakpoint('sm')
     height: 20px
     text-align: right
     display: inline-block
     float: right
-    width: 300px
+    width: 250px
+    margin-right: $m*2
     font-size: $size_smaller
 
 .main-menu.active + .user-actions
@@ -23,10 +25,14 @@
 .user-actions__hello,
 .user-actions__admin
   text-transform: uppercase
-.user-actions__hello .create-link,
+// .user-actions__hello .create-link,
+// .user-actions__admin
+//   +breakpoint('sm')
+//     position: absolute
+//     right: $m*3
 .user-actions__admin
-  +breakpoint('sm')
-    position: absolute
-    right: $m*3
+  float: right
 .user-actions__io
   font-weight: 700
+  float: right
+  margin-left: $m

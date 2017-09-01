@@ -1,0 +1,31 @@
+// Lang switcher
+// blocks/lang-switcher.html
+
+@import compass/css3/inline-block
+@import compass/css3/appearance
+
+.lang-switcher
+  +inline-block
+  width: auto
+  float: right
+  font-size: .8em
+  position: relative
+  margin-left: $m
+  bottom: 30px
+  width: $m
+  &:after
+    content: "⌄"
+    position: absolute
+    right: -10px
+    top: 0
+
+.lang-switcher__select
+  +appearance(none)
+  border: 0
+  background: none
+  text-transform: uppercase
+  height: 20px
+  line-height: 20px
+  padding: 0
+  margin: 0
+  position: absolute
