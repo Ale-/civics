@@ -23,5 +23,21 @@
     {% with 'forms/fields-'|add:form_class|add:'.html' as fields %}
         {% include fields with form_class=form_class %}
     {% endwith %}
+    <div class="form__terms">
+        <p class="form__terms-text">
+            {% blocktrans trimmed %}
+            Al usar este formulario das el consentimiento para la publicación de los datos
+            introducidos. Los datos recopilados estarán disponibles bajo una licencia
+            <a target="_blank" href="http://opendatacommons.org/licenses/odbl/summary/">ODbL 1.0</a>.
+            Se retirará la publicación de aquellas iniciativas y eventos que fomenten
+            expresiones de odio o intolerancia en temas de género, raza, etnia, posición
+            social, orientación sexual, religiosa, o de procedencia.
+            {% endblocktrans %}
+        </p>
+        <p class="form__terms-accept">
+          {% trans 'He entendido y acepto estas condiciones' %}
+          <input type="checkbox" required />
+        </p>
+    </div>
     <input class="form__submit" type="submit" value="{{ submit_text }}" />
 </form>
