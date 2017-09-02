@@ -4,7 +4,7 @@
     <li class="map-filters__filter--{{content.section}}">
         <p class="map-filters__label">
             <span class="icon-city"></span>
-            <span class="map-filters__filter-name">Ciudad</span>
+            <span class="map-filters__filter-name">{{'Ciudad'|t}}</span>
         </p>
         <ul class="map-filters__categories--{{content.section}}">
             <div class="cities-wrapper"
@@ -27,56 +27,56 @@
     <li class="map-filters__filter--{{content.section}}">
         <p class="map-filters__label">
            <span class="icon-topic"></span>
-           <span class="map-filters__filter-name">Temática</span>
+           <span class="map-filters__filter-name">{{'Temática'|t}}</span>
         </p>
         <ul class="map-filters__categories--{{content.section}}">
             <li class="map-filters__category category-topic-{{key}}"
                 ng-repeat="(key,name) in content.topics"
                 ng-click="content.toggleFilter('topics', key)"
                 ng-class="{ 'active' : content.active_legend_items['topics'][key] }">
-                {{ name }}
+                {{ name|t }}
             </li>
         </ul>
     </li>
     <li class="map-filters__filter--{{content.section}}" ng-if="content.section == 'initiatives'">
         <p class="map-filters__label">
             <span class="icon-space"></span>
-            <span class="map-filters__filter-name">Espacio</span>
+            <span class="map-filters__filter-name">{{'Espacio'|t}}</span>
         </p>
         <ul class="map-filters__categories--{{content.section}}">
             <li class="map-filters__category category-space-{{key}}"
                 ng-repeat="(key,name) in content.spaces"
                 ng-click="content.toggleFilter('spaces', key)"
                 ng-class="{'active': content.active_legend_items['spaces'][key]}">
-                {{ name }}
+                {{ name|t }}
             </li>
         </ul>
     </li>
     <li class="map-filters__filter--{{content.section}}" ng-if="content.section == 'events'">
         <p class="map-filters__label">
             <span class="icon-calendar"></span>
-            <span class="map-filters__filter-name">Actividad</span>
+            <span class="map-filters__filter-name">{{'Actividad'|t}}</span>
         </p>
         <ul class="map-filters__categories--{{content.section}}">
             <li class="map-filters__category category-activity-{{key}}"
                 ng-repeat="(key, name) in content.activities"
                 ng-click="content.toggleFilter('activities', key)"
                 ng-class="{'active': content.active_legend_items['activities'][key]}">
-                {{ name }}
+                {{ name|t }}
             </li>
         </ul>
     </li>
     <li class="map-filters__filter--{{content.section}}">
         <p class="map-filters__label">
             <span class="icon-agent"></span>
-            <span class="map-filters__filter-name">Agente</span>
+            <span class="map-filters__filter-name">{{'Agente'|t}}</span>
         </p>
         <ul class="map-filters__categories--{{content.section}}">
             <li class="map-filters__category category-agent-{{key}}"
                 ng-repeat="(key,name) in content.agents"
                 ng-click="content.toggleFilter('agents', key)"
                 ng-class="{'active': content.active_legend_items['agents'][key]}">
-                {{ name }}
+                {{ name|t }}
             </li>
         </ul>
     </li>

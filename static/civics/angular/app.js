@@ -22,6 +22,7 @@ angular.module('civics', [
     'civics.list_controller',
     'civics.featured_controller',
     'civics.directives',
+    'civics.i18n',
   ])
 
 .config(['$routeProvider', 'cfpLoadingBarProvider', '$logProvider', '$compileProvider', '$httpProvider', function ($routeProvider, cfpLoadingBarProvider, $logProvider, $compileProvider, $httpProvider) {

@@ -8,43 +8,43 @@
         </span>
         <div class="legend-help__text"
              ng-show="show_legend">
-             Usa la leyenda para filtrar los contenidos según tus intereses.
+             {{ 'Usa la leyenda para filtrar los contenidos según tus intereses.' | t }}
         </div>
     </div>
     <div class="map-actions__actions">
-        <a href="/#!/iniciativas" title="Ver las iniciativas en formato mapa"
+        <a href="/#!/iniciativas" title="{{'Ver las iniciativas en formato mapa'|t}}"
            ng-if="content.section == 'initiatives' && content.format == 'list'">
            <span class="icon-map"></span>
         </a>
-        <a href="/#!/iniciativas-lista" title="Ver las iniciativas en formato lista"
+        <a href="/#!/iniciativas-lista" title="{{'Ver las iniciativas en formato lista'|t}}"
            ng-if="content.section == 'initiatives' && content.format == 'map'">
            <span class="icon-list"></span>
         </a>
-        <a href="/#!/iniciativas-destacadas" title="Ver las iniciativas destacadas"
+        <a href="/#!/iniciativas-destacadas" title="{{'Ver las iniciativas destacadas'|t}}"
            ng-if="content.section == 'initiatives'">
            <span class="icon-star"></span>
         </a>
-        <a href="/#!/eventos" title="Ver los eventos en formato mapa"
+        <a href="/#!/eventos" title="{{'Ver los eventos en formato mapa'|t}}"
            ng-if="content.section == 'events' && content.format == 'list'">
            <span class="icon-map"></span>
         </a>
-        <a href="/#!/eventos-lista" title="Ver los eventos en formato lista"
+        <a href="/#!/eventos-lista" title="{{'Ver los eventos en formato lista'|t}}"
            ng-if="content.section == 'events' && content.format == 'map'">
            <span class="icon-list"></span>
         </a>
-        <a href="/#!/eventos-destacados" title="Ver los eventos destacadas"
+        <a href="/#!/eventos-destacados" title="{{'Ver los eventos destacados'|t}}"
            ng-if="content.section == 'events'">
            <span class="icon-star"></span>
         </a>
         <a ng-click="content.download_xls()" class="map-actions__action--download icon-download"
-            title="Descargar la vista en XLS">
+            title="{{'Descargar la vista en XLS'|t}}">
         </a>
     </div>
     <div class="markers-count">
-        <span class="markers-count__label">Mostrando </span>
+        <span class="markers-count__label">{{'Mostrando'|t}} </span>
         <span class="markers-count__number">{{ content.count }}</span>
-        <span ng-if="content.section=='initiatives'" class="markers-count__label">iniciativas</span>
-        <span ng-if="content.section=='events'" class="markers-count__label">eventos</span>
+        <span ng-if="content.section=='initiatives'" class="markers-count__label">{{'iniciativas'|t}}</span>
+        <span ng-if="content.section=='events'" class="markers-count__label">{{'eventos'|t}}</span>
     </div>
     <ul class="filter-tags">
         <li class="filter-tags__tag"
@@ -55,7 +55,7 @@
         <li class="filter-tags__remove"
             ng-show="content.selected_tabs.length > 0"
             ng-click="content.removeFilters()">
-            Eliminar filtros
+            {{'Eliminar filtros'|t}}
         </li>
     </ul>
     <div search ng-show="content.section == 'initiatives'"></div>

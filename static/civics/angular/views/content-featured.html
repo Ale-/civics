@@ -6,18 +6,18 @@
     <!-- Grid display of elements -->
     <div class="grid featured">
         <p class="fake-breadcrumb--featured" ng-click="content.goBack()">
-            Volver atrás
+            {{'Volver atrás'|t}}
         </p>
         <h5 class="grid__subtitle--{{content.section}}">
             <span ng-if="content.section == 'initiatives'">
-                Iniciativas ciudadanas destacadas
+                {{'Iniciativas ciudadanas destacadas'|t}}
             </span>
             <span ng-if="content.section == 'events'">
-                Actividades ciudadanas destacadas
+                {{'Actividades ciudadanas destacadas'|t}}
             </span>
         </h5>
         <div class="grid__no-results" ng-if="content.featured_items.length == 0">
-            Parece que todavía no se han generado contenidos de este tipo.
+            {{'Parece que todavía no se han generado contenidos de este tipo'|t}}
         </div>
         <div class="grid__item"
              ng-repeat="marker in content.featured_items"
@@ -39,14 +39,14 @@
         </div>
         <h5 class="grid__subtitle--{{content.section}}">
             <span ng-if="content.section == 'initiatives'">
-                Últimas iniciativas ciudadanas incorporadas
+                {{'Últimas iniciativas ciudadanas incorporadas'|t}}
             </span>
             <span ng-if="content.section == 'events'">
-                Próximas actividades ciudadanas
+                {{'Próximas actividades ciudadanas'|t}}
             </span>
         </h5>
         <div class="grid__no-results" ng-if="content.last_items.length == 0">
-            Parece que todavía no se han generado contenidos de este tipo.
+            {{'Parece que todavía no se han generado contenidos de este tipo'|t}}
         </div>
         <div class="grid__item"
              ng-repeat="marker in content.last_items"

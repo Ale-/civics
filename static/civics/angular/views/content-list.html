@@ -13,24 +13,24 @@
     <div class="grid">
         <div class="initiatives-grid__pager" ng-hide="content.markers.length == 0">
             <p class="initiatives-grid__pager-info">
-                Mostrando {{ content.starting_index }}‒{{ content.starting_index + content.current_items }}
-                de {{ content.count }} elementos filtrados.
+                {{'Mostrando'|t}} {{ content.starting_index }}‒{{ content.starting_index + content.current_items }}
+                {{'de'|t}} {{ content.count }} {{'elementos filtrados'|t}}
             </p>
             <p class="initiatives-grid__pager-links">
                 <span class="initiatives-grid__pager-link"
                       ng-hide="content.starting_index == 0"
                       ng-click="content.previousPage()">
-                    Ver página anterior
+                    {{'Ver página anterior'|t}}
                 </span>
                 <span class="initiatives-grid__pager-link"
                       ng-hide="content.current_items < content.items_per_page"
                       ng-click="content.nextPage()">
-                    Ver página siguiente
+                    {{'Ver página siguiente'|t}}
                 </span>
             </p>
         </div>
         <div class="grid__no-results" ng-if="content.markers.length == 0">
-            Parece que todavía no se han generado contenidos de este tipo.
+            {{'Parece que todavía no se han generado contenidos de este tipo'|t}}.
         </div>
         <div class="grid__item"
              ng-repeat="marker in content.markers | filter: { filtered : false } | limitTo:content.current_items:content.starting_index"
@@ -52,19 +52,19 @@
         </div>
         <div class="initiatives-grid__pager bottom" ng-hide="content.markers.length == 0">
             <p class="initiatives-grid__pager-info">
-                Mostrando {{ content.starting_index }}‒{{ content.starting_index + content.current_items }}
-                de {{ content.count }} elementos filtrados.
+                {{'Mostrando'|t}} {{ content.starting_index }}‒{{ content.starting_index + content.current_items }}
+                {{'de'}} {{ content.count }} {{'elementos filtrados'|t}}
             </p>
             <p class="initiatives-grid__pager-links">
                 <span class="initiatives-grid__pager-link"
                       ng-hide="content.starting_index == 0"
                       ng-click="content.previousPage()">
-                    Ver página anterior
+                    {{'Ver página anterior'|t}}
                 </span>
                 <span class="initiatives-grid__pager-link"
                       ng-hide="content.current_items < content.items_per_page"
                       ng-click="content.nextPage()">
-                    Ver página siguiente
+                    {{'Ver página siguiente'|t}}
                 </span>
             </p>
         </div>
