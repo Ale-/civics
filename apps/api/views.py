@@ -19,7 +19,7 @@ no_results = _("No se han encontrado resultados que cumplan con todas las condic
 
 def initiatives_service(request):
     cities = City.objects.annotate(num_refs=Count('initiative')).filter(num_refs__gt=10)
-    initiatives = Initiative.objects.filter(city__in=cities)[:1000]
+    initiatives = Initiative.objects.filter(city__in=cities)
 
     if len(initiatives) > 0:
         initiatives_json = {}
