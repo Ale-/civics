@@ -12,11 +12,6 @@ from django_countries.fields import CountryField
 from django.core.mail import send_mail
 from django.conf import settings
 
-if settings.DEBUG:
-    notification_email_to = 'ale <ale@wwb.cc>'
-else:
-    notification_email_to = 'ale <a@414c45.net>'
-
 #
 #  City
 #
@@ -97,7 +92,7 @@ class Initiative(models.Model):
     send_mail( 'Se ha creado una iniciativa nueva en civics.cc: ' + str(self.name),
         'El ' + str(self.creation_date) + ' se creó la iniciativa ' + str(self.name) + '.',
         'civics.cc <no-reply@civics.cc>',
-        [notification_email_to],
+        settings.NOTIFICATIONS_EMAILS,
         fail_silently=False,
     );
     super(Initiative, self).save(*args, **kwargs)
@@ -170,7 +165,7 @@ class Event(models.Model):
     send_mail( 'Se ha creado un evento nuevo en civics.cc: ' + str(self.title),
         'El ' + str(self.creation_date) + ' se creó el evento ' + str(self.title) + '.',
         'civics.cc <no-reply@civics.cc>',
-        [ notification_email_to ],
+        settings.NOTIFICATIONS_EMAILS,
         fail_silently=False,
     );
     super(Event, self).save(*args, **kwargs)
