@@ -24,7 +24,10 @@
     <div class="fieldset--inline">
         {% include 'forms/field.html' with field=form.date %}
         {% include 'forms/field.html' with field=form.time %}
+    </div>
+    <div class="fieldset--inline">
         {% include 'forms/field.html' with field=form.periodicity %}
+        {% include 'forms/field.html' with field=form.expiration %}
     </div>
     <div class="fieldset--two-col">
         <div class="fieldset__left--two-col">

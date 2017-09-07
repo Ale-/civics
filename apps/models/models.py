@@ -135,11 +135,13 @@ class Event(models.Model):
   agent        = models.CharField(_('tipo de agente'), blank=False, null=False, default='IM', max_length=2, choices = categories.AGENTS,
                                   help_text=_('El tipo de agente involucrado en la actividad'))
   date         = models.DateField(_('Fecha del evento'),
-                                  help_text=_('¿Qué día se celebra el evento?'))
+                                  help_text=_('Indica qué día se celebra o empieza el evento'))
   time         = models.TimeField(_('Hora del evento'),
                                   help_text=_('¿A qué hora se celebra el evento?'))
-  periodicity  = models.CharField(_('Periodicidad'), max_length=2, choices=categories.PERIODICITY, blank=True, null=True,
-                                  help_text=_('Especifica, en ese caso, la periodicidad del evento.'))
+  periodicity  = models.CharField(_('Periodicidad'), max_length = 200, blank=True, null=True,
+                                  help_text=_('Especifica, en ese caso, la periodicidad del evento. Puedes indicar la fecha de fin en el siguiente campo'))
+  expiration   = models.DateField(_('Fecha de fin'), blank=True, null=True,
+                                  help_text=_('Indica opcionalmente en eventos de varios dias la fecha en que acaba el evento.'))
   city         = models.ForeignKey(City, verbose_name=_('Ciudad'), blank=False, null=True, on_delete=models.SET_NULL,
                                      help_text=_('Ciudad donde se encuentra la iniciativa. Si no la encuentras en la lista puedes añadir una nueva.'))
   address      = models.CharField(_('Dirección'), max_length = 200, blank=False, null=True,
