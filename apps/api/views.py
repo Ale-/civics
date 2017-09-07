@@ -294,8 +294,8 @@ def events_service_xls(request):
 def autocomplete_service(request):
     """ Returns initiatives with names beginning with the query characters. """
     name = request.GET.get('n')
-    if(len(name) < 4):
-        raise Exception("Queries must be longer than three characters")
+    if(len(name) < 3):
+        raise Exception("Queries must be longer than two characters")
     print(name)
     initiatives = Initiative.objects.filter(slug__startswith=slugify(name))
     initiatives_json = []
