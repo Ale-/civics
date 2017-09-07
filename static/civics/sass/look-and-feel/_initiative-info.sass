@@ -8,6 +8,8 @@
   +inline-block
   padding: 0 $m
   +links_info
+  max-height: calc(100vh - 100px)
+  overflow-y: auto
 
 .initiative-info__name
   text-align: center
@@ -60,6 +62,10 @@
   img
     +box-shadow(0 0 5px rgba(black,.25))
 
+.initiative-info__video
+  margin: $m 0
+  background: url('../img/loading.gif') no-repeat center center white
+
 .initiative-image--blank
   color: #ddd
   text-align: center
@@ -94,6 +100,10 @@
   margin-bottom: 4px
   line-height: 26px
   vertical-align: middle
+
+[class^='initiative-info__detail']
+  text-transform: uppercase
+  font-size: .9em
 
 .initiative-info__description--calendar
   margin-top: $m

@@ -308,12 +308,21 @@ def autocomplete_service(request):
         })
     return HttpResponse(json.dumps(initiatives_json), content_type="application/json")
 
+def media(url):
+    uri     = url.split('://')[1]
+    service = uri.split('/')[0]
+    if service == 'vimeo.com':
+        return 'https://player.vimeo.com/video/' + uri.split('/')[1]
+    elif service == 'youtube.com':
+        return 'https://www.youtube.com/embed/' + uri.split('?v=')[1]
+
 def initiative_service(request):
     id = request.GET.get('id')
     initiative    = Initiative.objects.filter(pk=id).first()
     coords        = initiative.position['coordinates']
     cityname      = initiative.city.name if initiative.city else 'none'
     countryname   = initiative.city.get_country_display() if initiative.city else 'none'
+
     initiative_json = {
         'id'  : initiative.pk,
         'nam' : initiative.name,
@@ -324,6 +333,7 @@ def initiative_service(request):
         'lat' : coords[1],
         'des' : initiative.description,
         'img' : initiative.image.url if initiative.image else None,
+        'vid' : media(initiative.video) if initiative.video else '',
         'web' : initiative.website,
         'ema' : initiative.email,
         'twi' : initiative.twitter,
@@ -346,12 +356,14 @@ def event_service(request):
         'nam'   : event.title,
         'slu'   : event.slug,
         'img'   : event.image.url if event.image else None,
+        'vid'   : event.video,
         'add'   : event.address,
         'dat'   : event.date.strftime("%d/%b/%Y"),
         'tim'   : event.time.strftime("%H:%M"),
         'cou'   : countryname,
         'lng'   : coords[0],
         'lat'   : coords[1],
+        'vid'   : media(event.video) if event.video else '',
         'des'   : event.description,
         'ini'   : event.initiative.name,
         'web'   : event.initiative.website,

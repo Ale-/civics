@@ -56,6 +56,15 @@
         {{ info.marker.des }}
     </p>
 
+    <!-- Profile description text -->
+    <iframe class='initiative-info__video' ng-if="info.media_src" ng-src="{{ info.media_src }}"
+            width="420" height="315"
+            frameborder="0"
+            webkitallowfullscreen
+            mozallowfullscreen
+            allowfullscreen>
+    </iframe>
+
     <!-- Profile details -->
     <div class='initiative-info__details'>
         <p class="initiative-info__detail--initiative" ng-if="info.showing=='events'">

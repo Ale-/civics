@@ -33,11 +33,13 @@ angular.module('civics.directives', [])
     }
 })
 
-.controller('MarkerinfoController', function(Categories, $scope, meta){
+.controller('MarkerinfoController', function(Categories, $scope, meta, $sce){
+     /** Video */
      /** Root scope event fired from the services that create the markers **/
      $scope.$on('open-marker', angular.bind(this, function(event, args){
           this.expanded = true;
           this.marker = args;
+          this.media_src = $sce.trustAsResourceUrl(this.marker.vid);
           this.marker.topicname = Categories.topics[ this.marker.topics ];
           this.marker.agentname = Categories.agents[ this.marker.agents ];
           if(this.marker.spaces)
