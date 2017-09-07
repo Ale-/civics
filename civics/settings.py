@@ -92,6 +92,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'apps.utils.context_processors.site_info_processor',
+                'apps.utils.context_processors.debug_processor',
                 'apps.users.context_processors.current_user_hello',
             ],
         },
