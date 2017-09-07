@@ -5,14 +5,21 @@
 @import compass/css3/appearance
 
 .lang-switcher
-  +inline-block
-  width: auto
-  float: right
-  font-size: .8em
-  position: relative
-  margin-left: $m
-  bottom: 30px
   width: $m
+  font-size: .8em
+  +breakpoint('xs')
+    position: fixed
+    right: $m*2.5
+    top: $m/2
+    z-index: 100000
+  +breakpoint('sm')
+    +inline-block
+    float: right
+    position: relative
+    margin-left: $m
+    bottom: 30px
+    text-align: inherit
+    padding-bottom: inherit
   &:after
     content: "⌄"
     position: absolute

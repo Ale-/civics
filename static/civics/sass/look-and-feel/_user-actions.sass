@@ -2,8 +2,8 @@
 
 .user-actions
   display: none
-  text-align: right
   +clearfix
+  text-align: center
   +breakpoint('sm')
     height: 20px
     text-align: right
@@ -30,9 +30,13 @@
 //   +breakpoint('sm')
 //     position: absolute
 //     right: $m*3
-.user-actions__admin
-  float: right
+
++breakpoint('sm')
+  .user-actions__admin
+    float: right
+  .user-actions__io
+    float: right
+    margin-left: $m
+
 .user-actions__io
   font-weight: 700
-  float: right
-  margin-left: $m
