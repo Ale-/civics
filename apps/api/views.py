@@ -388,7 +388,7 @@ def initiatives_featured_service(request):
             'cities' : initiative.city.name if initiative.city else 'none',
         })
     initiatives_json['last'] = []
-    initiatives_last = Initiative.objects.order_by('creation_date')[:9]
+    initiatives_last = Initiative.objects.order_by('-creation_date')[:9]
     for initiative in initiatives_last:
         initiatives_json['last'].append({
             'nam'    : initiative.name,
