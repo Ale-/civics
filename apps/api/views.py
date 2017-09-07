@@ -361,19 +361,21 @@ def event_service(request):
 def initiatives_featured_service(request):
     initiatives_json = {}
     initiatives_json['featured'] = []
-    initiatives_featured = Initiative.objects.filter(featured=True)[:3]
+    initiatives_featured = Initiative.objects.filter(featured=True)[:9]
     for initiative in initiatives_featured:
         initiatives_json['featured'].append({
             'nam'    : initiative.name,
             'id'     : initiative.id,
+            'img'    : initiative.image_medium.url if initiative.image else None,
             'cities' : initiative.city.name if initiative.city else 'none',
         })
     initiatives_json['last'] = []
-    initiatives_last = Initiative.objects.order_by('creation_date')[:3]
+    initiatives_last = Initiative.objects.order_by('creation_date')[:9]
     for initiative in initiatives_last:
         initiatives_json['last'].append({
             'nam'    : initiative.name,
             'id'     : initiative.id,
+            'img'    : initiative.image_medium.url if initiative.image else None,
             'cities' : initiative.city.name if initiative.city else 'none'
         })
 
