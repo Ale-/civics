@@ -88,13 +88,14 @@ class Initiative(models.Model):
   def save(self, *args, **kwargs):
     """Populate automatically 'slug' field"""
     self.slug = slugify(self.name)
-    # Notify by mail
-    send_mail( 'Se ha creado una iniciativa nueva en civics.cc: ' + str(self.name),
-        'El ' + str(self.creation_date) + ' se creó la iniciativa ' + str(self.name) + '.',
-        'civics.cc <no-reply@civics.cc>',
-        settings.NOTIFICATIONS_EMAILS,
-        fail_silently=False,
-    );
+    # Notify by mail, only when creating new content
+    if not self.id:
+        send_mail( 'Se ha creado una iniciativa nueva en civics.cc: ' + str(self.name),
+            'El ' + str(self.creation_date) + ' se creó la iniciativa ' + str(self.name) + '.',
+            'civics.cc <no-reply@civics.cc>',
+            settings.NOTIFICATIONS_EMAILS,
+            fail_silently=False,
+        );
     super(Initiative, self).save(*args, **kwargs)
 
   def edit_permissions(self, user):
@@ -161,13 +162,14 @@ class Event(models.Model):
   def save(self, *args, **kwargs):
     """Populate automatically 'slug' field"""
     self.slug = slugify(self.title)
-    # Notify by mail
-    send_mail( 'Se ha creado un evento nuevo en civics.cc: ' + str(self.title),
-        'El ' + str(self.creation_date) + ' se creó el evento ' + str(self.title) + '.',
-        'civics.cc <no-reply@civics.cc>',
-        settings.NOTIFICATIONS_EMAILS,
-        fail_silently=False,
-    );
+    # Notify by mail, only when creating new content
+    if not self.id:
+        send_mail( 'Se ha creado un evento nuevo en civics.cc: ' + str(self.title),
+            'El ' + str(self.creation_date) + ' se creó el evento ' + str(self.title) + '.',
+            'civics.cc <no-reply@civics.cc>',
+            settings.NOTIFICATIONS_EMAILS,
+            fail_silently=False,
+        );
     super(Event, self).save(*args, **kwargs)
 
   def edit_permissions(self, user):
