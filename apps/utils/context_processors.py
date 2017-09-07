@@ -13,6 +13,5 @@ def debug_processor(request):
 
     debug    = settings.DEBUG
     debug_js = settings.DEBUG_JS
-    print(debug_js)
 
     return locals()
