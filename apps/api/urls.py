@@ -6,6 +6,7 @@ urlpatterns = [
     url(r'^initiative$', views.initiative_service, name='get_initiative'),
     url(r'^initiatives$', views.initiatives_service, name='get_initiatives'),
     url(r'^initiatives_featured$', views.initiatives_featured_service, name='get_initiatives_featured'),
+    url(r'^initiatives_performance$', views.initiatives_performancetest_service, name='test_initiatives'),
     url(r'^initiatives_xls$', views.initiatives_service_xls, name='get_initiatives_xls'),
     url(r'^event$', views.event_service, name='get_event'),
     url(r'^event_create$', views.create_event, name='create_event'),

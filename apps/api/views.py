@@ -1,21 +1,26 @@
+import json
+import math
+from datetime import date
+from django.conf import settings
 from django.shortcuts import render
-from apps.models.models import Initiative, City, Event
-from apps.models.categories import *
 from django.utils.translation import ugettext_lazy as _
 from django.http import HttpResponse
 from django.db.models import Count
 from django.views.decorators.csrf import csrf_protect
-import json
 from django.utils.text import slugify
-from datetime import date
-from django.conf import settings
-import math
+from apps.models.categories import *
+from apps.models.models import Initiative, City, Event
 
 #
 #  API
 #
 
 no_results = _("No se han encontrado resultados que cumplan con todas las condiciones de filtrado.")
+
+def initiatives_performancetest_service(request):
+    cities = City.objects.annotate(num_refs=Count('initiative')).filter(num_refs__gt=10)
+    initiatives = Initiative.objects.filter(city__in=cities)
+    return JsonResponse(serializers.serialize('json', initiatives, fields=('id', 'position', 'image', 'city', 'topic', 'agent', '')), safe=False)
 
 def initiatives_service(request):
     cities = City.objects.annotate(num_refs=Count('initiative')).filter(num_refs__gt=10)
