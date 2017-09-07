@@ -18,7 +18,7 @@
     {% endfor %}
 {% endif %}
 
-<form enctype="multipart/form-data" action="{{ action }}" method="post" class="form--{{ form_class }}">
+<form enctype="multipart/form-data" action="{{ action }}" method="post" class="form--{{ form_class }} {{ action_class }}">
     {% csrf_token %}
     {% with 'forms/fields-'|add:form_class|add:'.html' as fields %}
         <div class="form-fields--{{ form_class }}">

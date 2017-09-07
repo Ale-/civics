@@ -41,6 +41,7 @@ class InitiativeCreate(GenericCreate):
     """Pass context data to generic view."""
     context = super(InitiativeCreate, self).get_context_data(**kwargs)
     context['form__html_class'] = self.form__html_class
+    context['form__action_class'] = 'form-create'
     context['submit_text'] = _('Crea la iniciativa')
     return context
 
@@ -70,6 +71,7 @@ class InitiativeEdit(GenericUpdate):
     initiative                  = get_object_or_404(models.Initiative, pk=pk)
     context['title']            = self.title + (' ') + initiative.name
     context['form__html_class'] = self.form__html_class
+    context['form__action_class'] = 'form-edit'
     context['submit_text'] = _('Guarda los cambios')
     return context
 
@@ -122,6 +124,7 @@ class EventCreate(GenericCreate):
     """Pass context data to generic view."""
     context                     = super(EventCreate, self).get_context_data(**kwargs)
     context['form__html_class'] = self.form__html_class
+    context['form__action_class'] = 'form-create'
     context['submit_text'] = _('Publica este evento')
     return context
 
@@ -162,6 +165,7 @@ class EventEdit(GenericUpdate):
     event                       = get_object_or_404(models.Event, pk=pk)
     context['title']            = self.title + (' ') + event.title
     context['form__html_class'] = self.form__html_class
+    context['form__action_class'] = 'form-edit'
     context['submit_text'] = _('Edita este evento')
     return context
 
