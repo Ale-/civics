@@ -4,10 +4,11 @@ from datetime import date
 from django.conf import settings
 from django.shortcuts import render
 from django.utils.translation import ugettext_lazy as _
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.db.models import Count
 from django.views.decorators.csrf import csrf_protect
 from django.utils.text import slugify
+from django.core import serializers
 from apps.models.categories import *
 from apps.models.models import Initiative, City, Event
 
