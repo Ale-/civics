@@ -15,6 +15,7 @@ from apps.users.views import ActivationView
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^i18n/', include('django.conf.urls.i18n')),
+    url(r'^api/', include('apps.api.urls', namespace="api")),
 ]
 
 urlpatterns += i18n_patterns(
@@ -32,7 +33,6 @@ urlpatterns += i18n_patterns(
     url(r'^pass-cambiado/$', auth_views.password_reset_complete, name="password_reset_complete"),
     url(r'^pass/ok/$', auth_views.password_reset_done, name='password_reset_done'),
     url(r'', include('registration.backends.default.urls')),
-    url(r'^api/', include('apps.api.urls', namespace="api")),
     url(r'^', include('apps.users.urls', namespace="users")),
 
     # Contact form
