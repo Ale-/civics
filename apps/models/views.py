@@ -144,7 +144,7 @@ class EventEdit(GenericUpdate):
   form_class = forms.EventForm
   template_name = modelform_generic_template
   form__html_class = 'event'
-  title = _('Guarda los cambios')
+  title = _('Edita el evento ')
   dependencies     = ['leaflet']
 
   def form_valid(self, form):
@@ -166,7 +166,7 @@ class EventEdit(GenericUpdate):
     context['title']            = self.title + (' ') + event.title
     context['form__html_class'] = self.form__html_class
     context['form__action_class'] = 'form-edit'
-    context['submit_text'] = _('Edita este evento')
+    context['submit_text'] = _('Guarda los cambios')
     return context
 
 class EventDelete(GenericDelete):
