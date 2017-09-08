@@ -17,27 +17,10 @@ from apps.models import categories
 
 class Dashboard(View):
     """
-    Get initiative profile
-
-    """
-
-    @method_decorator(login_required)
-    def get(self, request):
-        initiative = Initiative.objects.filter(user=request.user).first()
-        if initiative:
-            events      = Event.objects.filter(initiative=initiative).all()
-            return render(request, 'users/dashboard.html', locals())
-
-        return HttpResponseRedirect( reverse('modelforms:create_initiative') )
-
-
-class DashboardStaff(View):
-    """
     Get user profile
 
     """
 
-    @method_decorator(staff_member_required)
     def get(self, request):
         initiatives = Initiative.objects.filter(user=request.user).order_by('name')
         if initiatives:

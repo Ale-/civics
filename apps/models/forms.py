@@ -71,6 +71,8 @@ class EventForm(forms.ModelForm):
         self.base_fields['periodicity'].widget.attrs['placeholder'] = _("P.ej. 'Todos los martes' o 'Cada dos semanas'")
         self.base_fields['time'].widget.attrs['placeholder'] = _("Usa el formato hh:mm, por ejemplo '09:00'")
         self.base_fields['video'].widget.attrs['placeholder'] = _("Por ejemplo 'https://vimeo.com/45130145'")
-        self.base_fields['initiative'].queryset = models.Initiative.objects.order_by('name')
+        user = kwargs['initial']['user']
+        if not user.is_staff:
+            self.base_fields['initiative'].queryset = models.Initiative.objects.filter(user=user).order_by('-name')
         self.base_fields['initiative'].empty_label = None
         super(EventForm, self).__init__(*args, **kwargs)

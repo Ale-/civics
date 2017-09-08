@@ -131,13 +131,9 @@ class EventCreate(GenericCreate):
 
   def get_initial(self):
     super(EventCreate, self).get_initial()
-    user = self.request.user
-    if not user.is_staff:
-        initiative = Initiative.objects.filter(user=user).first()
-        return {
-            "initiative"     : initiative
-        }
-    return { }
+    return {
+        "user" : self.request.user
+    }
 
 class EventEdit(GenericUpdate):
   """Generic view to edit Event objects."""
