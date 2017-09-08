@@ -16,28 +16,29 @@
 
     <!-- Profile header -->
     <div class="initiative-header">
-        <h2 class='initiative-info__name'>
-            {{ info.marker.nam }}
-        </h2>
         <div class="initiative-image">
             <img ng-show="info.marker.img" ng-src="{{ info.marker.img }}" />
             <div ng-hide="info.marker.img" class="initiative-image--blank">
                 <span class="icon-agent"></span>
             </div>
         </div>
-        <div class='initiative-marker'>
-            <div class="leaflet-marker-icon cm">
-                <i class='outer i-to-{{ info.marker.topics }} i-ag-{{ info.marker.agents }}'></i>
-                <i ng-if="content.section == 'initiatives'" class='inner i-sp-{{ info.marker.spaces }}'></i>
-                <i ng-if="content.section == 'events'" class='inner i-ac-{{ info.marker.activities }}'></i>
-            </div>
-            <p class="initiative-marker__topic">{{ info.marker.topicname }}</p>
-            <p class="initiative-marker__agent">{{ info.marker.agentname }}</p>
-            <p ng-if="content.section=='initiatives'" class="initiative-marker__space">{{ info.marker.spacename }}</p>
-            <p ng-if="content.section=='events'" class="initiative-marker__activity">{{ info.marker.activitiesname }}</p>
+        <div class="leaflet-marker-icon cm">
+            <i class='outer i-to-{{ info.marker.topics }} i-ag-{{ info.marker.agents }}'></i>
+            <i ng-if="content.section == 'initiatives'" class='inner i-sp-{{ info.marker.spaces }}'></i>
+            <i ng-if="content.section == 'events'" class='inner i-ac-{{ info.marker.activities }}'></i>
+        </div>
+        <div class="initiative-header-text">
+            <h2 class='initiative-info__name'>
+                {{ info.marker.nam }}
+            </h2>
+            <p class="initiative-marker__categories">
+                <span class="initiative-marker__topic">{{ info.marker.topicname }}</span>
+                <span class="initiative-marker__agent">{{ info.marker.agentname }}</span>
+                <span ng-if="content.section=='initiatives'" class="initiative-marker__space">{{ info.marker.spacename }}</span>
+                <span ng-if="content.section=='events'" class="initiative-marker__activity">{{ info.marker.activitiesname }}</span>
+            </p>
         </div>
     </div>
-
     <!-- Event details -->
     <div class='initiative-info__event-details' ng-if="info.showing=='events'">
         <p class="initiative-info__detail--date">
@@ -52,9 +53,9 @@
     </div>
 
     <!-- Profile description text -->
-    <p class='initiative-info__description'>
+    <div class='initiative-marker__description'>
         {{ info.marker.des }}
-    </p>
+    </div>
 
     <!-- Profile description text -->
     <iframe class='initiative-info__video' ng-if="info.media_src" ng-src="{{ info.media_src }}"

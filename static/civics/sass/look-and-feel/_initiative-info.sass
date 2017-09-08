@@ -12,9 +12,9 @@
   overflow-y: auto
 
 .initiative-info__name
-  text-align: center
   text-transform: uppercase
   margin-top: $m/2
+  margin-bottom: 0
   font-size: 1.3rem
 
 .initiative-actions
@@ -57,8 +57,7 @@
   line-height: 30px
 
 .initiative-image
-  width: 75%
-  +inline-block
+  margin: $m/2 0 $m
   img
     +box-shadow(0 0 5px rgba(black,.25))
 
@@ -87,14 +86,8 @@
     +inline-block
     .outer::before
       +text-shadow(none)
-    p
-      margin-bottom: $m/8
-      font-size: $size_small *.8
-      text-transform: uppercase
     .inner
       left: 29px !important
-    .initiative-marker__topic
-      margin-top: $m/2
 
 .initiative-info__detail
   margin-bottom: 4px
@@ -131,9 +124,6 @@
   padding-bottom: $m/3
   text-transform: uppercase
 
-.initiative-marker .leaflet-marker-icon.cm .outer::before
-  +text-shadow(none)
-
 .initiative-info--events .initiative-marker .leaflet-marker-icon.cm .inner
   left: 30px !important
   +big_icon
@@ -144,3 +134,15 @@
 .initiative-info__detail--twitter
   [class^='icon']
     font-size: 20px
+
+.initiative-marker__categories
+  margin-bottom: $m/2
+  font-size: $size_small *.8
+  text-transform: uppercase
+
+.initiative-header .leaflet-marker-icon
+  float: left
+  margin: 0 $m/2
+
+.initiative-header .leaflet-marker-icon .outer::before
+  +text-shadow(none !important)
