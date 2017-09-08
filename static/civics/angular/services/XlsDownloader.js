@@ -8,7 +8,7 @@ angular.module('civics.xls_downloader', [])
     this.get = function(section, selected_categories){
 
         // Check section and build base URL for the query
-        var base_url = "api/initiatives_xls?topics=";
+        var base_url = "/api/initiatives_xls?topics=";
         if(section == 'events')
             base_url = "api/events_xls?topics=";
 
