@@ -15,4 +15,6 @@ urlpatterns = [
     url(r'^events_featured$', views.events_featured_service, name='get_events_featured'),
     url(r'^events_xls$', views.events_service_xls, name='get_events_xls'),
     url(r'^autocomplete$', views.autocomplete_service, name='autocomplete'),
+    url(r'^cities_with_initiatives$', views.cities_with_initiatives, name='cities_with_initiatives'),
+    url(r'^cities_with_events$', views.cities_with_events, name='cities_with_events'),
 ]

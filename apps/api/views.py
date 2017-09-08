@@ -18,43 +18,10 @@ from apps.models.models import Initiative, City, Event
 
 no_results = _("No se han encontrado resultados que cumplan con todas las condiciones de filtrado.")
 
-def initiatives_performancetest_service(request):
-    cities = City.objects.annotate(num_refs=Count('initiative')).filter(num_refs__gt=10)
-    initiatives = Initiative.objects.filter(city__in=cities)
-    return JsonResponse(serializers.serialize('json', initiatives, fields=('id', 'position', 'image', 'city', 'topic', 'agent', '')), safe=False)
-
 def initiatives_service(request):
     cities = City.objects.annotate(num_refs=Count('initiative')).filter(num_refs__gt=10)
-    initiatives = Initiative.objects.filter(city__in=cities)
-
-    if len(initiatives) > 0:
-        initiatives_json = {}
-        for initiative_json in initiatives:
-            coords        = initiative_json.position['coordinates']
-            cityname      = initiative_json.city.name if initiative_json.city else 'none'
-            countryname   = initiative_json.city.get_country_display() if initiative_json.city else 'none'
-            if countryname not in initiatives_json:
-                initiatives_json[countryname] = {}
-            if cityname not in initiatives_json[countryname]:
-                initiatives_json[countryname][cityname] = {}
-            city_coords = initiative_json.city.position['coordinates']
-            initiatives_json[countryname][cityname]['coordinates'] = [ city_coords[1], city_coords[0] ];
-            if 'items' not in initiatives_json[countryname][cityname]:
-                initiatives_json[countryname][cityname]['items'] = [];
-            initiatives_json[countryname][cityname]['items'].append({
-                'id'  : initiative_json.pk,
-                'lng' : coords[0],
-                'lat' : coords[1],
-                'img' : initiative_json.image_medium.url if initiative_json.image else None,
-                'cit' : initiative_json.city.name if initiative_json.city else 'none',
-                'top' : initiative_json.topic.lower(),
-                'age' : initiative_json.agent.lower(),
-                'spa' : initiative_json.space.lower(),
-            })
-
-        return HttpResponse(json.dumps(initiatives_json), content_type="application/json")
-
-    return HttpResponse(no_results)
+    initiatives = Initiative.objects.filter(city__in=cities).select_related()
+    return JsonResponse(serializers.serialize('json', initiatives, fields=('name', 'position', 'image', 'city', 'topic', 'agent', 'space')), safe=False)
 
 def events_service(request):
     cities     = City.objects.annotate(num_refs=Count('initiative')).filter(num_refs__gt=0)
@@ -431,7 +398,6 @@ def create_event(request):
     """
     Create an event in database.
     To be triggered by ajax calls from static/js/facebook.js
-
     """
 
     if request.method == 'POST':
@@ -456,10 +422,10 @@ def create_event(request):
     else:
         return HttpResponse("Prohibido", content_type="application/json")
 
+
 def events_by_fb_id_service(request):
     """
     Get Facebook id's of events in database.
-
     """
 
     events = Event.objects.filter(facebook_id__isnull=False)
@@ -467,3 +433,27 @@ def events_by_fb_id_service(request):
     for event in events:
         events_json.append(event.facebook_id)
     return HttpResponse(json.dumps(events_json), content_type="application/json")
+
+
+def cities_with_initiatives(request):
+    """
+    Get cities related to initiatives
+    """
+
+    cities = City.objects.filter(initiative_related=True)
+    response = {}
+    for city in cities:
+        response[city.pk] = { 'name' : city.name, 'country' : city.country.name }
+    return HttpResponse( json.dumps(response), content_type="application/json" );
+
+
+def cities_with_events(request):
+    """
+    Get cities related to events
+    """
+
+    cities = City.objects.filter(event_related=True)
+    response = {}
+    for city in cities:
+        response[city.pk] = { 'name' : city.name, 'country' : city.country.name }
+    return HttpResponse( json.dumps(response), content_type="application/json" );

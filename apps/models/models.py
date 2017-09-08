@@ -19,10 +19,12 @@ from django.conf import settings
 class City(models.Model):
   """Model to represent City objects"""
 
-  name     = models.CharField(_('Nombre de la ciudad'), max_length = 200, blank = False, null = True,
-                              help_text = _('Especifica el nombre de la ciudad.'))
-  country = CountryField(_('País'), null=True, help_text = _('¿A qué país pertenece la ciudad?'))
-  position = PointField(_("Ubicación"), blank=False, null=True, help_text=_("Añade la ubicación de la ciudad."))
+  name               = models.CharField(_('Nombre de la ciudad'), max_length = 200, blank = False, null = True,
+                       help_text = _('Especifica el nombre de la ciudad.'))
+  country            = CountryField(_('País'), null=True, help_text = _('¿A qué país pertenece la ciudad?'))
+  position           = PointField(_("Ubicación"), blank=False, null=True, help_text=_("Añade la ubicación de la ciudad."))
+  initiative_related = models.BooleanField(default=False)
+  event_related      = models.BooleanField(default=False)
 
   class Meta:
     verbose_name = _('Ciudad')

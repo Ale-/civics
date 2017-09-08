@@ -203,7 +203,7 @@ angular.module('civics.list_controller', [])
         var url = '/api/initiative?id=';
         if(this.section == 'events')
           url = '/api/event?id=';
-        $http.get(url + marker.id).then( angular.bind(this, function(response){
+        $http.get(url + marker.pk).then( angular.bind(this, function(response){
           $rootScope.$broadcast('open-marker', response.data);
         }));
     }
