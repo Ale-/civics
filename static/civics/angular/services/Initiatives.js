@@ -28,7 +28,6 @@ angular.module('civics.initiatives_service', [])
         var initiatives = initiatives_data.get('items');
         for(var i in initiatives){
             var marker = initiatives[i];
-            console.log(marker);
             var city = marker.fields.city;
             if(!(city in clusters)){
                 clusters[city] = new PruneClusterForLeaflet();
