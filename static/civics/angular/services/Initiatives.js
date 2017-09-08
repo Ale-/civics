@@ -6,10 +6,9 @@ angular.module('civics.initiatives_service', [])
 
 .factory('Initiatives', function($http, Settings, Categories, $rootScope, $q, meta, initiatives_data)
 {
-
     var initiatives = {};
-    // Returns a list of events from cached data
 
+    // Returns a list of events from cached data
     initiatives.createList = function(){
         var items = [];
         var initiatives = initiatives_data.get('items');
@@ -29,26 +28,11 @@ angular.module('civics.initiatives_service', [])
         var initiatives = initiatives_data.get('items');
         for(var i in initiatives){
             var marker = initiatives[i];
+            console.log(marker);
             var city = marker.fields.city;
             if(!(city in clusters)){
                 clusters[city] = new PruneClusterForLeaflet();
             }
-            clusters[city].PrepareLeafletMarker = function(leafletMarker, data){
-                leafletMarker.setIcon( L.divIcon({
-                    'iconSize'    : [40, 60],
-                    'iconAnchor'  : [20, 60],
-                    'className'   : 'cm',
-                    'html'        : "<i class='outer i-to-" + data.topics + " i-ag-" + data.agents + "'></i>" +
-                                    "<i class='inner i-sp-" + data.spaces + "'></i>",
-                }) );
-                leafletMarker.on('click', function(e){
-                    $http.get('/api/initiative?id=' + marker.pk, {
-                        ignoreLoadingBar: true,
-                    }).then( function(response){
-                        $rootScope.$broadcast('open-marker', response.data);
-                    });
-                });
-            };
             var pos = JSON.parse(marker.fields.position);
             var m = new PruneCluster.Marker(pos.coordinates[1], pos.coordinates[0], {
                 id     : marker.pk,
@@ -59,6 +43,24 @@ angular.module('civics.initiatives_service', [])
             });
             clusters[city].RegisterMarker(m);
             meta.count++;
+        }
+        for(city in clusters){
+            clusters[city].PrepareLeafletMarker = function(leafletMarker, data){
+                leafletMarker.setIcon( L.divIcon({
+                    'iconSize'    : [40, 60],
+                    'iconAnchor'  : [20, 60],
+                    'className'   : 'cm',
+                    'html'        : "<i class='outer i-to-" + data.topics + " i-ag-" + data.agents + "'></i>" +
+                                    "<i class='inner i-sp-" + data.spaces + "'></i>",
+                }) );
+                leafletMarker.on('click', function(e){
+                    $http.get('/api/initiative?id=' + data.id, {
+                        ignoreLoadingBar: true,
+                    }).then( function(response){
+                        $rootScope.$broadcast('open-marker', response.data);
+                    });
+                });
+            };
         }
         return clusters;
     };
