@@ -143,17 +143,15 @@
   &:-moz-focusring
     color: transparent
   +text-shadow(0 0 0 white)
-
-
 .legend-help
   display: inline-block
 .legend-help__icon
   margin-right: $m/3
   padding: 0 $m/3
   line-height: 20px
-  background: rgba(black, .25)
   vertical-align: middle
-  +border-radius(4px)
+  font-size: 1.25em
+  color: rgba(black, .75)
 .legend-help__icon:hover
   cursor: pointer
 .legend-help__text
@@ -173,3 +171,5 @@
   position: absolute
   left: -8px
   top: 4px
+.map-actions__actions .icon-star:before
+  font-size: 1.25em
