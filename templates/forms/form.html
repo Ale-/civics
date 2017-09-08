@@ -42,4 +42,12 @@
         {% endif %}
     </div>
     <input class="form__submit" type="submit" value="{{ submit_text }}" />
+    {% if action_class == 'form-edit' %}
+        {% with 'modelforms:'|add:'delete_'|add:form__html_class as edit_url %}
+        <a class="form__delete" href="{% url edit_url object_id %}">
+            {% trans 'Borra este contenido' %}
+        </a>
+        {% endwith %}
+    {% endif %}
+    <span class="form__cancel" onclick="history.go(-1)">{% trans 'Cancelar' %}</span>
 </form>

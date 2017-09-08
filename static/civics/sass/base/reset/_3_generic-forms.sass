@@ -43,6 +43,18 @@
   font-size: .75em
   +inline-block
 
+=button_cancel($height: $button_height)
+  height: $height
+  outline: 2px solid $color_text
+  line-height: $height
+  color: $color_text
+  background-color: $color_background
+  +transition(background-color, .1s ease)
+  &:hover
+    background-color: #222
+    color: white
+    cursor: pointer
+
 // Forms
 
 =generic_form

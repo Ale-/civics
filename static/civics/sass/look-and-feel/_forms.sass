@@ -104,10 +104,20 @@
 .geocode-widget__geometry
   display: none
 
-.form__cancel
-  +button_warning(40px)
+.form__cancel,
+.form__delete
+  text-transform: uppercase
   display: inline-block
   padding: 0 $m
+
+.form__submit
+  font-weight: bold !important
+.form__delete
+  +button_warning(40px)
+  font-weight: bold
+.form__cancel
+  +button_cancel(32px)
+  margin-left: $m
 
 .form__terms
   font-size: .95em

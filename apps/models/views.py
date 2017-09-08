@@ -66,12 +66,13 @@ class InitiativeEdit(GenericUpdate):
 
   def get_context_data(self, **kwargs):
     """Pass context data to generic view."""
-    context                     = super(InitiativeEdit, self).get_context_data(**kwargs)
-    pk                          = self.kwargs['pk']
-    initiative                  = get_object_or_404(models.Initiative, pk=pk)
-    context['title']            = self.title + (' ') + initiative.name
-    context['form__html_class'] = self.form__html_class
+    context                       = super(InitiativeEdit, self).get_context_data(**kwargs)
+    pk                            = self.kwargs['pk']
+    initiative                    = get_object_or_404(models.Initiative, pk=pk)
+    context['title']              = self.title + (' ') + initiative.name
+    context['form__html_class']   = self.form__html_class
     context['form__action_class'] = 'form-edit'
+    context['object_id']          = pk
     context['submit_text'] = _('Guarda los cambios')
     return context
 
@@ -160,13 +161,14 @@ class EventEdit(GenericUpdate):
 
   def get_context_data(self, **kwargs):
     """Pass context data to generic view."""
-    context                     = super(EventEdit, self).get_context_data(**kwargs)
-    pk                          = self.kwargs['pk']
-    event                       = get_object_or_404(models.Event, pk=pk)
-    context['title']            = self.title + (' ') + event.title
-    context['form__html_class'] = self.form__html_class
+    context                       = super(EventEdit, self).get_context_data(**kwargs)
+    pk                            = self.kwargs['pk']
+    event                         = get_object_or_404(models.Event, pk=pk)
+    context['title']              = self.title + (' ') + event.title
+    context['form__html_class']   = self.form__html_class
     context['form__action_class'] = 'form-edit'
-    context['submit_text'] = _('Guarda los cambios')
+    context['submit_text']        = _('Guarda los cambios')
+    context['object_id']          = pk
     return context
 
 class EventDelete(GenericDelete):
