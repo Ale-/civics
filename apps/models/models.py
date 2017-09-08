@@ -62,7 +62,7 @@ class Initiative(models.Model):
                                    help_text=_('Si tienes una cuenta de Twitter, pon aquí el nombre de usuario.'))
   facebook      = models.URLField(_('Facebook'), blank=True, null=True,
                                   help_text=_('Si tienes un perfil de Facebook pon aquí el enlace completo a la misma.'))
-  email         = models.EmailField(_('Correo electrónico'), blank=True, null=True,
+  email         = models.EmailField(_('Correo electrónico'), blank=False, null=True,
                                     help_text=_('Especifica un correo de contacto para la iniciativa.'))
   topic         = models.CharField(_('Tema'), blank=False, null=False, default='DC', max_length=2, choices = categories.TOPICS,
                                     help_text=_('El tema de la iniciativa'))
