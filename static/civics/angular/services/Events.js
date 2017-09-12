@@ -1,110 +1,110 @@
 angular.module('civics.events_service', [])
 
-.factory('Events', function($http, Settings, Categories, $rootScope, $q, meta)
+.factory('events_data', function($cacheFactory){
+      return $cacheFactory('events');
+})
+
+.factory('Events', function($http, Settings, Categories, $rootScope, $q, meta, events_data)
 {
-    return {
-        // Cached data of events
-        data : {},
+    var events = {};
 
-        // Sets up event categories from cached data
-        createCategories : function(){
-            for(var country in this.data){
-                for(var city in this.data[country]){
-                    /** Update initiative cities category for the filters */
-                    Categories.addEventCity(country, city, this.data[country][city]['coordinates']);
+    events.createCategories = function(){
+        $http.get('/api/cities_with_events').then(
+            function(response){
+                for(var i in response.data){
+                  var city = response.data[i];
+                  /** Update initiative cities category for the filters */
+                  Categories.addEventCity(city.country, city.name, city.id, city.coordinates);
                 }
             }
-        },
+        );
+    };
 
-        // Returns a list of events from cached data
-        createList : function(){
-            var items = [];
-            for(var country in this.data){
-                for(var city in this.data[country]){
-                    for(i in this.data[country][city]['items']){
-                        items.push(this.data[country][city]['items'][i]);
-                    }
-                }
+    // Returns a list of events from cached data
+    events.createList = function(){
+        var items = [];
+        var events = events_data.get('events');
+        for(var i in events){
+            items.push( events[i] );
+        }
+        meta.count = items.length;
+        return items;
+    };
+
+    // Returns a list of clusters from cached data
+    events.createClusters = function(){
+        PruneCluster.Cluster.ENABLE_MARKERS_LIST = true;
+        meta.count = 0;
+
+        var clusters = {};
+        var events = events_data.get('events');
+        for(var i in events){
+            var marker = events[i];
+            var city = marker.fields.city;
+            if(!(city in clusters)){
+                clusters[city] = new PruneClusterForLeaflet();
             }
-            meta.count = items.length;
-            return items;
-        },
-
-        // Returns a list of clusters from cached data
-        createClusters : function(){
-            var clusters = {};
-            meta.count    = 0;
-
-            for(var country in this.data){
-                for(var city in this.data[country]){
-                    /** Setup clusters */
-                    clusters[city] = new PruneClusterForLeaflet();
-                    clusters[city].PrepareLeafletMarker = function(leafletMarker, data){
-                        leafletMarker.setIcon( L.divIcon({
-                            'type' : 'div',
-                            'iconSize'    : [40, 60],
-                            'iconAnchor'  : [20, 60],
-                            'popupAnchor' : [0, -30],
-                            'className'   : 'cm',  //from civics-marker, cryptic but light (lot of markers)
-                            'html'        : "<i class='outer i-to-" + data.topics + " i-ag-" + data.agents + "'></i>" +
-                                            "<i class='inner i-ac-" + data.activities + "'></i>",
-                        }));
-                        leafletMarker.on('click', function(e){
-                            $http.get('/api/event?id=' + data.id, {
-                                ignoreLoadingBar: true,
-                            }).then( angular.bind(this, function(response){;
-                                $rootScope.$broadcast('open-marker', response.data);
-                            }));
-                        });
-                    };
-                    clusters[city].Cluster.Size = 8;
-
-                    /** Setup markers */
-                    for(var i = 0, l = this.data[country][city]['items'].length; i < l; i++){
-                        var marker = this.data[country][city]['items'][i];
-                        var m = new PruneCluster.Marker(marker.lat, marker.lng, {
-                            id    : marker.id,
-                            cities     : city,
-                            topics     : marker.top,
-                            agents     : marker.age,
-                            activities : marker.act,
-                        });
-                      clusters[city].RegisterMarker(m);
-                      meta.count++;
-                    }
-                }
-            }
-            return clusters;
-        },
-
-        // Fetches data from API and caches it in service data
-        // Returns data in the given format
-        setup : function(format){
-            meta.showing = 'events';
-            if(Object.keys(this.data).length === 0) {
-                return $http.get('/api/events').then( angular.bind(this, function(response){
-                    this.data = response.data;
-                    this.createCategories();
-                    if(format == 'map' ){
-                        return this.createClusters();
-                    } else {
-                        return this.createList();
-                    }
-                }), function(error_response){
-                    console.log(error_response);
+            var pos = JSON.parse(marker.fields.position);
+            var m = new PruneCluster.Marker(pos.coordinates[1], pos.coordinates[0], {
+                id     : marker.pk,
+                cities : city,
+                topics     : marker.fields.topic.toLowerCase(),
+                activities : marker.fields.category.toLowerCase(),
+                agents     : marker.fields.agent.toLowerCase(),
+            });
+            clusters[city].RegisterMarker(m);
+            meta.count++;
+        }
+        for(city in clusters){
+            clusters[city].PrepareLeafletMarker = function(leafletMarker, data){
+                leafletMarker.setIcon( L.divIcon({
+                    'iconSize'    : [40, 60],
+                    'iconAnchor'  : [20, 60],
+                    'className'   : 'cm',
+                    'html'        : "<i class='outer i-to-" + data.topics + " i-ag-" + data.agents + "'></i>" +
+                                    "<i class='inner i-ac-" + data.activities + "'></i>",
+                }) );
+                leafletMarker.on('click', function(e){
+                    $http.get('/api/event?id=' + data.id, {
+                        ignoreLoadingBar: true,
+                    }).then( function(response){
+                        $rootScope.$broadcast('open-marker', response.data);
+                    });
                 });
-            } else {
-                return $q( angular.bind(this, function(resolve, reject){
-                    if(format == 'map') {
-                        resolve( this.createClusters() );
-                    } else {
-                        resolve( this.createList() );
-                    }
-                })).then( function(clusters) {
-                    return clusters;
-                });
-            }
+            };
         }
 
-    }
+        return clusters;
+    };
+
+    // Fetches data from API and caches it in service data
+    // Returns data in the given format
+    events.setup = function(format){
+        meta.showing = 'events';
+        this.createCategories();
+        if( !events_data.get('events') ) {
+            return $http.get('/api/events', { cache: true }).then( function(response){
+                events_data.put('events', JSON.parse(response.data));
+                if(format == 'map' ){
+                    return events.createClusters();
+                } else {
+                    return events.createList();
+                }
+            }, function(error_response){
+                console.log(error_response);
+            });
+        } else {
+            return $q( function(resolve, reject){
+                if(format == 'map' ){
+                    resolve( events.createClusters() );
+                } else {
+                    resolve( events.createList() );
+                }
+            }).then( function(clusters) {
+                return clusters;
+            });
+        }
+    };
+
+    return events;
 });

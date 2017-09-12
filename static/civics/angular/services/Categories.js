@@ -56,21 +56,31 @@ angular.module('civics.categories_service', [])
     };
 
     this.city_initiatives = {};
-
     this.city_events = {};
+    this.cities = {};
 
-    this.addInitiativeCity = function(country, city, coords){
+    this.addInitiativeCity = function(country, name, id, coords){
         if(!this.city_initiatives[country])
             this.city_initiatives[country] = {}
-        if(!this.city_initiatives[country][city])
-            this.city_initiatives[country][city] = coords;
+        if(!this.city_initiatives[country][id]) {
+            this.city_initiatives[country][id] = {
+                'name'   : name,
+                'coords' : [ coords[1], coords[0] ],
+            };
+            this.cities[id] = name;
+        }
     }
 
-    this.addEventCity = function(country, city, coords){
+    this.addEventCity = function(country, name, id, coords){
         if(!this.city_events[country])
             this.city_events[country] = {}
-        if(!this.city_events[country][city])
-            this.city_events[country][city] = coords;
+        if(!this.city_events[country][id]) {
+            this.city_events[country][id] = {
+                'name'   : name,
+                'coords' : [ coords[1], coords[0] ],
+            };
+            this.cities[id] = name;
+        }
     }
 
     return this;

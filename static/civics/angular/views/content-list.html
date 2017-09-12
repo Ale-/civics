@@ -46,8 +46,9 @@
                 </p>
             </div>
             <div class="grid__item-caption">
-              <p class="grid__item-name">{{ marker.fields.name }}</p>
-              <p class="grid__item-city">{{ marker.fields.city }}</p>
+              <p class="grid__item-name" ng-if="content.section=='initiatives'">{{ marker.fields.name }}</p>
+              <p class="grid__item-name" ng-if="content.section=='events'">{{ marker.fields.title }}</p>
+              <p class="grid__item-city">{{ content.cityname(marker.fields.city) }}</p>
             </div>
         </div>
         <div class="initiatives-grid__pager bottom" ng-hide="content.markers.length == 0">

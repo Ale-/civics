@@ -15,11 +15,11 @@
                    {{ country }}
                 </p>
                 <li class="map-filters__category category-city"
-                    ng-click="content.toggleFilter('cities', city, true, coords)"
-                    ng-repeat="(city,coords) in cities"
+                    ng-repeat="(city, data) in cities"
+                    ng-click="content.toggleFilter('cities', city, data)"
                     ng-class="{ 'active' : content.active_legend_items['cities'][city] }"
                     ng-show="show_cities">
-                    {{ city }}
+                    {{ data.name }}
                 </li>
             </div>
         </ul>

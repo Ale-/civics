@@ -208,6 +208,10 @@ angular.module('civics.list_controller', [])
         }));
     }
 
+    this.cityname = function(id){
+        return Categories.cities[id];
+    }
+
     /**
      *   Download XLS with filtered initiatives
      */

@@ -1,17 +1,29 @@
 angular.module('civics.initiatives_service', [])
 
 .factory('initiatives_data', function($cacheFactory){
-      return $cacheFactory('items');
+    return $cacheFactory('initiatives');
 })
 
 .factory('Initiatives', function($http, Settings, Categories, $rootScope, $q, meta, initiatives_data)
 {
     var initiatives = {};
 
+    initiatives.createCategories = function(){
+        $http.get('/api/cities_with_initiatives').then(
+            function(response){
+                for(var i in response.data){
+                  var city = response.data[i];
+                  /** Update initiative cities category for the filters */
+                  Categories.addInitiativeCity(city.country, city.name, city.id, city.coordinates);
+                }
+            }
+        );
+    };
+
     // Returns a list of events from cached data
     initiatives.createList = function(){
         var items = [];
-        var initiatives = initiatives_data.get('items');
+        var initiatives = initiatives_data.get('initiatives');
         for(var i in initiatives){
             items.push( initiatives[i] );
         }
@@ -25,7 +37,7 @@ angular.module('civics.initiatives_service', [])
         meta.count = 0;
 
         var clusters = {};
-        var initiatives = initiatives_data.get('items');
+        var initiatives = initiatives_data.get('initiatives');
         for(var i in initiatives){
             var marker = initiatives[i];
             var city = marker.fields.city;
@@ -68,11 +80,10 @@ angular.module('civics.initiatives_service', [])
     // Returns data in the given format
     initiatives.setup = function(format){
         meta.showing = 'initiatives';
-        console.log( initiatives_data.get('items') );
-        if( !initiatives_data.get('items') ) {
-            return $http.get('/api/initiatives', { cache: true }).then( function(response){
-                initiatives_data.put('items', JSON.parse(response.data));
-                //this.createCategories();
+        this.createCategories();
+        if( initiatives_data.get('initiatives') == null ) {
+            return $http.get('/api/initiatives').then( function(response){
+                initiatives_data.put('initiatives', JSON.parse(response.data));
                 if(format == 'map' ){
                     return initiatives.createClusters();
                 } else {

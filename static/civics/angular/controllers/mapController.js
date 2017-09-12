@@ -147,21 +147,24 @@ angular.module('civics.map_controller', [])
     /**
      *  Toggle a filter
      */
-    this.toggleFilter = function(category, subcategory, city, coordinates){
+    this.toggleFilter = function(category, subcategory, city){
         var i = this.selected_categories[category].indexOf(subcategory);
 
         this.active_legend_items[category][subcategory] = !this.active_legend_items[category][subcategory];
         if(i == -1){
-            this.selected_categories[category].push(subcategory);
-            this.selected_tabs.push({ 'k' : category, 'v': subcategory, 'n' : city ? subcategory : Categories[category][subcategory] });
+            if(city) {
+                this.selected_categories[category].push(parseInt(subcategory));
+                this.selected_tabs.push({ 'k' : category, 'v': subcategory, 'n' : city.name });
+                _map.setView(city.coords, 10);
+            } else {
+                this.selected_categories[category].push(subcategory);
+                this.selected_tabs.push({ 'k' : category, 'v': subcategory, 'n' : city ? subcategory : Categories[category][subcategory] });
+            }
         } else {
             var i = this.selected_categories[category].indexOf(subcategory);
             this.selected_categories[category].splice(i, 1);
         }
         this.filterMarkers();
-        if(coordinates){
-            _map.setView(coordinates, 10);
-        }
     }
 
     /**

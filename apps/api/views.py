@@ -24,36 +24,9 @@ def initiatives_service(request):
     return JsonResponse(serializers.serialize('json', initiatives, fields=('name', 'position', 'image', 'city', 'topic', 'agent', 'space')), safe=False)
 
 def events_service(request):
-    cities     = City.objects.annotate(num_refs=Count('initiative')).filter(num_refs__gt=0)
-    events     = Event.objects.filter(city__in=cities)
-
-    if len(events) > 0:
-        events_json = {}
-        for event in events:
-            coords        = event.position['coordinates']
-            cityname      = event.city.name if event.city else 'none'
-            countryname   = event.city.get_country_display() if event.city else 'none'
-            if countryname not in events_json:
-                events_json[countryname] = {}
-            if cityname not in events_json[countryname]:
-                events_json[countryname][cityname] = {}
-            city_coords = event.city.position['coordinates']
-            events_json[countryname][cityname]['coordinates'] = [ city_coords[1], city_coords[0] ];
-            if 'items' not in events_json[countryname][cityname]:
-                events_json[countryname][cityname]['items'] = [];
-            events_json[countryname][cityname]['items'].append({
-                'id'    : event.id,
-                'lng'   : coords[0],
-                'lat'   : coords[1],
-                'dat'   : str(event.date),
-                'top'   : event.topic.lower(),
-                'act'   : event.category.lower(),
-                'age'   : event.agent.lower(),
-            })
-
-        return HttpResponse(json.dumps(events_json), content_type="application/json")
-
-    return HttpResponse(no_results)
+    cities = City.objects.annotate(num_refs=Count('initiative')).filter(num_refs__gt=10)
+    events = Event.objects.filter(city__in=cities).select_related()
+    return JsonResponse(serializers.serialize('json', events, fields=('title', 'position', 'image', 'city', 'topic', 'agent', 'category')), safe=False)
 
 def initiatives_service_xls(request):
     import xlwt
@@ -440,10 +413,10 @@ def cities_with_initiatives(request):
     Get cities related to initiatives
     """
 
-    cities = City.objects.filter(initiative_related=True)
+    cities = City.objects.annotate(num_refs=Count('initiative')).filter(num_refs__gt=10).filter(initiative_related=True)
     response = {}
     for city in cities:
-        response[city.pk] = { 'name' : city.name, 'country' : city.country.name }
+        response[city.pk] = { 'name' : city.name, 'id' : city.pk, 'country' : city.country.name, 'coordinates' : city.position['coordinates'] }
     return HttpResponse( json.dumps(response), content_type="application/json" );
 
 
@@ -452,8 +425,8 @@ def cities_with_events(request):
     Get cities related to events
     """
 
-    cities = City.objects.filter(event_related=True)
+    cities = City.objects.annotate(num_refs=Count('initiative')).filter(num_refs__gt=10).filter(event_related=True)
     response = {}
     for city in cities:
-        response[city.pk] = { 'name' : city.name, 'country' : city.country.name }
+        response[city.pk] = { 'name' : city.name, 'id' : city.pk, 'country' : city.country.name, 'coordinates' : city.position['coordinates'] }
     return HttpResponse( json.dumps(response), content_type="application/json" );
