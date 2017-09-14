@@ -25,7 +25,7 @@ class Dashboard(View):
         initiatives = Initiative.objects.filter(user=request.user).order_by('name')
         if initiatives:
             events      = Event.objects.filter(initiative__in=initiatives).all()
-            return render(request, 'users/dashboard-staff.html', locals())
+            return render(request, 'users/dashboard.html', locals())
 
         return HttpResponseRedirect( reverse('modelforms:create_initiative') )
 

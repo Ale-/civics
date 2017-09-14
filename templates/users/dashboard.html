@@ -1,45 +1,47 @@
-{# Initiative dashboard #} {% extends 'layouts/single-fluid-column.html' %} {% load utils l10n i18n static leaflet_tags %}
-{% block body_classes %}dashboard{% endblock %}
+{# Staff user dashboard #} {% extends 'layouts/single-fluid-column.html' %}
+{% load utils l10n i18n static imagekit leaflet_tags %}
+{% block body_classes %}dashboard-staff{% endblock %}
 {% block page_header %}{% leaflet_css %}{% endblock %}
 
 {% block main %}
-    {% trans 'Mi iniciativa' as page_title %} {% include 'pages/title.html' with title=page_title %}
+    {% trans 'Mi perfil' as page_title %}
+    {% include 'pages/title.html' with title=page_title %}
     <div class="dashboard-left">
         <div class="dashboard-left__left">
-            <div class="single-initiative--dashboard">
-                <div class="single-initiative--dashboard__title">
-                    <h2>{{ initiative.name }}</h2>
-                    <a class="events--dashboard__edit-event" title="{% trans 'Edita tu iniciativa' %}"
-                       href="{% url 'modelforms:edit_initiative' initiative.pk %}">
-                        <span>✏</span>
-                    </a>
+            <div class="initiatives--dashboard">
+                <div class="initiatives--dashboard__title">
+                    <h2>{% trans 'Mis iniciativas' %}</h2>
+                     <span class="initiatives--dashboard__count">({{ initiatives|length }})</span>
+                     <a class="initiatives--dashboard__create" title="{% trans 'Crea una iniciativa' %}"
+                        href="{% url 'modelforms:create_initiative' %}">
+                        <span class="icon-add"></span>
+                     </a>
                 </div>
-                <div class="single-initiative--dashboard__fields">
-                    <figure class="single-initiative--dashboard__image">
-                        <img src="{% get_media_prefix %}{{ initiative.image }}" />
-                    </figure>
-                    <div class="single-initiative--dashboard__description">
-                        <p>{% trans 'Descripción' %}</p>
-                        {{ initiative.description }}
-                    </div>
-                    {% if initiative.email %}
-                    <div class="single-initiative--dashboard__email">
-                        <p>{% trans 'Email' %}</p>
-                        {{ initiative.email }}
-                    </div>
-                    {% endif %}
-                    {% if initiative.facebook %}
-                    <div class="single-initiative--dashboard__facebook">
-                        <p class="initiative__field-label">{% trans 'Facebook' %}</p>
-                        {{ initiative.facebook }}
-                    </div>
-                    {% endif %}
-                    {% if initiative.twitter %}
-                    <div class="single-initiative--dashboard__twitter">
-                        <p class="initiative__field-label">{% trans 'Twitter' %}</p>
-                        {{ initiative.twitter }}
-                    </div>
-                    {% endif %}
+                <div class="initiatives--dashboard__items">
+                    {% for initiative in initiatives %}
+                    <a href="{% url 'modelforms:edit_initiative' initiative.pk %}">
+                        <div class="initiatives--dashboard__item">
+                            <figure class="initiatives--dashboard__item-image">
+                                {% if initiative.image %}
+                                    {% thumbnail '100x100' initiative.image %}
+                                {% else %}
+                                    <span class="icon-agent"></span>
+                                {% endif %}
+                            </figure>
+                            <div>
+                                <h5 class="initiatives--dashboard__item-name">
+                                    {{ initiative.name }}
+                                </h5>
+                                <div class="initiatives--dashboard__item-date">
+                                    {% trans 'Fecha de alta:' %} {{ initiative.creation_date }}
+                                </div>
+                            </div>
+                            <p class="initiatives--dashboard__edit">
+                                {% trans 'Editar' %}
+                            </p>
+                        </div>
+                    </a>
+                    {% endfor %}
                 </div>
             </div>
         </div>
@@ -68,7 +70,7 @@
                             <div class="events--dashboard__item">
                                 <figure class="events--dashboard__item-image">
                                     {% if event.image %}
-                                        <img src="{{ event.thumbnail.url }}" />
+                                          {% thumbnail '100x100' event.image %}
                                     {% else %}
                                         <span class="icon-agent"></span>
                                     {% endif %}
@@ -88,38 +90,53 @@
                         </a>
                         {% endfor %}
                     {% endif %}
-                    <div class="facebook-events">
-                        <h5 class="facebook-events__title">
-                            {% trans 'Importa eventos desde Facebook' %}
-                        </h5>
-                        <p class="facebook-events__help">
-                            {% blocktrans %}
-                            No estás conectado a Facebook. Si quieres importar eventos desde
-                            tu agenda de FB has de <a href="#" onclick="fb_login()">hacer login</a>
-                            {% endblocktrans %}
-                        </p>
-                        <ul class="facebook-events__list">
-                        </ul>
-                        <p class="facebook-events__empty">
-                            {% trans 'No hay eventos nuevos' %}
-                        </p>
-                    </div>
                 </div>
             </div>
         </div>
     </div>
     <div class="dashboard-right">
+        <div class="events-map--dashboard__title">
+            <h2>{% trans 'Mapa de iniciativas' %}</h2>
+        </div>
         {% leaflet_map "dashboard_map" %}
     </div>
 {% endblock %}
 
 {% block page_scripts %}
+    <!-- Dependencies -->
     {% leaflet_js %}
-
-    <!-- Fetch Facebook events -->
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script type="text/javascript" src=" {% js 'facebook.js' %}"></script>
+
+    <!-- Populate map -->
     <script type="text/javascript">
+        window.addEventListener("map:init", function (event)
+        {
+            var map = event.detail.map;
+            //Center map in initiative
+            map.setView([0, -26], 3);
+            {% for initiative in initiatives %}
+                var popup = "<h5>{{ initiative.name }}</h5>" +
+                            "<p><a href={% url 'modelforms:edit_initiative' initiative.pk %}>Editar</a></p>";
+                L.marker([ {{ initiative.position.coordinates.1 | unlocalize }}, {{  initiative.position.coordinates.0 | unlocalize }} ], {
+                    icon : L.divIcon({
+                        'type' : 'div',
+                        'iconSize'    : [40, 60],
+                        'iconAnchor'  : [20, 60],
+                        'popupAnchor' : [0, -30],
+                        'className'   : 'cm',
+                        'html'        : "<div class='initiative-marker'>" +
+                                            "<i class='outer i-to-{{ initiative.topic|lower}} i-ag-{{ initiative.agent|lower }}'></i>" +
+                                            "<i class='inner i-sp-{{ initiative.space|lower }}'></i>" +
+                                         "</div>",
+                    }),
+                }).bindPopup(popup).addTo(map);
+            {% endfor %}
+        });
+    </script>
+
+    <!-- Fetch events from facebook and google -->
+    <script type="text/javascript" src=" {% js 'facebook.js' %}"></script>
+    <script type?"text/javascript">
         window.fbAsyncInit = function() {
             FB.init({
                 appId      : '322456914577117',
@@ -131,31 +148,5 @@
                 statusChangeCallback(response, {{ initiative.id }});
             });
         };
-    </script>
-
-    <!-- Populate map -->
-    <script type="text/javascript">
-        window.addEventListener("map:init", function (event)
-        {
-            var map = event.detail.map;
-            var lat = {{ initiative.position.coordinates.1 | unlocalize }};
-            var lng = {{ initiative.position.coordinates.0 | unlocalize }};
-            //Center map in initiative
-            map.setView([lat, lng], 6);
-            L.marker([lat, lng], {
-                icon : L.divIcon({
-                    'type' : 'div',
-                    'iconSize'    : [40, 60],
-                    'iconAnchor'  : [20, 60],
-                    'popupAnchor' : [0, -30],
-                    'message'     : "{{ initiative.name }}",
-                    'className'   : 'cm',
-                    'html'        : "<div class='initiative-marker'>" +
-                                        "<i class='outer i-to-{{ initiative.topic|lower}} i-ag-{{ initiative.agent|lower }}'></i>" +
-                                        "<i class='inner i-sp-{{ initiative.space|lower }}'></i>" +
-                                     "</div>",
-                }),
-            }).addTo(map);
-        });
     </script>
 {% endblock %}
