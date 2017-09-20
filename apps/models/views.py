@@ -29,7 +29,7 @@ class InitiativeCreate(GenericCreate):
 
   def get_success_url(self):
       if self.request.user.is_staff:
-          return reverse_lazy('users:dashboard_staff')
+          return reverse_lazy('users:dashboard')
       else:
           return reverse_lazy('modelforms:welcome_initiative')
 
@@ -57,7 +57,7 @@ class InitiativeEdit(GenericUpdate):
 
   def get_success_url(self):
     if self.request.user.is_staff:
-        return reverse_lazy('users:dashboard_staff')
+        return reverse_lazy('users:dashboard')
     return reverse_lazy('users:dashboard')
 
   def form_valid(self, form):
@@ -152,7 +152,7 @@ class EventEdit(GenericUpdate):
 
   def get_success_url(self):
     if self.request.user.is_staff:
-      return reverse_lazy('users:dashboard_staff')
+      return reverse_lazy('users:dashboard')
     return reverse_lazy('users:dashboard')
 
   def get_context_data(self, **kwargs):
@@ -166,6 +166,12 @@ class EventEdit(GenericUpdate):
     context['submit_text']        = _('Guarda los cambios')
     context['object_id']          = pk
     return context
+
+  def get_initial(self):
+    super(EventEdit, self).get_initial()
+    return {
+      "user" : self.request.user
+    }
 
 class EventDelete(GenericDelete):
   """Generic view to delete Event objects."""
