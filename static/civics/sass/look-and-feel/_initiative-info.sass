@@ -6,15 +6,14 @@
 .initiative-info
   background: white
   +inline-block
-  padding: 0 $m $m*2
+  padding: 0 0 $m*2
   +links_info
   max-height: calc(100vh - 100px)
   overflow-y: auto
 
 .initiative-info__name
   text-transform: uppercase
-  margin-top: $m/2
-  margin-bottom: 0
+  margin: $m/2 $m 0
   font-size: 1.3rem
 
 .initiative-actions
@@ -29,6 +28,13 @@
     cursor: pointer
     color: #555
   font-size: 2rem
+  width: 2rem
+  text-align: center
+  position: absolute
+  right: $m/2
+  top: $m/2
+  background: rgba(white, .75)
+  z-index: 100
 
 .initiative-action__edit,
 .initiative-action__remove
@@ -44,7 +50,7 @@
 
 .initiative-info__details
   font-size: .7em
-  margin-top: $m*1.5
+  margin: $m*1.5 $m 0
   clear: both
   z-index: 100
 
@@ -107,8 +113,8 @@
   font-weight: 400
   margin-bottom: $m/2
 
-.initiative-info__description
-  margin-top: $m
+.initiative-marker__description
+  margin: $m $m 0
 
 [class^='initiative-info__detail--']
   margin: $m/3 0
@@ -135,7 +141,7 @@
     font-size: 20px
 
 .initiative-marker__categories
-  margin-bottom: $m/2
+  margin: 0 $m $m/2
   font-size: $size_small *.8
   text-transform: uppercase
 
@@ -145,3 +151,6 @@
 
 .initiative-header .leaflet-marker-icon .outer::before
   +text-shadow(none !important)
+
+.initiative-info__event-details
+  margin: 0 $m
