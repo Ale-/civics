@@ -1,10 +1,14 @@
 angular.module('civics.map_controller', [])
 
-.controller("MapController", function($scope, Settings, Initiatives, Categories, leafletData, items, meta, DateRanger, XlsDownloader, $route)
+.controller("MapController", function($scope, Settings, Initiatives, Categories, leafletData, items, meta, DateRanger, XlsDownloader, $route, $location)
 {
     /**
      *  Map setup
      */
+
+    // Check url params
+    var params = $location.search();
+
     // Inject resolved data into the map
     var _map = {};
     leafletData.getMap("civics-map").then(angular.bind(this, function(map)
@@ -14,11 +18,17 @@ angular.module('civics.map_controller', [])
             map.addLayer( items[city] );
         }
     }));
+
     // Map defaults
     this.defaults = Settings.map_defaults.defaults;
-    this.center   = Settings.map_defaults.center;
     this.controls = Settings.map_controls;
     this.layers   = Settings.map_layers;
+    if(params.center){
+        var coords = params.center.split(",");
+        this.center = { lat: parseFloat(coords[0]), lng: parseFloat(coords[1]), zoom: parseInt(coords[2]) };
+    } else {
+        this.center = Settings.map_defaults.center;
+    }
 
     /**
      *  Section state
@@ -64,12 +74,27 @@ angular.module('civics.map_controller', [])
 
     // Selected category tabs
     this.selected_tabs = [];
+    for(var i in categories){
+        var category = categories[i];
+        if(params[category]){
+            var subcategories = params[category].split(",");
+            this.selected_categories[ category ] = subcategories;
+            for(var j in subcategories){
+                if(subcategories[j] !== '')
+                    this.selected_tabs.push({ 'k' : category, 'v': subcategories[j], 'n' : Categories[category][subcategories[j]] });
+            }
+        }
+    }
 
     // Active elements in legend
     this.active_legend_items = {};
 
     // Needed to filter events by date ranges
     this.time_scope = 'all';
+
+    // Popup states
+    this.sharing_url = false;
+    this.show_help = false;
 
     /**
      *  Reset categories to default inactive state
@@ -148,6 +173,10 @@ angular.module('civics.map_controller', [])
      *  Toggle a filter
      */
     this.toggleFilter = function(category, subcategory, city){
+        // Disable popups if visible
+        this.sharing_url = false;
+        this.show_help = false;
+
         var i = this.selected_categories[category].indexOf(subcategory);
 
         this.active_legend_items[category][subcategory] = !this.active_legend_items[category][subcategory];
@@ -158,13 +187,14 @@ angular.module('civics.map_controller', [])
                 _map.setView(city.coords, 10);
             } else {
                 this.selected_categories[category].push(subcategory);
-                this.selected_tabs.push({ 'k' : category, 'v': subcategory, 'n' : city ? subcategory : Categories[category][subcategory] });
+                this.selected_tabs.push({ 'k' : category, 'v': subcategory, 'n' : Categories[category][subcategory] });
             }
         } else {
             var i = this.selected_categories[category].indexOf(subcategory);
             this.selected_categories[category].splice(i, 1);
         }
         this.filterMarkers();
+        this.show_help = false;
     }
 
     /**
@@ -176,6 +206,8 @@ angular.module('civics.map_controller', [])
         this.selected_categories[f[0].k].splice(i, 1);
         this.active_legend_items[f[0].k][f[0].v] = false;
         this.filterMarkers();
+        this.sharing_url = false;
+        this.show_help = false;
     }
 
     /**
@@ -185,6 +217,8 @@ angular.module('civics.map_controller', [])
         this.selected_tabs = [];
         this.resetLegend();
         this.filterMarkers();
+        this.sharing_url = false;
+        this.show_help = false;
     }
 
     /**
@@ -192,6 +226,8 @@ angular.module('civics.map_controller', [])
      */
     this.download_xls = function(){
         XlsDownloader.get(this.section, this.selected_categories);
+        this.sharing_url = !this.sharing_url;
+        this.show_help = false;
     }
 
 
@@ -200,5 +236,31 @@ angular.module('civics.map_controller', [])
      */
     this.expand = function(){
         _map.setView([0, -26], 3);
+        this.sharing_url = false;
+        this.show_help = false;
     }
+
+    this.shareUrl = function(){
+        this.sharing_url = !this.sharing_url;
+        this.show_help = false;
+        if(this.sharing_url) {
+            var base_url = $location.absUrl().split("?")[0];
+            this.shared_url = base_url + "?center=" + this.center.lat.toFixed(4) + "," + this.center.lng.toFixed(4) + "," + this.center.zoom;
+            for(var category in this.selected_categories){
+                if(category == 'cities') continue;
+                var subcategories = this.selected_categories[category];
+                if( subcategories.length > 0){
+                    this.shared_url += "&" + category + "=";
+                    for(var j in subcategories) {
+                        this.shared_url += subcategories[j] + ",";
+                    }
+                }
+            }
+        }
+    }
+
+    $scope.$on('open-marker', angular.bind(this, function(){
+        this.sharing_url = false;
+        this.show_help = false;
+    }));
 });
