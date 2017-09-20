@@ -12,7 +12,7 @@ angular.module('civics.list_controller', [])
     this.markers = items;
     for(i in this.markers)
       this.markers[i].filtered = false;  // Show markers by default
-
+    // console.log(this.markers);
     /**
      *  Section state
      */
@@ -76,9 +76,9 @@ angular.module('civics.list_controller', [])
 
 
     if(this.section == 'initiatives')
-      categories = ['cities', 'topics', 'spaces', 'agents' ]
+      categories = ['cities', 'topics', 'spaces', 'agents'];
     else
-      categories = ['cit', 'top', 'act', 'age' ]
+      categories = ['cities', 'topics', 'activities', 'agents'];
 
     // Selected categories
     this.selected_categories = {};
@@ -120,12 +120,12 @@ angular.module('civics.list_controller', [])
                 // Filter by category
                 for(var cat in this.selected_categories){
                     // We use shorter indices in the API/markers to lighten API calls
-                    var m_cat = cat.substring(0, 3);
+                    //var m_cat = cat.substring(0, 3);
                     // Every marker is visible by default in each category
                     marker.filtered = false;
                     // If marker category is not in active list filter it
                     if(this.selected_categories[cat].length > 0 &&
-                       this.selected_categories[cat].indexOf(marker[m_cat]) == -1){
+                       this.selected_categories[cat].indexOf(marker[cat]) == -1){
                         marker.filtered = true;
                         c--;
                         break;
@@ -163,18 +163,23 @@ angular.module('civics.list_controller', [])
     /**
      *  Toggle a filter
      */
-    this.toggleFilter = function(category, subcategory, city, coordinates){
+    this.toggleFilter = function(category, subcategory, city){
         var i = this.selected_categories[category].indexOf(subcategory);
-
         this.active_legend_items[category][subcategory] = !this.active_legend_items[category][subcategory];
         if(i == -1){
-            this.selected_categories[category].push(subcategory);
-            this.selected_tabs.push({ 'k' : category, 'v': subcategory, 'n' : city ? subcategory : Categories[category][subcategory] });
+            if(city) {
+                this.selected_categories[category].push(parseInt(subcategory));
+                this.selected_tabs.push({ 'k' : category, 'v': subcategory, 'n' : city.name });
+            } else {
+                this.selected_categories[category].push(subcategory);
+                this.selected_tabs.push({ 'k' : category, 'v': subcategory, 'n' : Categories[category][subcategory] });
+            }
         } else {
             var i = this.selected_categories[category].indexOf(subcategory);
             this.selected_categories[category].splice(i, 1);
         }
         this.filterMarkers();
+        this.show_help = false;
     }
 
     /**
@@ -185,6 +190,7 @@ angular.module('civics.list_controller', [])
         var i = this.selected_categories[f[0].k].indexOf(f[0].v);
         this.selected_categories[f[0].k].splice(i, 1);
         this.filterMarkers();
+        this.show_help = false;
     }
 
     /**
@@ -194,6 +200,7 @@ angular.module('civics.list_controller', [])
         this.selected_tabs = [];
         this.resetLegend();
         this.filterMarkers();
+        this.show_help = false;
     }
 
     /**
@@ -203,7 +210,9 @@ angular.module('civics.list_controller', [])
         var url = '/api/initiative?id=';
         if(this.section == 'events')
           url = '/api/event?id=';
-        $http.get(url + marker.pk).then( angular.bind(this, function(response){
+        $http.get(url + marker.pk, {
+            ignoreLoadingBar: true,
+        }).then( angular.bind(this, function(response){
           $rootScope.$broadcast('open-marker', response.data);
         }));
     }
@@ -216,6 +225,12 @@ angular.module('civics.list_controller', [])
      *   Download XLS with filtered initiatives
      */
     this.download_xls = function(){
+        this.show_help = false;
         XlsDownloader.get(this.section, this.selected_categories);
     }
+
+    $scope.$on('open-marker', angular.bind(this, function(){
+        this.sharing_url = false;
+        this.show_help = false;
+    }));
 });
