@@ -151,21 +151,61 @@ angular.module('civics.directives', [])
 })
 
 .service('DateRanger', function(){
+    var day = 24 * 60 * 60 * 1000;
     this.check = {
-        'today' : function(today, date){
-            return date.getDay() == today.getDay();
+        'current' : function(today, date, expiration){
+            var today = today.getTime();
+            var event_date = date.getTime();
+            if(!expiration) {
+                return event_date >= today;
+            } else {
+                return event_date >= today || expiration.getTime() > today;
+            }
         },
-        'tomorrow' : function(today, date){
-            return date.getDay() == today.getDay()+1;
+        'today' : function(today, date, expiration){
+            var today = today.getTime();
+            var event_date = date.getTime();
+            if(!expiration) {
+                return event_date == today;
+            } else {
+                return today > event_date  && today < expiration.getTime();
+            }
         },
-        'next_week' : function(today, date){
-            return date.getDay() >= today.getDay() && date.getTime() < today.getTime() + 7 * 24 * 60 * 60 * 1000;
+        'tomorrow' : function(today, date, expiration){
+            var tomorrow   = today.getTime() + day;
+            var event_date = date.getTime();
+            if(!expiration) {
+                return event_date == tomorrow;
+            } else {
+                return tomorrow > event_date && tomorrow < expiration.getTime();
+            }
         },
-        'next_month' : function(today, date){
-            return date.getDay() >= today.getDay() && date.getTime() < today.getTime() + 30 * 24 * 60 * 60 * 1000;
+        'next_week' : function(today, date, expiration){
+            var week_begin = today.getTime();
+            var week_end   = today.getTime() + 7 * day;
+            var expiration_date = expiration.getTime();
+            var begin_date = date.getTime();
+            return (expiration_date > week_begin && expiration_date < week_end ) ||
+                   (begin_date > week_begin && begin_date < week_end ) ||
+                   (begin_date < week_begin && expiration > week_end );
         },
-        'past' : function(today, date){
-            return date.getDay() < today.getDay();
+        'this_month' : function(today, date, expiration){
+            var month_begin = today.getTime();
+            var month_end   = today.getTime() + 30 * day;
+            var expiration_date = expiration.getTime();
+            var begin_date = date.getTime();
+            return (expiration_date > month_begin && expiration_date < month_end ) ||
+                   (begin_date > month_begin && begin_date < month_end ) ||
+                   (begin_date < month_begin && expiration > month_end );
+          },
+        'past' : function(today, date, expiration){
+            var today = today.getTime();
+            var event_date = date.getTime();
+            if(!expiration) {
+                return event_date < today;
+            } else {
+                return event_date < today && expiration.getTime() < today;
+            }
         }
     }
 

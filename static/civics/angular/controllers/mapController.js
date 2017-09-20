@@ -136,7 +136,7 @@ angular.module('civics.map_controller', [])
                         }
                     }
                     // Filter by date ranges
-                    if(this.time_scope != 'all' && !DateRanger.check[this.time_scope](today, new Date(marker.dat))){
+                    if(this.time_scope != 'all' && !DateRanger.check[this.time_scope](today, new Date(marker.date))){
                         marker.filtered = true;
                         c--;
                     }
@@ -145,7 +145,8 @@ angular.module('civics.map_controller', [])
                 markers.forEach( angular.bind(this, function(marker){
                     marker.filtered = false;
                     // Filter by date ranges
-                    if(this.time_scope != 'all' && !DateRanger.check[this.time_scope](today, new Date(marker.dat))){
+                    if(this.time_scope != 'all' &&
+                       !DateRanger.check[this.time_scope](today, new Date(marker.data.date), marker.data.expiration ? new Date(marker.data.expiration) : null)){
                         marker.filtered = true;
                         c--;
                     }

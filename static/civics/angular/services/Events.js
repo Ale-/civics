@@ -53,12 +53,15 @@ angular.module('civics.events_service', [])
                 clusters[city] = new PruneClusterForLeaflet();
             }
             var pos = JSON.parse(marker.fields.position);
+            console.log(marker);
             var m = new PruneCluster.Marker(pos.coordinates[1], pos.coordinates[0], {
                 id     : marker.pk,
                 cities : city,
                 topics     : marker.fields.topic.toLowerCase(),
                 activities : marker.fields.category.toLowerCase(),
                 agents     : marker.fields.agent.toLowerCase(),
+                date       : marker.fields.date,
+                expiration : marker.fields.expiration,
             });
             clusters[city].RegisterMarker(m);
             meta.count++;

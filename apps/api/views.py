@@ -26,7 +26,7 @@ def initiatives_service(request):
 def events_service(request):
     cities = City.objects.annotate(num_refs=Count('initiative')).filter(num_refs__gt=10)
     events = Event.objects.filter(city__in=cities).select_related()
-    return JsonResponse(serializers.serialize('json', events, fields=('title', 'position', 'image', 'city', 'topic', 'agent', 'category')), safe=False)
+    return JsonResponse(serializers.serialize('json', events, fields=('title', 'position', 'image', 'city', 'topic', 'agent', 'category', 'date', 'expiration')), safe=False)
 
 def initiatives_service_xls(request):
     import xlwt

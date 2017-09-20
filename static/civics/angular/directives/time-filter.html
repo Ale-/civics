@@ -3,6 +3,7 @@
 <div class="time-filter__wrapper">
     <div class="time-filter">
         <select class="time-filter__widget" ng-model="timefilter.query" ng-change="timefilter.filter()">
+            <option value="current">{{'Vigentes'|t}}</option>
             <option value="all">{{'Todas'|t}}</option>
             <option value="today">{{'Hoy'|t}}</option>
             <option value="tomorrow">{{'Mañana'|t}}</option>
