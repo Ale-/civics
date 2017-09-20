@@ -25,7 +25,15 @@ angular.module('civics.events_service', [])
         var items = [];
         var events = events_data.get('events');
         for(var i in events){
-            items.push( events[i] );
+            var event = events[i];
+            items.push({
+                  title      : event.fields.title,
+                  pk         : event.pk,
+                  topics     : event.fields.topic.toLowerCase(),
+                  agents     : event.fields.agent.toLowerCase(),
+                  activities : event.fields.category.toLowerCase(),
+                  cities     : event.fields.city,
+            });
         }
         meta.count = items.length;
         return items;
