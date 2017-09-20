@@ -7,19 +7,6 @@
   color: white
   border-bottom: 1px solid rgba(black, .05)
   +links_filters
-  +breakpoint('sm')
-    &:before
-      content: " "
-      +transform(rotate(45deg))
-      display: block
-      width: $m
-      height: $m
-      position: absolute
-      background-color: black
-      top: 45px
-      z-index: 0
-      border: 1px solid rgba(black, .1)
-      border-width: 1px 0 0 1px
 
 .map-filters--initiatives::before
   background-color: #ed61aa
@@ -76,11 +63,6 @@
   [class^='map-filters__filter'] [class^='icon-']::before
     color: white
 
-// .map-filters__filter--initiatives
-//   background-color: #ed61aa
-//   &:hover
-//     background-color: #ea4a9e
-
 .map-filters__filter--events
   background-color: #02cfc2 !important
 
@@ -88,22 +70,23 @@
   background-color: lighten(#02cfc2, 10%)
 
 .map-filters__category
+  +transition(background-color .25s ease)
   &:hover
-    background-color: rgba(black, .05)
-    color: white
-  &.active
     background-color: rgba(black, .1)
-
-.map-filters__filter:hover
-  .map-filters__filter-label
-    background-color: darken(#ed61aa, 5%)
-
-.map-filters__filter--calendar:hover
-  .map-filters__filter-label
-    background-color: darken(#02cfc2, 5%)
+  &.active
+    background-color: rgba(black, .2)
+    color: white
 
 .map-filters__label
-  outline: 1px solid rgba(white, .1)
+  +transition(background-color .2s ease)
+
+.map-filters__filter--initiatives:hover
+  .map-filters__label
+    background-color: darken(#ed61aa, 5%)
+
+.map-filters__filter--events:hover
+  .map-filters__label
+    background-color: darken(#02cfc2, 5%)
 
 .map-filters__category
   font-size: $size_small
@@ -237,3 +220,10 @@
   font-size: $size_small
   line-height: 32px
   text-transform: capitalize
+  +transition(background-color .5s ease)
+  &:before
+    content: "▾"
+    margin-right: $m/3
+    color: rgba(black, .25)
+  &:hover
+    background-color: rgba(black, .1)

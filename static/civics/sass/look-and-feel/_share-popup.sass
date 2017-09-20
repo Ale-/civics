@@ -1,0 +1,42 @@
+// Widget to share map view url in Angular map
+
+@import compass/css3/animation
+@import compass/css3/box-shadow
+@import compass/css3/transition
+
+.share-url
+  position: absolute
+  top: 46px
+  left: $m*2
+  padding: $m*1.25
+  background: white
+  color: $color_text
+  +animation(showup_short .5s 1)
+  +box-shadow(0 0 10px rgba(black, .25))
+.share-url:before
+  content: "▲"
+  font-family: sans-serif
+  color: white
+  position: absolute
+  font-size: $m*1.5
+  top: -$m*.75
+  left: $m*3.5
+
+.share-url__close
+  position: absolute
+  top: 0
+  right: $m/3
+  font-size: $m*1.25 !important
+  color: #111
+  +transition(color .25s ease)
+.share-url__close:hover
+  cursor: pointer
+  color: #555
+
+.share-url__link
+  width: 100%
+  background: #eee
+  border-width: 0 0 2px 0
+  margin-top: $m/2
+  padding: $m/3
+  font-size: .9em

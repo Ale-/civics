@@ -1,5 +1,10 @@
+// Map actions interface, below map filters
+
 @import compass/css3/inline-block
 @import compass/css3/border-radius
+@import compass/css3/opacity
+
+// Container
 
 [class^='map-actions--']
   z-index: 1
@@ -9,19 +14,6 @@
   width: 100%
   padding: 0 $m/2
   position: relative
-  outline: 1px solid rgba(black, .1)
-
-//[class^='map-actions--']
-  background: #eee
-  .markers-count__label
-    color: #555
-  .filter-tags li
-    background: white
-  .filter-tags__close
-    color: #555
-  .map-actions__search-input
-    border: 1px dashed $color_text
-
 .map-actions--initiatives
   background-color: #dc5099
   color: white
@@ -31,7 +23,6 @@
     background: rgba(black, .25)
   .map-actions__search-input
     border: 1px dotted white
-
 .map-actions--events
   background-color: #01beb1
   color: white
@@ -46,10 +37,7 @@
   left: 480px
   width: calc(100% - 480px)
 
-.markers-count
-  +inline-block
-  margin-right: $m/2
-
+// Actions
 .map-actions__actions
   +inline-block
   +links_filters
@@ -57,16 +45,45 @@
     +transition(color .1s ease)
   a
     margin-right: $m/3
+.map-actions__actions .icon-star:before
+  font-size: 1.25em
 
-.map-actions__action--download:hover
+// Help action
+.legend-help
+  display: inline-block
+  +breakpoint('xs')
+    display: none
+.legend-help__icon
+  margin-right: $m/3
+  padding: 0 $m/3
+  line-height: 20px
+  vertical-align: middle
+  font-size: 1.25em
+  color: rgba(black, .5)
+.legend-help__icon:hover
   cursor: pointer
 
+// Share url action
+.map-actions__action--share:hover
+  cursor: pointer
+  +opacity(.75)
+.map-actions__action--share.active
+  color: rgba(black, .5)
+
+// Download action
+.map-actions__action--download:hover
+  cursor: pointer
 [class^='map-actions__action']
   padding-right: $m/4
 
+// Counter of shown initiatives
+.markers-count
+  +inline-block
+  margin-right: $m/2
+
+// Filter tags
 .filter-tags
   display: inline
-
 .filter-tags li
   +inline-block
   text-transform: uppercase
@@ -79,19 +96,18 @@
   &:hover
     cursor: pointer
     background: rgba(black, .5)
-
 .filter-tags__close
   font-weight: bold
   font-size: 1.25em
   line-height: 1em
   margin-left: $m/6
-
 .filter-tags__remove
   background: none !important
   +h(5)
 
+// Search action
 .map-actions__search,
-.time-filter,
+.time-filter__wrapper,
   text-align: center
   +breakpoint('sm')
     float: right
@@ -103,33 +119,8 @@
 .map-actions__search-input
   border-width: 0 0 1px 0 !important
   background: none
-.map-actions__search-results
-  position: absolute
-  z-index: 100
-  background: white
-  max-height: 400px
-  overflow-y: auto
-  padding: $m/2
-  +box-shadow(0 0 10px rgba(black, .25))
-  +border-radius(4px)
-  top: $m*3
-  right: $m/2
-  max-width: 400px
-  &::before
-    content: "▲"
-    color: white
-    position: absolute
-    top: -$m
-    font-size: 2em
-  +breakpoint('sm')
-    top: $m*2
 
-.map-actions__search-result
-  color: #555
-  &:hover
-    color: black
-    cursor: pointer
-
+// Time filter action
 .time-filter__widget
   +appearance(none)
   background: none
@@ -143,33 +134,3 @@
   &:-moz-focusring
     color: transparent
   +text-shadow(0 0 0 white)
-.legend-help
-  display: inline-block
-.legend-help__icon
-  margin-right: $m/3
-  padding: 0 $m/3
-  line-height: 20px
-  vertical-align: middle
-  font-size: 1.25em
-  color: rgba(black, .75)
-.legend-help__icon:hover
-  cursor: pointer
-.legend-help__text
-  position: absolute
-  background: white
-  left: $m*2
-  top: 0
-  line-height: 1.2
-  width: 200px
-  color: $color_text
-  padding: $m/2 $m
-  +border-radius(4px)
-  +box-shadow(0 0 10px rgba(black, .25))
-.legend-help__text::before
-  content: "◀"
-  color: white
-  position: absolute
-  left: -8px
-  top: 4px
-.map-actions__actions .icon-star:before
-  font-size: 1.25em

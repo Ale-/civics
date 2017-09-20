@@ -1,0 +1,31 @@
+// Widget to search initiatives in Angular map
+
+@import compass/css3/box-shadow
+@import compass/css3/border-radius
+
+.map-actions__search-results
+  position: absolute
+  z-index: 100
+  background: white
+  max-height: 400px
+  overflow-y: auto
+  padding: $m/2
+  +box-shadow(0 0 10px rgba(black, .25))
+  +border-radius(4px)
+  top: $m*3
+  right: $m/2
+  max-width: 400px
+  &::before
+    content: "▲"
+    color: white
+    position: absolute
+    top: -$m
+    font-size: 2em
+  +breakpoint('sm')
+    top: $m*2
+
+.map-actions__search-result
+  color: #555
+  &:hover
+    color: black
+    cursor: pointer

@@ -1,0 +1,70 @@
+// Help popups in Angular map
+
+@import compass/css3/box-shadow
+@import compass/css3/border-radius
+@import compass/css3/animation
+
+$color_popups : #333
+
+[class*='__help-tip']
+  background: $color_popups
+  position: absolute
+  line-height: 1.2
+  width: 400px
+  color: white
+  padding: $m*.75 $m
+  font-size: .9em
+  top: $m*2
+  +animation('showup_short' .5s 1)
+  +border-radius(6px)
+[class*='__help-tip']:hover
+  cursor: pointer
+  opacity: .5
+
+=arrow
+  font-family: sans-serif
+  position: absolute
+  font-size: $m
+  color: $color_popups
+  z-index: 10000
+
+[class*='__help-tip'].arrow-up:before
+  +arrow
+  content: "▲"
+  top: -$m
+  left: $m*2
+[class*='__help-tip'].arrow-left:after
+  +arrow
+  content: "◀"
+  top: $m
+  left: -$m*.6
+[class*='__help-tip'].arrow-right:after
+  +arrow
+  content: "▶"
+  top: $m
+  right: -$m*.6
+
+.map-actions__help-tip
+  left: $m*2.5
+  ul
+    margin-top: $m/2
+  li
+    margin-bottom: $m/3
+    span
+      margin-right: $m/3
+      color: #eee
+.search__help-tip,
+.time__help-tip
+  right: $m/2
+  text-align: left
+  width: 240px
+.filters__help-tip
+  z-index: 100
+  top: $m*4.5
+  left: calc(50% - 200px)
+  width: 240px
+.social__help-tip
+  top: inherit
+  bottom: $m
+  right: $m*3
+  width: 240px
