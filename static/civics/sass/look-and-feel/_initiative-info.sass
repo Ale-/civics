@@ -28,24 +28,19 @@
     cursor: pointer
     color: #555
   font-size: 2rem
-  width: 2rem
-  text-align: center
-  position: absolute
-  right: $m/2
-  top: $m/2
-  background: rgba(white, .75)
+  line-height: $m*1.5
   z-index: 100
+  margin-right: $m
 
 .initiative-action__edit,
-.initiative-action__remove
   font-size: 2rem
+  line-height: $m*1.5
   display: none
-  float: left
-.initiative-action__edit
   +transform(rotate(45deg))
+  float: left
+  margin-left: $m
 .staff-user
   .initiative-action__edit,
-  .initiative-action__remove
     +inline-block
 
 .initiative-info__details
@@ -63,6 +58,7 @@
 
 .initiative-image
   margin: 0 0 $m
+  text-align: center
   img
     +box-shadow(0 0 5px rgba(black,.25))
 
