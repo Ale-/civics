@@ -12,7 +12,7 @@ angular.module('civics.list_controller', [])
     this.markers = items;
     for(i in this.markers)
       this.markers[i].filtered = false;  // Show markers by default
-    // console.log(this.markers);
+
     /**
      *  Section state
      */
@@ -119,8 +119,6 @@ angular.module('civics.list_controller', [])
             items.forEach( angular.bind(this, function(marker){
                 // Filter by category
                 for(var cat in this.selected_categories){
-                    // We use shorter indices in the API/markers to lighten API calls
-                    //var m_cat = cat.substring(0, 3);
                     // Every marker is visible by default in each category
                     marker.filtered = false;
                     // If marker category is not in active list filter it
