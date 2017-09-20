@@ -38,19 +38,28 @@
     <!-- Event details -->
     <div class='initiative-info__event-details' ng-if="info.showing=='events'">
         <p class="initiative-info__detail--date">
-            <span class="icon-event-date"></span> {{ info.marker.dat}}
+            <span class="icon-event-date"></span> {{ info.marker.dat}} <span ng-if="info.marker.exp">{{ 'hasta' | t }} {{ info.marker.exp }}</span>
+        </p>
+        <p class="initiative-info__detail--periodicity" ng-if="info.marker.per">
+            {{ 'Periodicidad' | t}}: {{ info.marker.per}}
         </p>
         <p class="initiative-info__detail--time">
             <span class="icon-event-time"></span> {{ info.marker.tim }}
         </p>
         <p class="initiative-info__detail--address">
-            <span class="icon-event-address"></span> {{ info.marker.add }}
+            <span class="icon-event-address"></span> {{ info.marker.add }} ({{ info.marker.cities }})
         </p>
     </div>
 
     <!-- Profile description text -->
     <div class='initiative-marker__description'>
         {{ info.marker.des }}
+        <p class="initiative-info__detail--link" ng-if="info.marker.ewe">
+            <span class="icon-website"></span>
+            <a href="{{ info.marker.ewe }}" target="_blank">
+              {{ info.marker.ewe }}
+            </a>
+        </p>
     </div>
 
     <!-- Profile description text -->
@@ -65,6 +74,7 @@
     <!-- Profile details -->
     <div class='initiative-info__details'>
         <p class="initiative-info__detail--initiative" ng-if="info.showing=='events'">
+            <span>{{ 'Promueve' | t }}</span>
             {{ info.marker.ini }}
         </p>
         <p class="initiative-info__detail--website" ng-show="info.marker.web">

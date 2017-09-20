@@ -39,6 +39,7 @@
   +transform(rotate(45deg))
   float: left
   margin-left: $m
+  border: 0 !important
 .staff-user
   .initiative-action__edit,
     +inline-block
@@ -96,7 +97,6 @@
   vertical-align: middle
 
 [class^='initiative-info__detail']
-  text-transform: uppercase
   font-size: .9em
 
 .initiative-info__description--calendar
@@ -110,15 +110,16 @@
   margin-bottom: $m/2
 
 .initiative-marker__description
-  margin: $m $m 0
+  margin: $m*2 $m
 
 [class^='initiative-info__detail--']
   margin: $m/3 0
-  span
+  [class^='icon-']
     display: inline-block
     width: $m
     text-align: center
     color: #555
+    margin-right: $m/2
 
 .initiative-info__detail--initiative
   border-bottom: 1px dotted $color_text
@@ -150,3 +151,15 @@
 
 .initiative-info__event-details
   margin: 0 $m
+  text-transform: uppercase
+  font-size: .9em
+
+.initiative-info__detail--link .icon-website:before
+  font-size: .7em
+.initiative-info__detail--periodicity
+  margin-left: 40px
+
+.initiative-info__detail--initiative span
+  font-size: .75em
+  color: #555
+  display: block
