@@ -1,83 +1,88 @@
   <!-- Navigation filters on initiative map -->
-
-<ul class="map-filters--{{content.section}}">
-    <li class="map-filters__filter--{{content.section}}">
-        <p class="map-filters__label">
-            <span class="icon-city"></span>
-            <span class="map-filters__filter-name">{{'Ciudad'|t}}</span>
-        </p>
-        <ul class="map-filters__categories--{{content.section}}">
-            <div class="cities-wrapper"
-                 ng-repeat="(country,cities) in content.cities"
-                 ng-init="show_cities=false">
-                <p class="category-country"
-                   ng-mousedown="show_cities= !show_cities">
-                   {{ country }}
-                </p>
-                <li class="map-filters__category category-city"
-                    ng-repeat="(city, data) in cities"
-                    ng-click="content.toggleFilter('cities', city, data)"
-                    ng-class="{ 'active' : content.active_legend_items['cities'][city] }"
-                    ng-show="show_cities">
-                    {{ data.name }}
+<div class="map-filters__wrapper">
+    <ul class="map-filters--{{content.section}}">
+        <li class="map-filters__filter--{{content.section}}">
+            <p class="map-filters__label">
+                <span class="icon-city"></span>
+                <span class="map-filters__filter-name">{{'Ciudad'|t}}</span>
+            </p>
+            <ul class="map-filters__categories--{{content.section}}">
+                <div class="cities-wrapper"
+                     ng-repeat="(country,cities) in content.cities"
+                     ng-init="show_cities=false">
+                    <p class="category-country"
+                       ng-mousedown="show_cities= !show_cities">
+                       {{ country }}
+                    </p>
+                    <li class="map-filters__category category-city"
+                        ng-repeat="(city, data) in cities"
+                        ng-click="content.toggleFilter('cities', city, data)"
+                        ng-class="{ 'active' : content.active_legend_items['cities'][city] }"
+                        ng-show="show_cities">
+                        {{ data.name }}
+                    </li>
+                </div>
+            </ul>
+        </li>
+        <li class="map-filters__filter--{{content.section}}">
+            <p class="map-filters__label">
+               <span class="icon-topic"></span>
+               <span class="map-filters__filter-name">{{'Temática'|t}}</span>
+            </p>
+            <ul class="map-filters__categories--{{content.section}}">
+                <li class="map-filters__category category-topic-{{key}}"
+                    ng-repeat="(key,name) in content.topics"
+                    ng-click="content.toggleFilter('topics', key)"
+                    ng-class="{ 'active' : content.active_legend_items['topics'][key] }">
+                    {{ name|t }}
                 </li>
-            </div>
-        </ul>
-    </li>
-    <li class="map-filters__filter--{{content.section}}">
-        <p class="map-filters__label">
-           <span class="icon-topic"></span>
-           <span class="map-filters__filter-name">{{'Temática'|t}}</span>
-        </p>
-        <ul class="map-filters__categories--{{content.section}}">
-            <li class="map-filters__category category-topic-{{key}}"
-                ng-repeat="(key,name) in content.topics"
-                ng-click="content.toggleFilter('topics', key)"
-                ng-class="{ 'active' : content.active_legend_items['topics'][key] }">
-                {{ name|t }}
-            </li>
-        </ul>
-    </li>
-    <li class="map-filters__filter--{{content.section}}" ng-if="content.section == 'initiatives'">
-        <p class="map-filters__label">
-            <span class="icon-space"></span>
-            <span class="map-filters__filter-name">{{'Espacio'|t}}</span>
-        </p>
-        <ul class="map-filters__categories--{{content.section}}">
-            <li class="map-filters__category category-space-{{key}}"
-                ng-repeat="(key,name) in content.spaces"
-                ng-click="content.toggleFilter('spaces', key)"
-                ng-class="{'active': content.active_legend_items['spaces'][key]}">
-                {{ name|t }}
-            </li>
-        </ul>
-    </li>
-    <li class="map-filters__filter--{{content.section}}" ng-if="content.section == 'events'">
-        <p class="map-filters__label">
-            <span class="icon-calendar"></span>
-            <span class="map-filters__filter-name">{{'Actividad'|t}}</span>
-        </p>
-        <ul class="map-filters__categories--{{content.section}}">
-            <li class="map-filters__category category-activity-{{key}}"
-                ng-repeat="(key, name) in content.activities"
-                ng-click="content.toggleFilter('activities', key)"
-                ng-class="{'active': content.active_legend_items['activities'][key]}">
-                {{ name|t }}
-            </li>
-        </ul>
-    </li>
-    <li class="map-filters__filter--{{content.section}}">
-        <p class="map-filters__label">
-            <span class="icon-agent"></span>
-            <span class="map-filters__filter-name">{{'Agente'|t}}</span>
-        </p>
-        <ul class="map-filters__categories--{{content.section}}">
-            <li class="map-filters__category category-agent-{{key}}"
-                ng-repeat="(key,name) in content.agents"
-                ng-click="content.toggleFilter('agents', key)"
-                ng-class="{'active': content.active_legend_items['agents'][key]}">
-                {{ name|t }}
-            </li>
-        </ul>
-    </li>
-</ul>
+            </ul>
+        </li>
+        <li class="map-filters__filter--{{content.section}}" ng-if="content.section == 'initiatives'">
+            <p class="map-filters__label">
+                <span class="icon-space"></span>
+                <span class="map-filters__filter-name">{{'Espacio'|t}}</span>
+            </p>
+            <ul class="map-filters__categories--{{content.section}}">
+                <li class="map-filters__category category-space-{{key}}"
+                    ng-repeat="(key,name) in content.spaces"
+                    ng-click="content.toggleFilter('spaces', key)"
+                    ng-class="{'active': content.active_legend_items['spaces'][key]}">
+                    {{ name|t }}
+                </li>
+            </ul>
+        </li>
+        <li class="map-filters__filter--{{content.section}}" ng-if="content.section == 'events'">
+            <p class="map-filters__label">
+                <span class="icon-calendar"></span>
+                <span class="map-filters__filter-name">{{'Actividad'|t}}</span>
+            </p>
+            <ul class="map-filters__categories--{{content.section}}">
+                <li class="map-filters__category category-activity-{{key}}"
+                    ng-repeat="(key, name) in content.activities"
+                    ng-click="content.toggleFilter('activities', key)"
+                    ng-class="{'active': content.active_legend_items['activities'][key]}">
+                    {{ name|t }}
+                </li>
+            </ul>
+        </li>
+        <li class="map-filters__filter--{{content.section}}">
+            <p class="map-filters__label">
+                <span class="icon-agent"></span>
+                <span class="map-filters__filter-name">{{'Agente'|t}}</span>
+            </p>
+            <ul class="map-filters__categories--{{content.section}}">
+                <li class="map-filters__category category-agent-{{key}}"
+                    ng-repeat="(key,name) in content.agents"
+                    ng-click="content.toggleFilter('agents', key)"
+                    ng-class="{'active': content.active_legend_items['agents'][key]}">
+                    {{ name|t }}
+                </li>
+            </ul>
+        </li>
+    </ul>
+    <div class="filters__help-tip arrow-up"
+         ng-click="content.show_help = false" ng-show="content.show_help">
+      {{ 'Esta es la leyenda del mapa. Puedes pulsar en las ciudades y distintas categorías para filtrar los contenidos visibles según tus intereses' | t }}
+    </div>
+</div>

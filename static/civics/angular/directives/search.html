@@ -10,4 +10,8 @@
             {{ result.nam }}
         </p>
     </div>
+    <div class="search__help-tip arrow-up"
+         ng-show="content.show_help" ng-click="content.show_help = false">
+         {{ 'Puedes usar este buscador para encontrar iniciativas por su nombre. Se autocompleta a partir de 3 caracteres insertados' | t }}
+    </div>
 </div>

@@ -1,15 +1,21 @@
 <!-- Widget to filter elements by date -->
 
-<div class="time-filter">
-    <select class="time-filter__widget" ng-model="timefilter.query" ng-change="timefilter.filter()">
-        <option value="all">{{'Todas'|t}}</option>
-        <option value="today">{{'Hoy'|t}}</option>
-        <option value="tomorrow">{{'Mañana'|t}}</option>
-        <option value="next_week">{{'Próximos 7 días'|t}}</option>
-        <option value="next_month">{{'Próximos 30 días'|t}}</option>
-        <option value="past">{{'Pasadas'|t}}</option>
-    </select>
-    <label class="time-filter__label">
-        {{'Filtra por fecha'|t}}
-    </label>
+<div class="time-filter__wrapper">
+    <div class="time-filter">
+        <select class="time-filter__widget" ng-model="timefilter.query" ng-change="timefilter.filter()">
+            <option value="all">{{'Todas'|t}}</option>
+            <option value="today">{{'Hoy'|t}}</option>
+            <option value="tomorrow">{{'Mañana'|t}}</option>
+            <option value="next_week">{{'Próximos 7 días'|t}}</option>
+            <option value="next_month">{{'Próximos 30 días'|t}}</option>
+            <option value="past">{{'Pasadas'|t}}</option>
+        </select>
+        <label class="time-filter__label">
+            {{'Filtra por fecha'|t}}
+        </label>
+    </div>
+    <div class="time__help-tip arrow-up"
+         ng-show="content.show_help" ng-click="content.show_help = false">
+         {{ 'Aquí puedes filtrar los eventos en función de su fecha' | t }}
+    </div>
 </div>
