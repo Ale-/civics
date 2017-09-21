@@ -35,8 +35,10 @@ angular.module('civics.events_service', [])
                   cities     : event.fields.city,
                   date       : new Date(event.fields.date),
                   expiration : event.fields.expiration ? new Date(event.fields.expiration) : null,
+                  img        : event.fields.image ? '/media/' + event.fields.image : null,
             });
         }
+        console.log(items);
         meta.count = items.length;
         return items;
     };

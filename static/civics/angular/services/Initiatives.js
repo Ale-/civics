@@ -33,6 +33,7 @@ angular.module('civics.initiatives_service', [])
                   agents : initiative.fields.agent.toLowerCase(),
                   spaces : initiative.fields.space.toLowerCase(),
                   cities : initiative.fields.city,
+                  img    : initiative.fields.image ? '/media/' + initiative.fields.image : null,
             });
         }
         meta.count = items.length;

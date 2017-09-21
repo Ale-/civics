@@ -38,12 +38,31 @@
             <img ng-show="marker.img" ng-src="{{ marker.img }}" />
             <img ng-hide="marker.img" src="/static/civics/img/blank.png" />
             <div class="grid__item-date" ng-if="content.section == 'events'">
-                <p class="grid__item-date-day">
-                    {{ marker.day }}
-                </p>
-                <p class="grid__item-date-month">
-                    {{ marker.month }}
-                </p>
+                <div class="start-date">
+                    <p class="grid__item-date-day">
+                        {{ marker.date | date : 'dd' }}
+                    </p>
+                    <p class="grid__item-date-month">
+                        {{ marker.date | date : 'MMM' }}
+                    </p>
+                    <p class="grid__item-date-year">
+                        {{ marker.date | date : 'yyyy' }}
+                    </p>
+                </div>
+                <div class="end-date" ng-if="marker.expiration">
+                    <span class="grid_item__date-separator">
+                      -
+                    </span>
+                    <p class="grid__item-date-day">
+                        {{ marker.expiration | date : 'dd' }}
+                    </p>
+                    <p class="grid__item-date-month">
+                        {{ marker.expiration | date : 'MMM' }}
+                    </p>
+                    <p class="grid__item-date-year">
+                        {{ marker.expiration | date : 'yyyy' }}
+                    </p>
+                </div>
             </div>
             <div class="grid__item-caption">
               <p class="grid__item-name" ng-if="content.section=='initiatives'">{{ marker.name }}</p>
