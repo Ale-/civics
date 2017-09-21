@@ -62,10 +62,14 @@ angular.module('civics.map_controller', [])
     this.agents = Categories.agents;
     this.activities = Categories.activities;
 
-    if(this.section == 'initiatives')
-      categories = ['cities', 'topics', 'spaces', 'agents' ]
-    else
-      categories = ['cities', 'topics', 'activities', 'agents' ]
+    // Init filters
+    if(this.section == 'initiatives') {
+      categories = ['cities', 'topics', 'spaces', 'agents' ];
+      this.time_scope = 'all';
+    } else {
+          categories = ['cities', 'topics', 'activities', 'agents' ];
+          this.time_scope = 'current';
+    }
 
     // Selected categories
     this.selected_categories = {};
@@ -88,9 +92,6 @@ angular.module('civics.map_controller', [])
 
     // Active elements in legend
     this.active_legend_items = {};
-
-    // Needed to filter events by date ranges
-    this.time_scope = 'all';
 
     // Popup states
     this.sharing_url = false;
@@ -118,7 +119,6 @@ angular.module('civics.map_controller', [])
     {
         var c = meta.count;
         var filters_length = this.selected_tabs.length;
-        var today = new Date();
 
         for(city in items){
             var markers = items[city].Cluster._markers;
@@ -136,7 +136,7 @@ angular.module('civics.map_controller', [])
                         }
                     }
                     // Filter by date ranges
-                    if(this.time_scope != 'all' && !DateRanger.check[this.time_scope](today, new Date(marker.date))){
+                    if(this.time_scope != 'all' && !DateRanger.check[this.time_scope](marker.data.date, marker.data.expiration)){
                         marker.filtered = true;
                         c--;
                     }
@@ -146,7 +146,7 @@ angular.module('civics.map_controller', [])
                     marker.filtered = false;
                     // Filter by date ranges
                     if(this.time_scope != 'all' &&
-                       !DateRanger.check[this.time_scope](today, new Date(marker.data.date), marker.data.expiration ? new Date(marker.data.expiration) : null)){
+                       !DateRanger.check[this.time_scope](marker.data.date, marker.data.expiration)){
                         marker.filtered = true;
                         c--;
                     }

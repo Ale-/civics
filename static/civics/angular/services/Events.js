@@ -33,6 +33,8 @@ angular.module('civics.events_service', [])
                   agents     : event.fields.agent.toLowerCase(),
                   activities : event.fields.category.toLowerCase(),
                   cities     : event.fields.city,
+                  date       : new Date(event.fields.date),
+                  expiration : event.fields.expiration ? new Date(event.fields.expiration) : null,
             });
         }
         meta.count = items.length;
@@ -53,15 +55,14 @@ angular.module('civics.events_service', [])
                 clusters[city] = new PruneClusterForLeaflet();
             }
             var pos = JSON.parse(marker.fields.position);
-            console.log(marker);
             var m = new PruneCluster.Marker(pos.coordinates[1], pos.coordinates[0], {
                 id     : marker.pk,
                 cities : city,
                 topics     : marker.fields.topic.toLowerCase(),
                 activities : marker.fields.category.toLowerCase(),
                 agents     : marker.fields.agent.toLowerCase(),
-                date       : marker.fields.date,
-                expiration : marker.fields.expiration,
+                date       : new Date(marker.fields.date).getTime(),
+                expiration : marker.fields.expiration ? new Date(marker.fields.expiration).getTime() : null,
             });
             clusters[city].RegisterMarker(m);
             meta.count++;

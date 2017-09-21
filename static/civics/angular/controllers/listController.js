@@ -130,7 +130,7 @@ angular.module('civics.list_controller', [])
                     }
                 }
                 // Filter by date ranges
-                if(this.time_scope != 'all' && !DateRanger.check[this.time_scope](today, new Date(marker.dat))){
+                if(this.time_scope != 'all' && !DateRanger.check[this.time_scope](marker.date, marker.expiration)){
                     marker.filtered = true;
                     c--;
                 }
@@ -138,7 +138,7 @@ angular.module('civics.list_controller', [])
         } else {
             items.forEach( angular.bind(this, function(marker){
                 marker.filtered = false;
-                if(this.time_scope != 'all' && !DateRanger.check[this.time_scope](today, new Date(marker.dat))){
+                if(this.time_scope != 'all' && !DateRanger.check[this.time_scope](marker.date, marker.expiration)){
                     marker.filtered = true;
                     c--;
                 }

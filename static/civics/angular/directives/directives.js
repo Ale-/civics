@@ -143,8 +143,7 @@ angular.module('civics.directives', [])
 
 .controller('TimefilterController', function($rootScope){
     this.results = [];
-    this.query = '';
-
+    this.query = 'current';
     this.filter = function(){
         $rootScope.$broadcast('filter_by_date', { query : this.query });
     }
@@ -152,60 +151,44 @@ angular.module('civics.directives', [])
 
 .service('DateRanger', function(){
     var day = 24 * 60 * 60 * 1000;
+    var today = new Date().getTime();
     this.check = {
-        'current' : function(today, date, expiration){
-            var today = today.getTime();
-            var event_date = date.getTime();
-            if(!expiration) {
-                return event_date >= today;
-            } else {
-                return event_date >= today || expiration.getTime() > today;
-            }
+        'current' : function(date, expiration){
+            if(!expiration)
+                return date >= today;
+            return date >= today || expiration > today;
         },
-        'today' : function(today, date, expiration){
-            var today = today.getTime();
-            var event_date = date.getTime();
-            if(!expiration) {
-                return event_date == today;
-            } else {
-                return today > event_date  && today < expiration.getTime();
-            }
+        'today' : function(date, expiration){
+            if(!expiration)
+                return date == today;
+            return today > date  && today < expiration;
         },
-        'tomorrow' : function(today, date, expiration){
-            var tomorrow   = today.getTime() + day;
-            var event_date = date.getTime();
-            if(!expiration) {
-                return event_date == tomorrow;
-            } else {
-                return tomorrow > event_date && tomorrow < expiration.getTime();
-            }
+        'tomorrow' : function(date, expiration){
+            var tomorrow   = today + day;
+            if(!expiration)
+                return date == tomorrow;
+            return tomorrow > date && tomorrow < expiration;
         },
-        'next_week' : function(today, date, expiration){
-            var week_begin = today.getTime();
-            var week_end   = today.getTime() + 7 * day;
-            var expiration_date = expiration.getTime();
-            var begin_date = date.getTime();
-            return (expiration_date > week_begin && expiration_date < week_end ) ||
-                   (begin_date > week_begin && begin_date < week_end ) ||
-                   (begin_date < week_begin && expiration > week_end );
+        'next_week' : function(date, expiration){
+            var week_end   = today + 7 * day;
+            if(!expiration)
+                return date > today && date < week_end;
+            return (expiration > today && expiration < week_end ) ||
+                   (date > today && date < week_end ) ||
+                   (date < today && expiration > week_end );
         },
-        'this_month' : function(today, date, expiration){
-            var month_begin = today.getTime();
-            var month_end   = today.getTime() + 30 * day;
-            var expiration_date = expiration.getTime();
-            var begin_date = date.getTime();
-            return (expiration_date > month_begin && expiration_date < month_end ) ||
-                   (begin_date > month_begin && begin_date < month_end ) ||
-                   (begin_date < month_begin && expiration > month_end );
-          },
-        'past' : function(today, date, expiration){
-            var today = today.getTime();
-            var event_date = date.getTime();
-            if(!expiration) {
-                return event_date < today;
-            } else {
-                return event_date < today && expiration.getTime() < today;
-            }
+        'next_month' : function(date, expiration){
+            var month_end   = today + 30 * day;
+            if(!expiration)
+                return date > today && date < month_end;
+            return (date > today && expiration < month_end ) ||
+                   (date > today && date < month_end ) ||
+                   (date < today && expiration > month_end );
+        },
+        'past' : function(date, expiration){
+            if(!expiration)
+                return date < today;
+            return date < today && expiration < today;
         }
     }
 
