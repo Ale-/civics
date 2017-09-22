@@ -6,8 +6,8 @@
            ng-model="search.name"/>
     <label class="map-actions__search-label">{{'Busca por nombre'|t}}</label>
     <div class="map-actions__search-results" ng-show="search.results.length > 0">
-        <p class="map-actions__search-result" ng-repeat="result in search.results" ng-click="search.set(result.id)">
-            {{ result.nam }}
+        <p class="map-actions__search-result" ng-repeat="result in search.results" ng-click="search.set(result.id)"
+           ng-bind-html="result.nam">
         </p>
     </div>
     <div class="search__help-tip arrow-up"

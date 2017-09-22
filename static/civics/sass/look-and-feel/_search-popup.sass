@@ -10,6 +10,7 @@
   max-height: 400px
   overflow-y: auto
   padding: $m/2
+  text-align: left
   +box-shadow(0 0 10px rgba(black, .25))
   +border-radius(4px)
   top: $m*3
@@ -25,7 +26,13 @@
     top: $m*2
 
 .map-actions__search-result
-  color: #555
+  color: #777
+  font-size: .9em
+  &:before
+    content: "· "
   &:hover
     color: black
     cursor: pointer
+  i
+    color: #222
+    font-style: normal

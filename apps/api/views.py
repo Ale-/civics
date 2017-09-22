@@ -245,14 +245,15 @@ def autocomplete_service(request):
     name = request.GET.get('n')
     if(len(name) < 3):
         raise Exception("Queries must be longer than two characters")
-    print(name)
-    initiatives = Initiative.objects.filter(slug__startswith=slugify(name))
+    initiatives = Initiative.objects.filter(slug__contains=slugify(name))
     initiatives_json = []
     # TODO: map this!
     for initiative in initiatives:
+        q        = name.upper()
+        new_name = initiative.name.upper().replace(q, "<i>" + q + "</i>")
         initiatives_json.append({
             'id'  : initiative.pk,
-            'nam' : initiative.name,
+            'nam' : new_name,
         })
     return HttpResponse(json.dumps(initiatives_json), content_type="application/json")
 

@@ -10,6 +10,7 @@
  */
 angular.module('civics', [
     'ngRoute',
+    'ngSanitize',
     'angular-loading-bar',
     'leaflet-directive',
     'civics.settings',
