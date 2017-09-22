@@ -37,7 +37,7 @@
              ng-click="content.show(marker)">
             <img ng-show="marker.img" ng-src="{{ marker.img }}" />
             <img ng-hide="marker.img" src="/static/civics/img/blank.png" />
-            <div dates date="{{marker.date}}" expiration="{{marker.expiration}}"
+            <div dates date='{{marker.date|date:"yyyy-MM-dd"}}' expiration='{{marker.expiration|date:"yyyy-MM-dd"}}'
                  ng-if="content.section == 'events'">
             </div>
             <div class="grid__item-caption">
