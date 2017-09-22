@@ -56,8 +56,6 @@ class InitiativeEdit(GenericUpdate):
   success_url      = reverse_lazy('users:dashboard')
 
   def get_success_url(self):
-    if self.request.user.is_staff:
-        return reverse_lazy('users:dashboard')
     return reverse_lazy('users:dashboard')
 
   def form_valid(self, form):
@@ -97,8 +95,6 @@ class InitiativeDelete(GenericDelete):
     return context
 
   def get_success_url(self):
-    if self.request.user.is_staff:
-      return reverse_lazy('users:dashboard_staff')
     return reverse_lazy('users:dashboard')
 
 #
@@ -151,8 +147,6 @@ class EventEdit(GenericUpdate):
     return super(EventEdit, self).form_valid(form)
 
   def get_success_url(self):
-    if self.request.user.is_staff:
-      return reverse_lazy('users:dashboard')
     return reverse_lazy('users:dashboard')
 
   def get_context_data(self, **kwargs):
@@ -195,6 +189,4 @@ class EventDelete(GenericDelete):
     return context
 
   def get_success_url(self):
-    if self.request.user.is_staff:
-      return reverse_lazy('users:dashboard_staff')
     return reverse_lazy('users:dashboard')
