@@ -27,18 +27,17 @@ angular.module('civics.events_service', [])
         for(var i in events){
             var event = events[i];
             items.push({
-                  title      : event.fields.title,
+                  title      : event.title,
                   pk         : event.pk,
-                  topics     : event.fields.topic.toLowerCase(),
-                  agents     : event.fields.agent.toLowerCase(),
-                  activities : event.fields.category.toLowerCase(),
-                  cities     : event.fields.city,
-                  date       : new Date(event.fields.date),
-                  expiration : event.fields.expiration ? new Date(event.fields.expiration) : null,
-                  img        : event.fields.image ? '/media/' + event.fields.image : null,
+                  topics     : event.topic.toLowerCase(),
+                  agents     : event.agent.toLowerCase(),
+                  activities : event.category.toLowerCase(),
+                  cities     : event.city,
+                  date       : new Date(event.date),
+                  expiration : event.expiration ? new Date(event.expiration) : null,
+                  img        : event.image,
             });
         }
-        console.log(items);
         meta.count = items.length;
         return items;
     };
@@ -52,19 +51,19 @@ angular.module('civics.events_service', [])
         var events = events_data.get('events');
         for(var i in events){
             var marker = events[i];
-            var city = marker.fields.city;
+            var city = marker.city;
             if(!(city in clusters)){
                 clusters[city] = new PruneClusterForLeaflet();
             }
-            var pos = JSON.parse(marker.fields.position);
+            var pos = JSON.parse(marker.position);
             var m = new PruneCluster.Marker(pos.coordinates[1], pos.coordinates[0], {
                 id     : marker.pk,
                 cities : city,
-                topics     : marker.fields.topic.toLowerCase(),
-                activities : marker.fields.category.toLowerCase(),
-                agents     : marker.fields.agent.toLowerCase(),
-                date       : new Date(marker.fields.date).getTime(),
-                expiration : marker.fields.expiration ? new Date(marker.fields.expiration).getTime() : null,
+                topics     : marker.topic.toLowerCase(),
+                activities : marker.category.toLowerCase(),
+                agents     : marker.agent.toLowerCase(),
+                date       : new Date(marker.date).getTime(),
+                expiration : marker.expiration ? new Date(marker.expiration).getTime() : null,
             });
             clusters[city].RegisterMarker(m);
             meta.count++;

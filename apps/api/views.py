@@ -11,6 +11,7 @@ from django.utils.text import slugify
 from django.core import serializers
 from apps.models.categories import *
 from apps.models.models import Initiative, City, Event
+from django.core.serializers.json import Serializer
 
 #
 #  API
@@ -18,15 +19,22 @@ from apps.models.models import Initiative, City, Event
 
 no_results = _("No se han encontrado resultados que cumplan con todas las condiciones de filtrado.")
 
+class CivicsJSONSerializer(Serializer):
+    def get_dump_object(self, obj):
+        data = self._current
+        data['image'] = obj.image_medium.url if obj.image_medium else None
+        data['pk'] = obj.pk
+        return data
+
 def initiatives_service(request):
     cities = City.objects.annotate(num_refs=Count('initiative')).filter(num_refs__gt=10)
     initiatives = Initiative.objects.filter(city__in=cities).select_related()
-    return JsonResponse(serializers.serialize('json', initiatives, fields=('name', 'position', 'image', 'city', 'topic', 'agent', 'space')), safe=False)
+    return JsonResponse(CivicsJSONSerializer().serialize(initiatives, fields=('name', 'position', 'image', 'city', 'topic', 'agent', 'space')), safe=False)
 
 def events_service(request):
     cities = City.objects.annotate(num_refs=Count('initiative')).filter(num_refs__gt=10)
     events = Event.objects.filter(city__in=cities).select_related()
-    return JsonResponse(serializers.serialize('json', events, fields=('title', 'position', 'image', 'city', 'topic', 'agent', 'category', 'date', 'expiration')), safe=False)
+    return JsonResponse(CivicsJSONSerializer().serialize(events, fields=('title', 'position', 'image', 'thumbnail', 'image', 'city', 'topic', 'agent', 'category', 'date', 'expiration')), safe=False)
 
 def initiatives_service_xls(request):
     import xlwt

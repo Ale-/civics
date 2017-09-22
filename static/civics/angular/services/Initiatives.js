@@ -27,13 +27,13 @@ angular.module('civics.initiatives_service', [])
         for(var i in initiatives){
             initiative = initiatives[i];
             items.push({
-                  name   : initiative.fields.name,
+                  name   : initiative.name,
                   pk     : initiative.pk,
-                  topics : initiative.fields.topic.toLowerCase(),
-                  agents : initiative.fields.agent.toLowerCase(),
-                  spaces : initiative.fields.space.toLowerCase(),
-                  cities : initiative.fields.city,
-                  img    : initiative.fields.image ? '/media/' + initiative.fields.image : null,
+                  topics : initiative.topic.toLowerCase(),
+                  agents : initiative.agent.toLowerCase(),
+                  spaces : initiative.space.toLowerCase(),
+                  cities : initiative.city,
+                  img    : initiative.image,
             });
         }
         meta.count = items.length;
@@ -49,17 +49,17 @@ angular.module('civics.initiatives_service', [])
         var initiatives = initiatives_data.get('initiatives');
         for(var i in initiatives){
             var marker = initiatives[i];
-            var city = marker.fields.city;
+            var city = marker.city;
             if(!(city in clusters)){
                 clusters[city] = new PruneClusterForLeaflet();
             }
-            var pos = JSON.parse(marker.fields.position);
+            var pos = JSON.parse(marker.position);
             var m = new PruneCluster.Marker(pos.coordinates[1], pos.coordinates[0], {
                 id     : marker.pk,
                 cities : city,
-                topics : marker.fields.topic.toLowerCase(),
-                spaces : marker.fields.space.toLowerCase(),
-                agents : marker.fields.agent.toLowerCase(),
+                topics : marker.topic.toLowerCase(),
+                spaces : marker.space.toLowerCase(),
+                agents : marker.agent.toLowerCase(),
             });
             clusters[city].RegisterMarker(m);
             meta.count++;
