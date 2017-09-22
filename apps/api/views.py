@@ -356,23 +356,23 @@ def events_featured_service(request):
     events_featured = Event.objects.filter(featured=True).order_by('-date')[:3]
     for event in events_featured:
         events_json['featured'].append({
-            'nam'    : event.title,
-            'id'     : event.id,
-            'img'    : event.image_medium.url if event.image else None,
-            'day'    : event.date.strftime('%d'),
-            'month'  : event.date.strftime('%b'),
-            'cities' : event.city.name if event.city else 'none'
+            'nam'        : event.title,
+            'id'         : event.id,
+            'img'        : event.image_medium.url if event.image else None,
+            'date'       : str(event.date),
+            'expiration' : str(event.expiration) if event.expiration else None,
+            'cities'     : event.city.name if event.city else 'none'
         })
     events_json['last'] = []
     events_last = Event.objects.filter(date__gte=date.today()).order_by('date')[:3]
     for event in events_last:
         events_json['last'].append({
-            'nam'    : event.title,
-            'id'     : event.id,
-            'img'    : event.image_medium.url if event.image else None,
-            'day'    : event.date.strftime('%d'),
-            'month'  : event.date.strftime('%b'),
-            'cities' : event.city.name if event.city else 'none'
+            'nam'        : event.title,
+            'id'         : event.id,
+            'img'        : event.image_medium.url if event.image else None,
+            'date'       : str(event.date),
+            'expiration' : str(event.expiration) if event.expiration else None,
+            'cities'     : event.city.name if event.city else 'none'
         })
 
     return HttpResponse(json.dumps(events_json), content_type="application/json")

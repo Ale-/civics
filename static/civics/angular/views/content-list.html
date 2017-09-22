@@ -71,10 +71,6 @@
             </div>
         </div>
         <div class="initiatives-grid__pager bottom" ng-hide="content.markers.length == 0">
-            <p class="initiatives-grid__pager-info">
-                {{'Mostrando'|t}} {{ content.starting_index }}‒{{ content.starting_index + content.current_items }}
-                {{'de'}} {{ content.count }} {{'elementos filtrados'|t}}
-            </p>
             <p class="initiatives-grid__pager-links">
                 <span class="initiatives-grid__pager-link"
                       ng-hide="content.starting_index == 0"

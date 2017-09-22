@@ -5,9 +5,6 @@
 <div class="map-container">
     <!-- Grid display of elements -->
     <div class="grid featured">
-        <p class="fake-breadcrumb--featured" ng-click="content.goBack()">
-            {{'Volver atrás'|t}}
-        </p>
         <h5 class="grid__subtitle--{{content.section}}">
             <span ng-if="content.section == 'initiatives'">
                 {{'Iniciativas ciudadanas destacadas'|t}}
@@ -24,13 +21,8 @@
              ng-click="content.show(marker)">
             <img ng-show="marker.img" ng-src="{{ marker.img }}" />
             <img ng-hide="marker.img" src="/static/civics/img/blank.png" />
-            <div class="grid__item-date" ng-if="content.section == 'events'">
-                <p class="grid__item-date-day">
-                    {{ marker.day }}
-                </p>
-                <p class="grid__item-date-month">
-                    {{ marker.month }}
-                </p>
+            <div dates date="{{marker.date}}" expiration="{{marker.expiration}}"
+                 ng-if="content.section == 'events'">
             </div>
             <div class="grid__item-caption">
               <p class="grid__item-name">{{ marker.nam }}</p>
@@ -53,13 +45,8 @@
              ng-click="content.show(marker)">
             <img ng-show="marker.img" ng-src="{{ marker.img }}" />
             <img ng-hide="marker.img" src="/static/civics/img/blank.png" />
-            <div class="grid__item-date" ng-if="content.section == 'events'">
-                <p class="grid__item-date-day">
-                    {{ marker.day }}
-                </p>
-                <p class="grid__item-date-month">
-                    {{ marker.month }}
-                </p>
+            <div dates date="{{marker.date}}" expiration="{{marker.expiration}}"
+                 ng-if="content.section == 'events'">
             </div>
             <div class="grid__item-caption">
               <p class="grid__item-name">{{ marker.nam }}</p>

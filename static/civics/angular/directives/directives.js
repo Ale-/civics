@@ -194,3 +194,18 @@ angular.module('civics.directives', [])
 
     return this;
 })
+
+/**
+ *  Dates overlay in event grid views
+ */
+.directive('dates', function(){
+    return {
+        restrict    : 'A',
+        replace     : true,
+        templateUrl : path.replace('directives.js', 'dates.html'),
+        scope       : {
+            date       : "@",
+            expiration : "@",
+        },
+    }
+})

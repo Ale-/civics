@@ -1,0 +1,27 @@
+<div class="grid__item-date">
+    <div class="start-date">
+        <p class="grid__item-date-day">
+            {{ date | date : 'dd' }}
+        </p>
+        <p class="grid__item-date-month">
+            {{ date | date : 'MMM' }}
+        </p>
+        <p class="grid__item-date-year">
+            {{ date | date : 'yyyy' }}
+        </p>
+    </div>
+    <div class="end-date" ng-if="expiration">
+        <span class="grid_item__date-separator">
+          -
+        </span>
+        <p class="grid__item-date-day">
+            {{ expiration | date : 'dd' }}
+        </p>
+        <p class="grid__item-date-month">
+            {{ expiration | date : 'MMM' }}
+        </p>
+        <p class="grid__item-date-year">
+            {{ expiration | date : 'yyyy' }}
+        </p>
+    </div>
+</div>
