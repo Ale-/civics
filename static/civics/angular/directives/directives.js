@@ -116,7 +116,9 @@ angular.module('civics.directives', [])
      };
 
      this.set = function(id){
-        $http.get('/api/initiative?id=' + id).then( angular.bind(this, function(response){;
+        $http.get('/api/initiative?id=' + id, {
+            ignoreLoadingBar: true,
+        }).then( angular.bind(this, function(response){;
             $rootScope.$broadcast('open-marker', response.data);
             leafletData.getMap('civics-map').then(function(map){
                 map.setView([response.data.lat, response.data.lng], 18)

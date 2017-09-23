@@ -4,7 +4,9 @@ angular.module('civics.featured_service', [])
 {
     return {
         setup    : function(url, section){
-            return $http.get(url).then(angular.bind(this, function(response){
+            return $http.get(url, {
+                ignoreLoadingBar: true,
+            }).then(angular.bind(this, function(response){
                 meta.showing = section;
                 var items = [];
                 if( typeof response.data === 'object' ){
