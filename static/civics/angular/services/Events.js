@@ -9,7 +9,9 @@ angular.module('civics.events_service', [])
     var events = {};
 
     events.createCategories = function(){
-        $http.get('/api/cities_with_events').then(
+        $http.get('/api/cities_with_events', {
+            ignoreLoadingBar: true,
+        }).then(
             function(response){
                 for(var i in response.data){
                   var city = response.data[i];

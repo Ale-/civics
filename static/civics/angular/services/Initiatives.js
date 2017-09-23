@@ -9,7 +9,9 @@ angular.module('civics.initiatives_service', [])
     var initiatives = {};
 
     initiatives.createCategories = function(){
-        $http.get('/api/cities_with_initiatives').then(
+        $http.get('/api/cities_with_initiatives', {
+            ignoreLoadingBar: true,
+        }).then(
             function(response){
                 for(var i in response.data){
                   var city = response.data[i];
@@ -91,7 +93,7 @@ angular.module('civics.initiatives_service', [])
         meta.showing = 'initiatives';
         this.createCategories();
         if( initiatives_data.get('initiatives') == null ) {
-            return $http.get('/api/initiatives').then( function(response){
+            return $http.get('/api/initiatives', { cache: true }).then( function(response){
                 initiatives_data.put('initiatives', JSON.parse(response.data));
                 if(format == 'map' ){
                     return initiatives.createClusters();
