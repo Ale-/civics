@@ -16,7 +16,6 @@ olefile==0.44
 packaging==16.8
 pilkit==2.0
 Pillow==4.1.1
-pkg-resources==0.0.0
 pyparsing==2.2.0
 python-magic==0.4.13
 six==1.10.0
