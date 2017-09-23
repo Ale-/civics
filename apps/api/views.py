@@ -32,7 +32,7 @@ def initiatives_service(request):
     return JsonResponse(CivicsJSONSerializer().serialize(initiatives, fields=('name', 'position', 'image', 'city', 'topic', 'agent', 'space')), safe=False)
 
 def events_service(request):
-    cities = City.objects.annotate(num_initiatives=Count('initiative'), num_events=Count('event')).filter(num_initiatives__gt=10, num_events__gt=1)
+    cities = City.objects.annotate(num_initiatives=Count('initiative')).filter(num_initiatives__gt=10)
     events = Event.objects.filter(city__in=cities).select_related()
     return JsonResponse(CivicsJSONSerializer().serialize(events, fields=('title', 'position', 'image', 'thumbnail', 'image', 'city', 'topic', 'agent', 'category', 'date', 'expiration')), safe=False)
 
