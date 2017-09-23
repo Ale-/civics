@@ -1,9 +1,12 @@
+# django
 from django.utils.translation import ugettext_lazy as _
 from django import forms
+from django_countries import countries
+from django.core.exceptions import ValidationError
+# custom
 from . import models
 from apps.utils.fields import GroupedModelChoiceField
 from apps.utils.widgets import VideoWidget, PictureWithPreviewWidget, ReducedLeafletWidget, LimitedTextareaWidget, SelectOrAddWidget, GeocodedLeafletWidget
-from django_countries import countries
 
 def group_label(country_key):
     if country_key:

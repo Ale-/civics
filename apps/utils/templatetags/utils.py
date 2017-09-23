@@ -1,7 +1,9 @@
+import os.path
 from django import template
 from django.utils.translation import ugettext_lazy as _
 from civics.settings import STATIC_URL, PROJECT_STATIC_FOLDER
 from django.utils.safestring import mark_safe
+from django.conf import settings
 
 register = template.Library()
 
@@ -44,3 +46,7 @@ def remove_i18n_prefix(value):
     if value.startswith('/en') or value.startswith('/es'):
         value = value[3::]
     return value
+
+@register.filter(name='check_file')
+def check_file(value):
+    return value and os.path.isfile(settings.MEDIA_ROOT + "/" + value.name)

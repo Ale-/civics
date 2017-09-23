@@ -11,6 +11,7 @@ from imagekit import processors
 from django_countries.fields import CountryField
 from django.core.mail import send_mail
 from django.conf import settings
+from .validators import image_size, image_type, initiative_rename, event_rename
 
 #
 #  City
@@ -49,8 +50,11 @@ class Initiative(models.Model):
   featured      = models.BooleanField(_('Destacado'), blank=True, default=False,
                                      help_text=_('Indica si es una iniciativa destacada'))
   user          = models.ForeignKey(User, verbose_name=_('Gestor'), blank=True, null=True, on_delete=models.SET_NULL)
-  image         = models.ImageField(_("Imagen"), blank=True, upload_to="images/initiatives/",
-                                    help_text=_("Sube una imagen representativa de la iniciativa haciendo click en la imagen inferior."))
+  image         = models.ImageField(_("Imagen"), blank=True, upload_to=initiative_rename("images/initiatives/"),
+                                    validators=[image_size(600,300,1920,1280), image_type(["jpeg", "png"])],
+                                    help_text=_("Sube una imagen representativa de la iniciativa haciendo click en la imagen inferior. "
+                                                "La imagen ha de tener ancho mínimo de 300 píxeles y máximo de 1920, y altura mínima "
+                                                "de 300 píxeles y máxima de 1280. Formatos permitidos: PNG, JPG, JPEG."))
   image_medium = ImageSpecField(source="image", processors=[processors.ResizeToFill(600, 300)], format='JPEG', options={'quality': 90})
   video         = models.CharField(_('Video'), max_length=200, blank=True, null=True,
                                    help_text=_('Inserta la url de un video de Youtube o Vimeo'))
@@ -122,8 +126,11 @@ class Event(models.Model):
                                      help_text=_('Indica si es un evento destacado'))
   description  = models.TextField(_('Describe el evento'), blank=False, null=True,
                                   help_text=_('Describe el evento.'))
-  image        = models.ImageField(_("Imagen"), blank=True, upload_to="images/initiatives/",
-                                    help_text=_("Sube una imagen representativa del evento"))
+  image         = models.ImageField(_("Imagen"), blank=True, upload_to=event_rename("images/events/"),
+                                    validators=[image_size(600,300,1920,1280), image_type(["jpeg", "png"])],
+                                    help_text=_("Sube una imagen representativa del evento haciendo click en la imagen inferior. "
+                                                "La imagen ha de tener ancho mínimo de 300 píxeles y máximo de 1920, y altura mínima "
+                                                "de 300 píxeles y máxima de 1280. Formatos permitidos: PNG, JPG, JPEG."))
   image_medium = ImageSpecField(source="image", processors=[processors.ResizeToFill(600, 300)], format='JPEG', options={'quality': 90})
   video        = models.CharField(_('Video'), max_length=200, blank=True, null=True,
                                    help_text=_('Inserta la url de un video de Youtube o Vimeo'))
