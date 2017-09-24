@@ -11,7 +11,15 @@ from imagekit import processors
 from django_countries.fields import CountryField
 from django.core.mail import send_mail
 from django.conf import settings
-from .validators import image_size, image_type, initiative_rename, event_rename
+from .validators import ImageTypeValidator, ImageSizeValidator
+from .utils import RenameCivicsImage
+
+
+# validate_image_size     = image_size(600,300,1920,1280)
+validate_image_size     = ImageSizeValidator({ 'min_width' : 600, 'min_height' : 300, 'max_width' : 1920, 'max_height' : 1280 })
+validate_image_type     = ImageTypeValidator(["jpeg", "png"])
+initiatives_images_path = RenameCivicsImage("images/initiatives/")
+events_images_path      = RenameCivicsImage("images/events/")
 
 #
 #  City
@@ -50,8 +58,9 @@ class Initiative(models.Model):
   featured      = models.BooleanField(_('Destacado'), blank=True, default=False,
                                      help_text=_('Indica si es una iniciativa destacada'))
   user          = models.ForeignKey(User, verbose_name=_('Gestor'), blank=True, null=True, on_delete=models.SET_NULL)
-  image         = models.ImageField(_("Imagen"), blank=True, upload_to=initiative_rename("images/initiatives/"),
-                                    validators=[image_size(600,300,1920,1280), image_type(["jpeg", "png"])],
+  image         = models.ImageField(_("Imagen"), blank=True,
+                                    validators=[validate_image_size, validate_image_type],
+                                    upload_to  = initiatives_images_path,
                                     help_text=_("Sube una imagen representativa de la iniciativa haciendo click en la imagen inferior. "
                                                 "La imagen ha de tener ancho mínimo de 300 píxeles y máximo de 1920, y altura mínima "
                                                 "de 300 píxeles y máxima de 1280. Formatos permitidos: PNG, JPG, JPEG."))
@@ -115,6 +124,7 @@ class Initiative(models.Model):
 #  Event
 #
 
+
 class Event(models.Model):
   """Model to represent Event objects"""
 
@@ -126,8 +136,9 @@ class Event(models.Model):
                                      help_text=_('Indica si es un evento destacado'))
   description  = models.TextField(_('Describe el evento'), blank=False, null=True,
                                   help_text=_('Describe el evento.'))
-  image         = models.ImageField(_("Imagen"), blank=True, upload_to=event_rename("images/events/"),
-                                    validators=[image_size(600,300,1920,1280), image_type(["jpeg", "png"])],
+  image         = models.ImageField(_("Imagen"), blank=True,
+                                    validators=[validate_image_size, validate_image_type],
+                                    upload_to  = events_images_path,
                                     help_text=_("Sube una imagen representativa del evento haciendo click en la imagen inferior. "
                                                 "La imagen ha de tener ancho mínimo de 300 píxeles y máximo de 1920, y altura mínima "
                                                 "de 300 píxeles y máxima de 1280. Formatos permitidos: PNG, JPG, JPEG."))

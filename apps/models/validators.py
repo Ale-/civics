@@ -1,74 +1,46 @@
 # python
 import os
 import magic
-import datetime
 # django
 from django.utils.translation import ugettext_lazy as _
 from django.core.exceptions import ValidationError
-from django.utils.text import slugify
+from django.utils.deconstruct import deconstructible
 
-def initiative_rename(path):
-    """ A custom function to rename image files once uploaded"""
+@deconstructible
+class ImageSizeValidator(object):
+    """ A validator that checks dimensions of image being loaded. """
 
-    def rename(instance, filename):
-        date = datetime.datetime.now()
-        subpath = instance.city.name
-        filename = slugify(instance.name) + "." + filename.split('.')[1]
-        return os.path.join(path, subpath, filename)
+    def __init__(self, dimensions=None):
+        self.dimensions = dimensions
+        self.min_width_error  = _(r"El ancho de la imagen debería ser mayor a %(min_width)s píxeles") % dimensions
+        self.max_width_error  = _(r"El ancho de la imagen debería ser menor a %(max_width)s píxeles") % dimensions
+        self.min_height_error = _(r"El alto de la imagen debería ser mayor a %(min_height)s píxeles") % dimensions
+        self.max_height_error = _(r"El alto de la imagen debería ser menor a %(max_height)s píxeles") % dimensions
 
-    return rename
-
-def event_rename(path):
-    """ A custom function to rename image files once uploaded"""
-
-    def rename(instance, filename):
-        date = datetime.datetime.now()
-        subpath = instance.city.name
-        filename = slugify(instance.title) + "." + filename.split('.')[1]
-        return os.path.join(path, subpath, filename)
-
-    return rename
-
-def image_size(min_width=None, min_height=None, max_width=None, max_height=None):
-    """ A custom to validator to check image dimensions in forms."""
-
-    min_width_error  = r"El ancho de la imagen debería ser mayor a %(min_width)s píxeles"
-    max_width_error  = r"El ancho de la imagen debería ser menor a %(max_width)s píxeles"
-    min_height_error = r"El alto de la imagen debería ser mayor a %(min_height)s píxeles"
-    max_height_error = r"El alto de la imagen debería ser menor a %(max_height)s píxeles"
-    params = {
-        'min_width'  : min_width,
-        'max_width'  : max_width,
-        'min_height' : min_height,
-        'max_height' : max_height,
-    }
-
-    def validator(image):
-        errors, width, height = [], image.width, image.height
-        if width is not None and width < min_width:
-            errors.append(_(min_width_error) % params)
-        if width is not None and width > max_width:
-            errors.append(_(max_width_error) % params)
-        if height is not None and height < min_height:
-            errors.append(_(min_height_error) % params)
-        if height is not None and height > max_height:
-            errors.append(_(max_height_error) % params)
+    def __call__(self, value):
+        errors, width, height = [], value.width, value.height
+        if width is not None and width < self.dimensions['min_width']:
+            errors.append(self.min_width_error)
+        if width is not None and width > self.dimensions['max_width']:
+            errors.append(self.max_width_error)
+        if height is not None and height < self.dimensions['min_height']:
+            errors.append(self.min_height_error)
+        if height is not None and height > self.dimensions['max_height']:
+            errors.append(self.max_height_error)
         raise ValidationError(errors)
 
-    return validator
+@deconstructible
+class ImageTypeValidator(object):
 
+    def __init__(self, mime_types=["jpeg", "png", "gif", "tiff"]):
+        self.mime_types = mime_types
+        self.type_error = r"La imagen '%(name)s' tiene formato %(format)s. Revise arriba los formatos permitidos"
 
-def image_type(mime_types=["jpeg", "png", "gif", "tiff"]):
-
-    type_error = r"La imagen '%(name)s' tiene formato %(format)s. Revise arriba los formatos permitidos"
-
-    def validator(image):
+    def __call__(self, value):
         try:
-            mime = magic.from_buffer(image.read(), mime=True)
-            mimes = [ ("image/" + mime) for mime in mime_types ]
+            mime = magic.from_buffer(value.read(), mime=True)
+            mimes = [ ("image/" + mime) for mime in self.mime_types ]
             if mime not in mimes:
-                raise ValidationError(type_error % { 'name' : image.name, 'format' : mime.split('image/')[1] })
+                raise ValidationError(_(self.type_error) % { 'name' : value.name, 'format' : mime.split('image/')[1] })
         except ValueError:
             pass
-
-    return validator
