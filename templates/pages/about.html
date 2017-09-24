@@ -65,6 +65,13 @@
                 para poder ser modificable por el propio usuario.</li>
             </ul>
         {% endblocktrans %}</div>
+        {% url 'privacy' as contact_url %}
+        <div class="civics-about__privacy">{% blocktrans trimmed %}
+            <h5>Política de privacidad</h5>
+            <p>Puedes leer nuestra política de privacidad en la página enlazada
+            a continuación:</p>
+            <a href="{{ contact_url }}">Política de privacidad de civics.cc</a>
+        {% endblocktrans %}</div>
         <div class="civics-about__credits">
             {% trans 'Este proyecto está siendo desarrollado mediante la colaboración de:' %}
             <div class="civics-about__logos">
