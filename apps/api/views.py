@@ -8,23 +8,15 @@ from django.http import HttpResponse, JsonResponse
 from django.db.models import Count
 from django.views.decorators.csrf import csrf_protect
 from django.utils.text import slugify
-from django.core import serializers
 from apps.models.categories import *
 from apps.models.models import Initiative, City, Event
-from django.core.serializers.json import Serializer
+from .serializers import CivicsJSONSerializer
 
 #
 #  API
 #
 
 no_results = _("No se han encontrado resultados que cumplan con todas las condiciones de filtrado.")
-
-class CivicsJSONSerializer(Serializer):
-    def get_dump_object(self, obj):
-        data = self._current
-        data['image'] = obj.image_medium.url if obj.image_medium else None
-        data['pk'] = obj.pk
-        return data
 
 def initiatives_service(request):
     cities = City.objects.annotate(num_refs=Count('initiative')).filter(num_refs__gt=10)
