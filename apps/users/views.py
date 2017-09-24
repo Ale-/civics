@@ -1,3 +1,4 @@
+# django
 from django.shortcuts import render
 from django.views import View
 from django.contrib.sites.shortcuts import get_current_site
@@ -6,11 +7,11 @@ from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
 from django.utils.decorators import method_decorator
-
+# contrib
 from registration.views import ActivationView as BaseActivationView
 from registration.models import RegistrationProfile
 from registration import signals
-
+# project
 from apps.models.models import City, Initiative, Event
 from apps.models import categories
 

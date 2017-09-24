@@ -1,6 +1,8 @@
+# python
 import json
 import math
 from datetime import date
+# django
 from django.conf import settings
 from django.shortcuts import render
 from django.utils.translation import ugettext_lazy as _
@@ -8,6 +10,7 @@ from django.http import HttpResponse, JsonResponse
 from django.db.models import Count
 from django.views.decorators.csrf import csrf_protect
 from django.utils.text import slugify
+# project
 from apps.models.categories import *
 from apps.models.models import Initiative, City, Event
 from .serializers import CivicsJSONSerializer

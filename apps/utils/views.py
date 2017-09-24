@@ -1,13 +1,15 @@
+# django
 from django.utils.translation import ugettext_lazy as _
 from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib import messages
-from apps.models import forms
 from django.views.generic.edit import FormView
 from django.http import HttpResponse
 from django.utils.html import escape
 from django.core.exceptions import PermissionDenied
+# project
+from apps.models import forms
 
 generic_template = 'pages/modelform.html'
 

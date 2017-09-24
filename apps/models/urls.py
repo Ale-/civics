@@ -1,7 +1,9 @@
+# django
 from django.conf.urls import url
-from . import views
-from apps.utils.views import PopupFormView
 from django.views.generic import TemplateView
+# project
+from apps.utils.views import PopupFormView
+from . import views
 from .forms import CityForm
 
 urlpatterns = [

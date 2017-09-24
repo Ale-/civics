@@ -1,18 +1,20 @@
+# django
 from django.utils.translation import ugettext_lazy as _
 from django.shortcuts import render
-from apps.utils.views import GenericCreate, GenericUpdate, GenericDelete
-from . import forms, models
 from django.urls import reverse_lazy, reverse
-from django.shortcuts import get_object_or_404
-from .models import Initiative
 from django.http import HttpResponseRedirect
 from django.core.exceptions import PermissionDenied
 from django.contrib.auth.mixins import UserPassesTestMixin
+from django.shortcuts import get_object_or_404
+# project
+from apps.utils.views import GenericCreate, GenericUpdate, GenericDelete
+from . import forms, models
+from .models import Initiative
 
-# Model related views
+# Model related templates
 
 modelform_generic_template = 'pages/modelform.html'
-modelform_delete_template = 'pages/modelform--delete.html'
+modelform_delete_template  = 'pages/modelform--delete.html'
 
 #
 #  Initiative

@@ -1,21 +1,25 @@
+# django
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
-from . import categories
-from djgeojson.fields import PointField
-from leaflet.forms.widgets import LeafletWidget
 from django.contrib.auth.models import User
 from django.utils import timezone
 from django.utils.text import slugify
-from imagekit.models import ImageSpecField
-from imagekit import processors
-from django_countries.fields import CountryField
 from django.core.mail import send_mail
 from django.conf import settings
+# contrib
+from imagekit.models import ImageSpecField
+from imagekit import processors
+from leaflet.forms.widgets import LeafletWidget
+from django_countries.fields import CountryField
+from djgeojson.fields import PointField
+# project
+from . import categories
 from .validators import ImageTypeValidator, ImageSizeValidator
 from .utils import RenameCivicsImage
 
 
-# validate_image_size     = image_size(600,300,1920,1280)
+# Bound methods moved from model to avoid problems with serialization in migrations
+
 validate_image_size     = ImageSizeValidator({ 'min_width' : 600, 'min_height' : 300, 'max_width' : 1920, 'max_height' : 1280 })
 validate_image_type     = ImageTypeValidator(["jpeg", "png"])
 initiatives_images_path = RenameCivicsImage("images/initiatives/")
