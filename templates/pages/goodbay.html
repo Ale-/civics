@@ -1,0 +1,38 @@
+{# After logout page #}
+{% extends 'layouts/single-fluid-column.html' %} {% load static utils i18n %}
+{% block body_classes %}thanks{% endblock %}
+
+{% block main %}
+<div class="goodbay">
+  <div class="goodbay__logo">
+      <img src="{% static 'civics/img/logo-civics.svg' %}" />
+  </div>
+  <div class="goodbay__text">
+      {% blocktrans trimmed %}
+      Gracias por visitarnos.
+      {% endblocktrans %}
+  </div>
+  <div class="goodbay__links">
+      {% blocktrans trimmed %}
+      Recuerda que puedes seguirnos y contactarnos en:
+      {% endblocktrans %}
+      <ul class="goodbay__social">
+          <li>
+              <a href="https://www.facebook.com/mapacivics" target="_blank" title="{% trans 'Perfil de Civics en Facebook' %}">
+                  <span class="icon-facebook"></span> Facebook
+              </a>
+          </li>
+          <li>
+              <a href="https://twitter.com/mapacivics" target="_blank" title="{% trans 'Perfil de Civics en Twitter' %}">
+                  <span class="icon-twitter"></span> Twitter
+              </a>
+          </li>
+          <li>
+              <a href="/contacta" target="_blank" title="{% trans 'Contacta con Civics' %}">
+                  <span class="icon-mail"></span> Por correo
+              </a>
+          </li>
+      </ul>
+  </div>
+</div>
+{% endblock %}
