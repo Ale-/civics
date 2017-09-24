@@ -1,0 +1,117 @@
+{# About page #}
+{% extends 'layouts/single-fluid-column.html' %} {% load static utils i18n %}
+{% block body_classes %}privacy{% endblock %}
+
+{% block main %}
+<div class="privacy-policy">
+  <p class="privacy-policy__date">
+    <em>Última actualización: 21 de septiembre de 2017</em>
+  </p>
+  <h1 class="privacy-policy__title">
+      {% trans 'Política de privacidad de civics.cc' %}
+  </h1>
+  <div class="privacy-policy__text">
+      {% url 'contact' as contact_url %}
+      {% blocktrans trimmed %}
+      <p>
+      Civics ("nosotros", "nosotros" o "nuestro") opera el sitio web civics.cc (el "Servicio"). <br/>
+      Esta página le informa de nuestras políticas con respecto a la recopilación, uso y divulgación
+      de Información Personal cuando usa nuestro Servicio.<br/>
+      No utilizaremos ni compartiremos su información con nadie, excepto como se
+      describe en esta Política de privacidad.<br/>
+      Utilizamos su información Personal para proporcionar y mejorar el Servicio.
+      Al utilizar el Servicio, usted acepta la recopilación y el uso de la información
+      de acuerdo con esta política. A menos que se defina lo contrario en esta Política de Privacidad,
+      los términos usados ​​en esta Política de Privacidad tienen los mismos significados que en nuestros Términos y Condiciones,
+      accesibles en civics.cc
+      </p>
+      <h3 class="privacy-policy__subtitle">
+          Recopilación y uso de información
+      </h3>
+      <p>
+      Durante el uso de nuestro Servicio, podemos pedirle que nos proporcione
+      cierta información de identificación personal que pueda ser utilizada para contactarle
+      o identificarle.<br/>
+      <h3 class="privacy-policy__subtitle">
+          Datos de registro
+      </h3>
+      <p>
+      Recopilamos información que envía su navegador cada vez que visita nuestro
+      Servicio ("Datos de Registro"). Estos datos de registro pueden incluir información
+      como la dirección de IP de su computadora, el tipo de navegador, la versión del
+      navegador, las páginas de nuestro servicio que visita, la hora y la fecha
+      de su visita, el tiempo dedicado a esas páginas y otros estadísticas.
+      </p>
+      <h3 class="privacy-policy__subtitle">
+          Cookies
+      </h3>
+      <p>
+      Las cookies son archivos con poca cantidad de datos, que pueden incluir
+      un identificador único anónimo. Las cookies se envían a su navegador desde
+      un sitio web y se almacenan en el disco duro de su computadora.<br/>
+      Utilizamos "cookies" para recopilar información. Puede indicar a su navegador
+      que rechace todas las cookies o que indique cuándo se envía una cookie.
+      Sin embargo, si no acepta cookies, es posible que no pueda utilizar algunas
+      partes de nuestro Servicio.<br/>
+      <h3 class="privacy-policy__subtitle">
+          Proveedores de servicio
+      </h3>
+      <p>
+      Podemos contratar a terceras compañías e individuos para facilitar nuestro
+      Servicio, para prestar el Servicio en nuestro nombre, para prestar servicios
+      relacionados con el Servicio o para ayudarnos a analizar cómo se utiliza
+      nuestro Servicio.
+      <br/>
+      Estos terceros tienen acceso a su Información Personal únicamente para
+      realizar estas tareas en nuestro nombre y están obligados a no divulgarlo
+      o utilizarlo para ningún otro propósito.
+      <h3 class="privacy-policy__subtitle">
+          Seguridad
+      </h3>
+      <p>
+      La seguridad de su información personal es importante para nosotros, pero
+      recuerde que ningún método de transmisión a través de Internet o método de
+      almacenamiento electrónico es 100% seguro. Aunque utilizamos medios
+      para proteger su información personal, no podemos garantizar su seguridad absoluta.
+      <h3 class="privacy-policy__subtitle">
+          Enlaces a otros sitios
+      </h3>
+      <p>
+      Nuestro Servicio puede contener enlaces a otros sitios que no son operados
+      por nosotros. Si hace clic en un enlace de terceros, se le dirigirá al
+      sitio de ese tercero. Le recomendamos que revise la Política de privacidad
+      de cada sitio que visita.
+      <br/>
+      No tenemos ningún control sobre, ni asumimos ninguna responsabilidad por el contenido, políticas de privacidad o prácticas de sitios o servicios de terceros.
+      <h3 class="privacy-policy__subtitle">
+        Privacidad de los niños
+      </h3>
+      <p>
+      Nuestro Servicio no se dirige a menores de 13 años ("Niños").
+      No recopilamos a sabiendas información de identificación personal de niños
+      menores de 13 años. Si usted es un padre o tutor y usted es consciente de
+      que sus hijos nos han proporcionado información personal, por favor contáctenos.
+      Si descubrimos que un Menor de 13 años nos ha proporcionado Información
+      Personal, eliminaremos dicha información de nuestros servidores inmediatamente.
+      </p>
+      <h3 class="privacy-policy__subtitle">
+          Cambios a esta política de privacidad
+      </h3>
+      <p>
+      Podemos actualizar nuestra Política de privacidad de vez en cuando. Le
+      notificaremos de cualquier cambio publicando la nueva Política de privacidad
+      en esta página.
+      <br/>
+      Se recomienda revisar esta Política de privacidad periódicamente para cualquier cambio. Los cambios a esta Política de privacidad son efectivos cuando se publican en esta página.
+      </p>
+      <h3 class="privacy-policy__subtitle">
+          Contáctenos
+      </h3>
+      <p>
+      Si tiene alguna pregunta sobre esta Política de Privacidad, <a href="/contacta">
+      póngase en contacto con nosotros.</a>
+      </p>
+      {% endblocktrans %}
+  </div>
+</div>
+{% endblock %}

@@ -24,6 +24,7 @@ urlpatterns += i18n_patterns(
 
     # Static URLs
     url(r'^acerca$', TemplateView.as_view(template_name='pages/about.html'), name="about"),
+    url(r'^privacidad$', TemplateView.as_view(template_name='pages/privacy.html'), name="privacy"),
 
     # Registration URLs
     url(r'^activate/(?P<activation_key>\w+)/$', ActivationView.as_view(), name='registration_activate'),
