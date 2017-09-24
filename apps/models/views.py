@@ -27,7 +27,7 @@ class InitiativeCreate(GenericCreate):
   form_class       = forms.InitiativeForm
   form__html_class = 'initiative'
   template_name    = modelform_generic_template
-  title            = _('Crea una iniciativa')
+  title            = _('Crea tu iniciativa')
 
   def get_success_url(self):
       if self.request.user.is_staff:
