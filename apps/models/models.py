@@ -172,7 +172,7 @@ class Event(models.Model):
   position     = PointField(_("Ubicación"), blank=False, null=True,
                             help_text=_("Añade la ubicación de la actividad. Si lo dejas en blanco se usará la ubicación de la iniciativa asociada."))
   facebook_id  = models.PositiveIntegerField(blank=True, null=True)
-
+  google_id    = models.PositiveIntegerField(blank=True, null=True)
   slug          = models.SlugField(editable=False, blank=True)
   creation_date = models.DateField(editable=False, default=timezone.now)
 
