@@ -7,6 +7,7 @@ from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
 from django.utils.decorators import method_decorator
+from django.contrib.auth.mixins import LoginRequiredMixin
 # contrib
 from registration.views import ActivationView as BaseActivationView
 from registration.models import RegistrationProfile
@@ -14,15 +15,17 @@ from registration import signals
 # project
 from apps.models.models import City, Initiative, Event
 from apps.models import categories
+from django.conf import settings
 
 
-class Dashboard(View):
+class Dashboard(LoginRequiredMixin, View):
     """
     Get user profile
 
     """
 
     def get(self, request):
+        facebook_id = settings.FACEBOOK_APP_ID
         initiatives = Initiative.objects.filter(user=request.user).order_by('name')
         if initiatives:
             events      = Event.objects.filter(initiative__in=initiatives).all()
