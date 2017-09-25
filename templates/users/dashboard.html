@@ -1,6 +1,6 @@
-{# Staff user dashboard #} 
-{% extends 'layouts/single-fluid-column.html' %} 
-{% load utils l10n i18n static imagekit leaflet_tags %}
+{# Staff user dashboard #}
+{% extends 'layouts/single-fluid-column.html' %}
+{% load utils  i18n static imagekit leaflet_tags users %}
 {% block body_classes %}dashboard{% endblock %}
 
 {% block page_header %}
@@ -60,53 +60,65 @@
                     </a>
                 </div>
                 <div class="events--dashboard__items">
-                    {% if events|length == 0 %}
-                        <div class="events--dashboard__items-empty">
-                          {% blocktrans %}
-                          Parece que todavía no has creado eventos asociados a tu iniciativa.<br/>
-                          Puedes clicar en el icono <span class="icon-add"></span> para crear un
-                          nuevo evento.
-                          {% endblocktrans %}
-                        </div>
-                    {% else %}
-                        {% for event in events %}
-                        <a href="{% url 'modelforms:edit_event' event.pk %}">
-                            <div class="events--dashboard__item">
-                                <figure class="events--dashboard__item-image">
-                                    {% if event.image %}
-                                          {% thumbnail '100x100' event.image %}
-                                    {% else %}
-                                        <span class="icon-agent"></span>
-                                    {% endif %}
-                                </figure>
-                                <div>
-                                    <h5 class="events--dashboard__item-name">
-                                        {{ event.title }}
-                                    </h5>
-                                    <div class="events--dashboard__item-date">
-                                      {% trans 'Fecha del evento:' %} {{ event.date }}
-                                    </div>
-                                </div>
-                                <p class="events--dashboard__edit">
-                                    {% trans 'Editar' %}
-                                </p>
+                    <div class="current-events">
+                        {% if events|length == 0 %}
+                            <div class="events--dashboard__items-empty">
+                              {% blocktrans %}
+                              Parece que todavía no has creado eventos asociados a tu iniciativa.<br/>
+                              Puedes clicar en el icono <span class="icon-add"></span> para crear un
+                              nuevo evento.
+                              {% endblocktrans %}
                             </div>
-                        </a>
-                        {% endfor %}
-                    {% endif %}
-                    <div class="facebook-events">
-                        <h5 class="facebook-events__title">
-                            {% trans 'Importa eventos desde Facebook' %}
+                        {% else %}
+                            {% for event in events %}
+                            <a href="{% url 'modelforms:edit_event' event.pk %}">
+                                <div class="events--dashboard__item">
+                                    <figure class="events--dashboard__item-image">
+                                        {% if event.image %}
+                                              {% thumbnail '100x100' event.image %}
+                                        {% else %}
+                                            <span class="icon-agent"></span>
+                                        {% endif %}
+                                    </figure>
+                                    <div>
+                                        <h5 class="events--dashboard__item-name">
+                                            {{ event.title }}
+                                        </h5>
+                                        <div class="events--dashboard__item-date">
+                                          {% trans 'Fecha del evento:' %} {{ event.date }}
+                                        </div>
+                                    </div>
+                                    <p class="events--dashboard__edit">
+                                        {% trans 'Editar' %}
+                                    </p>
+                                </div>
+                            </a>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                    <div class="import-events">
+                        <h5 class="import-events__title">
+                            {% trans 'Importa eventos desde redes sociales' %}
                         </h5>
-                        <p class="facebook-events__help">
+                        <p class="import-events__help">
                             {% blocktrans %}
-                            No estás conectado a Facebook. Si quieres importar eventos desde
-                            tu agenda de FB has de <a href="#" onclick="fb_login()">hacer login</a>
+                            Para agilizar la importación al evento se le asignarán
+                            la temática, tipo de agente y ciudad de la iniciativa promotora.
+                            Revisa y completa los eventos tras importarlos.
                             {% endblocktrans %}
+                            <ul class="import-events__actions">
+                                <li class="import-events__action">
+                                    <a href="#" onclick="fb_login()">{% trans 'Importar desde Facebook' %}</a>
+                                </li>
+                                <li class="import-events__action">
+                                    <span class="icon-google"></span>
+                                    <a href="#" onclick="fb_login()">{% trans 'Importar desde Google' %}</a>
+                                </li>
+                            </ul>
                         </p>
-                        <ul class="facebook-events__list">
+                        <ul class="import-events__list">
                         </ul>
-                        <p class="facebook-events__empty">
+                        <p class="import-events__empty">
                             {% trans 'No hay eventos nuevos' %}
                         </p>
                     </div>
@@ -126,47 +138,8 @@
     <!-- Dependencies -->
     {% leaflet_js %}
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-
-    <!-- Populate map -->
-    <script type="text/javascript">
-        window.addEventListener("map:init", function (event)
-        {
-            var map = event.detail.map;
-            //Center map in initiative
-            map.setView([0, -26], 3);
-            {% for initiative in initiatives %}
-                var popup = "<h5>{{ initiative.name }}</h5>" +
-                            "<p><a href={% url 'modelforms:edit_initiative' initiative.pk %}>Editar</a></p>";
-                L.marker([ {{ initiative.position.coordinates.1 | unlocalize }}, {{  initiative.position.coordinates.0 | unlocalize }} ], {
-                    icon : L.divIcon({
-                        'type' : 'div',
-                        'iconSize'    : [40, 60],
-                        'iconAnchor'  : [20, 60],
-                        'popupAnchor' : [0, -30],
-                        'className'   : 'cm',
-                        'html'        : "<div class='initiative-marker'>" +
-                                            "<i class='outer i-to-{{ initiative.topic|lower}} i-ag-{{ initiative.agent|lower }}'></i>" +
-                                            "<i class='inner i-sp-{{ initiative.space|lower }}'></i>" +
-                                         "</div>",
-                    }),
-                }).bindPopup(popup).addTo(map);
-            {% endfor %}
-        });
-    </script>
-
-    <!-- Fetch events from facebook and google -->
-    <script type="text/javascript" src=" {% js 'facebook.js' %}"></script>
-    <script type="text/javascript">
-        window.fbAsyncInit = function() {
-            FB.init({
-                appId      : {{ facebook_id }},
-                cookie     : true,  // enable cookies to allow the server to access the session
-                xfbml      : true,  // parse social plugins on this page
-                version    : 'v2.8' // use graph api version 2.8
-            });
-            FB.getLoginStatus(function(response) {
-                statusChangeCallback(response, {{ initiative.id }});
-            });
-        };
-    </script>
+    <!-- Populate map. See apps.users.templatetags -->
+    {% dashboard_leaflet_js user_initiatives=initiatives %}
+    <!-- Import events. See apps.users.templatetags -->
+    {% events_import_js user_initiatives=initiatives %}
 {% endblock %}

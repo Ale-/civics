@@ -1,0 +1,209 @@
+{# Script to import events from google and facebook #}
+{% load i18n static %}
+
+<script type="text/javascript">
+
+// Load the Facebook Graph SDK asynchronously
+(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+
+/**
+ *  This is called with the results from from FB.getLoginStatus()
+ *  @see dashboard.html
+ */
+function statusChangeCallback(response) {
+  if (response.status === 'connected'){
+    fetchEvents();
+  } else {
+    $('.facebook-events__help').show() ;
+  }
+}
+
+// Login to Facebook
+function fb_login(){
+    FB.login( function(reponse){
+        fetchEvents();
+    }, { scope: 'user_events' });
+}
+
+//Get the Django CSRF token
+function getCookie(name) {
+        var cookieValue = null;
+        if (document.cookie && document.cookie != '') {
+              var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+             var cookie = jQuery.trim(cookies[i]);
+        // Does this cookie string begin with the name we want?
+        if (cookie.substring(0, name.length + 1) == (name + '=')) {
+          cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+            break;
+           }
+        }
+    }
+    return cookieValue;
+}
+
+//New Facebook and google events
+var social_networks_events = [];
+
+/**
+ *  Invoked to add a Facebook event to Django database
+ *   @see apps/api/views
+ */
+function add_to_events(index){
+    data = social_networks_events[index];
+    // We have to pass django's CSRF token to receive 200 response
+    data['csrfmiddlewaretoken'] = getCookie('csrftoken');
+    // Get event initiative and category
+    data['category'] = $('#categories_' + index).val();
+    data['initiative'] = $('#initiatives_' + index).val();
+    // Create event
+    $.post('/api/event_create', data, function(response){
+        // Show event in event list
+        var new_event = $('<a/>', { href : "{% url 'modelforms:edit_event' 1 %}".replace(/1/, 15) });
+        var wrapper = $('<div/>', { class : "events--dashboard__item" });
+        wrapper.append('<figure class="events--dashboard__item-image"><span class="icon-agent"></span></figure');
+        wrapper.append('<div><h5 class="events--dashboard__item-name">' + data.name + '</h5><div class="events--dashboard__item-date">' + data.date +'</div>');
+        new_event.append(wrapper);
+        $('.events--dashboard__items-empty').hide();
+        $('.current-events').append(new_event);
+        // Remove event from data and social network events list
+        social_networks_events.splice(index, 1);
+        $('.import-events__list li')[index].remove();
+    });
+}
+
+//Util function to format dates properly
+function pad(n) { return n<10 ? '0' + n : n }
+
+/**
+ *  Layout event to be imported
+ *  Creates the markup for a single event to be imported
+ */
+function eventMarkup(e, i, source){
+    var markup      = $("<li/>", {
+        class : "import-events__item" }
+    );
+    markup.append('<p class="import-events__item-name"><span class="icon-' + source + '"></span> ' + e.name + '</p>');
+    markup.append('<p class="import-events__item-date">' + e.date + ', ' + e.time + ' (' + e.city + ')</p>');
+    markup.append('<label class="import-events__label">{% trans "Iniciativa" %}</label>');
+    var initiatives = $("<select/>", {
+        id    : 'initiatives_' + i,
+        class : 'import-events__user-initiatives',
+        text : "{{ initiative_text }}"
+    });
+    {% for initiative in initiatives %}
+        var option = $("<option/>", {
+            value: " {{ initiative.id }}",
+            text: "{{ initiative.name }}"
+        });
+        initiatives.append(option);
+    {% endfor %}
+    markup.append(initiatives);
+    markup.append('<label class="import-events__label">{% trans "Categoría" %}</label>');
+    var cats        = $("<select/>", {
+        id    : 'categories_' + i,
+        class : 'import-events__event-categories',
+        text : "{% trans 'Elige el tipo de actividad' %}"
+    });
+    {% for cat in event_categories %}
+        var option = $("<option/>", {
+            value: "{{ cat.0 }}",
+            text: "{{ cat.1 }}"
+        });
+        cats.append(option);
+    {% endfor %}
+    markup.append(cats);
+    var button = $('<p/>', {
+        class : "import-events__submit",
+        text  : "{% trans 'Importar' %}",
+        click : function(e){
+          var item = $(e.target).parent('li');
+          var index = $('.import-events__item').index(item);
+          add_to_events(index);
+        }
+    })
+    markup.append(button);
+    return markup;
+}
+
+/**
+ *  Simple interface test with mock data
+ */
+var test = function(){
+    for(var i = 0; i < 5; i++)
+    {
+        var event = {
+            name        : "Example " + i,
+            description : "Lorem ipsum",
+            date        : "2017-12-10",
+            time        : "12:00",
+            lat         : "44",
+            lon         : "0",
+            city        : "Mordor",
+            address     : "Monte del Destino, s/n",
+            facebook_id : "0",
+        };
+        social_networks_events.push(event);
+        $('.import-events__list').append(eventMarkup(event, i, 'facebook'));
+    }
+};
+//test();
+
+
+/**
+ *  Fetch events from FB.
+ *  Format and store them in an array to be imported to Django
+ */
+function fetchEvents(id) {
+    FB.api('/me/events', function(response){
+        events = response.data;
+        $('.import-events__help').hide();
+        // Check if event ID is already in Django database
+        // to show only new events
+        $.get('/api/events_fb_id', {}, function(response){
+            for(i in events){
+                var e = events[i];
+                if(response.indexOf(e.id) > -1 || response.length == 0){
+                    var date = new Date(e.start_time)
+                    var event = {
+                        name          : e.name,
+                        description   : e.description,
+                        date          : date.getFullYear()  + "-" + pad(date.getMonth()+1) + "-" + pad(date.getDate()),
+                        time          : date.toLocaleTimeString(),
+                        lat           : e.place.location.latitude,
+                        lon           : e.place.location.longitude,
+                        city          : e.place.location.city,
+                        address       : e.place.name,
+                        facebook_id   : e.id,
+                        initiative_id : id,
+                    };
+                    social_networks_events.push(event);
+                    $('.import-events__list').append( eventMarkup(event), $('.import-events__list').length, 'facebook');
+                }
+            }
+            if(social_networks_events.length == 0){
+                $('.import-events__empty').show();
+            }
+        });
+    });
+}
+
+window.fbAsyncInit = function() {
+    FB.init({
+        appId      : "{{ facebook_id }}",
+        cookie     : true,  // enable cookies to allow the server to access the session
+        xfbml      : true,  // parse social plugins on this page
+        version    : 'v2.8' // use graph api version 2.8
+    });
+    FB.getLoginStatus(function(response) {
+        statusChangeCallback(response);
+    });
+};
+
+</script>

@@ -25,7 +25,6 @@ class Dashboard(LoginRequiredMixin, View):
     """
 
     def get(self, request):
-        facebook_id = settings.FACEBOOK_APP_ID
         initiatives = Initiative.objects.filter(user=request.user).order_by('name')
         if initiatives:
             events      = Event.objects.filter(initiative__in=initiatives).all()

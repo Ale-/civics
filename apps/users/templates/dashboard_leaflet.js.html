@@ -1,0 +1,30 @@
+{# Script to populate dashboard's map with user initiatives #}
+{% load l10n %}
+
+<script type="text/javascript">
+
+window.addEventListener("map:init", function (event)
+{
+    var map = event.detail.map;
+    //Center map in initiative
+    map.setView([0, -26], 3);
+    {% for initiative in initiatives %}
+        var popup = "<h5>{{ initiative.name }}</h5>" +
+                    "<p><a href={% url 'modelforms:edit_initiative' initiative.pk %}>Editar</a></p>";
+        L.marker([ {{ initiative.position.coordinates.1 | unlocalize }}, {{  initiative.position.coordinates.0 | unlocalize }} ], {
+            icon : L.divIcon({
+                'type' : 'div',
+                'iconSize'    : [40, 60],
+                'iconAnchor'  : [20, 60],
+                'popupAnchor' : [0, -30],
+                'className'   : 'cm',
+                'html'        : "<div class='initiative-marker'>" +
+                                    "<i class='outer i-to-{{ initiative.topic|lower}} i-ag-{{ initiative.agent|lower }}'></i>" +
+                                    "<i class='inner i-sp-{{ initiative.space|lower }}'></i>" +
+                                 "</div>",
+            }),
+        }).bindPopup(popup).addTo(map);
+    {% endfor %}
+});
+
+</script>

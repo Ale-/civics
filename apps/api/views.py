@@ -382,15 +382,16 @@ def create_event(request):
 
     if request.method == 'POST':
         if request.is_ajax:
-            initiative_id = request.POST.get('initiative_id')
+            initiative_id = int(request.POST.get('initiative'))
             initiative = Initiative.objects.filter(pk=initiative_id).first()
             e = Event.objects.create(
                 title       = request.POST.get('name'),
                 description = request.POST.get('description'),
-                date        = request.POST.get('formatted_date'),
+                date        = request.POST.get('date'),
                 time        = request.POST.get('time'),
                 position    = json.loads('{ "type": "Point", "coordinates": [' + request.POST.get('lon') + ',' + request.POST.get('lat') +'] }'),
                 facebook_id = request.POST.get('facebook_id'),
+                google_id   = request.POST.get('google_id'),
                 initiative  = initiative,
                 address     = request.POST.get('address'),
                 topic       = initiative.topic,
