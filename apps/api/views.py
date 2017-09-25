@@ -420,7 +420,7 @@ def cities_with_initiatives(request):
     Get cities related to initiatives
     """
 
-    cities = City.objects.annotate(num_refs=Count('initiative')).filter(num_refs__gt=10).filter(initiative_related=True)
+    cities = City.objects.annotate(num_refs=Count('initiative')).filter(num_refs__gt=10)
     response = {}
     for city in cities:
         response[city.pk] = { 'name' : city.name, 'id' : city.pk, 'country' : city.country.name, 'coordinates' : city.position['coordinates'] }
