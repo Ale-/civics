@@ -1,7 +1,11 @@
-{# Staff user dashboard #} {% extends 'layouts/single-fluid-column.html' %}
+{# Staff user dashboard #} 
+{% extends 'layouts/single-fluid-column.html' %} 
 {% load utils l10n i18n static imagekit leaflet_tags %}
-{% block body_classes %}dashboard-staff{% endblock %}
-{% block page_header %}{% leaflet_css %}{% endblock %}
+{% block body_classes %}dashboard{% endblock %}
+
+{% block page_header %}
+  {% leaflet_css %}
+{% endblock %}
 
 {% block main %}
     {% trans 'Mi perfil' as page_title %}
@@ -90,6 +94,22 @@
                         </a>
                         {% endfor %}
                     {% endif %}
+                    <div class="facebook-events">
+                        <h5 class="facebook-events__title">
+                            {% trans 'Importa eventos desde Facebook' %}
+                        </h5>
+                        <p class="facebook-events__help">
+                            {% blocktrans %}
+                            No estás conectado a Facebook. Si quieres importar eventos desde
+                            tu agenda de FB has de <a href="#" onclick="fb_login()">hacer login</a>
+                            {% endblocktrans %}
+                        </p>
+                        <ul class="facebook-events__list">
+                        </ul>
+                        <p class="facebook-events__empty">
+                            {% trans 'No hay eventos nuevos' %}
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
