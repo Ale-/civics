@@ -98,6 +98,7 @@
 [class$='--dashboard__item']
   padding: $m/2
   position: relative
+  +transition(background-color .2s ease)
 
 [class$='--dashboard__item']:hover
   background: rgba(black, .25)
@@ -107,15 +108,18 @@
     opacity: 1
 [class$='--dashboard__edit']
   position: absolute
-  right: $m/3
-  top: $m/3
+  right: 0
+  top: 0
   z-index: 10
-  background-color: #555
+  background-color: rgba(black, .25)
   color: white
   visibility: hidden
   opacity: 0
   line-height: 100%
-  padding: $m/4
+  padding: $m/4 $m/2
+  font-size: .8em !important
+  font-weight: 300 !important
+  letter-spacing: 1px
   +h(6)
   +transition(opacity .25s ease)
   text-transform: uppercase
@@ -189,8 +193,9 @@
 .import-events__item
   position: relative
   margin-top: $m/2
-  padding: $m/2
+  padding: $m/2 $m/2 $m*1.5
   background-color: rgba(black, .1)
+
 .import-events__item-name
   +h(5)
 .import-events__title
@@ -209,7 +214,8 @@
     color: white
 .import-events__help
   font-size: .9em
-  margin-bottom: $m/2
+  margin: $m/2
+  color: rgba(black, .75)
 .import-events__empty
   display: none
   font-size: 1.2em
@@ -219,7 +225,7 @@
   +appearance(none)
   border-width: 0 0 1px 0
   background: none
-  max-width: calc(100% - #{$m*4})
+  width: calc(100% - #{$m*4})
   text-overflow: ellipsis
   option
     max-width: 250px
@@ -246,6 +252,20 @@
   width: $m*3
   margin-right: $m/2
 .import-events__action
-  text-transform: uppercase
   letter-spacing: 1px
   font-size: .9em
+.nofacebook,
+.nogoogle,
+.google-logged-in,
+.facebook-logged-in,
+.import-events__help
+  display: none
+
+.events--dashboard__item-image
+  margin-top: $m/3
+.events--dashboard__item-initiative
+  text-transform: uppercase
+  font-size: .8em
+.facebook-logged-in:before
+  content: "✓"
+  font-family: sans-serif
