@@ -81,6 +81,9 @@
                                         {% endif %}
                                     </figure>
                                     <div>
+                                        <p class="events--dashboard__item-initiative">
+                                            {{ event.initiative.name }}
+                                        </p>
                                         <h5 class="events--dashboard__item-name">
                                             {{ event.title }}
                                         </h5>
@@ -100,26 +103,33 @@
                         <h5 class="import-events__title">
                             {% trans 'Importa eventos desde redes sociales' %}
                         </h5>
+                        <ul class="import-events__actions">
+                            <li class="import-events__action nofacebook">
+                                {% trans 'Necesitas estar conectad@ a una cuenta de FB para importar eventos:' %}
+                                <a href="#" onclick="fb_login()">{% trans 'Entrar en Facebook' %}</a>
+                            </li>
+                            <li class="import-events__action facebook-logged-in">
+                                {% trans 'Conectado a Facebook.' %}</a>
+                            </li>
+                            <li class="import-events__action nogoogle">
+                                {% trans 'Necesitas estar conectad@ a una cuenta de G+ para importar eventos:' %}
+                                <a href="#" onclick="fb_login()">{% trans 'Entrar en Google+' %}</a>
+                            </li>
+                            <li class="import-events__action google-logged-in">
+                                {% trans 'Conectado a Google' %}</a>
+                            </li>
+                        </ul>
                         <p class="import-events__help">
                             {% blocktrans %}
                             Para agilizar la importación al evento se le asignarán
                             la temática, tipo de agente y ciudad de la iniciativa promotora.
                             Revisa y completa los eventos tras importarlos.
                             {% endblocktrans %}
-                            <ul class="import-events__actions">
-                                <li class="import-events__action">
-                                    <a href="#" onclick="fb_login()">{% trans 'Importar desde Facebook' %}</a>
-                                </li>
-                                <li class="import-events__action">
-                                    <span class="icon-google"></span>
-                                    <a href="#" onclick="fb_login()">{% trans 'Importar desde Google' %}</a>
-                                </li>
-                            </ul>
                         </p>
                         <ul class="import-events__list">
                         </ul>
-                        <p class="import-events__empty">
-                            {% trans 'No hay eventos nuevos' %}
+                        <p class="import-events__empty facebook">
+                            {% trans 'No hay eventos nuevos en tu cuenta de FB.' %}
                         </p>
                     </div>
                 </div>

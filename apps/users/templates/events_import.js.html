@@ -18,9 +18,11 @@
  */
 function statusChangeCallback(response) {
   if (response.status === 'connected'){
+    $('.facebook-logged-in').show();
+    $('.facebook-events__help').show() ;
     fetchEvents();
   } else {
-    $('.facebook-events__help').show() ;
+    $('.nofacebook').show();
   }
 }
 
@@ -60,21 +62,30 @@ function add_to_events(index){
     // We have to pass django's CSRF token to receive 200 response
     data['csrfmiddlewaretoken'] = getCookie('csrftoken');
     // Get event initiative and category
-    data['category'] = $('#categories_' + index).val();
-    data['initiative'] = $('#initiatives_' + index).val();
+    data['initiative'] = $('.import-events__user-initiatives', $('.import-events__list li')[index]).val();
+    var initiative_name = $('.import-events__user-initiatives option:selected', $('.import-events__list li')[index]).text();
+    data['category'] = $('.import-events__event-categories', $('.import-events__list li')[index]).val();
     // Create event
     $.post('/api/event_create', data, function(response){
         // Show event in event list
-        var new_event = $('<a/>', { href : "{% url 'modelforms:edit_event' 1 %}".replace(/1/, 15) });
+        var new_event = $('<a/>', { href : "{% url 'modelforms:edit_event' 1 %}".replace(/1/, response) });
         var wrapper = $('<div/>', { class : "events--dashboard__item" });
         wrapper.append('<figure class="events--dashboard__item-image"><span class="icon-agent"></span></figure');
-        wrapper.append('<div><h5 class="events--dashboard__item-name">' + data.name + '</h5><div class="events--dashboard__item-date">' + data.date +'</div>');
+        var e_initiative = '<p class="events--dashboard__item-initiative">' + initiative_name + '</p>';
+        var e_name = '<h5 class="events--dashboard__item-name">' + data.name + '</h5>';
+        var e_date = '<p class="events--dashboard__item-date">{% trans "Fecha del evento" %}: ' + data.date +'</p>';
+        wrapper.append('<div>' + e_initiative + e_name + e_date + '</div>');
         new_event.append(wrapper);
         $('.events--dashboard__items-empty').hide();
         $('.current-events').append(new_event);
         // Remove event from data and social network events list
         social_networks_events.splice(index, 1);
         $('.import-events__list li')[index].remove();
+        // If empty show a no-results tip
+        if( $('.import-events__list li').length === 0 ){
+            $('.import-events__empty.facebook').show();
+            $('.import-events__help').hide();
+        }
     });
 }
 
@@ -99,7 +110,7 @@ function eventMarkup(e, i, source){
     });
     {% for initiative in initiatives %}
         var option = $("<option/>", {
-            value: " {{ initiative.id }}",
+            value: "{{ initiative.id }}",
             text: "{{ initiative.name }}"
         });
         initiatives.append(option);
@@ -163,7 +174,9 @@ var test = function(){
 function fetchEvents(id) {
     FB.api('/me/events', function(response){
         events = response.data;
-        $('.import-events__help').hide();
+        if( events.length > 0){
+            $('.import-events__help').show();
+        }
         // Check if event ID is already in Django database
         // to show only new events
         $.get('/api/events_fb_id', {}, function(response){
@@ -181,10 +194,10 @@ function fetchEvents(id) {
                         city          : e.place.location.city,
                         address       : e.place.name,
                         facebook_id   : e.id,
-                        initiative_id : id,
+                        initiative    : id,
                     };
                     social_networks_events.push(event);
-                    $('.import-events__list').append( eventMarkup(event), $('.import-events__list').length, 'facebook');
+                    $('.import-events__list').append( eventMarkup(event, $('.import-events__list').length, 'facebook') ); 
                 }
             }
             if(social_networks_events.length == 0){
@@ -195,8 +208,9 @@ function fetchEvents(id) {
 }
 
 window.fbAsyncInit = function() {
+    console.log("eh");
     FB.init({
-        appId      : "{{ facebook_id }}",
+        appId      : {{ facebook_id }},
         cookie     : true,  // enable cookies to allow the server to access the session
         xfbml      : true,  // parse social plugins on this page
         version    : 'v2.8' // use graph api version 2.8
