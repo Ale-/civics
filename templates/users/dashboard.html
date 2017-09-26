@@ -53,7 +53,7 @@
             <div class="events--dashboard">
                 <div class="events--dashboard__title">
                     <h2>{% trans 'Mis actividades' %}</h2>
-                    <span class="events--dashboard__count">({{ events|length }})</span>
+                    <span class="events--dashboard__count">(<span>{{ events|length }}</span>)</span>
                     <a class="events--dashboard__create" title="{% trans 'Crea un evento' %}"
                        href="{% url 'modelforms:create_event' %}">
                         <span class="icon-add"></span>

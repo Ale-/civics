@@ -78,6 +78,9 @@ function add_to_events(index){
         new_event.append(wrapper);
         $('.events--dashboard__items-empty').hide();
         $('.current-events').append(new_event);
+        // Update count
+        var count = parseInt($('.events--dashboard__count span').text()) + 1;
+        $('.events--dashboard__count span').text(count);
         // Remove event from data and social network events list
         social_networks_events.splice(index, 1);
         $('.import-events__list li')[index].remove();
