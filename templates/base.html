@@ -25,8 +25,8 @@
         <link href="{% img 'favicon.ico' %}" rel="icon" type="image/png">
 
         {# Styles #}
+        <style>.region-content, .region-toolbar { display: none; }</style>
         <link href="{% css 'style.css' %}" rel="stylesheet">
-
         {# Block for the extension of base head, to include css/js libraries #}
         {% block page_header %}{% endblock %}
     </head>
@@ -51,5 +51,11 @@
             }
         </script>
         {% block page_scripts %}{% endblock %}
+        <script type="text/javascript">
+            var content = document.querySelector('.region-content');
+            var header = document.querySelector('.region-toolbar');
+            content.style.display = 'block';
+            header.style.display = 'block';
+        </script>
     </body>
 </html>
