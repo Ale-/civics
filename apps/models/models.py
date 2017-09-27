@@ -171,8 +171,8 @@ class Event(models.Model):
                                    help_text=_('Dirección de la iniciativa. No es necesario que vuelvas a introducir la ciudad de la iniciativa.'))
   position     = PointField(_("Ubicación"), blank=False, null=True,
                             help_text=_("Añade la ubicación de la actividad. Si lo dejas en blanco se usará la ubicación de la iniciativa asociada."))
-  facebook_id  = models.PositiveIntegerField(blank=True, null=True)
-  google_id    = models.PositiveIntegerField(blank=True, null=True)
+  facebook_id  = models.CharField(max_length=128, blank=True, null=True)
+  google_id    = models.CharField(max_length=128, blank=True, null=True)
   slug          = models.SlugField(editable=False, blank=True)
   creation_date = models.DateField(editable=False, default=timezone.now)
 

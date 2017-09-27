@@ -18,11 +18,10 @@
  */
 function statusChangeCallback(response) {
   if (response.status === 'connected'){
-    $('.facebook-logged-in').show();
-    $('.facebook-events__help').show() ;
+    $('.import-events').addClass('facebook');
     fetchEvents();
   } else {
-    $('.nofacebook').show();
+    $('.import-events').addClass('nofacebook');
   }
 }
 
@@ -30,6 +29,8 @@ function statusChangeCallback(response) {
 function fb_login(){
     FB.login( function(reponse){
         fetchEvents();
+        $('.import-events').removeClass('nofacebook');
+        $('.import-events').addClass('facebook');
     }, { scope: 'user_events' });
 }
 
@@ -62,9 +63,18 @@ function add_to_events(index){
     // We have to pass django's CSRF token to receive 200 response
     data['csrfmiddlewaretoken'] = getCookie('csrftoken');
     // Get event initiative and category
-    data['initiative'] = $('.import-events__user-initiatives', $('.import-events__list li')[index]).val();
-    var initiative_name = $('.import-events__user-initiatives option:selected', $('.import-events__list li')[index]).text();
-    data['category'] = $('.import-events__event-categories', $('.import-events__list li')[index]).val();
+    var current_item = $('.import-events__list li')[index];
+    data['initiative'] = $('.import-events__user-initiatives', current_item).val();
+    var initiative_name = $('.import-events__user-initiatives option:selected', current_item).text();
+    data['category'] = $('.import-events__event-categories', current_item).val();
+    data['user'] = {{ uid }};
+    if( !data['date'] ){
+        data['date'] = $('.import-events__event-date', current_item).val();
+    }
+    if( !data['time'] ){
+        data['time'] = $('.import-events__event-time', current_item).val();
+    }
+    console.log(data);
     // Create event
     $.post('/api/event_create', data, function(response){
         // Show event in event list
@@ -86,8 +96,7 @@ function add_to_events(index){
         $('.import-events__list li')[index].remove();
         // If empty show a no-results tip
         if( $('.import-events__list li').length === 0 ){
-            $('.import-events__empty.facebook').show();
-            $('.import-events__help').hide();
+            $('.import-events__empty').show();
         }
     });
 }
@@ -103,8 +112,9 @@ function eventMarkup(e, i, source){
     var markup      = $("<li/>", {
         class : "import-events__item" }
     );
-    markup.append('<p class="import-events__item-name"><span class="icon-' + source + '"></span> ' + e.name + '</p>');
-    markup.append('<p class="import-events__item-date">' + e.date + ', ' + e.time + ' (' + e.city + ')</p>');
+    markup.append('<p class="import-events__item-name"><span class="source--' + source + '"></span> ' + e.name + '</p>');
+    if(e.facebook_id)
+        markup.append('<p class="import-events__item-date">' + e.date + ', ' + e.time + ' (' + e.city + ')</p>');
     markup.append('<label class="import-events__label">{% trans "Iniciativa" %}</label>');
     var initiatives = $("<select/>", {
         id    : 'initiatives_' + i,
@@ -133,6 +143,22 @@ function eventMarkup(e, i, source){
         cats.append(option);
     {% endfor %}
     markup.append(cats);
+    if(e.google_id){
+        markup.append('<label class="import-events__label">{% trans "Fecha" %}</label>');
+        var date  = $("<input/>", {
+            type  : 'text',
+            placeholder : "{% trans 'Fecha en formato dd/mm/aaaa' %}",
+            class : 'import-events__event-date',
+        });
+        markup.append(date);
+        markup.append('<label class="import-events__label">{% trans "Hora" %}</label>');
+        var hour  = $("<input/>", {
+            type  : 'text',
+            placeholder : "{% trans 'Hora en formato hh:mm' %}",
+            class : 'import-events__event-time',
+        });
+        markup.append(hour);
+    }
     var button = $('<p/>', {
         class : "import-events__submit",
         text  : "{% trans 'Importar' %}",
@@ -155,19 +181,18 @@ var test = function(){
         var event = {
             name        : "Example " + i,
             description : "Lorem ipsum",
-            date        : "2017-12-10",
-            time        : "12:00",
-            lat         : "44",
-            lon         : "0",
-            city        : "Mordor",
-            address     : "Monte del Destino, s/n",
-            facebook_id : "0",
+            //date        : "2017-12-10",
+            //time        : "12:00",
+            //lat         : "44",
+            //lon         : "0",
+            //city        : "Mordor",
+            //address     : "Monte del Destino, s/n",
+            //facebook_id : "0",
         };
         social_networks_events.push(event);
         $('.import-events__list').append(eventMarkup(event, i, 'facebook'));
     }
 };
-//test();
 
 
 /**
@@ -185,7 +210,8 @@ function fetchEvents(id) {
         $.get('/api/events_fb_id', {}, function(response){
             for(i in events){
                 var e = events[i];
-                if(response.indexOf(e.id) > -1 || response.length == 0){
+                console.log(response);
+                if(response.indexOf(e.id) == -1 || response.length == 0){
                     var date = new Date(e.start_time)
                     var event = {
                         name          : e.name,
@@ -197,21 +223,26 @@ function fetchEvents(id) {
                         city          : e.place.location.city,
                         address       : e.place.name,
                         facebook_id   : e.id,
-                        initiative    : id,
                     };
                     social_networks_events.push(event);
-                    $('.import-events__list').append( eventMarkup(event, $('.import-events__list').length, 'facebook') ); 
+                    $('.import-events__list').append( eventMarkup(event, $('.import-events__list').length, 'FB') ); 
+                    $('.import-events__empty').hide();
                 }
-            }
-            if(social_networks_events.length == 0){
-                $('.import-events__empty').show();
             }
         });
     });
 }
 
+// Disconnect from facebook
+
+$('.import-events__action.facebook').click( function(){
+  FB.logout();
+  $('.import-events').addClass('nofacebook');
+  $('.import-events').removeClass('facebook');
+});
+
+{# Connect with facebook #}
 window.fbAsyncInit = function() {
-    console.log("eh");
     FB.init({
         appId      : {{ facebook_id }},
         cookie     : true,  // enable cookies to allow the server to access the session
@@ -223,4 +254,126 @@ window.fbAsyncInit = function() {
     });
 };
 
+
+/** 
+ * Google events
+ * @see https://github.com/googleplus/gplus-quickstart-javascript/blob/master/index.html
+ */
+
+var auth2 = {};
+
+var helper = (function() {
+    return {
+        /**
+         * Hides the sign in button and starts the post-authorization operations.
+         *
+         * @param {Object} authResult An Object which contains the access token and
+         *   other authentication information.
+         */
+        onSignInCallback: function(authResult) {
+            $('#authResult').html('Auth Result:<br/>');
+            for (var field in authResult) {
+              $('#authResult').append(' ' + field + ': ' +
+                  authResult[field] + '<br/>');
+            }
+            // Connection was succesful
+            if (authResult.isSignedIn.get()) {
+                $('.import-events').addClass('google');
+                $('.import-events').removeClass('nogoogle');
+                helper.events();
+            // Connection was refused
+            } else {
+                if (authResult['error'] || authResult.currentUser.get().getAuthResponse() == null) {
+                  console.log('There was an error: ' + authResult['error']);
+                }
+                $('.import-events').addClass('nogoogle');
+                $('.import-events').removeClass('google');
+            }
+            //console.log('authResult', authResult);
+        },
+        
+        /**
+         * Calls the OAuth2 endpoint to disconnect the app for the user.
+         */
+        disconnect: function() {
+            // Revoke the access token.
+            auth2.disconnect();
+        },
+        
+        /**
+         * Gets and renders the list of people visible to this app.
+         */
+        events: function() {
+            // @see https://developers.google.com/+/web/api/rest/latest/activities/list
+            gapi.client.plus.activities.list({
+                'userId': 'me',
+                'collection': 'public'
+            }).then(function(response) {
+                var events = response.result.items;
+                $.get('/api/events_fb_id', {}, function(current_ids){
+                    for(i in events){
+                        // @see https://developers.google.com/+/web/api/rest/latest/activities/get
+                        var e = events[i];
+                        id    = e.id;
+                        if(current_ids.indexOf(id) == -1 && e.verb == 'post'){     
+                            var event = {
+                                name          : e.object.attachments[0].displayName,
+                                description   : e.object.attachments[0].content,
+                                google_id     : id,
+                            };
+                            social_networks_events.push(event);
+                            $('.import-events__list').append( eventMarkup(event, $('.import-events__list').length, 'G') ); 
+                            $('.import-events__empty').hide();
+                        }
+                    }
+                });  
+            });
+        },
+    };
+})();
+
+$('.import-events__action.google').click( function(){
+  auth2.disconnect();
+  $('.import-events').addClass('nogoogle');
+  $('.import-events').removeClass('google');
+});
+
+/**
+ * Google
+ * Handler for when the sign-in state changes.
+ *
+ * @param {boolean} isSignedIn The new signed in state.
+ */
+var updateSignIn = function() {
+  if (auth2.isSignedIn.get()) {
+    helper.onSignInCallback(gapi.auth2.getAuthInstance());
+  }else{
+    helper.onSignInCallback(gapi.auth2.getAuthInstance());
+  }
+}
+
+/**
+ * This method sets up the sign-in listener after the client library loads.
+ * (Google signin callback equivalent to statusChangeCallback)
+ */
+function startApp() {
+    gapi.load('auth2', function() {
+        gapi.client.load('plus','v1').then(function() {
+          gapi.signin2.render('signin-button', {
+              scope: 'https://www.googleapis.com/auth/plus.login',
+              fetch_basic_profile: false });
+          gapi.auth2.init({fetch_basic_profile: false,
+              scope:'https://www.googleapis.com/auth/plus.login'}).then(
+                function (){
+                    auth2 = gapi.auth2.getAuthInstance();
+                    auth2.isSignedIn.listen(updateSignIn);
+                    auth2.then(updateSignIn);
+                });
+        });
+    });
+}
+
 </script>
+
+{# Connect with google #}
+<script src="https://apis.google.com/js/client:platform.js?onload=startApp"></script>

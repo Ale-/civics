@@ -8,11 +8,12 @@ from apps.models.models import Initiative
 register = template.Library()
 
 @register.inclusion_tag('events_import.js.html')
-def events_import_js(user_initiatives=None):
+def events_import_js(user_id=None, user_initiatives=None):
     """ Tag to embed scripts needed to import events from social networks """
-    initiatives = user_initiatives
+    uid              = user_id
+    initiatives      = user_initiatives
     event_categories = activities
-    facebook_id = settings.FACEBOOK_APP_ID
+    facebook_id      = settings.FACEBOOK_APP_ID
     return locals()
 
 @register.inclusion_tag('dashboard_leaflet.js.html')

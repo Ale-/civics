@@ -187,7 +187,7 @@
 
 .import-events
   padding: $m
-  +links_social
+  +links_google_button
 .import-events__list
   margin-top: $m
 .import-events__item
@@ -198,6 +198,11 @@
 
 .import-events__item-name
   +h(5)
+.import-events__item-source
+  font-weight: 300
+  font-size: .6em
+  display: inline-block
+  width: $m/2
 .import-events__title
   border-bottom: 1px solid $color_text
   text-transform: uppercase
@@ -214,11 +219,19 @@
     color: white
 .import-events__help
   font-size: .9em
-  margin: $m/2
+  padding: $m/2 0
   color: rgba(black, .75)
+  clear: both
 .import-events__empty
   display: none
-  font-size: 1.2em
+  margin-top: $m
+  font-size: .9em
+.import-events__event-date,
+.import-events__event-time
+  border-width: 0 0 1px 0
+  background: none
+  width: calc(100% - #{$m*4})
+  margin: $m/4 0
 .import-events__event-categories,
 .import-events__user-initiatives
   margin: $m/4 0
@@ -251,21 +264,82 @@
   display: inline-block
   width: $m*3
   margin-right: $m/2
-.import-events__action
-  letter-spacing: 1px
-  font-size: .9em
-.nofacebook,
-.nogoogle,
-.google-logged-in,
-.facebook-logged-in,
-.import-events__help
-  display: none
 
 .events--dashboard__item-image
   margin-top: $m/3
 .events--dashboard__item-initiative
   text-transform: uppercase
   font-size: .8em
-.facebook-logged-in:before
-  content: "✓"
-  font-family: sans-serif
+.import-events__actions
+  text-align: center
+  .hidden
+    text-transform: uppercase
+
+// Facebook and Google elements
+
+.import-events__action
+  font-size: .9em
+  position: relative
+  line-height: 36px
+  color: white
+  +transition(background-color .2s ease)
+  width: 40%
+  padding: 0 $m/2
+  float: left
+  margin: 0 $m/2
+  &:hover
+    cursor: pointer
+    .normal
+      display: none
+    .hidden
+      display: inline
+.import-events__action.nofacebook
+  background: white
+  width: 120px
+  color: #757575
+  font-weight: bold
+  font-size: 13px
+  +box-shadow(0 2px 4px 0 rgba(0,0,0,.25))
+  &:hover
+    +box-shadow(0 0 3px 3px rgba(66,133,244,.3))
+  .icon-facebook:before
+    color: #4267B2
+    font-size: 20px
+    position: relative
+    right: 16px
+.import-events__action.facebook
+  background: #4267B2
+  &:hover
+    background: darken(#4267B2, 10%)
+.import-events__action.google
+  background: #DB4437
+  &:hover
+    background: darken(#DB4437, 10%)
+.source--FB:before,
+.source--G:before
+  content: " "
+  width: $m/3
+  height: $m/3
+  display: inline-block
+  position: relative
+  bottom: 2px
+  margin-right: 4px
+.source--FB:before
+  background: #4267B2
+.source--G:before
+  background: #DB4437
+
+.import-events__action
+  display: none
+.import-events.facebook
+  .facebook
+    display: inline-block
+.import-events.nofacebook
+  .nofacebook
+    display: inline-block
+.import-events.google
+  .google
+    display: inline-block
+.import-events.nogoogle
+  .nogoogle
+    display: inline-block

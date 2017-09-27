@@ -10,10 +10,13 @@ from django.http import HttpResponse, JsonResponse
 from django.db.models import Count
 from django.views.decorators.csrf import csrf_protect
 from django.utils.text import slugify
+from django.contrib.auth.models import User
+from django.db.models import Q
 # project
 from apps.models.categories import *
 from apps.models.models import Initiative, City, Event
 from .serializers import CivicsJSONSerializer
+from apps.models.forms import EventForm
 
 #
 #  API
@@ -380,39 +383,52 @@ def create_event(request):
     To be triggered by ajax calls from static/js/facebook.js
     """
 
-    if request.method == 'POST':
-        if request.is_ajax:
-            initiative_id = int(request.POST.get('initiative'))
-            initiative = Initiative.objects.filter(pk=initiative_id).first()
-            e = Event.objects.create(
-                title       = request.POST.get('name'),
-                description = request.POST.get('description'),
-                date        = request.POST.get('date'),
-                time        = request.POST.get('time'),
-                position    = json.loads('{ "type": "Point", "coordinates": [' + request.POST.get('lon') + ',' + request.POST.get('lat') +'] }'),
-                facebook_id = request.POST.get('facebook_id'),
-                google_id   = request.POST.get('google_id'),
-                initiative  = initiative,
-                address     = request.POST.get('address'),
-                topic       = initiative.topic,
-                agent       = initiative.agent,
-                city        = initiative.city,
-                category    = request.POST.get('category'),
-            )
-            return HttpResponse(e.id, content_type="application/json")
+    if request.method == 'POST' and request.is_ajax:
+        e = {}
+        req = request.POST
+        initiative_id      = int(req.get('initiative'))
+        initiative         = Initiative.objects.get(pk=initiative_id)
+        lat                = req.get('lat') if req.get('lat') else initiative.position['coordinates'][0]
+        lon                = req.get('lon') if req.get('lon') else initiative.position['coordinates'][1]
+        e['title']         = req.get('name')
+        e['description']   = req.get('description')
+        e['initiative']    = initiative.id
+        e['date']          = req.get('date') if req.get('date') else date.today().strftime("%d/%m/%Y")
+        e['time']          = req.get('time') if req.get('time') else '12:00'
+        e['address']       = req.get('address') if req.get('address') else initiative.address,
+        e['topic']         = initiative.topic
+        e['agent']         = initiative.agent
+        e['city']          = initiative.city.id
+        e['position']      = json.loads('{ "type": "Point", "coordinates": ['+ str(lat) +','+ str(lon) +'] }')
+        e['category']      = req.get('category')
+        e['facebook_id']   = req.get('facebook_id') if req.get('facebook_id') else None
+        e['google_id']     = req.get('google_id') if req.get('google_id') else None
+        print(e)
+        form = EventForm(e)
+        if form.is_valid():
+            new_event = form.save()
+            return HttpResponse(new_event.id, content_type="application/json")
+        else:
+            print("El formulario no es valido:")
+            print(form.errors)
+            return HttpResponse("There were some problems uploading the event. Check form data.", content_type="application/json")
+ 
     else:
-        return HttpResponse("Prohibido", content_type="application/json")
+        return HttpResponse("This action is forbidden.", content_type="application/json")
 
 
 def events_by_fb_id_service(request):
     """
-    Get Facebook id's of events in database.
+    Get social netowrk id's of events in database.
     """
 
-    events = Event.objects.filter(facebook_id__isnull=False)
+    events = Event.objects.filter( Q(google_id__isnull=False) | Q(facebook_id__isnull=False) )
     events_json = []
     for event in events:
-        events_json.append(event.facebook_id)
+        if event.facebook_id:
+            events_json.append(event.facebook_id)
+        if event.google_id:
+            events_json.append(event.google_id)
     return HttpResponse(json.dumps(events_json), content_type="application/json")
 
 
