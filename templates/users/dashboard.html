@@ -5,6 +5,7 @@
 
 {% block page_header %}
   {% leaflet_css %}
+  <meta name="google-signin-client_id" content="{{ google_client_id }}"></meta>
 {% endblock %}
 
 {% block main %}
@@ -105,31 +106,35 @@
                         </h5>
                         <ul class="import-events__actions">
                             <li class="import-events__action nofacebook">
-                                {% trans 'Necesitas estar conectad@ a una cuenta de FB para importar eventos:' %}
-                                <a href="#" onclick="fb_login()">{% trans 'Entrar en Facebook' %}</a>
+                                <a href="#" onclick="fb_login()">
+                                    <span class="icon-facebook">
+                                    {% trans 'Acceder' %}
+                                </a>
                             </li>
-                            <li class="import-events__action facebook-logged-in">
-                                {% trans 'Conectado a Facebook.' %}</a>
+                            <li class="import-events__action facebook">
+                                <span class="normal">{% trans 'Conectado a FB' %}</span>
+                                <span class="hover hidden">logout</span>
                             </li>
                             <li class="import-events__action nogoogle">
-                                {% trans 'Necesitas estar conectad@ a una cuenta de G+ para importar eventos:' %}
-                                <a href="#" onclick="fb_login()">{% trans 'Entrar en Google+' %}</a>
+                                <div id="signin-button"></div>
                             </li>
-                            <li class="import-events__action google-logged-in">
-                                {% trans 'Conectado a Google' %}</a>
+                            <li class="import-events__action google">
+                                <span class="normal">{% trans 'Conectado a G+' %}</span>
+                                <span class="hover hidden">logout</span>
                             </li>
                         </ul>
                         <p class="import-events__help">
                             {% blocktrans %}
                             Para agilizar la importación al evento se le asignarán
-                            la temática, tipo de agente y ciudad de la iniciativa promotora.
+                            la temática, tipo de agente y ciudad de la iniciativa promotora
+                            No podemos leer fecha, hora ni localización de la api de google.
                             Revisa y completa los eventos tras importarlos.
                             {% endblocktrans %}
                         </p>
                         <ul class="import-events__list">
                         </ul>
-                        <p class="import-events__empty facebook">
-                            {% trans 'No hay eventos nuevos en tu cuenta de FB.' %}
+                        <p class="import-events__empty">
+                            {% trans 'No hay eventos nuevos' %}
                         </p>
                     </div>
                 </div>
@@ -151,5 +156,5 @@
     <!-- Populate map. See apps.users.templatetags -->
     {% dashboard_leaflet_js user_initiatives=initiatives %}
     <!-- Import events. See apps.users.templatetags -->
-    {% events_import_js user_initiatives=initiatives %}
+    {% events_import_js user_id=request.user.id user_initiatives=initiatives %}
 {% endblock %}
