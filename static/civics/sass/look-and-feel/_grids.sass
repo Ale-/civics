@@ -27,10 +27,12 @@
   padding: $m/4
   position: relative
   +transition(opacity .15s ease)
-  +breakpoint('md')
+  +breakpoint('sm')
     width: 50%
-  +breakpoint('lg')
+  +breakpoint('md')
     width: 33%
+  +breakpoint('lg')
+    width: 25%
   &:hover
     cursor: pointer
     +opacity(.9)
@@ -38,8 +40,6 @@
 .grid__item img
   +box_shadow(0 0 5px rgba(black, .25))
   background: #eee
-  min-width: 100%
-  height: 50%
 
 .grid__item-name
   text-transform: uppercase
