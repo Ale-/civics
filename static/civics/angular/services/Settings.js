@@ -22,6 +22,9 @@ angular.module('civics.settings', [])
               civics: {
                 name: 'civics',
                 url: 'https://api.mapbox.com/styles/v1/civics/cir1q2kud001icmm9tmh4s9lt/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiY2l2aWNzIiwiYSI6ImNpcXpmZ2toZTAwNmFpOG1nc2swdG5kZ28ifQ.P6-IjrcLcdnPqQvkn0GWKQ',
+                layerOptions : {
+                     attribution : '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                },
                 type: 'xyz',
               },
               toner : {
