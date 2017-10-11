@@ -35,7 +35,9 @@ angular.module('civics.featured_controller', [])
         var url = '/api/initiative?id=';
         if(this.section == 'events')
            url = '/api/event?id=';
-        $http.get(url + marker.id).then( angular.bind(this, function(response){
+        $http.get(url + marker.id, {
+            ignoreLoadingBar: true,
+        }).then( angular.bind(this, function(response){
             $rootScope.$broadcast('open-marker', response.data);
         }));
     }
