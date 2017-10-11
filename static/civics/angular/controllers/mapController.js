@@ -64,11 +64,11 @@ angular.module('civics.map_controller', [])
 
     // Init filters
     if(this.section == 'initiatives') {
-      categories = ['cities', 'topics', 'spaces', 'agents' ];
-      this.time_scope = 'all';
+        categories = ['cities', 'topics', 'spaces', 'agents' ];
+        this.time_scope = 'all';
     } else {
-          categories = ['cities', 'topics', 'activities', 'agents' ];
-          this.time_scope = 'current';
+        categories = ['cities', 'topics', 'activities', 'agents' ];
+        this.time_scope = 'current';
     }
 
     // Selected categories
@@ -82,10 +82,20 @@ angular.module('civics.map_controller', [])
         var category = categories[i];
         if(params[category]){
             var subcategories = params[category].split(",");
-            this.selected_categories[ category ] = subcategories;
+            if(category=='cities') {
+                for(s in subcategories)
+                    this.selected_categories['cities'].push( parseInt(subcategories[s]) );
+            } else {
+                this.selected_categories[ category ] = subcategories;
+            }
             for(var j in subcategories){
-                if(subcategories[j] !== '')
-                    this.selected_tabs.push({ 'k' : category, 'v': subcategories[j], 'n' : Categories[category][subcategories[j]] });
+                if(subcategories[j] !== '') {
+                    this.selected_tabs.push({
+                        'k' : category,
+                        'v' : subcategories[j],
+                        'n' : Categories[category][subcategories[j]]
+                    });
+                }
             }
         }
     }
@@ -119,7 +129,7 @@ angular.module('civics.map_controller', [])
     {
         var c = meta.count;
         var filters_length = this.selected_tabs.length;
-
+        console.log(this.selected_categories);
         for(city in items){
             var markers = items[city].Cluster._markers;
             if(filters_length > 0){
@@ -248,7 +258,6 @@ angular.module('civics.map_controller', [])
             var base_url = $location.absUrl().split("?")[0];
             this.shared_url = base_url + "?center=" + this.center.lat.toFixed(4) + "," + this.center.lng.toFixed(4) + "," + this.center.zoom;
             for(var category in this.selected_categories){
-                if(category == 'cities') continue;
                 var subcategories = this.selected_categories[category];
                 if( subcategories.length > 0){
                     this.shared_url += "&" + category + "=";
