@@ -97,6 +97,8 @@ def initiatives_service_xls(request):
         (u"Longitud", 4000),
         (u"Fecha de creación", 6000),
     ]
+    if request.user.is_staff:
+        columns.append( (u"Email", 12000) )
 
     xlwt.add_palette_colour("header_background", 0x21)
     wb.set_colour_RGB(0x21, 50, 50, 50)
@@ -127,6 +129,8 @@ def initiatives_service_xls(request):
             initiative.position['coordinates'][1],
             initiative.creation_date.strftime("%d/%m/%Y"),
         ]
+        if request.user.is_staff:
+            row.append( initiative.email )
         # Initiative name
         ws.write(row_num, 0, row[0], firstcol_style)
         for col_num in range(1, len(row)):
@@ -412,7 +416,7 @@ def create_event(request):
             print("El formulario no es valido:")
             print(form.errors)
             return HttpResponse("There were some problems uploading the event. Check form data.", content_type="application/json")
- 
+
     else:
         return HttpResponse("This action is forbidden.", content_type="application/json")
 

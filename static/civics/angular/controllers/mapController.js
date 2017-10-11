@@ -237,7 +237,7 @@ angular.module('civics.map_controller', [])
      */
     this.download_xls = function(){
         XlsDownloader.get(this.section, this.selected_categories);
-        this.sharing_url = !this.sharing_url;
+        this.sharing_url = false;
         this.show_help = false;
     }
 
