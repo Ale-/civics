@@ -73,9 +73,14 @@
             <a href="{{ contact_url }}">Política de privacidad de civics.cc</a>
         {% endblocktrans %}</div>
         <div class="civics-about__credits">
-            {% trans 'Este proyecto está siendo desarrollado mediante la colaboración de:' %}
+            {% trans 'Proyecto impulsado por:' %}
             <div class="civics-about__logos">
-                {% for i in 38|get_range %}
+                <img class="civics-about__logo" src="{% img 'logos/vic.jpg' %}" />
+                <img class="civics-about__logo" src="{% img 'logos/segib.png' %}" />
+            </div>
+            {% trans 'Con la colaboración de:' %}
+            <div class="civics-about__logos">
+                {% for i in 26|get_range %}
                     {% with 'logos/'|addstr:forloop.counter|add:'.png' as url %}
                     <img class="civics-about__logo" src="{% img url %}" />
                     {% endwith %}
@@ -89,7 +94,7 @@
             Ana Espejo, Mariluz Arranz, Alejandro Zappala, Alfonzo Urzábal,
             Chema Blanco, David Ruíz, Carlos Salgado, David Moreno, Alejandro
             Martín, Julián Pérez, Adriano Belisario, Ines Gil, Héctor Sánchez,
-            Sergio López y David González.
+            Sergio López, David González y Ailin Vera.
         {% endblocktrans %}</div>
         <div class="civics-about__license-text">{% blocktrans trimmed %}
             Esta obra está bajo <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank">
