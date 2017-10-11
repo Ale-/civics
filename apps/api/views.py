@@ -339,7 +339,7 @@ def event_service(request):
 def initiatives_featured_service(request):
     initiatives_json = {}
     initiatives_json['featured'] = []
-    initiatives_featured = Initiative.objects.filter(featured=True)[:9]
+    initiatives_featured = Initiative.objects.filter(featured=True)[:8]
     for initiative in initiatives_featured:
         initiatives_json['featured'].append({
             'nam'    : initiative.name,
@@ -348,7 +348,7 @@ def initiatives_featured_service(request):
             'cities' : initiative.city.name if initiative.city else 'none',
         })
     initiatives_json['last'] = []
-    initiatives_last = Initiative.objects.order_by('-creation_date')[:9]
+    initiatives_last = Initiative.objects.order_by('-creation_date')[:8]
     for initiative in initiatives_last:
         initiatives_json['last'].append({
             'nam'    : initiative.name,
@@ -362,7 +362,7 @@ def initiatives_featured_service(request):
 def events_featured_service(request):
     events_json = {}
     events_json['featured'] = []
-    events_featured = Event.objects.filter(featured=True).order_by('-date')[:3]
+    events_featured = Event.objects.filter(featured=True).order_by('-date')[:8]
     for event in events_featured:
         events_json['featured'].append({
             'nam'        : event.title,
@@ -373,7 +373,7 @@ def events_featured_service(request):
             'cities'     : event.city.name if event.city else 'none'
         })
     events_json['last'] = []
-    events_last = Event.objects.filter(date__gte=date.today()).order_by('date')[:3]
+    events_last = Event.objects.filter(date__gte=date.today()).order_by('date')[:8]
     for event in events_last:
         events_json['last'].append({
             'nam'        : event.title,
