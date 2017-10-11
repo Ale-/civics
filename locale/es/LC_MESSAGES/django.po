@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-02 13:10+0000\n"
+"POT-Creation-Date: 2017-10-11 17:57+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: apps/api/views.py:18
+#: apps/api/views.py:25
 msgid ""
 "No se han encontrado resultados que cumplan con todas las condiciones de "
 "filtrado."
@@ -184,380 +184,402 @@ msgstr ""
 msgid "Conquistas ciudadanas del pasado"
 msgstr ""
 
-#: apps/models/categories.py:61
-msgid "Diaria"
-msgstr ""
-
-#: apps/models/categories.py:62
-msgid "Semanal"
-msgstr ""
-
-#: apps/models/categories.py:63
-msgid "Quincenal"
-msgstr ""
-
-#: apps/models/categories.py:64
-msgid "Mensual"
-msgstr ""
-
-#: apps/models/categories.py:65
-msgid "Anual"
-msgstr ""
-
-#: apps/models/forms.py:29
+#: apps/models/forms.py:32
 msgid ""
 "Ciudad donde se encuentra la iniciativa. Si no encuentras la ciudad en el "
 "desplegable usa el botón inferior para añadirla."
 msgstr ""
 
-#: apps/models/forms.py:31 apps/models/forms.py:55
+#: apps/models/forms.py:34 apps/models/forms.py:58
 msgid "Añade una ciudad"
 msgstr ""
 
-#: apps/models/forms.py:44 apps/models/forms.py:71
+#: apps/models/forms.py:47 apps/models/forms.py:76
 msgid "Por ejemplo 'https://vimeo.com/45130145'"
 msgstr ""
 
-#: apps/models/forms.py:53
+#: apps/models/forms.py:56
 msgid ""
 "Ciudad donde se celebra el evento. Si no encuentras la ciudad en el "
 "desplegable usa el botón inferior para añadirla."
 msgstr ""
 
-#: apps/models/forms.py:69
+#: apps/models/forms.py:72 apps/models/forms.py:73
 msgid "Usa el formato dd/mm/aaaa, por ejemplo '05/06/2017'"
 msgstr ""
 
-#: apps/models/forms.py:70
+#: apps/models/forms.py:74
+msgid "P.ej. 'Todos los martes' o 'Cada dos semanas'"
+msgstr ""
+
+#: apps/models/forms.py:75
 msgid "Usa el formato hh:mm, por ejemplo '09:00'"
 msgstr ""
 
-#: apps/models/models.py:27
+#: apps/models/models.py:35
 msgid "Nombre de la ciudad"
 msgstr ""
 
-#: apps/models/models.py:28
+#: apps/models/models.py:36
 msgid "Especifica el nombre de la ciudad."
 msgstr ""
 
-#: apps/models/models.py:29
+#: apps/models/models.py:37
 msgid "País"
 msgstr ""
 
-#: apps/models/models.py:29
+#: apps/models/models.py:37
 msgid "¿A qué país pertenece la ciudad?"
 msgstr ""
 
-#: apps/models/models.py:30 apps/models/models.py:82 apps/models/models.py:151
+#: apps/models/models.py:38 apps/models/models.py:96 apps/models/models.py:172
 msgid "Ubicación"
 msgstr ""
 
-#: apps/models/models.py:30
+#: apps/models/models.py:38
 msgid "Añade la ubicación de la ciudad."
 msgstr ""
 
-#: apps/models/models.py:33 apps/models/models.py:76 apps/models/models.py:147
+#: apps/models/models.py:43 apps/models/models.py:90 apps/models/models.py:168
 msgid "Ciudad"
 msgstr ""
 
-#: apps/models/models.py:34
+#: apps/models/models.py:44
 msgid "Ciudades"
 msgstr ""
 
-#: apps/models/models.py:48
+#: apps/models/models.py:58
 msgid "Nombre de la iniciativa"
 msgstr ""
 
-#: apps/models/models.py:49
+#: apps/models/models.py:59
 msgid "¿Cuál es el nombre de tu iniciativa?"
 msgstr ""
 
-#: apps/models/models.py:52 apps/models/models.py:123
+#: apps/models/models.py:62 apps/models/models.py:139
 msgid "Destacado"
 msgstr ""
 
-#: apps/models/models.py:53
+#: apps/models/models.py:63
 msgid "Indica si es una iniciativa destacada"
 msgstr ""
 
-#: apps/models/models.py:54
+#: apps/models/models.py:64
 msgid "Gestor"
 msgstr ""
 
-#: apps/models/models.py:55 apps/models/models.py:127
+#: apps/models/models.py:65 apps/models/models.py:143
 msgid "Imagen"
 msgstr ""
 
-#: apps/models/models.py:56
+#: apps/models/models.py:68
 msgid ""
 "Sube una imagen representativa de la iniciativa haciendo click en la imagen "
-"inferior."
+"inferior. La imagen ha de tener ancho mínimo de 300 píxeles y máximo de "
+"1920, y altura mínima de 300 píxeles y máxima de 1280. Formatos permitidos: "
+"PNG, JPG, JPEG."
 msgstr ""
 
-#: apps/models/models.py:58 apps/models/models.py:131
+#: apps/models/models.py:72 apps/models/models.py:150
 msgid "Video"
 msgstr ""
 
-#: apps/models/models.py:59 apps/models/models.py:132
+#: apps/models/models.py:73 apps/models/models.py:151
 msgid "Inserta la url de un video de Youtube o Vimeo"
 msgstr ""
 
-#: apps/models/models.py:60
+#: apps/models/models.py:74
 msgid "Descripción de la iniciativa"
 msgstr ""
 
-#: apps/models/models.py:61
+#: apps/models/models.py:75
 msgid "Describe los objetivos y actividad de la iniciativa."
 msgstr ""
 
-#: apps/models/models.py:62
+#: apps/models/models.py:76
 msgid "Website"
 msgstr ""
 
-#: apps/models/models.py:63
+#: apps/models/models.py:77
 msgid "Especifica opcionalmente una web para conocer mejor la iniciativa."
 msgstr ""
 
-#: apps/models/models.py:64 templates/users/dashboard.html:39
+#: apps/models/models.py:78
 msgid "Twitter"
 msgstr ""
 
-#: apps/models/models.py:65
+#: apps/models/models.py:79
 msgid "Si tienes una cuenta de Twitter, pon aquí el nombre de usuario."
 msgstr ""
 
-#: apps/models/models.py:66 templates/users/dashboard.html:33
+#: apps/models/models.py:80
 msgid "Facebook"
 msgstr ""
 
-#: apps/models/models.py:67
+#: apps/models/models.py:81
 msgid "Si tienes un perfil de Facebook pon aquí el enlace completo a la misma."
 msgstr ""
 
-#: apps/models/models.py:68
+#: apps/models/models.py:82
 msgid "Correo electrónico"
 msgstr ""
 
-#: apps/models/models.py:69
+#: apps/models/models.py:83
 msgid "Especifica un correo de contacto para la iniciativa."
 msgstr ""
 
-#: apps/models/models.py:70
+#: apps/models/models.py:84
 msgid "Tema"
 msgstr ""
 
-#: apps/models/models.py:71
+#: apps/models/models.py:85
 msgid "El tema de la iniciativa"
 msgstr ""
 
-#: apps/models/models.py:72
+#: apps/models/models.py:86
 msgid "Tipo de espacio"
 msgstr ""
 
-#: apps/models/models.py:73
+#: apps/models/models.py:87
 msgid "El tipo de espacio asociado a la iniciativa"
 msgstr ""
 
-#: apps/models/models.py:74 apps/models/models.py:139
+#: apps/models/models.py:88 apps/models/models.py:158
 msgid "tipo de agente"
 msgstr ""
 
-#: apps/models/models.py:75
+#: apps/models/models.py:89
 msgid "El tipo de agente involucrado en la iniciativa"
 msgstr ""
 
-#: apps/models/models.py:77
+#: apps/models/models.py:91
 msgid ""
 "Ciudad donde se encuentra la iniciativa. Si no encuentras la ciudad en el "
 "desplegable usa el botón inferior para añadir una nueva ciudad y "
 "seleccionarla"
 msgstr ""
 
-#: apps/models/models.py:78 apps/models/models.py:149
+#: apps/models/models.py:92 apps/models/models.py:170
 msgid "Dirección"
 msgstr ""
 
-#: apps/models/models.py:79 apps/models/models.py:150
+#: apps/models/models.py:93 apps/models/models.py:171
 msgid ""
 "Dirección de la iniciativa. No es necesario que vuelvas a introducir la "
 "ciudad de la iniciativa."
 msgstr ""
 
-#: apps/models/models.py:80
+#: apps/models/models.py:94
 msgid "Distrito"
 msgstr ""
 
-#: apps/models/models.py:81
+#: apps/models/models.py:95
 msgid "¿En qué barrio de la ciudad se sitúa la iniciativa?"
 msgstr ""
 
-#: apps/models/models.py:83
+#: apps/models/models.py:97
 msgid ""
 "Tras añadir ciudad y dirección puedes ubicar la iniciativa pulsando el botón "
 "inferior y ajustando la posición del marcador posteriormente."
 msgstr ""
 
-#: apps/models/models.py:86
+#: apps/models/models.py:100 apps/users/templates/events_import.js.html:118
 msgid "Iniciativa"
 msgstr ""
 
-#: apps/models/models.py:87 templates/regions/toolbar.html:21
+#: apps/models/models.py:101 templates/regions/toolbar.html:21
 msgid "Iniciativas"
 msgstr ""
 
-#: apps/models/models.py:119
+#: apps/models/models.py:135
 msgid "Iniciativa que organiza la actividad"
 msgstr ""
 
-#: apps/models/models.py:120
+#: apps/models/models.py:136
 msgid "¿Qué iniciativa organiza el evento?"
 msgstr ""
 
-#: apps/models/models.py:121
+#: apps/models/models.py:137
 msgid "Título del evento"
 msgstr ""
 
-#: apps/models/models.py:122
+#: apps/models/models.py:138
 msgid "¿Cuál es el título del evento que quieres organiza?"
 msgstr ""
 
-#: apps/models/models.py:124
+#: apps/models/models.py:140
 msgid "Indica si es un evento destacado"
 msgstr ""
 
-#: apps/models/models.py:125
+#: apps/models/models.py:141
 msgid "Describe el evento"
 msgstr ""
 
-#: apps/models/models.py:126
+#: apps/models/models.py:142
 msgid "Describe el evento."
 msgstr ""
 
-#: apps/models/models.py:128
-msgid "Sube una imagen representativa del evento"
+#: apps/models/models.py:146
+msgid ""
+"Sube una imagen representativa del evento haciendo click en la imagen "
+"inferior. La imagen ha de tener ancho mínimo de 300 píxeles y máximo de "
+"1920, y altura mínima de 300 píxeles y máxima de 1280. Formatos permitidos: "
+"PNG, JPG, JPEG."
 msgstr ""
 
-#: apps/models/models.py:133
+#: apps/models/models.py:152
 msgid "Enlace"
 msgstr ""
 
-#: apps/models/models.py:134
+#: apps/models/models.py:153
 msgid "Especifica opcionalmente un enlace para conocer mejor el evento."
 msgstr ""
 
-#: apps/models/models.py:135
+#: apps/models/models.py:154
 msgid "Temática del evento"
 msgstr ""
 
-#: apps/models/models.py:136
+#: apps/models/models.py:155
 msgid "El tema de la actividad"
 msgstr ""
 
-#: apps/models/models.py:137
+#: apps/models/models.py:156
 msgid "Tipo de actividad"
 msgstr ""
 
-#: apps/models/models.py:138
+#: apps/models/models.py:157
 msgid "El tipo de actividad que quieres organizar"
 msgstr ""
 
-#: apps/models/models.py:140
+#: apps/models/models.py:159
 msgid "El tipo de agente involucrado en la actividad"
 msgstr ""
 
-#: apps/models/models.py:141
+#: apps/models/models.py:160 apps/users/templates/events_import.js.html:86
 msgid "Fecha del evento"
 msgstr ""
 
-#: apps/models/models.py:142
-msgid "¿Qué día se celebra el evento?"
+#: apps/models/models.py:161
+msgid "Indica qué día se celebra o empieza el evento"
 msgstr ""
 
-#: apps/models/models.py:143
+#: apps/models/models.py:162
 msgid "Hora del evento"
 msgstr ""
 
-#: apps/models/models.py:144
+#: apps/models/models.py:163
 msgid "¿A qué hora se celebra el evento?"
 msgstr ""
 
-#: apps/models/models.py:145
+#: apps/models/models.py:164
 msgid "Periodicidad"
 msgstr ""
 
-#: apps/models/models.py:146
-msgid "Especifica, en ese caso, la periodicidad del evento."
+#: apps/models/models.py:165
+msgid ""
+"Especifica, en ese caso, la periodicidad del evento. Puedes indicar la fecha "
+"de fin en el siguiente campo"
 msgstr ""
 
-#: apps/models/models.py:148
+#: apps/models/models.py:166
+msgid "Fecha de fin"
+msgstr ""
+
+#: apps/models/models.py:167
+msgid ""
+"Indica opcionalmente en eventos de varios dias la fecha en que acaba el "
+"evento."
+msgstr ""
+
+#: apps/models/models.py:169
 msgid ""
 "Ciudad donde se encuentra la iniciativa. Si no la encuentras en la lista "
 "puedes añadir una nueva."
 msgstr ""
 
-#: apps/models/models.py:152
+#: apps/models/models.py:173
 msgid ""
 "Añade la ubicación de la actividad. Si lo dejas en blanco se usará la "
 "ubicación de la iniciativa asociada."
 msgstr ""
 
-#: apps/models/models.py:159
+#: apps/models/models.py:180
 msgid "Actividad"
 msgstr ""
 
-#: apps/models/models.py:160
+#: apps/models/models.py:181
 msgid "Actividades"
 msgstr ""
 
-#: apps/models/views.py:28 templates/users/dashboard-staff.html:15
-msgid "Crea una iniciativa"
+#: apps/models/validators.py:15
+#, python-format
+msgid "El ancho de la imagen debería ser mayor a %(min_width)s píxeles"
 msgstr ""
 
-#: apps/models/views.py:44
+#: apps/models/validators.py:16
+#, python-format
+msgid "El ancho de la imagen debería ser menor a %(max_width)s píxeles"
+msgstr ""
+
+#: apps/models/validators.py:17
+#, python-format
+msgid "El alto de la imagen debería ser mayor a %(min_height)s píxeles"
+msgstr ""
+
+#: apps/models/validators.py:18
+#, python-format
+msgid "El alto de la imagen debería ser menor a %(max_height)s píxeles"
+msgstr ""
+
+#: apps/models/views.py:30
+msgid "Crea tu iniciativa"
+msgstr ""
+
+#: apps/models/views.py:47
 msgid "Crea la iniciativa"
 msgstr ""
 
-#: apps/models/views.py:54
+#: apps/models/views.py:57
 msgid "Edita la información de la iniciativa "
 msgstr ""
 
-#: apps/models/views.py:73 apps/models/views.py:144
+#: apps/models/views.py:76 apps/models/views.py:162
 msgid "Guarda los cambios"
 msgstr ""
 
-#: apps/models/views.py:82
+#: apps/models/views.py:85
 msgid "Borra la iniciativa "
 msgstr ""
 
-#: apps/models/views.py:92
+#: apps/models/views.py:95
 msgid "¿Estás seguro de que quieres borrar esta iniciativa?"
 msgstr ""
 
-#: apps/models/views.py:93 apps/models/views.py:186
+#: apps/models/views.py:96 apps/models/views.py:190
 msgid "No, no estoy seguro."
 msgstr ""
 
-#: apps/models/views.py:112
+#: apps/models/views.py:113
 msgid "Crea un evento "
 msgstr ""
 
-#: apps/models/views.py:125
+#: apps/models/views.py:127
 msgid "Publica este evento"
 msgstr ""
 
-#: apps/models/views.py:165
-msgid "Edita este evento"
+#: apps/models/views.py:142
+msgid "Edita el evento "
 msgstr ""
 
-#: apps/models/views.py:172
+#: apps/models/views.py:176
 msgid "Borra el evento "
 msgstr ""
 
-#: apps/models/views.py:184
+#: apps/models/views.py:188
 msgid "¿Estás seguro de que quieres borrar este evento?"
 msgstr ""
 
-#: apps/models/views.py:185
+#: apps/models/views.py:189
 msgid "Sí, quiero borrar este evento"
 msgstr ""
 
@@ -582,6 +604,34 @@ msgid ""
 "iniciativa?</a>"
 msgstr ""
 
+#: apps/users/templates/events_import.js.html:132
+msgid "Categoría"
+msgstr ""
+
+#: apps/users/templates/events_import.js.html:136
+msgid "Elige el tipo de actividad"
+msgstr ""
+
+#: apps/users/templates/events_import.js.html:147
+msgid "Fecha"
+msgstr ""
+
+#: apps/users/templates/events_import.js.html:150
+msgid "Fecha en formato dd/mm/aaaa"
+msgstr ""
+
+#: apps/users/templates/events_import.js.html:154
+msgid "Hora"
+msgstr ""
+
+#: apps/users/templates/events_import.js.html:157
+msgid "Hora en formato hh:mm"
+msgstr ""
+
+#: apps/users/templates/events_import.js.html:164
+msgid "Importar"
+msgstr ""
+
 #: apps/utils/templates/fake-breadcrumb.html:5
 msgid "Volver a la página anterior"
 msgstr ""
@@ -602,15 +652,15 @@ msgstr ""
 msgid "Comparte"
 msgstr ""
 
-#: apps/utils/views.py:28
+#: apps/utils/views.py:30
 msgid "Contenido creado con éxito"
 msgstr ""
 
-#: apps/utils/views.py:46
+#: apps/utils/views.py:48
 msgid "Contenido editado con éxito"
 msgstr ""
 
-#: apps/utils/views.py:68
+#: apps/utils/views.py:70
 msgid "Contenido borrado con éxito"
 msgstr ""
 
@@ -619,11 +669,11 @@ msgid ""
 "Aquí podrás encontrar iniciativas ciudadanas existentes en tu ciudad, etc."
 msgstr ""
 
-#: civics/settings.py:126
+#: civics/settings.py:127
 msgid "Español"
 msgstr ""
 
-#: civics/settings.py:127
+#: civics/settings.py:128
 msgid "Portugués"
 msgstr ""
 
@@ -1813,6 +1863,29 @@ msgstr ""
 msgid "Parece que hay errores en el formulario. Revísalo, por favor.."
 msgstr ""
 
+#: templates/forms/form.html:29
+msgid ""
+"Al usar este formulario das el consentimiento para la publicación de los "
+"datos introducidos. Los datos recopilados estarán disponibles bajo una "
+"licencia <a target=\"_blank\" href=\"http://opendatacommons.org/licenses/"
+"odbl/summary/\">ODbL 1.0</a>. Se retirará la publicación de aquellas "
+"iniciativas y eventos que fomenten expresiones de odio o intolerancia en "
+"temas de género, raza, etnia, posición social, orientación sexual, "
+"religiosa, o de procedencia."
+msgstr ""
+
+#: templates/forms/form.html:39
+msgid "He entendido y acepto estas condiciones"
+msgstr ""
+
+#: templates/forms/form.html:48
+msgid "Borra este contenido"
+msgstr ""
+
+#: templates/forms/form.html:52
+msgid "Cancelar"
+msgstr ""
+
 #: templates/pages/about.html:8
 msgid ""
 "Son miles las vecinas y vecinos que trabajan de forma colectiva para "
@@ -1840,7 +1913,7 @@ msgid ""
 "strong>"
 msgstr ""
 
-#: templates/pages/about.html:39 templates/users/dashboard-staff.html:99
+#: templates/pages/about.html:39 templates/users/dashboard.html:146
 msgid "Mapa de iniciativas"
 msgstr ""
 
@@ -1863,20 +1936,33 @@ msgid ""
 msgstr ""
 
 #: templates/pages/about.html:69
-msgid "Este proyecto está siendo desarrollado mediante la colaboración de:"
+#, python-format
+msgid ""
+"<h5>Política de privacidad</h5> <p>Puedes leer nuestra política de "
+"privacidad en la página enlazada a continuación:</p> <a href="
+"\"%(contact_url)s\">Política de privacidad de civics.cc</a>"
 msgstr ""
 
-#: templates/pages/about.html:78
+#: templates/pages/about.html:76
+msgid "Proyecto impulsado por:"
+msgstr ""
+
+#: templates/pages/about.html:81
+msgid "Con la colaboración de:"
+msgstr ""
+
+#: templates/pages/about.html:90
 msgid ""
 "<strong>Son muchas las personas que de una manera y otra han contribuido el "
 "desarrollo de esta plataforma digital colaborativa:</strong><br/> Esaú "
 "Acosta, Mauro Gil-Fournier, Miguel Jaenicke, Ale, Javier Esquillor, Ana "
 "Espejo, Mariluz Arranz, Alejandro Zappala, Alfonzo Urzábal, Chema Blanco, "
 "David Ruíz, Carlos Salgado, David Moreno, Alejandro Martín, Julián Pérez, "
-"Adriano Belisario, Ines Gil, Héctor Sánchez, Sergio López y David González."
+"Adriano Belisario, Ines Gil, Héctor Sánchez, Sergio López, David González y "
+"Ailin Vera."
 msgstr ""
 
-#: templates/pages/about.html:87
+#: templates/pages/about.html:99
 msgid ""
 "Esta obra está bajo <a href=\"https://creativecommons.org/licenses/by-sa/4.0/"
 "\" target=\"_blank\"> Licencia Creative Commons Atribución-CompartirIgual "
@@ -1887,12 +1973,90 @@ msgid ""
 "Public License 3.0</a>."
 msgstr ""
 
+#: templates/pages/goodbay.html:11
+msgid "Gracias por visitarnos."
+msgstr ""
+
+#: templates/pages/goodbay.html:16
+msgid "Recuerda que puedes seguirnos y contactarnos en:"
+msgstr ""
+
+#: templates/pages/goodbay.html:21
+msgid "Perfil de Civics en Facebook"
+msgstr ""
+
+#: templates/pages/goodbay.html:26
+msgid "Perfil de Civics en Twitter"
+msgstr ""
+
+#: templates/pages/goodbay.html:31
+msgid "Contacta con Civics"
+msgstr ""
+
 #: templates/pages/initiative-success.html:7
 msgid "¡Enhorabuena, tu iniciativa ha sido incorporada!"
 msgstr ""
 
 #: templates/pages/initiative-success.html:10
 msgid "Ve al perfil de tu iniciativa"
+msgstr ""
+
+#: templates/pages/privacy.html:11
+msgid "Política de privacidad de civics.cc"
+msgstr ""
+
+#: templates/pages/privacy.html:15
+msgid ""
+"<p> Civics (\"nosotros\", \"nosotros\" o \"nuestro\") opera el sitio web "
+"civics.cc (el \"Servicio\"). <br/> Esta página le informa de nuestras "
+"políticas con respecto a la recopilación, uso y divulgación de Información "
+"Personal cuando usa nuestro Servicio.<br/> No utilizaremos ni compartiremos "
+"su información con nadie, excepto como se describe en esta Política de "
+"privacidad.<br/> Utilizamos su información Personal para proporcionar y "
+"mejorar el Servicio. Al utilizar el Servicio, usted acepta la recopilación y "
+"el uso de la información de acuerdo con esta política. A menos que se defina "
+"lo contrario en esta Política de Privacidad, los términos usado en esta "
+"Política de Privacidad tienen los mismos significados que en nuestros "
+"Términos y Condiciones, accesibles en civics.cc. </p> <h3 class=\"privacy-"
+"policy__subtitle\"> Recopilación y uso de información </h3> <p> Durante el "
+"uso de nuestro Servicio, podemos pedirle que nos proporcione cierta "
+"información de identificación personal que pueda ser utilizada para "
+"contactarle o identificarle, como pueden ser correo electrónico y un nombre "
+"de usuario.<br/> <h3 class=\"privacy-policy__subtitle\"> Datos de registro </"
+"h3> <p> Recopilamos información que envía su navegador cada vez que visita "
+"nuestro Servicio (\"Datos de Registro\"). Estos datos de registro pueden "
+"incluir información como la dirección de IP de su computadora, el tipo de "
+"navegador, la versión del navegador, las páginas de nuestro servicio que "
+"visita, la hora y la fecha de su visita, el tiempo dedicado a esas páginas y "
+"otas estadísticas. </p> <h3 class=\"privacy-policy__subtitle\"> Cookies </"
+"h3> <p> Las cookies son archivos con poca cantidad de datos, que pueden "
+"incluir un identificador único anónimo. Las cookies se envían a su navegador "
+"desde un sitio web y se almacenan en el disco duro de su computadora.<br/> "
+"En este sitio usamos Cookies de Sesión. Las Cookies de Sesión son aquellas "
+"destinadas a mantener abierta la sesión de los usuarios registrados y se "
+"usan con fines puramente técnicos. </p> <h3 class=\"privacy-policy__subtitle"
+"\"> Enlaces a otros sitios </h3> <p> Nuestro Servicio puede contener enlaces "
+"a otros sitios que no son operados por nosotros. Si hace clic en un enlace "
+"de terceros, se le dirigirá a sitio de ese tercero. Le recomendamos que "
+"revise la Política de privacidad de cada sitio que visita. <br/> No tenemos "
+"ningún control sobre, ni asumimos ninguna responsabilidad por el contenido, "
+"políticas de privacidad o prácticas de sitios o servicios de terceros. </p> "
+"<h3 class=\"privacy-policy__subtitle\"> Privacidad de los niños </h3> <p> "
+"Nuestro Servicio no se dirige a menores de 13 años (\"Niños\"). No "
+"recopilamos a sabiendas información de identificación personal de niños "
+"menores de 13 años. Si usted es un padre o tutor y usted es consciente de "
+"que sus hijos nos han proporcionado información personal, por favor "
+"contáctenos. Si descubrimos que un Menor de 13 años nos ha proporcionado "
+"Información Personal, eliminaremos dicha información de nuestros servidores "
+"inmediatamente. </p> <h3 class=\"privacy-policy__subtitle\"> Cambios a esta "
+"política de privacidad </h3> <p> Podemos actualizar nuestra Política de "
+"privacidad de vez en cuando. Le notificaremos de cualquier cambio publicando "
+"la nueva Política de privacidad en esta página. <br/> Se recomienda revisar "
+"esta Política de privacidad periódicamente para cualquier cambio. Los "
+"cambios a esta Política de privacidad son efectivos cuando se publican en "
+"esta página. </p> <h3 class=\"privacy-policy__subtitle\"> Contáctenos </h3> "
+"<p> Si tiene alguna pregunta sobre esta Política de Privacidad, <a href=\"/"
+"contacta\"> póngase en contacto con nosotros.</a> </p>"
 msgstr ""
 
 #: templates/regions/toolbar.html:6
@@ -1903,47 +2067,31 @@ msgstr ""
 msgid "Acerca"
 msgstr ""
 
-#: templates/regions/toolbar.html:25 templates/regions/toolbar.html:41
-msgid "Mapa"
-msgstr ""
-
-#: templates/regions/toolbar.html:28 templates/regions/toolbar.html:44
-msgid "Lista"
-msgstr ""
-
-#: templates/regions/toolbar.html:31
-msgid "Destacadas"
-msgstr ""
-
-#: templates/regions/toolbar.html:37
+#: templates/regions/toolbar.html:26
 msgid "Agenda"
 msgstr ""
 
-#: templates/regions/toolbar.html:47
-msgid "Destacados"
-msgstr ""
-
-#: templates/regions/toolbar.html:61
+#: templates/regions/toolbar.html:39
 msgid "Sal de la plataforma"
 msgstr ""
 
-#: templates/regions/toolbar.html:62
+#: templates/regions/toolbar.html:40
 msgid "Logout"
 msgstr ""
 
-#: templates/regions/toolbar.html:66
+#: templates/regions/toolbar.html:44
 msgid "Entra en la plataforma o regístrate en ella"
 msgstr ""
 
-#: templates/regions/toolbar.html:67
+#: templates/regions/toolbar.html:45
 msgid "Login/Signin"
 msgstr ""
 
-#: templates/regions/toolbar.html:74
+#: templates/regions/toolbar.html:52
 msgid "Ve a la zona administrativa de Civics"
 msgstr ""
 
-#: templates/regions/toolbar.html:75
+#: templates/regions/toolbar.html:53
 msgid "Administra"
 msgstr ""
 
@@ -1975,7 +2123,7 @@ msgid ""
 "  Este enlace es válido por %(expiration_days)s días.\n"
 msgstr ""
 
-#: templates/registration/login.html:11
+#: templates/registration/login.html:10
 #: templates/registration/password_reset_complete.html:9
 #: templates/registration/password_reset_confirm.html:9
 #: templates/registration/password_reset_form.html:9
@@ -1983,11 +2131,19 @@ msgstr ""
 msgid "Ya estás autenticado en la plataforma."
 msgstr ""
 
-#: templates/registration/login.html:24
+#: templates/registration/login.html:15
+msgid "Login"
+msgstr ""
+
+#: templates/registration/login.html:17
+msgid "Accede"
+msgstr ""
+
+#: templates/registration/login.html:23
 msgid "¿Has olvidado tu nombre de usuari@ o contraseña?"
 msgstr ""
 
-#: templates/registration/login.html:29
+#: templates/registration/login.html:28
 msgid "Regístrate en la plataforma"
 msgstr ""
 
@@ -2047,76 +2203,82 @@ msgid ""
 "spam</em>."
 msgstr ""
 
-#: templates/users/dashboard-staff.html:7
-msgid "Mi perfil"
-msgstr ""
-
-#: templates/users/dashboard-staff.html:13
-msgid "Mis iniciativas"
-msgstr ""
-
-#: templates/users/dashboard-staff.html:36
-msgid "Fecha de alta:"
-msgstr ""
-
-#: templates/users/dashboard-staff.html:40
-#: templates/users/dashboard-staff.html:87 templates/users/dashboard.html:85
-msgid "Editar"
-msgstr ""
-
-#: templates/users/dashboard-staff.html:51 templates/users/dashboard.html:49
-msgid "Mis actividades"
-msgstr ""
-
-#: templates/users/dashboard-staff.html:53 templates/users/dashboard.html:51
-msgid "Crea un evento"
-msgstr ""
-
-#: templates/users/dashboard-staff.html:61 templates/users/dashboard.html:59
-msgid ""
-"\n"
-"                          Parece que todavía no has creado eventos asociados "
-"a tu iniciativa.<br/>\n"
-"                          Puedes clicar en el icono <span class=\"icon-add"
-"\"></span> para crear un\n"
-"                          nuevo evento.\n"
-"                          "
-msgstr ""
-
-#: templates/users/dashboard-staff.html:83 templates/users/dashboard.html:81
-msgid "Fecha del evento:"
-msgstr ""
-
-#: templates/users/dashboard.html:6
-msgid "Mi iniciativa"
+#: templates/registration/registration_form.html:15
+msgid "Crea un usuari@"
 msgstr ""
 
 #: templates/users/dashboard.html:12
-msgid "Edita tu iniciativa"
+msgid "Mi perfil"
 msgstr ""
 
-#: templates/users/dashboard.html:22
-msgid "Descripción"
+#: templates/users/dashboard.html:18
+msgid "Mis iniciativas"
 msgstr ""
 
-#: templates/users/dashboard.html:27
-msgid "Email"
+#: templates/users/dashboard.html:20
+msgid "Crea una iniciativa"
 msgstr ""
 
-#: templates/users/dashboard.html:93
-msgid "Importa eventos desde Facebook"
+#: templates/users/dashboard.html:41
+msgid "Fecha de alta:"
 msgstr ""
 
-#: templates/users/dashboard.html:96
+#: templates/users/dashboard.html:45 templates/users/dashboard.html:96
+msgid "Editar"
+msgstr ""
+
+#: templates/users/dashboard.html:56
+msgid "Mis actividades"
+msgstr ""
+
+#: templates/users/dashboard.html:58
+msgid "Crea un evento"
+msgstr ""
+
+#: templates/users/dashboard.html:67
 msgid ""
 "\n"
-"                            No estás conectado a Facebook. Si quieres "
-"importar eventos desde\n"
-"                            tu agenda de FB has de <a href=\"#\" onclick="
-"\"fb_login()\">hacer login</a>\n"
+"                              Parece que todavía no has creado eventos "
+"asociados a tu iniciativa.<br/>\n"
+"                              Puedes clicar en el icono <span class=\"icon-"
+"add\"></span> para crear un\n"
+"                              nuevo evento.\n"
+"                              "
+msgstr ""
+
+#: templates/users/dashboard.html:92
+msgid "Fecha del evento:"
+msgstr ""
+
+#: templates/users/dashboard.html:105
+msgid "Importa eventos desde redes sociales"
+msgstr ""
+
+#: templates/users/dashboard.html:111
+msgid "Acceder"
+msgstr ""
+
+#: templates/users/dashboard.html:115
+msgid "Conectado a FB"
+msgstr ""
+
+#: templates/users/dashboard.html:122
+msgid "Conectado a G+"
+msgstr ""
+
+#: templates/users/dashboard.html:127
+msgid ""
+"\n"
+"                            Para agilizar la importación al evento se le "
+"asignarán\n"
+"                            la temática, tipo de agente y ciudad de la "
+"iniciativa promotora\n"
+"                            No podemos leer fecha, hora ni localización de "
+"la api de google.\n"
+"                            Revisa y completa los eventos tras importarlos.\n"
 "                            "
 msgstr ""
 
-#: templates/users/dashboard.html:104
+#: templates/users/dashboard.html:137
 msgid "No hay eventos nuevos"
 msgstr ""

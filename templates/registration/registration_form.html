@@ -12,5 +12,6 @@
         </p>
     {% endif %}
     {% include 'pages/title.html' with title="Signin" %}
-    {% include 'forms/regular-form.html' with form_title="Sign up" form=form form_class="registration" submit_text="Crea un usuari@  " %}
+    {% trans 'Crea un usuari@' as register_submit %}
+    {% include 'forms/regular-form.html' with form_title="Sign up" form=form form_class="registration" submit_text=register_submit %}
 {% endblock %}

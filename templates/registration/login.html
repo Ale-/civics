@@ -5,7 +5,6 @@
 
 {# Content #}
 {% block main %}
-
     {% if user.is_authenticated %}
         <p class="form-errors">
             {% blocktrans trimmed %}
@@ -13,10 +12,10 @@
             {% endblocktrans %}
         </p>
     {% endif %}
-
-    {% include 'pages/title.html' with title='Accede a tu iniciativa' %}
-
-    {% include 'forms/regular-form.html' with form_title="Login" form=form form_class="login" submit_text="Accede" %}
+    {% trans 'Login' as login_title %}
+    {% include 'pages/title.html' with title=login_title %}
+    {% trans 'Accede' as login_submit %}
+    {% include 'forms/regular-form.html' with form_title="Login" form=form form_class="login" submit_text=login_submit %}
 
     <ul class="loginform-links">
         <li class="loginform-links__link">

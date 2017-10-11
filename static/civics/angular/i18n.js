@@ -121,6 +121,8 @@ angular.module('civics.i18n', [])
           'Usa estos botones para encontrarnos en otras plataformas o contactar con nosotros' : 'Use estes botões para nos encontrar em outras plataformas ou contate-nos',
           'Aquí puedes filtrar los eventos en función de su fecha' : 'Aqui você pode filtrar os eventos de acordo com sua data',
           'Esta es la leyenda del mapa. Puedes pulsar en las ciudades y distintas categorías para filtrar los contenidos visibles según tus intereses' : 'Esta é a lenda do mapa. Você pode clicar nas cidades e categorias diferentes para filtrar os conteúdos visíveis de acordo com seus interesses',
+          // Other
+          'Promueve' : 'Promove',
         }
     };
 
