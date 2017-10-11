@@ -195,10 +195,13 @@ def events_service_xls(request):
     row_num = 4
     columns = [
         (u"Título", 12000),
+        (u"Iniciativa promotora", 12000),
+        (u"Fecha", 6000),
         (u"Resumen", 25600),
         (u"Temática", 12000),
         (u"Actividad", 12000),
         (u"Agente", 12000),
+        (u"Ciudad", 6000),
         (u"Latitud", 4000),
         (u"Longitud", 4000),
         (u"Fecha de creación", 6000),
@@ -220,10 +223,13 @@ def events_service_xls(request):
         row_num += 1
         row = [
             event.title,
+            event.initiative.name,
+            event.date.strftime("%d/%m/%Y"),
             event.description.strip(),
             event.get_topic_display(),
             event.get_category_display(),
             event.get_agent_display(),
+            event.city.name,
             event.position['coordinates'][0],
             event.position['coordinates'][1],
             event.creation_date.strftime("%d/%m/%Y"),
