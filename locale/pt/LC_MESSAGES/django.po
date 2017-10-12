@@ -2234,7 +2234,7 @@ msgstr "Entre na plataforma ou registre-se"
 
 #: templates/regions/toolbar.html:45
 msgid "Entrar/Añadir"
-msgstr ""
+msgstr "Entrar/Adicionar"
 
 #: templates/regions/toolbar.html:52
 msgid "Ve a la zona administrativa de Civics"
