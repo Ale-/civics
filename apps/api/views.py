@@ -25,12 +25,12 @@ from apps.models.forms import EventForm
 no_results = _("No se han encontrado resultados que cumplan con todas las condiciones de filtrado.")
 
 def initiatives_service(request):
-    cities = City.objects.annotate(num_refs=Count('initiative')).filter(num_refs__gt=10)
+    cities = City.objects.annotate(num_refs=Count('initiative')).filter(num_refs__gt=5)
     initiatives = Initiative.objects.filter(city__in=cities).select_related()
     return JsonResponse(CivicsJSONSerializer().serialize(initiatives, fields=('name', 'position', 'image', 'city', 'topic', 'agent', 'space')), safe=False)
 
 def events_service(request):
-    cities = City.objects.annotate(num_initiatives=Count('initiative')).filter(num_initiatives__gt=10)
+    cities = City.objects.annotate(num_initiatives=Count('initiative')).filter(num_initiatives__gt=5)
     events = Event.objects.filter(city__in=cities).select_related()
     return JsonResponse(CivicsJSONSerializer().serialize(events, fields=('title', 'position', 'image', 'thumbnail', 'image', 'city', 'topic', 'agent', 'category', 'date', 'expiration')), safe=False)
 
