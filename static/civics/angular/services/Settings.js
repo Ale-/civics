@@ -27,11 +27,11 @@ angular.module('civics.settings', [])
                 },
                 type: 'xyz',
               },
-              moonlight : {
-                name         : 'Moonlight',
-                url          : 'https://api.mapbox.com/styles/v1/civics/cj3rpa90e00162rpmkau46tpm/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiY2l2aWNzIiwiYSI6ImNpcXpmZ2toZTAwNmFpOG1nc2swdG5kZ28ifQ.P6-IjrcLcdnPqQvkn0GWKQ',
+              toner : {
+                name         : 'Toner',
+                url          : 'https://stamen-tiles.a.ssl.fastly.net/toner/{z}/{x}/{y}.png',
                 layerOptions : {
-                  attribution: "&copy; <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> &copy; <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> <strong><a href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a></strong>",
+                  attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, under <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>. Data by <a href="http://openstreetmap.org">OpenStreetMap</a>, under <a href="http://www.openstreetmap.org/copyright">ODbL</a>.',
                 },
                 type: 'xyz',
               },
