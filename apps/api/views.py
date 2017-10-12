@@ -447,7 +447,7 @@ def cities_with_initiatives(request):
     Get cities related to initiatives
     """
 
-    cities = City.objects.annotate(num_refs=Count('initiative')).filter(num_refs__gt=10)
+    cities = City.objects.annotate(num_refs=Count('initiative')).filter(num_refs__gt=5)
     response = {}
     for city in cities:
         response[city.pk] = { 'name' : city.name, 'id' : city.pk, 'country' : city.country.name, 'coordinates' : city.position['coordinates'] }
@@ -459,7 +459,7 @@ def cities_with_events(request):
     Get cities related to events
     """
 
-    cities = City.objects.annotate(num_initiatives=Count('initiative'), num_events=Count('event')).filter(num_initiatives__gt=10, num_events__gt=1)
+    cities = City.objects.annotate(num_initiatives=Count('initiative'), num_events=Count('event')).filter(num_initiatives__gt=5, num_events__gt=1)
     response = {}
     for city in cities:
         response[city.pk] = { 'name' : city.name, 'id' : city.pk, 'country' : city.country.name, 'coordinates' : city.position['coordinates'] }
