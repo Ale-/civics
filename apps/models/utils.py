@@ -20,7 +20,7 @@ class RenameCivicsImage(object):
             to be used by django to rename path.
             @see https://docs.djangoproject.com/en/1.11/ref/models/fields/#django.db.models.FileField.upload_to """
 
-        subpath = instance.city.name
+        subpath = slugify(instance.city.name)
         try:
             filename = slugify(instance.name) + "." + filename.split('.')[1]
         except AttributeError:
