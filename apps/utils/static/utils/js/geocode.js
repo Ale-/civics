@@ -73,48 +73,50 @@ function Geocoder(map, marker, geometry_field)
 
 +(function()
 {
-    document.querySelectorAll('.geocode-widget').forEach( function(widget)
-    {
-        var geometry_field  = widget.querySelector('.geocode-widget__geometry');
-        if(geometry_field.value){
-            var data = JSON.parse(geometry_field.value);
-            var map = L.map('geocode-widget__map');
-            var marker = L.marker([data.coordinates[1], data.coordinates[0]], { 'draggable' : true });
-            marker.on('dragend', function(e){
-                var latlng = e.target.getLatLng();
-                geometry_field.value = coords_to_geojson(latlng.lat, latlng.lng);
-            });
-            map.addLayer(marker).setView([data.coordinates[1], data.coordinates[0]], 4);
-        } else {
-            var map = L.map('geocode-widget__map').setView([-15, -26], 2);
-            var marker = {};
-        }
-
-        L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-        }).addTo(map);
-
-        var geocoder        = new Geocoder(map, marker, geometry_field);
-        var trigger         = widget.querySelector('.geocode-widget__geocode-submit');
-        trigger.addEventListener('click', function(e)
+    document.addEventListener("DOMContentLoaded", function(){
+        document.querySelectorAll('.geocode-widget').forEach( function(widget)
         {
-            e.stopPropagation();
-            var address = '';
-            var sources = geometry_field.dataset.sources.split(' ');
-            sources.forEach( function(source){
-                var el = document.getElementById(source);
-                if(el.tagName == 'INPUT')
-                    address += el.value;
-                else if(el.tagName == 'SELECT')
-                    address += el.options[el.selectedIndex].innerHTML;
-                address += ", "
+            var geometry_field  = widget.querySelector('.geocode-widget__geometry');
+            if(geometry_field.value){
+                var data = JSON.parse(geometry_field.value);
+                var map = L.map('geocode-widget__map');
+                var marker = L.marker([data.coordinates[1], data.coordinates[0]], { 'draggable' : true });
+                marker.on('dragend', function(e){
+                    var latlng = e.target.getLatLng();
+                    geometry_field.value = coords_to_geojson(latlng.lat, latlng.lng);
+                });
+                map.addLayer(marker).setView([data.coordinates[1], data.coordinates[0]], 4);
+            } else {
+                var map = L.map('geocode-widget__map').setView([-15, -26], 2);
+                var marker = {};
+            }
+
+            L.tileLayer('https://a.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+
+            var geocoder        = new Geocoder(map, marker, geometry_field);
+            var trigger         = widget.querySelector('.geocode-widget__geocode-submit');
+            trigger.addEventListener('click', function(e)
+            {
+                e.stopPropagation();
+                var address = '';
+                var sources = geometry_field.dataset.sources.split(' ');
+                sources.forEach( function(source){
+                    var el = document.getElementById(source);
+                    if(el.tagName == 'INPUT')
+                        address += el.value;
+                    else if(el.tagName == 'SELECT')
+                        address += el.options[el.selectedIndex].innerHTML;
+                    address += ", "
+                });
+                var provider = geometry_field.dataset.provider;
+                get(geocoder[provider].api({
+                      'address' : address,
+                      'key'     : widget.getAttribute('data-key'),
+                    }), geocoder[provider].callback
+                );
             });
-            var provider = geometry_field.dataset.provider;
-            get(geocoder[provider].api({
-                  'address' : address,
-                  'key'     : widget.getAttribute('data-key'),
-                }), geocoder[provider].callback
-            );
         });
     });
 })();
