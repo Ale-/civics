@@ -11,7 +11,8 @@
             {% endblocktrans %}
         </p>
     {% endif %}
-    {% include 'pages/title.html' with title="Signin" %}
+    {% trans "Regístrate" as signin %}
+    {% include 'pages/title.html' with title=signin %}
     {% trans 'Crea un usuari@' as register_submit %}
     {% include 'forms/regular-form.html' with form_title="Sign up" form=form form_class="registration" submit_text=register_submit %}
 {% endblock %}
