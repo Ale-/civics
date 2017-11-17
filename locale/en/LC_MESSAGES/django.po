@@ -2359,18 +2359,6 @@ msgid "Conectado a G+"
 msgstr "Connected to G+"
 
 #: templates/users/dashboard.html:127
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "                            Para agilizar la importación al evento se le "
-#| "asignarán\n"
-#| "                            la temática, tipo de agente y ciudad de la "
-#| "iniciativa promotora\n"
-#| "                            No podemos leer fecha, hora ni localización "
-#| "de la api de google.\n"
-#| "                            Revisa y completa los eventos tras "
-#| "importarlos.\n"
-#| "                            \n"
 msgid ""
 "\n"
 "                            Para agilizar la importación al evento se le "
@@ -2388,6 +2376,7 @@ msgstr ""
 "We can not read date, time or location of Google api. \n"
 "Review and complete the events after importing them.\n"
 "\n"
+" "
 
 #: templates/users/dashboard.html:137
 msgid "No hay eventos nuevos"
