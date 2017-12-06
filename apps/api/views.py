@@ -270,7 +270,7 @@ def media(url):
     service = uri.split('/')[0]
     if service == 'vimeo.com':
         return 'https://player.vimeo.com/video/' + uri.split('/')[1]
-    elif service == 'youtube.com':
+    else:
         return 'https://www.youtube.com/embed/' + uri.split('?v=')[1]
 
 def initiative_service(request):
@@ -279,7 +279,6 @@ def initiative_service(request):
     coords        = initiative.position['coordinates']
     cityname      = initiative.city.name if initiative.city else 'none'
     countryname   = initiative.city.get_country_display() if initiative.city else 'none'
-
     initiative_json = {
         'id'  : initiative.pk,
         'nam' : initiative.name,
