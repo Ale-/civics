@@ -78,6 +78,8 @@ class EventForm(forms.ModelForm):
         if 'initial' in kwargs and 'user' in kwargs['initial']:
             user = kwargs['initial']['user']
             if not user.is_staff:
-                self.base_fields['initiative'].queryset = models.Initiative.objects.filter(user=user).order_by('-name')
+                self.base_fields['initiative'].queryset = models.Initiative.objects.filter(user=user).order_by('name')
+            else:
+                self.base_fields['initiative'].queryset = models.Initiative.objects.order_by('name')
         self.base_fields['initiative'].empty_label = None
         super(EventForm, self).__init__(*args, **kwargs)
