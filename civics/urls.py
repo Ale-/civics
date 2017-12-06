@@ -12,6 +12,8 @@ from registration.backends.default.views import RegistrationView
 # Import custom apps
 from apps.users.views import ActivationView
 
+admin.site.site_header = 'Civics'
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^i18n/', include('django.conf.urls.i18n')),
