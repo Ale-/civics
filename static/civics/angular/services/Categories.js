@@ -40,7 +40,7 @@ angular.module('civics.categories_service', [])
       'es': 'Empresa social / Startup',
       'ic': 'Iniciativa ciudadana',
       'ja': 'Juntas / Asociaciones de vecinos',
-      'cc': 'Conquistas ciudadanas del pasado'
+      'cc': 'Iniciativas ciudadanas extinguidas'
     };
 
     this.activities = {
