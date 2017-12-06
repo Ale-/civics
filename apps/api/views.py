@@ -2,6 +2,8 @@
 import json
 import math
 from datetime import date
+from datetime import datetime
+
 # django
 from django.conf import settings
 from django.shortcuts import render
@@ -338,7 +340,7 @@ def event_service(request):
 def initiatives_featured_service(request):
     initiatives_json = {}
     initiatives_json['featured'] = []
-    initiatives_featured = Initiative.objects.filter(featured=True)[:8]
+    initiatives_featured = Initiative.objects.filter(featured=True).order_by('-creation_date')[:8]
     for initiative in initiatives_featured:
         initiatives_json['featured'].append({
             'nam'    : initiative.name,
@@ -372,7 +374,9 @@ def events_featured_service(request):
             'cities'     : event.city.name if event.city else 'none'
         })
     events_json['last'] = []
-    events_last = Event.objects.filter(date__gte=date.today()).order_by('date')[:8]
+    today = datetime.today()
+    #events_last = Event.objects.filter(date__gte=today).order_by('date')[:8]
+    events_last = Event.objects.filter( Q(date__gte=today) | Q(expiration__gte=today) ).order_by('date')[:8]
     for event in events_last:
         events_json['last'].append({
             'nam'        : event.title,
