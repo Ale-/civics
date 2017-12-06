@@ -158,34 +158,34 @@ angular.module('civics.directives', [])
         'current' : function(date, expiration){
             if(!expiration)
                 return date >= today;
-            return date >= today || expiration > today;
+            return date >= today || expiration >= today;
         },
         'today' : function(date, expiration){
             if(!expiration)
                 return date == today;
-            return today > date  && today < expiration;
+            return today >= date  && today <= expiration;
         },
         'tomorrow' : function(date, expiration){
             var tomorrow   = today + day;
             if(!expiration)
                 return date == tomorrow;
-            return tomorrow > date && tomorrow < expiration;
+            return tomorrow >= date && tomorrow <= expiration;
         },
         'next_week' : function(date, expiration){
             var week_end   = today + 7 * day;
             if(!expiration)
-                return date > today && date < week_end;
-            return (expiration > today && expiration < week_end ) ||
-                   (date > today && date < week_end ) ||
-                   (date < today && expiration > week_end );
+                return date >= today && date <= week_end;
+            return (expiration >= today && expiration <= week_end ) ||
+                   (date >= today && date <= week_end ) ||
+                   (date <= today && expiration >= week_end );
         },
         'next_month' : function(date, expiration){
             var month_end   = today + 30 * day;
             if(!expiration)
                 return date > today && date < month_end;
-            return (date > today && expiration < month_end ) ||
-                   (date > today && date < month_end ) ||
-                   (date < today && expiration > month_end );
+            return (date >= today && expiration <= month_end ) ||
+                   (date >= today && date <= month_end ) ||
+                   (date <= today && expiration >= month_end );
         },
         'past' : function(date, expiration){
             if(!expiration)
