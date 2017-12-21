@@ -23,6 +23,12 @@
                return '<iframe src="https://www.youtube.com/embed/' + resource + '" width="' + width + '" height="' + height + '" \
                        frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>';
                break;
+
+               case 'youtu.be':
+               var resource = uri.split('/')[1];
+               return '<iframe src="https://www.youtube.com/embed/' + resource + '" width="' + width + '" height="' + height + '" \
+                       frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>';
+               break;
          }
      }
      return null;

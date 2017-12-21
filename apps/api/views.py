@@ -272,8 +272,10 @@ def media(url):
     service = uri.split('/')[0]
     if service == 'vimeo.com':
         return 'https://player.vimeo.com/video/' + uri.split('/')[1]
-    else:
+    elif service == 'www.youtube.com':
         return 'https://www.youtube.com/embed/' + uri.split('?v=')[1]
+    elif service == 'youtu.be':
+        return 'https://www.youtube.com/embed/' + uri.split('/')[1]
 
 def initiative_service(request):
     id = request.GET.get('id')
