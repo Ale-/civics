@@ -36,6 +36,17 @@ angular.module('civics.map_controller', [])
     this.count = meta.count;
     this.section = meta.showing;
     this.format  = 'map';
+
+    // A state to reflect if clusters are fully enabled in current view
+    // Map declusters when it reaches the given zoom threshold
+    // true : { pruneCluster layer }.Cluster.Size = maximumClusterSize
+    // false: { pruneCluster layer }.Cluster.Zoom = minimumClusterSize
+    // @see https://github.com/SINTEF-9012/PruneCluster/issues/52#issuecomment-102491577
+    var minimumClusterSize = .001;
+    var maximumClusterSize = 120;
+    var clustersEnabled    = true;
+    var zoomThreshold      = 9;
+
     // Set active links in Django menu
     var links = document.querySelectorAll('.main-menu__link');
     for(var i=0; i < links.length; ++i){
@@ -129,7 +140,6 @@ angular.module('civics.map_controller', [])
     {
         var c = meta.count;
         var filters_length = this.selected_tabs.length;
-        console.log(this.selected_categories);
         for(city in items){
             var markers = items[city].Cluster._markers;
             if(filters_length > 0){
@@ -273,4 +283,23 @@ angular.module('civics.map_controller', [])
         this.sharing_url = false;
         this.show_help = false;
     }));
+
+    $scope.$on("leafletDirectiveMap.civics-map.moveend", function(event, args) {
+        console.log(args.model.center.zoom);
+        if(args.model.center.zoom >= zoomThreshold && clustersEnabled){
+            console.log("Disabling clusters");
+            for(var city in items){
+               items[city].Cluster.Size   = minimumClusterSize;
+               items[city].ProcessView();
+            }
+            clustersEnabled = false;
+        } else if(args.model.center.zoom < zoomThreshold && !clustersEnabled){
+            console.log("Disabling clusters");
+            for(var city in items){
+                items[city].Cluster.Size = maximumClusterSize;
+                items[city].ProcessView();
+            }
+            clustersEnabled = true;
+        }
+    });
 });
