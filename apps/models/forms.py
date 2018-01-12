@@ -47,6 +47,15 @@ class InitiativeForm(forms.ModelForm):
         self.base_fields['video'].widget.attrs['placeholder'] = _("Por ejemplo 'https://vimeo.com/45130145'")
         super(InitiativeForm, self).__init__(*args, **kwargs)
 
+    def clean(self):
+        cleaned_data = super(InitiativeForm, self).clean()
+        website  = cleaned_data.get("website")
+        twitter  = cleaned_data.get("twitter")
+        facebook = cleaned_data.get("facebook")
+        if not website and not twitter and not facebook:
+            raise forms.ValidationError(_("Has de proporcionar la url de una página web o de un perfil público de una red social para poder añadir tu iniciativa."))
+
+
 
 class EventForm(forms.ModelForm):
     """Generic modelform to create and update Event objects"""
