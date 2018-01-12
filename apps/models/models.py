@@ -109,8 +109,11 @@ class Initiative(models.Model):
     self.slug = slugify(self.name)
     # Notify by mail, only when creating new content
     if not self.id:
-        send_mail( 'Se ha creado una iniciativa nueva en civics.cc: ' + str(self.name),
-            'El ' + str(self.creation_date) + ' se creó la iniciativa ' + str(self.name) + '.',
+        send_mail( 'Creada la iniciativa \"' + self.name + "\"",
+            'Creada el ' + self.creation_date.strftime("%d/%b/%Y") + ' por ' + self.user.username + '\n---\n' +
+            self.name + ' (' + self.email + '):\n' +
+            self.description + '\n---\n' +
+            'Ciudad: ' + self.city.name,
             'civics.cc <no-reply@civics.cc>',
             settings.NOTIFICATIONS_EMAILS,
             fail_silently=False,
@@ -189,8 +192,12 @@ class Event(models.Model):
     self.slug = slugify(self.title)
     # Notify by mail, only when creating new content
     if not self.id:
-        send_mail( 'Se ha creado un evento nuevo en civics.cc: ' + str(self.title),
-            'El ' + str(self.creation_date) + ' se creó el evento ' + str(self.title) + '.',
+        send_mail( 'Creado el evento \"' + self.title + "\"",
+            'Creado el ' + self.creation_date.strftime("%d/%b/%Y") + ' por "' + self.initiative.name +
+            '" (' + self.initiative.email + ')\n---\n' +
+            self.title + ':\n' +
+            self.description + '\n---\n' +
+            'Ciudad: ' + self.city.name,
             'civics.cc <no-reply@civics.cc>',
             settings.NOTIFICATIONS_EMAILS,
             fail_silently=False,
