@@ -109,8 +109,13 @@ class Initiative(models.Model):
     self.slug = slugify(self.name)
     # Notify by mail, only when creating new content
     if not self.id:
-        send_mail( 'Se ha creado una iniciativa nueva en civics.cc: ' + str(self.name),
-            'El ' + str(self.creation_date) + ' se creó la iniciativa ' + str(self.name) + '.',
+        send_mail( 'Creada la iniciativa \"' + self.name + "\"",
+            'Fecha: ' + self.creation_date.strftime("%d/%b/%Y") + '/n' +
+            'Nombre de la iniciativa: ' + self.name + '/n' +
+            'Nombre de la usuaria: ' + self.user.username + '/n' +
+            'Correo electrónico: ' + self.email + '/n' +
+            'Resumen: ' + self.description + '/n' +
+            'Ciudad: ' + self.city.name + '/n',
             'civics.cc <no-reply@civics.cc>',
             settings.NOTIFICATIONS_EMAILS,
             fail_silently=False,
@@ -189,8 +194,13 @@ class Event(models.Model):
     self.slug = slugify(self.title)
     # Notify by mail, only when creating new content
     if not self.id:
-        send_mail( 'Se ha creado un evento nuevo en civics.cc: ' + str(self.title),
-            'El ' + str(self.creation_date) + ' se creó el evento ' + str(self.title) + '.',
+        send_mail( 'Creado el evento \"' + self.title + "\"",
+            'Fecha: ' + self.creation_date.strftime("%d/%b/%Y") + '/n' +
+            'Nombre del evento: ' + self.title + '/n' +
+            'Nombre de la usuaria: ' + self.initiative.user.username + '/n' +
+            'Correo electrónico: ' + self.initiative.email + '/n' +
+            'Resumen: ' + self.description + '/n' +
+            'Ciudad: ' + self.city.name + '/n',
             'civics.cc <no-reply@civics.cc>',
             settings.NOTIFICATIONS_EMAILS,
             fail_silently=False,
