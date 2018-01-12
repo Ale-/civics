@@ -54,5 +54,5 @@ AGENTS = (
     ('ES', _('Empresa social / Startup')),
     ('IC', _('Iniciativa ciudadana')),
     ('JA', _('Juntas / Asociaciones de vecinos')),
-    ('CC', _('Iniciativas ciudadanas extinguidas'))
+    ('CC', _('Iniciativas ciudadanas inactivas'))
 )
