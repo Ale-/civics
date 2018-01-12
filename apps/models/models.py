@@ -104,6 +104,15 @@ class Initiative(models.Model):
     """String representation of this model objects."""
     return self.name or '---'
 
+  @property
+  def external_url(self):
+    """Returns the first occurence of an external url related to the initiative"""
+    if self.website:
+        return self.website
+    elif self.facebook:
+        return self.facebook
+    return "https://twitter.com/" + self.twitter
+
   def save(self, *args, **kwargs):
     """Populate automatically 'slug' field"""
     self.slug = slugify(self.name)

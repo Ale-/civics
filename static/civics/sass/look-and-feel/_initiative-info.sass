@@ -1,3 +1,4 @@
+@import compass/css3/transition
 @import compass/css3/transform
 @import compass/css3/border-radius
 @import compass/css3/box-shadow
@@ -61,8 +62,15 @@
 .initiative-image
   margin: 0 0 $m
   text-align: center
+  overflow: hidden
+  +transition(opacity .25s ease)
   img
     +box-shadow(0 0 5px rgba(black,.25))
+    +transition(transform .5s ease-out)
+  &:hover
+    opacity: .8
+    img
+      +transform(scale(1.05))
 
 .initiative-info__video
   margin: $m 0
@@ -150,7 +158,8 @@
 .initiative-header .leaflet-marker-icon .outer::before
   +text-shadow(none !important)
 
-.initiative-info__event-details
+.initiative-info__event-details,
+.initiative-info__initiative-details,
   margin: 0 $m
   text-transform: uppercase
   font-size: .9em

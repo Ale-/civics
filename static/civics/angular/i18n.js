@@ -123,6 +123,7 @@ angular.module('civics.i18n', [])
           'Esta es la leyenda del mapa. Puedes pulsar en las ciudades y distintas categorías para filtrar los contenidos visibles según tus intereses' : 'Esta é a lenda do mapa. Você pode clicar nas cidades e categorias diferentes para filtrar os conteúdos visíveis de acordo com seus interesses',
           // Other
           'Promueve' : 'Promove',
+          'Saber más sobre' : 'Saiba mais sobre',
         },
         en: {
             //views/content-list.html
@@ -232,6 +233,7 @@ angular.module('civics.i18n', [])
             'Esta es la leyenda del mapa. Puedes pulsar en las ciudades y distintas categorías para filtrar los contenidos visibles según tus intereses' : 'This is the legend of the map. You can click on the cities and different categories to filter visible contents according to your interests',
             // Other
             'Promueve' : 'Promoted by',
+            'Saber más sobre' : 'Know more about',
           }
     };
 

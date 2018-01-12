@@ -12,12 +12,14 @@
 
     <!-- Profile header -->
     <div class="initiative-header">
-        <div class="initiative-image">
-            <img ng-show="info.marker.img" ng-src="{{ info.marker.img }}" />
-            <div ng-hide="info.marker.img" class="initiative-image--blank">
-                <span class="icon-agent"></span>
-            </div>
-        </div>
+        <a href="{{ info.marker.url }}" target="_blank" title="{{ 'Saber más sobre' | t }} {{ info.marker.nam }}">
+            <figure class="initiative-image">
+                <img ng-show="info.marker.img" ng-src="{{ info.marker.img }}" />
+                <div ng-hide="info.marker.img" class="initiative-image--blank">
+                    <span class="icon-agent"></span>
+                </div>
+            </figure>
+        </a>
         <div class="leaflet-marker-icon cm">
             <i class='outer i-to-{{ info.marker.topics }} i-ag-{{ info.marker.agents }}'></i>
             <i ng-if="content.section == 'initiatives'" class='inner i-sp-{{ info.marker.spaces }}'></i>
@@ -35,6 +37,14 @@
             </p>
         </div>
     </div>
+
+    <!-- Initiative details -->
+    <div class='initiative-info__initiative-details' ng-if="info.showing=='initiatives'">
+        <p class="initiative-info__detail--address">
+            <span class="icon-event-address"></span> {{ info.marker.add }} ({{ info.marker.cities }})
+        </p>
+    </div>
+
     <!-- Event details -->
     <div class='initiative-info__event-details' ng-if="info.showing=='events'">
         <p class="initiative-info__detail--date">
@@ -75,7 +85,10 @@
     <div class='initiative-info__details'>
         <p class="initiative-info__detail--initiative" ng-if="info.showing=='events'">
             <span>{{ 'Promueve' | t }}</span>
-            {{ info.marker.ini }}
+            <a href="{{ info.marker.url }}" target="_blank" title="{{ 'Saber más sobre' | t }} {{ info.marker.ini }}">
+                {{ info.marker.ini }}
+            </a>
+          </a>
         </p>
         <p class="initiative-info__detail--website" ng-show="info.marker.web">
             <span class="icon-website"></span> <a href="{{ info.marker.web }}" target="_blank">{{ info.marker.web }}</a>
