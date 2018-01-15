@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-12 13:53+0000\n"
+"POT-Creation-Date: 2018-01-15 15:12+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -184,8 +184,8 @@ msgstr ""
 msgid "Iniciativas ciudadanas inactivas"
 msgstr ""
 
-#: apps/models/forms.py:31 apps/models/models.py:43 apps/models/models.py:90
-#: apps/models/models.py:180
+#: apps/models/forms.py:31 apps/models/models.py:53 apps/models/models.py:100
+#: apps/models/models.py:194
 msgid "Ciudad"
 msgstr ""
 
@@ -232,54 +232,73 @@ msgid "Nombre de la ciudad"
 msgstr ""
 
 #: apps/models/models.py:36
-msgid "Especifica el nombre de la ciudad."
+msgid "Especifica el nombre de la ciudad en español."
 msgstr ""
 
 #: apps/models/models.py:37
-msgid "País"
-msgstr ""
-
-#: apps/models/models.py:37
-msgid "¿A qué país pertenece la ciudad?"
-msgstr ""
-
-#: apps/models/models.py:38 apps/models/models.py:96 apps/models/models.py:184
-msgid "Ubicación"
+msgid "Nombre de la ciudad (PT)"
 msgstr ""
 
 #: apps/models/models.py:38
+msgid ""
+"Especifica el nombre de la ciudad en portugúes si es distinto al nombre "
+"español."
+msgstr ""
+
+#: apps/models/models.py:39
+msgid "Nombre de la ciudad (EN)"
+msgstr ""
+
+#: apps/models/models.py:40
+msgid ""
+"Especifica el nombre de la ciudad en inglés si es distinto al nombre español."
+msgstr ""
+
+#: apps/models/models.py:41
+msgid "País"
+msgstr ""
+
+#: apps/models/models.py:41
+msgid "¿A qué país pertenece la ciudad?"
+msgstr ""
+
+#: apps/models/models.py:42 apps/models/models.py:106 apps/models/models.py:198
+msgid "Ubicación"
+msgstr ""
+
+#: apps/models/models.py:42
 msgid "Añade la ubicación de la ciudad."
 msgstr ""
 
-#: apps/models/models.py:44
+#: apps/models/models.py:54
 msgid "Ciudades"
 msgstr ""
 
-#: apps/models/models.py:58
+#: apps/models/models.py:68
 msgid "Nombre de la iniciativa"
 msgstr ""
 
-#: apps/models/models.py:59
+#: apps/models/models.py:69
 msgid "¿Cuál es el nombre de tu iniciativa?"
 msgstr ""
 
-#: apps/models/models.py:62 apps/models/models.py:151
+#: apps/models/models.py:72 apps/models/models.py:165
 msgid "Destacado"
 msgstr ""
 
-#: apps/models/models.py:63
+#: apps/models/models.py:73
 msgid "Indica si es una iniciativa destacada"
 msgstr ""
 
-#: apps/models/models.py:64
+#: apps/models/models.py:74
 msgid "Gestor"
 msgstr ""
 
-#: apps/models/models.py:65 apps/models/models.py:155
+#: apps/models/models.py:75 apps/models/models.py:169
 msgid "Imagen"
 msgstr ""
 
-#: apps/models/models.py:68
+#: apps/models/models.py:78
 msgid ""
 "Sube una imagen representativa de la iniciativa haciendo click en la imagen "
 "inferior. La imagen ha de tener ancho mínimo de 300 píxeles y máximo de "
@@ -287,146 +306,146 @@ msgid ""
 "PNG, JPG, JPEG."
 msgstr ""
 
-#: apps/models/models.py:72 apps/models/models.py:162
+#: apps/models/models.py:82 apps/models/models.py:176
 msgid "Video"
 msgstr ""
 
-#: apps/models/models.py:73 apps/models/models.py:163
+#: apps/models/models.py:83 apps/models/models.py:177
 msgid "Inserta la url de un video de Youtube o Vimeo"
 msgstr ""
 
-#: apps/models/models.py:74
+#: apps/models/models.py:84
 msgid "Descripción de la iniciativa"
 msgstr ""
 
-#: apps/models/models.py:75
+#: apps/models/models.py:85
 msgid "Describe los objetivos y actividad de la iniciativa."
 msgstr ""
 
-#: apps/models/models.py:76
+#: apps/models/models.py:86
 msgid "Website"
 msgstr ""
 
-#: apps/models/models.py:77
+#: apps/models/models.py:87
 msgid "Especifica opcionalmente una web para conocer mejor la iniciativa."
 msgstr ""
 
-#: apps/models/models.py:78
+#: apps/models/models.py:88
 msgid "Twitter"
 msgstr ""
 
-#: apps/models/models.py:79
+#: apps/models/models.py:89
 msgid "Si tienes una cuenta de Twitter, pon aquí el nombre de usuario."
 msgstr ""
 
-#: apps/models/models.py:80
+#: apps/models/models.py:90
 msgid "Facebook"
 msgstr ""
 
-#: apps/models/models.py:81
+#: apps/models/models.py:91
 msgid "Si tienes un perfil de Facebook pon aquí el enlace completo a la misma."
 msgstr ""
 
-#: apps/models/models.py:82
+#: apps/models/models.py:92
 msgid "Correo electrónico"
 msgstr ""
 
-#: apps/models/models.py:83
+#: apps/models/models.py:93
 msgid "Especifica un correo de contacto para la iniciativa."
 msgstr ""
 
-#: apps/models/models.py:84
+#: apps/models/models.py:94
 msgid "Tema"
 msgstr ""
 
-#: apps/models/models.py:85
+#: apps/models/models.py:95
 msgid "El tema de la iniciativa"
 msgstr ""
 
-#: apps/models/models.py:86
+#: apps/models/models.py:96
 msgid "Tipo de espacio"
 msgstr ""
 
-#: apps/models/models.py:87
+#: apps/models/models.py:97
 msgid "El tipo de espacio asociado a la iniciativa"
 msgstr ""
 
-#: apps/models/models.py:88 apps/models/models.py:170
+#: apps/models/models.py:98 apps/models/models.py:184
 msgid "tipo de agente"
 msgstr ""
 
-#: apps/models/models.py:89
+#: apps/models/models.py:99
 msgid "El tipo de agente involucrado en la iniciativa"
 msgstr ""
 
-#: apps/models/models.py:91
+#: apps/models/models.py:101
 msgid ""
 "Ciudad donde se encuentra la iniciativa. Si no encuentras la ciudad en el "
 "desplegable usa el botón inferior para añadir una nueva ciudad y "
 "seleccionarla"
 msgstr ""
 
-#: apps/models/models.py:92 apps/models/models.py:182
+#: apps/models/models.py:102 apps/models/models.py:196
 msgid "Dirección"
 msgstr ""
 
-#: apps/models/models.py:93 apps/models/models.py:183
+#: apps/models/models.py:103 apps/models/models.py:197
 msgid ""
 "Dirección de la iniciativa. No es necesario que vuelvas a introducir la "
 "ciudad de la iniciativa."
 msgstr ""
 
-#: apps/models/models.py:94
+#: apps/models/models.py:104
 msgid "Distrito"
 msgstr ""
 
-#: apps/models/models.py:95
+#: apps/models/models.py:105
 msgid "¿En qué barrio de la ciudad se sitúa la iniciativa?"
 msgstr ""
 
-#: apps/models/models.py:97
+#: apps/models/models.py:107
 msgid ""
 "Tras añadir ciudad y dirección puedes ubicar la iniciativa pulsando el botón "
 "inferior y ajustando la posición del marcador posteriormente."
 msgstr ""
 
-#: apps/models/models.py:100 apps/users/templates/events_import.js.html:118
+#: apps/models/models.py:110 apps/users/templates/events_import.js.html:118
 msgid "Iniciativa"
 msgstr ""
 
-#: apps/models/models.py:101 templates/regions/toolbar.html:21
+#: apps/models/models.py:111 templates/regions/toolbar.html:21
 msgid "Iniciativas"
 msgstr ""
 
-#: apps/models/models.py:147
+#: apps/models/models.py:161
 msgid "Iniciativa que organiza la actividad"
 msgstr ""
 
-#: apps/models/models.py:148
+#: apps/models/models.py:162
 msgid "¿Qué iniciativa organiza el evento?"
 msgstr ""
 
-#: apps/models/models.py:149
+#: apps/models/models.py:163
 msgid "Título del evento"
 msgstr ""
 
-#: apps/models/models.py:150
+#: apps/models/models.py:164
 msgid "¿Cuál es el título del evento que quieres organiza?"
 msgstr ""
 
-#: apps/models/models.py:152
+#: apps/models/models.py:166
 msgid "Indica si es un evento destacado"
 msgstr ""
 
-#: apps/models/models.py:153
+#: apps/models/models.py:167
 msgid "Describe el evento"
 msgstr ""
 
-#: apps/models/models.py:154
+#: apps/models/models.py:168
 msgid "Describe el evento."
 msgstr ""
 
-#: apps/models/models.py:158
+#: apps/models/models.py:172
 msgid ""
 "Sube una imagen representativa del evento haciendo click en la imagen "
 "inferior. La imagen ha de tener ancho mínimo de 300 píxeles y máximo de "
@@ -434,87 +453,87 @@ msgid ""
 "PNG, JPG, JPEG."
 msgstr ""
 
-#: apps/models/models.py:164
+#: apps/models/models.py:178
 msgid "Enlace"
 msgstr ""
 
-#: apps/models/models.py:165
+#: apps/models/models.py:179
 msgid "Especifica opcionalmente un enlace para conocer mejor el evento."
 msgstr ""
 
-#: apps/models/models.py:166
+#: apps/models/models.py:180
 msgid "Temática del evento"
 msgstr ""
 
-#: apps/models/models.py:167
+#: apps/models/models.py:181
 msgid "El tema de la actividad"
 msgstr ""
 
-#: apps/models/models.py:168
+#: apps/models/models.py:182
 msgid "Tipo de actividad"
 msgstr ""
 
-#: apps/models/models.py:169
+#: apps/models/models.py:183
 msgid "El tipo de actividad que quieres organizar"
 msgstr ""
 
-#: apps/models/models.py:171
+#: apps/models/models.py:185
 msgid "El tipo de agente involucrado en la actividad"
 msgstr ""
 
-#: apps/models/models.py:172 apps/users/templates/events_import.js.html:86
+#: apps/models/models.py:186 apps/users/templates/events_import.js.html:86
 msgid "Fecha del evento"
 msgstr ""
 
-#: apps/models/models.py:173
+#: apps/models/models.py:187
 msgid "Indica qué día se celebra o empieza el evento"
 msgstr ""
 
-#: apps/models/models.py:174
+#: apps/models/models.py:188
 msgid "Hora del evento"
 msgstr ""
 
-#: apps/models/models.py:175
+#: apps/models/models.py:189
 msgid "¿A qué hora se celebra el evento?"
 msgstr ""
 
-#: apps/models/models.py:176
+#: apps/models/models.py:190
 msgid "Periodicidad"
 msgstr ""
 
-#: apps/models/models.py:177
+#: apps/models/models.py:191
 msgid ""
 "Especifica, en ese caso, la periodicidad del evento. Puedes indicar la fecha "
 "de fin en el siguiente campo"
 msgstr ""
 
-#: apps/models/models.py:178
+#: apps/models/models.py:192
 msgid "Fecha de fin"
 msgstr ""
 
-#: apps/models/models.py:179
+#: apps/models/models.py:193
 msgid ""
 "Indica opcionalmente en eventos de varios dias la fecha en que acaba el "
 "evento."
 msgstr ""
 
-#: apps/models/models.py:181
+#: apps/models/models.py:195
 msgid ""
 "Ciudad donde se encuentra la iniciativa. Si no la encuentras en la lista "
 "puedes añadir una nueva."
 msgstr ""
 
-#: apps/models/models.py:185
+#: apps/models/models.py:199
 msgid ""
 "Añade la ubicación de la actividad. Si lo dejas en blanco se usará la "
 "ubicación de la iniciativa asociada."
 msgstr ""
 
-#: apps/models/models.py:192
+#: apps/models/models.py:206
 msgid "Actividad"
 msgstr ""
 
-#: apps/models/models.py:193
+#: apps/models/models.py:207
 msgid "Actividades"
 msgstr ""
 

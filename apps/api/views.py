@@ -281,7 +281,7 @@ def initiative_service(request):
     id = request.GET.get('id')
     initiative    = Initiative.objects.filter(pk=id).first()
     coords        = initiative.position['coordinates']
-    cityname      = initiative.city.name if initiative.city else 'none'
+    cityname      = initiative.city.translated_name(request.LANGUAGE_CODE) if initiative.city else 'none'
     countryname   = initiative.city.get_country_display() if initiative.city else 'none'
     initiative_json = {
         'id'  : initiative.pk,
@@ -310,7 +310,7 @@ def event_service(request):
     id = request.GET.get('id')
     event         = Event.objects.filter(pk=id).first()
     coords        = event.position['coordinates']
-    cityname      = event.city.name if event.city else 'none'
+    cityname      = initiative.city.translated_name(request.LANGUAGE_CODE) if initiative.city else 'none'
     countryname   = event.city.get_country_display() if event.city else 'none'
     event = {
         'id'    : event.pk,
@@ -346,20 +346,22 @@ def initiatives_featured_service(request):
     initiatives_json['featured'] = []
     initiatives_featured = Initiative.objects.filter(featured=True).order_by('-creation_date')[:8]
     for initiative in initiatives_featured:
+        cityname = initiative.city.translated_name(request.LANGUAGE_CODE) if initiative.city else 'none'
         initiatives_json['featured'].append({
             'nam'    : initiative.name,
             'id'     : initiative.id,
             'img'    : initiative.image_medium.url if initiative.image else None,
-            'cities' : initiative.city.name if initiative.city else 'none',
+            'cities' : cityname,
         })
     initiatives_json['last'] = []
     initiatives_last = Initiative.objects.order_by('-creation_date')[:8]
     for initiative in initiatives_last:
+        cityname = initiative.city.translated_name(request.LANGUAGE_CODE) if initiative.city else 'none'
         initiatives_json['last'].append({
             'nam'    : initiative.name,
             'id'     : initiative.id,
             'img'    : initiative.image_medium.url if initiative.image else None,
-            'cities' : initiative.city.name if initiative.city else 'none'
+            'cities' : cityname,
         })
 
     return HttpResponse(json.dumps(initiatives_json), content_type="application/json")
@@ -457,7 +459,12 @@ def cities_with_initiatives(request):
     cities = City.objects.annotate(num_refs=Count('initiative')).filter(num_refs__gt=5)
     response = {}
     for city in cities:
-        response[city.pk] = { 'name' : city.name, 'id' : city.pk, 'country' : city.country.name, 'coordinates' : city.position['coordinates'] }
+        response[city.pk] = {
+            'name'        : city.translated_name(request.LANGUAGE_CODE),
+            'id'          : city.pk,
+            'country'     : city.country.name,
+            'coordinates' : city.position['coordinates']
+        }
     return HttpResponse( json.dumps(response), content_type="application/json" );
 
 
@@ -469,5 +476,10 @@ def cities_with_events(request):
     cities = City.objects.annotate(num_initiatives=Count('initiative'), num_events=Count('event')).filter(num_initiatives__gt=5, num_events__gt=1)
     response = {}
     for city in cities:
-        response[city.pk] = { 'name' : city.name, 'id' : city.pk, 'country' : city.country.name, 'coordinates' : city.position['coordinates'] }
+        response[city.pk] = {
+            'name'        : city.translated_name(request.LANGUAGE_CODE),
+            'id'          : city.pk,
+            'country'     : city.country.name,
+            'coordinates' : city.position['coordinates']
+        }
     return HttpResponse( json.dumps(response), content_type="application/json" );

@@ -4,6 +4,8 @@
 
 <div class="form-fields--{{ form_class }}">
     {% include 'forms/field.html' with field=form.name %}
+    {% include 'forms/field.html' with field=form.name_pt %}
+    {% include 'forms/field.html' with field=form.name_en %}
     {% include 'forms/field.html' with field=form.country %}
     {% include 'forms/field.html' with field=form.position %}
 </div>
