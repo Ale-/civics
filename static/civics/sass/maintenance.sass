@@ -1,2 +1,96 @@
 //Import configuration file with the general settings of the theme
 @import variables
+
+//Compass imports
+@import compass/css3/transition
+@import compass/css3/animation
+
+// Mixins
+
+@keyframes show
+  0%
+    opacity: 0
+  100%
+    opacity: 1
+
+=icon
+  &::before
+    font-family: $font_icons
+    speak: none
+    font-style: normal
+    font-weight: normal
+    font-variant: normal
+    text-transform: none
+    line-height: 1
+    position: relative
+    /* Better Font Rendering ===========
+    -webkit-font-smoothing: antialiased
+    -moz-osx-font-smoothing: grayscale
+
+[class*='icon-'],
+[class*='i-'],
+  +icon
+
+=i($content)
+  &::before
+    content: $content
+
+=links_initiatives
+  a
+    +transition(color .1s ease)
+    &:link, &:visited
+      color: #DC5099
+    &:hover
+      color: lighten(#DC5099, 10%)
+    &:active
+      color: #DC5099
+
+// Resets
+
+*
+  box-sizing: border-box
+
+html, body
+  margin: 0
+
+body
+  text-align: center
+  padding-top: 200px
+  font-family: $font_text
+  background: linear-gradient(darken($palette_primary, 10%), darken($palette_secondary, 10%))
+  min-height: 100vh
+  color: rgba(black, .75)
+
+img
+  width: 480px
+  +animation(show 3s 1)
+
+ul, li, ol
+  margin-left: 0
+  padding-left: 0
+
+li
+  list-style: none
+  margin: $m/2 0
+
+a
+  text-decoration: none
+
+// Styles
+
+.maintenance-text
+  max-width: 480px
+  margin: $m*2 auto
+  padding: $m 0
+  border-top: 1px solid rgba(black, .5)
+  border-bottom: 1px solid rgba(black, .5)
+  font-size: 1.5em
+
+.goodbay__links
+  +links_initiatives
+
+.icon-twitter
+  +i('\e81a')
+
+.icon-facebook
+  +i('\e818')

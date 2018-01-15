@@ -1,12 +1,12 @@
-{# Template for site's maintenance page #} {% load static utils i18n %} <!doctype html>
-
+{# Template for site's maintenance page #} {% load static utils i18n %}
+<!doctype html>
 <html>
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         {# Title and description #}
-        <title> {{ document_title }} | {% trans 'En mantenimiento' %}</title>
+        <title> civics.cc | {% trans 'En mantenimiento' %}</title>
         <meta name="description" content="{{ document_description }}">
 
         {# Robots and humans #}
@@ -24,7 +24,30 @@
         <div class="region-content">
             <div class="container-fixed">
                 <main class="layout-main">
-                    {% trans 'En mantenimiento' %}
+                    <img src="{% static 'civics/img/logo-civics.svg' %}" />
+                    <p class="maintenance-text">
+                    {% blocktrans trimmed %}
+                    Estamos en mantenimiento, perdona las molestias.
+                    Volvemos en un rato!
+                    {% endblocktrans %}
+                    </p>
+                    <div class="goodbay__links">
+                        {% blocktrans trimmed %}
+                        Recuerda que puedes seguirnos y contactarnos en:
+                        {% endblocktrans %}
+                        <ul class="goodbay__social">
+                            <li>
+                                <a href="https://www.facebook.com/mapacivics" target="_blank" title="{% trans 'Perfil de Civics en Facebook' %}">
+                                    <span class="icon-facebook"></span> Facebook
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://twitter.com/mapacivics" target="_blank" title="{% trans 'Perfil de Civics en Twitter' %}">
+                                    <span class="icon-twitter"></span> Twitter
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </main>
             </div>
         </div>
