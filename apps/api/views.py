@@ -310,7 +310,7 @@ def event_service(request):
     id = request.GET.get('id')
     event         = Event.objects.filter(pk=id).first()
     coords        = event.position['coordinates']
-    cityname      = initiative.city.translated_name(request.LANGUAGE_CODE) if initiative.city else 'none'
+    cityname      = event.city.translated_name(request.LANGUAGE_CODE) if event.city else 'none'
     countryname   = event.city.get_country_display() if event.city else 'none'
     event = {
         'id'    : event.pk,
