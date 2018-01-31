@@ -13,21 +13,25 @@
      if( url ){
          switch(service) {
                case 'vimeo.com':
-               var resource = uri.split('/')[1];
-               return '<iframe src="https://player.vimeo.com/video/' + resource + '" width="' + width + '" height="' + height + '" \
-                       frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>';
+                   var resource = uri.split('/')[1];
+                   return '<iframe src="https://player.vimeo.com/video/' + resource + '" width="' + width + '" height="' + height + '" \
+                           frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>';
                break;
 
                case 'www.youtube.com':
-               var resource = uri.split('?v=')[1];
-               return '<iframe src="https://www.youtube.com/embed/' + resource + '" width="' + width + '" height="' + height + '" \
-                       frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>';
+                   var resource = '';
+                   if(uri.indexOf('?v=')>-1)
+                      resource = uri.split('?v=')[1];
+                   else if (uri.indexOf('&v=')>-1)
+                      resource = uri.split('&v=')[1];
+                   return '<iframe src="https://www.youtube.com/embed/' + resource + '" width="' + width + '" height="' + height + '" \
+                           frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>';
                break;
 
                case 'youtu.be':
-               var resource = uri.split('/')[1];
-               return '<iframe src="https://www.youtube.com/embed/' + resource + '" width="' + width + '" height="' + height + '" \
-                       frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>';
+                   var resource = uri.split('/')[1];
+                   return '<iframe src="https://www.youtube.com/embed/' + resource + '" width="' + width + '" height="' + height + '" \
+                           frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>';
                break;
          }
      }
