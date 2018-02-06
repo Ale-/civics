@@ -210,7 +210,6 @@ function fetchEvents(id) {
         $.get('/api/events_fb_id', {}, function(response){
             for(i in events){
                 var e = events[i];
-                console.log(response);
                 if(response.indexOf(e.id) == -1 || response.length == 0){
                     var date = new Date(e.start_time)
                     var event = {
@@ -218,14 +217,16 @@ function fetchEvents(id) {
                         description   : e.description,
                         date          : date.getFullYear()  + "-" + pad(date.getMonth()+1) + "-" + pad(date.getDate()),
                         time          : date.toLocaleTimeString(),
-                        lat           : e.place.location.latitude,
-                        lon           : e.place.location.longitude,
-                        city          : e.place.location.city,
                         address       : e.place.name,
                         facebook_id   : e.id,
                     };
+                    if(e.place.location){
+                        event.lat  = e.place.location.latitude;
+                        event.lon  = e.place.location.longitude;
+                        event.city = e.place.location.city;
+                    }
                     social_networks_events.push(event);
-                    $('.import-events__list').append( eventMarkup(event, $('.import-events__list').length, 'FB') ); 
+                    $('.import-events__list').append( eventMarkup(event, $('.import-events__list').length, 'FB') );
                     $('.import-events__empty').hide();
                 }
             }
@@ -255,7 +256,7 @@ window.fbAsyncInit = function() {
 };
 
 
-/** 
+/**
  * Google events
  * @see https://github.com/googleplus/gplus-quickstart-javascript/blob/master/index.html
  */
@@ -291,7 +292,7 @@ var helper = (function() {
             }
             //console.log('authResult', authResult);
         },
-        
+
         /**
          * Calls the OAuth2 endpoint to disconnect the app for the user.
          */
@@ -299,7 +300,7 @@ var helper = (function() {
             // Revoke the access token.
             auth2.disconnect();
         },
-        
+
         /**
          * Gets and renders the list of people visible to this app.
          */
@@ -315,18 +316,18 @@ var helper = (function() {
                         // @see https://developers.google.com/+/web/api/rest/latest/activities/get
                         var e = events[i];
                         id    = e.id;
-                        if(current_ids.indexOf(id) == -1 && e.verb == 'post'){     
+                        if(current_ids.indexOf(id) == -1 && e.verb == 'post'){
                             var event = {
                                 name          : e.object.attachments[0].displayName,
                                 description   : e.object.attachments[0].content,
                                 google_id     : id,
                             };
                             social_networks_events.push(event);
-                            $('.import-events__list').append( eventMarkup(event, $('.import-events__list').length, 'G') ); 
+                            $('.import-events__list').append( eventMarkup(event, $('.import-events__list').length, 'G') );
                             $('.import-events__empty').hide();
                         }
                     }
-                });  
+                });
             });
         },
     };
