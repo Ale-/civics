@@ -240,6 +240,7 @@ $('.import-events__action.facebook').click( function(){
   FB.logout();
   $('.import-events').addClass('nofacebook');
   $('.import-events').removeClass('facebook');
+  $('.import-events__item').remove();
 });
 
 {# Connect with facebook #}
