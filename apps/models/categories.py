@@ -18,6 +18,7 @@ TOPICS = (
     ('PG', _('Política y gobernanza')),
     ('UP', _('Urbanismo / Patrimonio')),
     ('PC', _('Periodismo comunitario')),
+    ('IN', _('Infancia')),
 )
 
 SPACES = (

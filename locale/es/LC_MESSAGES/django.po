@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-15 15:12+0000\n"
+"POT-Creation-Date: 2018-05-07 09:39+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -76,111 +76,115 @@ msgstr ""
 msgid "Periodismo comunitario"
 msgstr ""
 
-#: apps/models/categories.py:24
-msgid "Centro cultural / comunitario"
+#: apps/models/categories.py:21
+msgid "Infancia"
 msgstr ""
 
 #: apps/models/categories.py:25
-msgid "Efímero e itinerante"
+msgid "Centro cultural / comunitario"
 msgstr ""
 
 #: apps/models/categories.py:26
+msgid "Efímero e itinerante"
+msgstr ""
+
+#: apps/models/categories.py:27
 msgid "Intercambio / Trueque"
 msgstr ""
 
-#: apps/models/categories.py:27 apps/models/categories.py:41
+#: apps/models/categories.py:28 apps/models/categories.py:42
 msgid "Digital"
 msgstr ""
 
-#: apps/models/categories.py:28
+#: apps/models/categories.py:29
 msgid "Encuentros / Acciones"
 msgstr ""
 
-#: apps/models/categories.py:29
+#: apps/models/categories.py:30
 msgid "Escuelas populares"
 msgstr ""
 
-#: apps/models/categories.py:30
+#: apps/models/categories.py:31
 msgid "Huerto urbano/rural"
 msgstr ""
 
-#: apps/models/categories.py:31
+#: apps/models/categories.py:32
 msgid "Intervenciones urbanas"
 msgstr ""
 
-#: apps/models/categories.py:32
+#: apps/models/categories.py:33
 msgid "Medios de comunicación comunitaria"
 msgstr ""
 
-#: apps/models/categories.py:33
+#: apps/models/categories.py:34
 msgid "Mercado social / Comercios"
 msgstr ""
 
-#: apps/models/categories.py:34
+#: apps/models/categories.py:35
 msgid "Solares / Espacios recuperados"
 msgstr ""
 
-#: apps/models/categories.py:35
+#: apps/models/categories.py:36
 msgid "Labs / Colaborativos / Maker"
 msgstr ""
 
-#: apps/models/categories.py:39
+#: apps/models/categories.py:40
 msgid "Audiovisual"
 msgstr ""
 
-#: apps/models/categories.py:40
+#: apps/models/categories.py:41
 msgid "Curso / Convocatoria"
 msgstr ""
 
-#: apps/models/categories.py:42
+#: apps/models/categories.py:43
 msgid "Encuentro"
 msgstr ""
 
-#: apps/models/categories.py:43
+#: apps/models/categories.py:44
 msgid "Evento"
 msgstr ""
 
-#: apps/models/categories.py:44
+#: apps/models/categories.py:45
 msgid "Exposicion"
 msgstr ""
 
-#: apps/models/categories.py:45
+#: apps/models/categories.py:46
 msgid "Fiesta / Concierto"
 msgstr ""
 
-#: apps/models/categories.py:46
+#: apps/models/categories.py:47
 msgid "Publicación"
 msgstr ""
 
-#: apps/models/categories.py:47
+#: apps/models/categories.py:48
 msgid "Taller"
 msgstr ""
 
-#: apps/models/categories.py:51
+#: apps/models/categories.py:52
 msgid "Iniciativas municipales / Gobierno"
 msgstr ""
 
-#: apps/models/categories.py:52
+#: apps/models/categories.py:53
 msgid "Universidades / ONG / Fundaciones"
 msgstr ""
 
-#: apps/models/categories.py:53
+#: apps/models/categories.py:54
 msgid "Organismos internacionales"
 msgstr ""
 
-#: apps/models/categories.py:54
+#: apps/models/categories.py:55
 msgid "Empresa social / Startup"
 msgstr ""
 
-#: apps/models/categories.py:55
+#: apps/models/categories.py:56
 msgid "Iniciativa ciudadana"
 msgstr ""
 
-#: apps/models/categories.py:56
+#: apps/models/categories.py:57
 msgid "Juntas / Asociaciones de vecinos"
 msgstr ""
 
-#: apps/models/categories.py:57
+#: apps/models/categories.py:58
 msgid "Iniciativas ciudadanas inactivas"
 msgstr ""
 
@@ -688,15 +692,15 @@ msgid ""
 "Aquí podrás encontrar iniciativas ciudadanas existentes en tu ciudad, etc."
 msgstr ""
 
-#: civics/settings.py:127
+#: civics/settings.py:128
 msgid "Español"
 msgstr ""
 
-#: civics/settings.py:128
+#: civics/settings.py:129
 msgid "Portugues"
 msgstr ""
 
-#: civics/settings.py:129
+#: civics/settings.py:130
 msgid "English"
 msgstr ""
 
@@ -1835,8 +1839,24 @@ msgstr ""
 msgid "La página que buscas no existe. ¿Las has escrito correctamente?"
 msgstr ""
 
-#: templates/503.html:9 templates/503.html:27
+#: templates/503.html:9
 msgid "En mantenimiento"
+msgstr ""
+
+#: templates/503.html:29
+msgid "Estamos en mantenimiento, perdona las molestias. Volvemos en un rato!"
+msgstr ""
+
+#: templates/503.html:35 templates/pages/goodbay.html:16
+msgid "Recuerda que puedes seguirnos y contactarnos en:"
+msgstr ""
+
+#: templates/503.html:40 templates/pages/goodbay.html:21
+msgid "Perfil de Civics en Facebook"
+msgstr ""
+
+#: templates/503.html:45 templates/pages/goodbay.html:26
+msgid "Perfil de Civics en Twitter"
 msgstr ""
 
 #: templates/contact_form/contact_form.html:7
@@ -1874,7 +1894,7 @@ msgid ""
 "Mensaje nuevo de contacto en civics.cc\n"
 msgstr ""
 
-#: templates/forms/city-popup-form.html:14
+#: templates/forms/city-popup-form.html:16
 msgid "Envía"
 msgstr ""
 
@@ -1998,18 +2018,6 @@ msgstr ""
 
 #: templates/pages/goodbay.html:11
 msgid "Gracias por visitarnos."
-msgstr ""
-
-#: templates/pages/goodbay.html:16
-msgid "Recuerda que puedes seguirnos y contactarnos en:"
-msgstr ""
-
-#: templates/pages/goodbay.html:21
-msgid "Perfil de Civics en Facebook"
-msgstr ""
-
-#: templates/pages/goodbay.html:26
-msgid "Perfil de Civics en Twitter"
 msgstr ""
 
 #: templates/pages/goodbay.html:31

@@ -16,6 +16,7 @@ angular.module('civics.categories_service', [])
       'pg': 'Política y gobernanza',
       'up': 'Urbanismo / Patrimonio',
       'pc': 'Periodismo comunitario',
+      'in': 'Infancia',
     };
 
     this.spaces = {
