@@ -80,7 +80,7 @@
             </div>
             {% trans 'Con la colaboración de:' %}
             <div class="civics-about__logos">
-                {% for i in 26|get_range %}
+                {% for i in 53|get_range %}
                     {% with 'logos/'|addstr:forloop.counter|add:'.png' as url %}
                     <img class="civics-about__logo" src="{% img url %}" />
                     {% endwith %}
