@@ -43,6 +43,14 @@ angular.module('civics.settings', [])
                   },
                   type : 'xyz',
               },
+              satellite : {
+                  name : 'Mapbox Satellite',
+                  url  : 'https://api.mapbox.com/styles/v1/vicvisual/cjmgfxfvu4lw32rmpyqh7edvl/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoidmljdmlzdWFsIiwiYSI6IllLc3NwcTQifQ.a2eOmMR-2wSdMWYcJCZltQ',
+                  layerOptions : {
+                       attribution : '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                  },
+                  type : 'xyz',
+              }
           },
       };
 
