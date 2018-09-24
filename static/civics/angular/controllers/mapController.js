@@ -285,7 +285,6 @@ angular.module('civics.map_controller', [])
     }));
 
     $scope.$on("leafletDirectiveMap.civics-map.moveend", function(event, args) {
-        console.log(args.model.center.zoom);
         if(args.model.center.zoom >= zoomThreshold && clustersEnabled){
             console.log("Disabling clusters");
             for(var city in items){

@@ -42,6 +42,7 @@ def initiatives_service_xls(request):
     topics = request.GET.get('topics').split(',')[0:-1];
     spaces = request.GET.get('spaces').split(',')[0:-1];
     agents = request.GET.get('agents').split(',')[0:-1];
+    cities = request.GET.get('cities').split(',')[0:-1];
 
     initiatives = Initiative.objects.all()
     if len(topics) > 0:
@@ -50,6 +51,8 @@ def initiatives_service_xls(request):
         initiatives = initiatives.filter(space__in=spaces)
     if len(agents) > 0:
         initiatives = initiatives.filter(agent__in=agents)
+    if len(cities) > 0:
+        initiatives = initiatives.filter(city__in=cities)
 
     response = HttpResponse(content_type='application/ms-excel')
     filename = 'iniciativas-civics__' + date.today().isoformat() + '.xls'

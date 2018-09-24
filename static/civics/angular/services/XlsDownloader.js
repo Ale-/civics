@@ -34,10 +34,16 @@ angular.module('civics.xls_downloader', [])
             }
         }
         base_url += "&agents=";
-        for(var i in selected_categories.agent){
-            agent = selected_categories.agent[i];
+        for(var i in selected_categories.agents){
+            agent = selected_categories.agents[i];
             if(agent)
               base_url += agent.toUpperCase() + ",";
+        }
+        base_url += "&cities=";
+        for(var i in selected_categories.cities){
+            city = selected_categories.cities[i];
+            if(city)
+              base_url += city + ",";
         }
 
         // Get items in new window
