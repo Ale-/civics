@@ -26,6 +26,24 @@ initiatives_images_path = RenameCivicsImage("images/initiatives/")
 events_images_path      = RenameCivicsImage("images/events/")
 
 #
+# ODS
+#
+class ODS(models.Model):
+  """Model to represent ODS categories"""
+
+  name  = models.CharField(_('Nombre del ODS'), max_length=128, blank=False)
+  order = models.PositiveSmallIntegerField(_('Orden'), default=1)
+
+  def __str__(self):
+    """String representation of this model objects."""
+    return self.name
+
+  class Meta:
+    verbose_name = _('ODS')
+    verbose_name_plural = _('ODS')
+    ordering = [ 'order' ]
+
+#
 #  City
 #
 
@@ -105,6 +123,11 @@ class Initiative(models.Model):
                                    help_text=_('¿En qué barrio de la ciudad se sitúa la iniciativa?'))
   position      = PointField(_("Ubicación"), blank=False, null=True,
                              help_text=_("Tras añadir ciudad y dirección puedes ubicar la iniciativa pulsando el botón inferior y ajustando la posición del marcador posteriormente."))
+  # ODS
+  main_ods      = models.ForeignKey(ODS, verbose_name=_('Objetivo de desarrollo sostenible principal'), blank=True, null=True,
+                                    help_text=_('Indícanos que Objetivo de Desarrollo Sostenible (ODS) crees que cumple o trabaja principalmente tu iniciativa.'))
+  other_ods     = models.ManyToManyField(ODS, verbose_name=_('Otros ODS'), blank=True, related_name='initiatives',
+                                    help_text=_('Indícanos otros Objetivos de Desarrollo Sostenible (ODS) con los que también trabaja tu iniciativa (máximo 3). Puedes deseleccionar y hacer selecciones múltiples usando el ratón con la tecla Ctrl pulsada (Command en MAC)'))
 
   class Meta:
     verbose_name        = _('Iniciativa')

@@ -71,3 +71,4 @@ class CityAdmin(LeafletGeoAdmin):
 admin.site.register(models.City, CityAdmin)
 admin.site.register(models.Initiative, InitiativeAdmin)
 admin.site.register(models.Event, EventAdmin)
+admin.site.register(models.ODS)

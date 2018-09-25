@@ -4,7 +4,7 @@ from django import forms
 from django_countries import countries
 from django.core.exceptions import ValidationError
 # custom
-from . import models
+from . import models, categories
 from apps.utils.fields import GroupedModelChoiceField
 from apps.utils.widgets import VideoWidget, PictureWithPreviewWidget, ReducedLeafletWidget, LimitedTextareaWidget, SelectOrAddWidget, GeocodedLeafletWidget
 
@@ -31,7 +31,7 @@ class InitiativeForm(forms.ModelForm):
                                    label=_('Ciudad'),
                                    help_text=_('Ciudad donde se encuentra la iniciativa. Si no encuentras la ciudad en el desplegable usa el botón inferior para añadirla.'),
                                    group_by_field='country', group_label=group_label,
-                                   empty_label=" ", widget = SelectOrAddWidget(view_name='modelforms:create_city_popup', link_text=_("Añade una ciudad")) )
+                                   empty_label=" ", widget = SelectOrAddWidget(view_name='modelforms:create_city_popup', link_text=_("Añade una ciudad")))
 
     class Meta:
         model   = models.Initiative
@@ -49,12 +49,20 @@ class InitiativeForm(forms.ModelForm):
 
     def clean(self):
         cleaned_data = super(InitiativeForm, self).clean()
+        main_ods  = self.cleaned_data.get('main_ods')
+        other_ods = self.cleaned_data.get('other_ods')
+        if not main_ods and len(other_ods)>0:
+             raise forms.ValidationError(_('Si indicas los ODS de tu iniciativa has de señalar cuál de ellos es el principal.'))
+        if main_ods in other_ods:
+             raise forms.ValidationError(_('No repitas el objetivo principal de tu iniciativa en el campo "Otros ODS".'))
+        if len(other_ods) > 3:
+             raise forms.ValidationError(_('Indica un máximo de tres objetivos.'))
         website  = cleaned_data.get("website")
         twitter  = cleaned_data.get("twitter")
         facebook = cleaned_data.get("facebook")
         if not website and not twitter and not facebook:
             raise forms.ValidationError(_("Has de proporcionar la url de una página web o de un perfil público de una red social para poder añadir tu iniciativa."))
-
+        return self.cleaned_data
 
 
 class EventForm(forms.ModelForm):
