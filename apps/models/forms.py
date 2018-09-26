@@ -23,7 +23,6 @@ class CityForm(forms.ModelForm):
             'position'    : ReducedLeafletWidget(),
         }
 
-
 class InitiativeForm(forms.ModelForm):
     """Generic modelform to create and update Initiative objects"""
 

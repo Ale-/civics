@@ -31,8 +31,8 @@ events_images_path      = RenameCivicsImage("images/events/")
 class ODS(models.Model):
   """Model to represent ODS categories"""
 
-  name  = models.CharField(_('Nombre del ODS'), max_length=128, blank=False)
-  order = models.PositiveSmallIntegerField(_('Orden'), default=1)
+  category = models.CharField(_('Objetivo de desarrollo sostenible'), choices=categories.ODS, default=1, max_length=2, blank=False)
+  order    = models.PositiveSmallIntegerField(_('Orden'), default=1)
 
   def __str__(self):
     """String representation of this model objects."""
