@@ -36,7 +36,7 @@ class ODS(models.Model):
 
   def __str__(self):
     """String representation of this model objects."""
-    return self.name
+    return self.get_category_display()
 
   class Meta:
     verbose_name = _('ODS')

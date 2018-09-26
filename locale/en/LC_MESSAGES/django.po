@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-25 18:00+0000\n"
+"POT-Creation-Date: 2018-09-26 08:17+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -189,6 +189,78 @@ msgstr "Neighbourhood committees / Associations"
 msgid "Iniciativas ciudadanas inactivas"
 msgstr "Inactive Civic initiatives"
 
+#: apps/models/categories.py:62
+msgid "Fin de la pobreza"
+msgstr "No poverty"
+
+#: apps/models/categories.py:63
+msgid "Hambre cero"
+msgstr "Zero hunger"
+
+#: apps/models/categories.py:64
+msgid "Salud y bienestar"
+msgstr "Good Health and Well-Being"
+
+#: apps/models/categories.py:65
+#, fuzzy
+#| msgid "Educación expandida"
+msgid "Educación de calidad"
+msgstr "Quality Education"
+
+#: apps/models/categories.py:66
+msgid "Igualdad de género"
+msgstr "Gender Equality"
+
+#: apps/models/categories.py:67
+msgid "Agua limpia y saneamiento"
+msgstr "Clean Water and Sanitation"
+
+#: apps/models/categories.py:68
+msgid "Energía asequible y no contaminante"
+msgstr "Affordable and Clean Energy"
+
+#: apps/models/categories.py:69
+msgid "Trabajo decente y crecimiento económico"
+msgstr "Decent Work and Economic Growth"
+
+#: apps/models/categories.py:70
+msgid "Industria, innovación e infraestructura"
+msgstr "Industry, Innovation and Infrastructure"
+
+#: apps/models/categories.py:71
+#, fuzzy
+#| msgid "Añade la ubicación de la ciudad."
+msgid "Reducción de las desigualdades"
+msgstr "Reduced Inequalities"
+
+#: apps/models/categories.py:72
+msgid "Ciudades y comunidades sostenibles"
+msgstr "Sustainable Cities and Communities"
+
+#: apps/models/categories.py:73
+msgid "Producción y consumo responsables"
+msgstr "Responsible Production and Consumption"
+
+#: apps/models/categories.py:74
+msgid "Acción por el clima"
+msgstr "Climate Action"
+
+#: apps/models/categories.py:75
+msgid "Vida submarina"
+msgstr "Life Below Water"
+
+#: apps/models/categories.py:76
+msgid "Vida de ecosistemas terrestres"
+msgstr "Life On Land"
+
+#: apps/models/categories.py:77
+msgid "Paz, justicia e instituciones sólidas"
+msgstr "Peace, Justice and Strong Institutions"
+
+#: apps/models/categories.py:78
+msgid "Alianzas para lograr los objetivos"
+msgstr "Partnerships for the Goals"
+
 #: apps/models/forms.py:30 apps/models/models.py:71 apps/models/models.py:118
 #: apps/models/models.py:217
 msgid "Ciudad"
@@ -255,9 +327,9 @@ msgstr "Use the format hh:mm, for example '09:00'"
 
 #: apps/models/models.py:34
 #, fuzzy
-#| msgid "Nombre de la ciudad"
-msgid "Nombre del ODS"
-msgstr "City name"
+#| msgid "Objetivo de desarrollo sostenible principal"
+msgid "Objetivo de desarrollo sostenible"
+msgstr "Main sustainable development goal"
 
 #: apps/models/models.py:35
 msgid "Orden"
@@ -484,8 +556,8 @@ msgid ""
 "trabaja tu iniciativa (máximo 3). Puedes deseleccionar y hacer selecciones "
 "múltiples usando el ratón con la tecla Ctrl pulsada (Command en MAC)"
 msgstr ""
-"Tell us about other Sustainable Development Goals (SDGs) with which "
-"your initiative also works (maximum 3). You can deselect and make multiple "
+"Tell us about other Sustainable Development Goals (SDGs) with which your "
+"initiative also works (maximum 3). You can deselect and make multiple "
 "selections using the mouse with the Ctrl key pressed (Command on MAC)"
 
 #: apps/models/models.py:133 apps/users/templates/events_import.js.html:118
@@ -2477,6 +2549,11 @@ msgstr ""
 #: templates/users/dashboard.html:137
 msgid "No hay eventos nuevos"
 msgstr "There're no new events"
+
+#, fuzzy
+#~| msgid "Nombre de la ciudad"
+#~ msgid "Nombre del ODS"
+#~ msgstr "City name"
 
 #~ msgid "Conquistas ciudadanas del pasado"
 #~ msgstr "Past civic conquests"

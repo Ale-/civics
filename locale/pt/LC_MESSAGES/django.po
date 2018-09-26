@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-25 18:00+0000\n"
+"POT-Creation-Date: 2018-09-26 08:17+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -191,6 +191,78 @@ msgstr "Conselhos / Associações"
 msgid "Iniciativas ciudadanas inactivas"
 msgstr "Iniciativas cidadanas inativas"
 
+#: apps/models/categories.py:62
+msgid "Fin de la pobreza"
+msgstr "Erradicação da pobreza"
+
+#: apps/models/categories.py:63
+msgid "Hambre cero"
+msgstr "Fome zero"
+
+#: apps/models/categories.py:64
+msgid "Salud y bienestar"
+msgstr "Saúde e bem-estar"
+
+#: apps/models/categories.py:65
+#, fuzzy
+#| msgid "Educación expandida"
+msgid "Educación de calidad"
+msgstr "Educação de qualidade"
+
+#: apps/models/categories.py:66
+msgid "Igualdad de género"
+msgstr "Igualdade de gênero"
+
+#: apps/models/categories.py:67
+msgid "Agua limpia y saneamiento"
+msgstr "Água limpa e saneamento"
+
+#: apps/models/categories.py:68
+msgid "Energía asequible y no contaminante"
+msgstr "Energia limpa e acessível"
+
+#: apps/models/categories.py:69
+msgid "Trabajo decente y crecimiento económico"
+msgstr "Trabalho de decente e crescimento econômico"
+
+#: apps/models/categories.py:70
+msgid "Industria, innovación e infraestructura"
+msgstr "Inovação infraestrutura"
+
+#: apps/models/categories.py:71
+#, fuzzy
+#| msgid "Añade la ubicación de la ciudad."
+msgid "Reducción de las desigualdades"
+msgstr "Redução das desigualdades"
+
+#: apps/models/categories.py:72
+msgid "Ciudades y comunidades sostenibles"
+msgstr "Cidades e comunidades sustentáveis"
+
+#: apps/models/categories.py:73
+msgid "Producción y consumo responsables"
+msgstr "Consumo e produção responsáveis"
+
+#: apps/models/categories.py:74
+msgid "Acción por el clima"
+msgstr "Ação contra a mudança global do clima"
+
+#: apps/models/categories.py:75
+msgid "Vida submarina"
+msgstr "Vida na água"
+
+#: apps/models/categories.py:76
+msgid "Vida de ecosistemas terrestres"
+msgstr "Vida terrestre"
+
+#: apps/models/categories.py:77
+msgid "Paz, justicia e instituciones sólidas"
+msgstr "Paz, justiça e instituições eficazes"
+
+#: apps/models/categories.py:78
+msgid "Alianzas para lograr los objetivos"
+msgstr "Parcerias e meios de implementação"
+
 #: apps/models/forms.py:30 apps/models/models.py:71 apps/models/models.py:118
 #: apps/models/models.py:217
 msgid "Ciudad"
@@ -257,9 +329,9 @@ msgstr "Use o formato hh:mm, por exemplo '09:00'"
 
 #: apps/models/models.py:34
 #, fuzzy
-#| msgid "Nombre de la ciudad"
-msgid "Nombre del ODS"
-msgstr "Nome da cidade"
+#| msgid "Objetivo de desarrollo sostenible principal"
+msgid "Objetivo de desarrollo sostenible"
+msgstr "Principal objetivo de desenvolvimento sustentável"
 
 #: apps/models/models.py:35
 msgid "Orden"
@@ -469,8 +541,8 @@ msgid ""
 "Indícanos que Objetivo de Desarrollo Sostenible (ODS) crees que cumple o "
 "trabaja principalmente tu iniciativa."
 msgstr ""
-"Diga-nos qual é o Objetivo de Desenvolvimento Sustentável (ODS) que você acha "
-"que sua iniciativa atende ou trabalha principalmente."
+"Diga-nos qual é o Objetivo de Desenvolvimento Sustentável (ODS) que você "
+"acha que sua iniciativa atende ou trabalha principalmente."
 
 #: apps/models/models.py:129
 msgid "Otros ODS"
@@ -483,8 +555,9 @@ msgid ""
 "múltiples usando el ratón con la tecla Ctrl pulsada (Command en MAC)"
 msgstr ""
 "Conte-nos sobre outros Objetivos de Desenvolvimento Sustentável (ODS) com os "
-"quais sua iniciativa também funciona (no máximo 3). Você pode desmarcar e fazer "
-"várias seleções usando o mouse com a tecla Ctrl pressionada (Command on MAC)"
+"quais sua iniciativa também funciona (no máximo 3). Você pode desmarcar e "
+"fazer várias seleções usando o mouse com a tecla Ctrl pressionada (Command "
+"on MAC)"
 
 #: apps/models/models.py:133 apps/users/templates/events_import.js.html:118
 msgid "Iniciativa"
@@ -2578,6 +2651,11 @@ msgstr ""
 #: templates/users/dashboard.html:137
 msgid "No hay eventos nuevos"
 msgstr "Sem novos eventos"
+
+#, fuzzy
+#~| msgid "Nombre de la ciudad"
+#~ msgid "Nombre del ODS"
+#~ msgstr "Nome da cidade"
 
 #~ msgid "Conquistas ciudadanas del pasado"
 #~ msgstr "Realizações do passado"

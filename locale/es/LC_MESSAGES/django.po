@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-25 18:00+0000\n"
+"POT-Creation-Date: 2018-09-26 08:17+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -188,6 +188,74 @@ msgstr ""
 msgid "Iniciativas ciudadanas inactivas"
 msgstr ""
 
+#: apps/models/categories.py:62
+msgid "Fin de la pobreza"
+msgstr ""
+
+#: apps/models/categories.py:63
+msgid "Hambre cero"
+msgstr ""
+
+#: apps/models/categories.py:64
+msgid "Salud y bienestar"
+msgstr ""
+
+#: apps/models/categories.py:65
+msgid "Educación de calidad"
+msgstr ""
+
+#: apps/models/categories.py:66
+msgid "Igualdad de género"
+msgstr ""
+
+#: apps/models/categories.py:67
+msgid "Agua limpia y saneamiento"
+msgstr ""
+
+#: apps/models/categories.py:68
+msgid "Energía asequible y no contaminante"
+msgstr ""
+
+#: apps/models/categories.py:69
+msgid "Trabajo decente y crecimiento económico"
+msgstr ""
+
+#: apps/models/categories.py:70
+msgid "Industria, innovación e infraestructura"
+msgstr ""
+
+#: apps/models/categories.py:71
+msgid "Reducción de las desigualdades"
+msgstr ""
+
+#: apps/models/categories.py:72
+msgid "Ciudades y comunidades sostenibles"
+msgstr ""
+
+#: apps/models/categories.py:73
+msgid "Producción y consumo responsables"
+msgstr ""
+
+#: apps/models/categories.py:74
+msgid "Acción por el clima"
+msgstr ""
+
+#: apps/models/categories.py:75
+msgid "Vida submarina"
+msgstr ""
+
+#: apps/models/categories.py:76
+msgid "Vida de ecosistemas terrestres"
+msgstr ""
+
+#: apps/models/categories.py:77
+msgid "Paz, justicia e instituciones sólidas"
+msgstr ""
+
+#: apps/models/categories.py:78
+msgid "Alianzas para lograr los objetivos"
+msgstr ""
+
 #: apps/models/forms.py:30 apps/models/models.py:71 apps/models/models.py:118
 #: apps/models/models.py:217
 msgid "Ciudad"
@@ -247,7 +315,7 @@ msgid "Usa el formato hh:mm, por ejemplo '09:00'"
 msgstr ""
 
 #: apps/models/models.py:34
-msgid "Nombre del ODS"
+msgid "Objetivo de desarrollo sostenible"
 msgstr ""
 
 #: apps/models/models.py:35
