@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-26 08:17+0000\n"
+"POT-Creation-Date: 2018-09-26 09:09+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -202,8 +202,6 @@ msgid "Salud y bienestar"
 msgstr "Good Health and Well-Being"
 
 #: apps/models/categories.py:65
-#, fuzzy
-#| msgid "Educación expandida"
 msgid "Educación de calidad"
 msgstr "Quality Education"
 
@@ -228,8 +226,6 @@ msgid "Industria, innovación e infraestructura"
 msgstr "Industry, Innovation and Infrastructure"
 
 #: apps/models/categories.py:71
-#, fuzzy
-#| msgid "Añade la ubicación de la ciudad."
 msgid "Reducción de las desigualdades"
 msgstr "Reduced Inequalities"
 
@@ -274,30 +270,37 @@ msgstr ""
 "City where the initiative is, if you do not find the city in the dropdown "
 "use the button below to add it."
 
-#: apps/models/forms.py:33 apps/models/forms.py:74
+#: apps/models/forms.py:33 apps/models/forms.py:75
 msgid "Añade una ciudad"
 msgstr "Add a city"
 
-#: apps/models/forms.py:46 apps/models/forms.py:92
+#: apps/models/forms.py:46 apps/models/forms.py:93
 msgid "Por ejemplo 'https://vimeo.com/45130145'"
 msgstr "For instance https://vimeo.com/45130145'"
 
-#: apps/models/forms.py:54
+#: apps/models/forms.py:47
+msgid "Escoge un ODS"
+msgstr "Choose a SDG"
+
+#: apps/models/forms.py:55
 msgid ""
 "Si indicas los ODS de tu iniciativa has de señalar cuál de ellos es el "
 "principal."
 msgstr ""
+"If you indicate the SDGs of your initiative, you must indicate which of them "
+"is the main one."
 
-#: apps/models/forms.py:56
+#: apps/models/forms.py:57
 msgid ""
 "No repitas el objetivo principal de tu iniciativa en el campo \"Otros ODS\"."
 msgstr ""
+"Do not repeat the main goal of your initiative in the \"Other SDGs\" field."
 
-#: apps/models/forms.py:58
+#: apps/models/forms.py:59
 msgid "Indica un máximo de tres objetivos."
-msgstr ""
+msgstr "Select a maximum of three goals"
 
-#: apps/models/forms.py:63
+#: apps/models/forms.py:64
 msgid ""
 "Has de proporcionar la url de una página web o de un perfil público de una "
 "red social para poder añadir tu iniciativa."
@@ -305,7 +308,7 @@ msgstr ""
 "Enter the URL of a web page or public profile of a social network to add "
 "your initiative."
 
-#: apps/models/forms.py:72
+#: apps/models/forms.py:73
 msgid ""
 "Ciudad donde se celebra el evento. Si no encuentras la ciudad en el "
 "desplegable usa el botón inferior para añadirla."
@@ -313,15 +316,15 @@ msgstr ""
 "City where the event is held, if you do not find the city in the dropdown "
 "use the button below to add it."
 
-#: apps/models/forms.py:88 apps/models/forms.py:89
+#: apps/models/forms.py:89 apps/models/forms.py:90
 msgid "Usa el formato dd/mm/aaaa, por ejemplo '05/06/2017'"
 msgstr "Use the format dd/mm/yyyy, for example '05/06/2017 '"
 
-#: apps/models/forms.py:90
+#: apps/models/forms.py:91
 msgid "P.ej. 'Todos los martes' o 'Cada dos semanas'"
 msgstr "E.g. 'Every Tuesday' or 'Every two weeks'"
 
-#: apps/models/forms.py:91
+#: apps/models/forms.py:92
 msgid "Usa el formato hh:mm, por ejemplo '09:00'"
 msgstr "Use the format hh:mm, for example '09:00'"
 

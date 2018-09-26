@@ -44,6 +44,7 @@ class InitiativeForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         self.base_fields['video'].widget.attrs['placeholder'] = _("Por ejemplo 'https://vimeo.com/45130145'")
+        self.base_fields['main_ods'].empty_label = _("Escoge un ODS")
         super(InitiativeForm, self).__init__(*args, **kwargs)
 
     def clean(self):

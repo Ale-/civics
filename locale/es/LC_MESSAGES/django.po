@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-26 08:17+0000\n"
+"POT-Creation-Date: 2018-09-26 09:09+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -267,50 +267,54 @@ msgid ""
 "desplegable usa el botón inferior para añadirla."
 msgstr ""
 
-#: apps/models/forms.py:33 apps/models/forms.py:74
+#: apps/models/forms.py:33 apps/models/forms.py:75
 msgid "Añade una ciudad"
 msgstr ""
 
-#: apps/models/forms.py:46 apps/models/forms.py:92
+#: apps/models/forms.py:46 apps/models/forms.py:93
 msgid "Por ejemplo 'https://vimeo.com/45130145'"
 msgstr ""
 
-#: apps/models/forms.py:54
+#: apps/models/forms.py:47
+msgid "Escoge un ODS"
+msgstr ""
+
+#: apps/models/forms.py:55
 msgid ""
 "Si indicas los ODS de tu iniciativa has de señalar cuál de ellos es el "
 "principal."
 msgstr ""
 
-#: apps/models/forms.py:56
+#: apps/models/forms.py:57
 msgid ""
 "No repitas el objetivo principal de tu iniciativa en el campo \"Otros ODS\"."
 msgstr ""
 
-#: apps/models/forms.py:58
+#: apps/models/forms.py:59
 msgid "Indica un máximo de tres objetivos."
 msgstr ""
 
-#: apps/models/forms.py:63
+#: apps/models/forms.py:64
 msgid ""
 "Has de proporcionar la url de una página web o de un perfil público de una "
 "red social para poder añadir tu iniciativa."
 msgstr ""
 
-#: apps/models/forms.py:72
+#: apps/models/forms.py:73
 msgid ""
 "Ciudad donde se celebra el evento. Si no encuentras la ciudad en el "
 "desplegable usa el botón inferior para añadirla."
 msgstr ""
 
-#: apps/models/forms.py:88 apps/models/forms.py:89
+#: apps/models/forms.py:89 apps/models/forms.py:90
 msgid "Usa el formato dd/mm/aaaa, por ejemplo '05/06/2017'"
 msgstr ""
 
-#: apps/models/forms.py:90
+#: apps/models/forms.py:91
 msgid "P.ej. 'Todos los martes' o 'Cada dos semanas'"
 msgstr ""
 
-#: apps/models/forms.py:91
+#: apps/models/forms.py:92
 msgid "Usa el formato hh:mm, por ejemplo '09:00'"
 msgstr ""
 
