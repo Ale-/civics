@@ -2,7 +2,7 @@
 @import url("https://fonts.googleapis.com/css?family=Oxygen:300,700");
 @font-face {
   font-family: "civics";
-  src: url('../fonts/civics.woff?1507724529') format('woff'), url('../fonts/civics.ttf?1507724529') format('truetype'), url('../fonts/civics.eot?1507724529') format('embedded-opentype'), url('../fonts/civics.svg?1507724529') format('svg');
+  src: url('../fonts/civics.woff?1506262669') format('woff'), url('../fonts/civics.ttf?1506262669') format('truetype'), url('../fonts/civics.eot?1506262669') format('embedded-opentype'), url('../fonts/civics.svg?1506262669') format('svg');
 }
 @keyframes show {
   0% {

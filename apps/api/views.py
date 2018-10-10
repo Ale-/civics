@@ -293,6 +293,12 @@ def initiative_service(request):
     coords        = initiative.position['coordinates']
     cityname      = initiative.city.translated_name(request.LANGUAGE_CODE) if initiative.city else 'none'
     countryname   = initiative.city.get_country_display() if initiative.city else 'none'
+    relations     = [ {
+        'nam'    : i.name,
+        'topics' : i.topic.lower(),
+        'agents' : i.agent.lower(),
+        'spaces' : i.space.lower(),
+    } for i in initiative.initiatives.all() ]
     initiative_json = {
         'id'  : initiative.pk,
         'nam' : initiative.name,
@@ -309,6 +315,7 @@ def initiative_service(request):
         'twi' : initiative.twitter,
         'fac' : initiative.facebook,
         'url' : initiative.external_url,
+        'rel' : relations,
         'cities' : cityname,
         'topics' : initiative.topic.lower(),
         'agents' : initiative.agent.lower(),

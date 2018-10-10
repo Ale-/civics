@@ -6,6 +6,7 @@ from django.contrib import admin
 from django.views.generic.base import TemplateView
 from django.contrib.auth import views as auth_views
 from django.conf.urls.i18n import i18n_patterns
+from django.views.i18n import JavaScriptCatalog
 # Import contrib apps
 from registration.forms import RegistrationFormUniqueEmail
 from registration.backends.default.views import RegistrationView
@@ -16,6 +17,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^i18n/', include('django.conf.urls.i18n')),
     url(r'^api/', include('apps.api.urls', namespace="api")),
+    url(r'^jsi18n/', JavaScriptCatalog.as_view(), name='javascript-catalog'),
 ]
 
 urlpatterns += i18n_patterns(

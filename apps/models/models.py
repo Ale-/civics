@@ -129,6 +129,9 @@ class Initiative(models.Model):
   other_ods     = models.ManyToManyField(ODS, verbose_name=_('Otros ODS'), blank=True, related_name='initiatives',
                                     help_text=_('Indícanos otros Objetivos de Desarrollo Sostenible (ODS) con los que también trabaja tu iniciativa (máximo 3). Puedes deseleccionar y hacer selecciones múltiples usando el ratón con la tecla Ctrl pulsada (Command en MAC)'))
 
+  # Relations
+  initiatives   = models.ManyToManyField('self', verbose_name=_('Relaciones'))
+
   class Meta:
     verbose_name        = _('Iniciativa')
     verbose_name_plural = _('Iniciativas')

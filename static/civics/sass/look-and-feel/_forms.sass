@@ -141,3 +141,51 @@
 
 input[name=image]
   margin-top: 0
+
+// FilteredSelectMultiple in Initiative form
+
+.modelform--initiative .selector-available,
+.modelform--initiative .selector-chosen
+  +breakpoint('sm')
+    display: inline-block
+    width: 40%
+    vertical-align: top
+.modelform--initiative .selector-chooser
+  margin-bottom: $m
+  +breakpoint('sm')
+    display: inline-block
+    width: 15%
+    padding-top: $m*4
+  text-transform: uppercase
+  font-size: .75em
+  font-weight: bold
+  text-align: center
+  +no_links($color_text)
+  a
+    display: block
+    max-width: $m*4
+    margin: $m/2 auto
+    padding: 8px
+    background-color: #ddd
+    +border-radius(4px)
+    +transition(background-color .2s ease)
+    &:hover
+      background-color: #ccc
+  .selector-add:after
+    content: "↦"
+    margin-left: $m/3
+    color: #555
+  .selector-remove:before
+    content: "↤"
+    margin-right: $m/3
+    color: #555
+.modelform--initiative .selector-available > h2,
+.modelform--initiative .selector-chosen > h2
+  font-size: .75em
+  text-transform: uppercase
+  margin-top: $m/2
+.modelform--initiative .selector-chooseall,
+.modelform--initiative .selector-clearall,
+  display: none
+.modelform--initiative #id_initiatives_input
+  margin-bottom: 0

@@ -3,10 +3,14 @@ from django.utils.translation import ugettext_lazy as _
 from django import forms
 from django_countries import countries
 from django.core.exceptions import ValidationError
+from django.contrib.admin.widgets import FilteredSelectMultiple
+from django.urls import reverse_lazy
 # custom
+from django.conf import settings
 from . import models, categories
 from apps.utils.fields import GroupedModelChoiceField
 from apps.utils.widgets import VideoWidget, PictureWithPreviewWidget, ReducedLeafletWidget, LimitedTextareaWidget, SelectOrAddWidget, GeocodedLeafletWidget
+
 
 def group_label(country_key):
     if country_key:
@@ -31,6 +35,18 @@ class InitiativeForm(forms.ModelForm):
                                    help_text=_('Ciudad donde se encuentra la iniciativa. Si no encuentras la ciudad en el desplegable usa el botón inferior para añadirla.'),
                                    group_by_field='country', group_label=group_label,
                                    empty_label=" ", widget = SelectOrAddWidget(view_name='modelforms:create_city_popup', link_text=_("Añade una ciudad")))
+    initiatives = forms.ModelMultipleChoiceField(queryset=models.Initiative.objects.order_by('name'),
+                                                 label=_('Iniciativas relacionadas'),
+                                                 help_text=_('Escoge de la columna izquierda las iniciativas relacionadas con la tuya y seleccionalas pasándolas a la columna derecha pulsando el botón "Elegir". '
+                                                             'Puedes usar el filtro de la columna izquierda para buscar las iniciativas por su nombre. Ten en cuenta que éste es sensible a mayúsculas, minúsculas y signos de puntuación. '
+                                                             'Escoge un máximo de 4 iniciativas y no selecciones la tuya propia. Puedes hacer selecciones múltiples con la tecla Ctrl pulsada (Command en MAC)'),
+                                                 required=False,
+                                                 widget=FilteredSelectMultiple(_('Elementos'), False,))
+
+    class Media:
+        js = [
+            reverse_lazy('javascript-catalog'),
+        ]
 
     class Meta:
         model   = models.Initiative
@@ -46,6 +62,14 @@ class InitiativeForm(forms.ModelForm):
         self.base_fields['video'].widget.attrs['placeholder'] = _("Por ejemplo 'https://vimeo.com/45130145'")
         self.base_fields['main_ods'].empty_label = _("Escoge un ODS")
         super(InitiativeForm, self).__init__(*args, **kwargs)
+
+    def clean_initiatives(self):
+        cleaned_initiatives = self.cleaned_data.get('initiatives')
+        if cleaned_initiatives.count() > 4:
+            raise forms.ValidationError(_('Indica un máximo de 4 iniciativas.'))
+        if cleaned_initiatives.filter(pk=self.instance.pk).exists():
+            raise forms.ValidationError(_('No puedes añadir tu iniciativa a este campo. Seleccionala en la columna derecha y usa el botón "Eliminar" para quitarla de la selección.'))
+        return cleaned_initiatives
 
     def clean(self):
         cleaned_data = super(InitiativeForm, self).clean()

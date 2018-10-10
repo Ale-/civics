@@ -103,4 +103,22 @@
             <span class="icon-email"></span> <a href="mailto:{{ info.marker.ema }}" target="_blank">{{ info.marker.ema }}</a>
         </p>
     </div>
+
+    <!-- Profile details -->
+    <div class='initiative-info__relations' ng-if="info.marker.rel.length > 0">
+        <h6 class="initiative-info__relations-label">
+              {{ 'Iniciativas relacionadas' | t }}
+        </h6>
+        <ul class="initiative-info__relations-items">
+            <li class="initiative-info__relations-item" ng-repeat="i in info.marker.rel">
+                <div class="leaflet-marker-icon cm">
+                    <i class='outer i-to-{{ i.topics }} i-ag-{{ i.agents }}'></i>
+                    <i class='inner i-sp-{{ i.spaces }}'></i>
+                </div>
+                <p class="initiative-info__relations-item-name">
+                    {{ i.nam }}
+                </p>
+            </li>
+        </ul>
+    </div>
 </div>

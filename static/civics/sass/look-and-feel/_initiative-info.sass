@@ -119,7 +119,7 @@
   margin-bottom: $m/2
 
 .initiative-marker__description
-  margin: $m*2 $m
+  margin: $m*1.25 $m
 
 [class^='initiative-info__detail--']
   margin: $m/3 0
@@ -173,3 +173,19 @@
   font-size: .75em
   color: #555
   display: block
+
+.initiative-info__relations
+  padding: $m
+  font-size: .8em
+.initiative-info__relations-label
+  text-transform: uppercase
+  margin: 0 0 $m/3
+  border-bottom: 1px solid $color_text
+.initiative-info__relations .leaflet-marker-icon.cm
+  text-align: left
+  float: left
+  +transform(scale(.75))
+.initiative-info__relations-item
+  clear: both
+.initiative-info__relations-item-name
+  padding: $m*.75 $m $m $m*2
