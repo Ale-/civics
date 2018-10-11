@@ -125,6 +125,7 @@ angular.module('civics.i18n', [])
           // Other
           'Promueve' : 'Promove',
           'Saber más sobre' : 'Saiba mais sobre',
+          'Iniciativas relacionadas' : 'Iniciativas relacionadas',
         },
         en: {
             //views/content-list.html
@@ -236,6 +237,7 @@ angular.module('civics.i18n', [])
             // Other
             'Promueve' : 'Promoted by',
             'Saber más sobre' : 'Know more about',
+            'Iniciativas relacionadas' : 'Related initiatives',
           }
     };
 
