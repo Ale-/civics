@@ -29,6 +29,7 @@ angular.module('civics.map_controller', [])
     } else {
         this.center = Settings.map_defaults.center;
     }
+    this.highlight_markers = false;
 
     /**
      *  Section state
@@ -279,9 +280,35 @@ angular.module('civics.map_controller', [])
         }
     }
 
-    $scope.$on('open-marker', angular.bind(this, function(){
+    $scope.$on('open-marker', angular.bind(this, function(event, args){
         this.sharing_url = false;
         this.show_help = false;
+        // Highlight selected initiative and related initiatives
+        // Fade all markers
+        this.highlight_markers = true;
+        // If there's any selected marker unselect it and its related initiatives
+        var featured = document.querySelector('.cm.featured');
+        if(featured)
+          featured.classList.remove('featured');
+        var related = document.querySelectorAll('.cm.related');
+        if(related) related.forEach( function(initiative){
+            initiative.classList.remove('related');
+        })
+        // Highlight current marker
+        var marker   = document.querySelector('.cm--' + args.id);
+        marker.classList.add('featured');
+        // Highlight related
+        for(var i in args.rel){
+            var id = args.rel[i].id;
+            var m  = document.querySelector('.cm--' + id);
+            if(m)
+                m.classList.add('related');
+        }
+    }));
+
+    // Unselect markers when closing popup
+    $scope.$on('close-marker', angular.bind(this, function(){
+          this.highlight_markers = false;
     }));
 
     $scope.$on("leafletDirectiveMap.civics-map.moveend", function(event, args) {

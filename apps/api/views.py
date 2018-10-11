@@ -295,6 +295,7 @@ def initiative_service(request):
     countryname   = initiative.city.get_country_display() if initiative.city else 'none'
     relations     = [ {
         'nam'    : i.name,
+        'id'     : i.id,
         'topics' : i.topic.lower(),
         'agents' : i.agent.lower(),
         'spaces' : i.space.lower(),

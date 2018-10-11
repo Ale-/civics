@@ -71,7 +71,7 @@ angular.module('civics.initiatives_service', [])
                 leafletMarker.setIcon( L.divIcon({
                     'iconSize'    : [40, 60],
                     'iconAnchor'  : [20, 60],
-                    'className'   : 'cm',
+                    'className'   : 'cm cm--' + data.id,
                     'html'        : "<i class='outer i-to-" + data.topics + " i-ag-" + data.agents + "'></i>" +
                                     "<i class='inner i-sp-" + data.spaces + "'></i>",
                 }) );

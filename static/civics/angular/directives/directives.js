@@ -28,13 +28,11 @@ angular.module('civics.directives', [])
         controller: 'MarkerinfoController',
         controllerAs: 'info',
         templateUrl: path.replace('directives.js', 'marker-info.html'),
-        //templateUrl: 'static/civics/angular/directives/marker-info.html',
         replace: true
     }
 })
 
-.controller('MarkerinfoController', function(Categories, $scope, meta, $sce){
-     /** Video */
+.controller('MarkerinfoController', function(Categories, $scope, meta, $sce, $rootScope){
      /** Root scope event fired from the services that create the markers **/
      $scope.$on('open-marker', angular.bind(this, function(event, args){
           this.expanded = true;
@@ -48,6 +46,10 @@ angular.module('civics.directives', [])
               this.marker.activitiesname = Categories.activities[ this.marker.activities ];
           this.showing = meta.showing;
      }));
+     this.closePopup = function(){
+          this.expanded = false;
+          $rootScope.$broadcast('close-marker');
+     }
 })
 
 /**
