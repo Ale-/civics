@@ -126,6 +126,7 @@ angular.module('civics.i18n', [])
           'Promueve' : 'Promove',
           'Saber más sobre' : 'Saiba mais sobre',
           'Iniciativas relacionadas' : 'Iniciativas relacionadas',
+          'Las iniciativas relacionadas están conectadas por líneas discontinuas con la iniciativa seleccionada' : 'Iniciativas relacionadas são conectadas por linhas tracejadas com a iniciativa selecionada',
         },
         en: {
             //views/content-list.html
@@ -238,6 +239,7 @@ angular.module('civics.i18n', [])
             'Promueve' : 'Promoted by',
             'Saber más sobre' : 'Know more about',
             'Iniciativas relacionadas' : 'Related initiatives',
+            'Las iniciativas relacionadas están conectadas por líneas discontinuas con la iniciativa seleccionada' : 'Related initiatives are connected by dashed lines with the selected initiative',
           }
     };
 

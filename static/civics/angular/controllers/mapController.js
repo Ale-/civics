@@ -11,12 +11,15 @@ angular.module('civics.map_controller', [])
 
     // Inject resolved data into the map
     var _map = {};
+    //  a feature group to hold related initiative connections
+    this.relations = new L.FeatureGroup();
     leafletData.getMap("civics-map").then(angular.bind(this, function(map)
     {
         _map = map;
         for(city in items){
             map.addLayer( items[city] );
         }
+        this.relations.addTo(map);
     }));
 
     // Map defaults
@@ -304,11 +307,28 @@ angular.module('civics.map_controller', [])
             if(m)
                 m.classList.add('related');
         }
+        // Draw lines
+        leafletData.getMap("civics-map").then(angular.bind(this, function(map)
+        {
+            this.relations.clearLayers();
+            for(var i in args.rel){
+                var line =  new L.Polyline([
+                    [args.lat, args.lng],
+                    [args.rel[i].lat, args.rel[i].lng]
+                ], {
+                    dashArray : [5, 5],
+                    color: '#ed61aa',
+                    weight: 2,
+                }).addTo(this.relations);
+            }
+
+        }));
     }));
 
     // Unselect markers when closing popup
     $scope.$on('close-marker', angular.bind(this, function(){
           this.highlight_markers = false;
+          this.relations.clearLayers();
     }));
 
     $scope.$on("leafletDirectiveMap.civics-map.moveend", function(event, args) {
