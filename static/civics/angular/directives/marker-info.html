@@ -115,7 +115,7 @@
                     <i class='outer i-to-{{ i.topics }} i-ag-{{ i.agents }}'></i>
                     <i class='inner i-sp-{{ i.spaces }}'></i>
                 </div>
-                <p class="initiative-info__relations-item-name">
+                <p class="initiative-info__relations-item-name" ng-click="info.openRelatedInfo(i.id)">
                     {{ i.nam }}
                 </p>
             </li>

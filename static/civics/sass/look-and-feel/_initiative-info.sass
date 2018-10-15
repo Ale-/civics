@@ -187,6 +187,10 @@
   +transform(scale(.75))
 .initiative-info__relations-item
   clear: both
+  +transition(background-color, .2s ease)
+  &:hover
+    cursor: pointer
+    background-color: #eee
 .initiative-info__relations-item-name
   padding: $m*.75 $m $m $m*2
 .initiative-info__relations-desc
