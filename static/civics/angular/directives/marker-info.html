@@ -45,7 +45,6 @@
         </p>
     </div>
 
-    <!-- Event details -->
     <div class='initiative-info__event-details' ng-if="info.showing=='events'">
         <p class="initiative-info__detail--date">
             <span class="icon-event-date"></span> {{ info.marker.dat}} <span ng-if="info.marker.exp">{{ 'hasta' | t }} {{ info.marker.exp }}</span>
@@ -58,6 +57,16 @@
         </p>
         <p class="initiative-info__detail--address">
             <span class="icon-event-address"></span> {{ info.marker.add }} ({{ info.marker.cities }})
+        </p>
+    </div>
+
+    <!-- Initiative ODS -->
+    <div class='initiative-info__ods' ng-if="info.marker.ods">
+        <p class='initiative-info__ods-label'>
+            Objetivo de desarrollo sostenible principal de la iniciativa
+        </p>
+        <p class='initiative-info__ods-value'>
+            {{ info.marker.ods }}
         </p>
     </div>
 

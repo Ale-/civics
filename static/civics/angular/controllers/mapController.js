@@ -73,13 +73,14 @@ angular.module('civics.map_controller', [])
     else
         this.cities = Categories.city_events;
     this.topics = Categories.topics;
+    this.ods    = Categories.ods;
     this.spaces = Categories.spaces;
     this.agents = Categories.agents;
     this.activities = Categories.activities;
 
     // Init filters
     if(this.section == 'initiatives') {
-        categories = ['cities', 'topics', 'spaces', 'agents' ];
+        categories = ['cities', 'topics', 'ods', 'spaces', 'agents' ];
         this.time_scope = 'all';
     } else {
         categories = ['cities', 'topics', 'activities', 'agents' ];

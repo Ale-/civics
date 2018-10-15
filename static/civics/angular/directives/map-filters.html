@@ -38,6 +38,20 @@
                 </li>
             </ul>
         </li>
+        <li class="map-filters__filter--{{content.section}}">
+            <p class="map-filters__label">
+               <span class="icon-ods"></span>
+               <span class="map-filters__filter-name">{{ 'ODS'|t }}</span>
+            </p>
+            <ul class="map-filters__categories--{{content.section}}">
+                <li class="map-filters__category category-ods-{{key}}"
+                    ng-repeat="(key,name) in content.ods"
+                    ng-click="content.toggleFilter('ods', key)"
+                    ng-class="{ 'active' : content.active_legend_items['ods'][key] }">
+                    {{ name|t }}
+                </li>
+            </ul>
+        </li>
         <li class="map-filters__filter--{{content.section}}" ng-if="content.section == 'initiatives'">
             <p class="map-filters__label">
                 <span class="icon-space"></span>

@@ -321,6 +321,7 @@ def initiative_service(request):
         'rel' : relations,
         'cities' : cityname,
         'topics' : initiative.topic.lower(),
+        'ods'    : initiative.main_ods.get_category_display(),
         'agents' : initiative.agent.lower(),
         'spaces' : initiative.space.lower(),
     }
