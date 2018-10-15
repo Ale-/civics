@@ -130,7 +130,7 @@ class Initiative(models.Model):
                                     help_text=_('Indícanos otros Objetivos de Desarrollo Sostenible (ODS) con los que también trabaja tu iniciativa (máximo 3). Puedes deseleccionar y hacer selecciones múltiples usando el ratón con la tecla Ctrl pulsada (Command en MAC)'))
 
   # Relations
-  initiatives   = models.ManyToManyField('self', verbose_name=_('Relaciones'))
+  initiatives   = models.ManyToManyField('self', verbose_name=_('Relaciones'), blank=True)
 
   class Meta:
     verbose_name        = _('Iniciativa')

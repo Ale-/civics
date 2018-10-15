@@ -15,6 +15,7 @@ from .models import Initiative
 
 modelform_generic_template = 'pages/modelform.html'
 modelform_delete_template  = 'pages/modelform--delete.html'
+modelform_relations_template  = 'pages/modelform--relations.html'
 
 #
 #  Initiative
@@ -27,24 +28,21 @@ class InitiativeCreate(GenericCreate):
   form_class       = forms.InitiativeForm
   form__html_class = 'initiative'
   template_name    = modelform_generic_template
-  title            = _('Crea tu iniciativa')
-
-  def get_success_url(self):
-      if self.request.user.is_staff:
-          return reverse_lazy('users:dashboard')
-      else:
-          return reverse_lazy('modelforms:welcome_initiative')
+  title            = _('Crea tu iniciativa [1/2]')
 
   def form_valid(self, form):
     form.instance.user = self.request.user
-    return super(InitiativeCreate, self).form_valid(form)
+    initiative = form.save()
+    return HttpResponseRedirect(
+        reverse_lazy('modelforms:relate_initiative', kwargs={'pk' : initiative.pk })
+    )
 
   def get_context_data(self, **kwargs):
     """Pass context data to generic view."""
     context = super(InitiativeCreate, self).get_context_data(**kwargs)
     context['form__html_class'] = self.form__html_class
     context['form__action_class'] = 'form-create'
-    context['submit_text'] = _('Crea la iniciativa')
+    context['submit_text'] = _('Crea la iniciativa y añade relaciones con otras iniciativas')
     return context
 
 
@@ -75,6 +73,31 @@ class InitiativeEdit(GenericUpdate):
     context['object_id']          = pk
     context['submit_text'] = _('Guarda los cambios')
     return context
+
+class InitiativeRelate(GenericUpdate):
+  """Generic view to edit Initiative objects."""
+  model            = models.Initiative
+  form_class       = forms.RelationsForm
+  form__html_class = 'relations'
+  template_name    = modelform_generic_template
+  title            = _('Relaciona tu iniciativa')
+  success_url      = reverse_lazy('users:dashboard')
+
+  def get_success_url(self):
+    return reverse_lazy('users:dashboard')
+
+  def get_context_data(self, **kwargs):
+    """Pass context data to generic view."""
+    context                       = super(InitiativeRelate, self).get_context_data(**kwargs)
+    pk                            = self.kwargs['pk']
+    initiative                    = get_object_or_404(models.Initiative, pk=pk)
+    context['title']              = self.title
+    context['form__html_class']   = self.form__html_class
+    context['form__action_class'] = 'form-relate'
+    context['object_id']          = pk
+    context['submit_text'] = _('Guarda los cambios')
+    return context
+
 
 class InitiativeDelete(GenericDelete):
   """Generic view to delete Initiative objects."""

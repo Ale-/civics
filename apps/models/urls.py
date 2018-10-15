@@ -11,6 +11,7 @@ urlpatterns = [
 
     url(r'^crea/iniciativa$', views.InitiativeCreate.as_view(), name="create_initiative"),
     url(r'^edita/iniciativa/(?P<pk>.+)$', views.InitiativeEdit.as_view(), name="edit_initiative"),
+    url(r'^relaciona/iniciativa/(?P<pk>.+)$', views.InitiativeRelate.as_view(), name="relate_initiative"),
     url(r'^borra/iniciativa/(?P<pk>.+)$', views.InitiativeDelete.as_view(), name="delete_initiative"),
     url(r'^bienvenido$', TemplateView.as_view(template_name='pages/initiative-success.html'), name="welcome_initiative"),
 

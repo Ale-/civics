@@ -46,9 +46,6 @@
         {% include 'forms/field.html' with field=form.twitter %}
         {% include 'forms/field.html' with field=form.facebook %}
     </div>
-    <div class="fieldset--inline">
-        {% include 'forms/field.html' with field=form.initiatives %}
-    </div>
     {% if request.user.is_staff %}
         <div class="fieldset--one-col">
             {% include 'forms/field.html' with field=form.featured %}

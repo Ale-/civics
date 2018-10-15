@@ -27,41 +27,28 @@ class CityForm(forms.ModelForm):
             'position'    : ReducedLeafletWidget(),
         }
 
-class InitiativeForm(forms.ModelForm):
-    """Generic modelform to create and update Initiative objects"""
+class RelationsForm(forms.ModelForm):
+    """Modelform to set relationships among initiatives"""
 
-    city = GroupedModelChoiceField(queryset=models.City.objects.order_by('country', 'name'),
-                                   label=_('Ciudad'),
-                                   help_text=_('Ciudad donde se encuentra la iniciativa. Si no encuentras la ciudad en el desplegable usa el botón inferior para añadirla.'),
-                                   group_by_field='country', group_label=group_label,
-                                   empty_label=" ", widget = SelectOrAddWidget(view_name='modelforms:create_city_popup', link_text=_("Añade una ciudad")))
-    initiatives = forms.ModelMultipleChoiceField(queryset=models.Initiative.objects.order_by('name'),
-                                                 label=_('Iniciativas relacionadas'),
+    initiatives = forms.ModelMultipleChoiceField(queryset = models.Initiative.objects.order_by('name'), label=_('Iniciativas relacionadas'),
                                                  help_text=_('Escoge de la columna izquierda las iniciativas relacionadas con la tuya y seleccionalas pasándolas a la columna derecha pulsando el botón "Elegir". '
                                                              'Puedes usar el filtro de la columna izquierda para buscar las iniciativas por su nombre. Ten en cuenta que éste es sensible a mayúsculas, minúsculas y signos de puntuación. '
                                                              'Escoge un máximo de 4 iniciativas y no selecciones la tuya propia. Puedes hacer selecciones múltiples con la tecla Ctrl pulsada (Command en MAC)'),
                                                  required=False,
                                                  widget=FilteredSelectMultiple(_('Elementos'), False,))
 
+    def __init__(self, *args, **kwargs):
+        super(RelationsForm, self).__init__(*args, **kwargs)
+        self.fields['initiatives'].queryset = models.Initiative.objects.filter(city=self.instance.city).order_by('name')
+
+    class Meta:
+        model = models.Initiative
+        fields = ['initiatives',]
+
     class Media:
         js = [
             reverse_lazy('javascript-catalog'),
         ]
-
-    class Meta:
-        model   = models.Initiative
-        fields  = '__all__'
-        widgets = {
-            'position'    : GeocodedLeafletWidget(submit_text='Localiza la dirección de la iniciativa', provider="google", sources="id_address id_city"),
-            'video'       : VideoWidget(width=640, height=360),
-            'image'       : PictureWithPreviewWidget(),
-            'description' : LimitedTextareaWidget(limit=500),
-        }
-
-    def __init__(self, *args, **kwargs):
-        self.base_fields['video'].widget.attrs['placeholder'] = _("Por ejemplo 'https://vimeo.com/45130145'")
-        self.base_fields['main_ods'].empty_label = _("Escoge un ODS")
-        super(InitiativeForm, self).__init__(*args, **kwargs)
 
     def clean_initiatives(self):
         cleaned_initiatives = self.cleaned_data.get('initiatives')
@@ -70,6 +57,34 @@ class InitiativeForm(forms.ModelForm):
         if cleaned_initiatives.filter(pk=self.instance.pk).exists():
             raise forms.ValidationError(_('No puedes añadir tu iniciativa a este campo. Seleccionala en la columna derecha y usa el botón "Eliminar" para quitarla de la selección.'))
         return cleaned_initiatives
+
+
+class InitiativeForm(forms.ModelForm):
+    """Generic modelform to create and update Initiative objects"""
+
+    city = GroupedModelChoiceField(queryset=models.City.objects.order_by('country', 'name'),
+                                   label=_('Ciudad'),
+                                   help_text=_('Ciudad donde se encuentra la iniciativa. Si no encuentras la ciudad en el desplegable usa el botón inferior para añadirla.'),
+                                   group_by_field='country', group_label=group_label,
+                                   empty_label=" ", widget = SelectOrAddWidget(view_name='modelforms:create_city_popup', link_text=_("Añade una ciudad")))
+
+    class Meta:
+        model   = models.Initiative
+        exclude  = [ 'intiatives', ]
+        widgets = {
+            'video'       : VideoWidget(width=640, height=360),
+            'image'       : PictureWithPreviewWidget(),
+            'description' : LimitedTextareaWidget(limit=500),
+        }
+        if settings.DEBUG:
+            widgets['position'] = ReducedLeafletWidget()
+        else:
+            widgets['position'] = GeocodedLeafletWidget(submit_text='Localiza la dirección de la iniciativa', provider="google", sources="id_address id_city")
+
+    def __init__(self, *args, **kwargs):
+        self.base_fields['video'].widget.attrs['placeholder'] = _("Por ejemplo 'https://vimeo.com/45130145'")
+        self.base_fields['main_ods'].empty_label = _("Escoge un ODS")
+        super(InitiativeForm, self).__init__(*args, **kwargs)
 
     def clean(self):
         cleaned_data = super(InitiativeForm, self).clean()

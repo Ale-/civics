@@ -43,11 +43,25 @@
     </div>
     <input class="form__submit" type="submit" value="{{ submit_text }}" />
     {% if action_class == 'form-edit' %}
+        <a class="form__relate" href="{% url 'modelforms:relate_initiative' object_id %}">
+            {% trans 'Edita las relaciones' %}
+        </a>
         {% with 'modelforms:'|add:'delete_'|add:form__html_class as edit_url %}
         <a class="form__delete" href="{% url edit_url object_id %}">
             {% trans 'Borra este contenido' %}
         </a>
         {% endwith %}
     {% endif %}
-    <span class="form__cancel" onclick="history.go(-1)">{% trans 'Cancelar' %}</span>
+    <span class="form__cancel" onclick="history.go(-1)">
+        {% if not action_class == 'form-relate' %}
+            {% trans 'Cancelar' %}
+        {% else %}
+            {% trans 'Volver atrás' %}
+        {% endif %}
+    </span>
+    {% if action_class == 'form-relate' %}
+        <a class="form__cancel" href="{% url 'users:dashboard' %}">
+            {% trans 'Cancelar e ir a tu perfil' %}
+        </a>
+    {% endif %}
 </form>

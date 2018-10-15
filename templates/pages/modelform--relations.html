@@ -1,0 +1,21 @@
+{# Modelform generic page #} {% extends 'layouts/single-fixed-column.html' %} {% load utils i18n leaflet_tags %}
+{% block body_classes %}modelform--{{ form__html_class }}{% endblock %}
+
+{# Form dependencies #}
+{% block page_header %}
+    {% if 'leaflet' in dependencies  %}
+        {% load static leaflet_tags %}
+        {% leaflet_css plugins="forms" %}
+    {% endif %}
+{% endblock %}
+
+{% block main %}
+    {% include 'pages/title.html' with title=title %}
+    {% include 'forms/form-relations.html' with form_class=form__html_class action_class=form__action_class %}
+{% endblock %}
+
+{% block page_scripts %}
+    <script type="text/javascript" src={% static 'admin/js/vendor/jquery/jquery.js' %}></script>
+    <script type="text/javascript" src={% static 'admin/js/jquery.init.js' %}></script>
+    {{ form.media }}
+{% endblock %}

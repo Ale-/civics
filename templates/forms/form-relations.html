@@ -1,0 +1,33 @@
+{# Template to render a modelform #} {% load i18n %}
+
+{% if form.errors and not form.non_field_errors %}
+    <p class="form-errors">
+        {% if form.errors.items|length == 1 %}
+            {% trans "Parece que hay un error en el formulario. Revísalo, por favor." %}
+        {% else %}
+            {% trans "Parece que hay errores en el formulario. Revísalo, por favor.." %}
+        {% endif %}
+    </p>
+{% endif %}
+
+{% if form.non_field_errors %}
+    {% for error in form.non_field_errors %}
+        <p class="form-errors">
+            {{ error }}
+        </p>
+    {% endfor %}
+{% endif %}
+
+<form enctype="multipart/form-data" action="{{ action }}" method="post" class="form--{{ form_class }} {{ action_class }}">
+    {% csrf_token %}
+    {% with 'forms/fields-'|add:form_class|add:'.html' as fields %}
+        {% include fields with form_class=form_class %}
+    {% endwith %}
+    <input class="form__submit" type="submit" value="{{ submit_text }}" />
+    <span class="form__cancel" onclick="history.go(-1)">
+        {% trans 'Volver atrás' %}
+    </span>
+    <a class="form__cancel" href="{% url 'users:dashboard' %}">
+        {% trans 'Cancelar e ir a tu perfil' %}
+    </a>
+</form>
