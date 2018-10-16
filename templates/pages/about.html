@@ -84,7 +84,7 @@
             </div>
             {% trans 'Con la colaboración de:' %}
             <div class="civics-about__logos">
-                {% for i in 53|get_range %}
+                {% for i in 55|get_range %}
                     {% with 'logos/'|addstr:forloop.counter|add:'.png' as url %}
                     <img class="civics-about__logo" src="{% img url %}" />
                     {% endwith %}
@@ -98,7 +98,7 @@
             Ana Espejo, Mariluz Arranz, Alejandro Zappala, Alfonzo Urzábal,
             Chema Blanco, David Ruíz, Carlos Salgado, David Moreno, Alejandro
             Martín, Julián Pérez, Adriano Belisario, Ines Gil, Héctor Sánchez,
-            Sergio López, David González y Ailin Vera.
+            Sergio López, David González, Ailin Vera, Bentejui Hernández y Artemi Hernández.
         {% endblocktrans %}</div>
         <div class="civics-about__license-text">{% blocktrans trimmed %}
             Esta obra está bajo <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank">
