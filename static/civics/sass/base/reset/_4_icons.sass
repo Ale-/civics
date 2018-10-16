@@ -89,6 +89,14 @@
 .i-to-in
   +t(#7f79fb, #f7d3de)
 
+.showing-ods [class*='i-to-']
+  color: inherit
+
+$ods_color_step: 360/17
+@for $i from 1 through 17
+  .showing-ods .i-ods-#{$i}::before
+    color: hsl(round($ods_color_step * $i), 45%, 50%)
+
 // Espacios
 //
 .i-sp-cc
@@ -221,3 +229,19 @@
   +i("◎")
 .icon-layers
   +i('\e835')
+
+// SDG logo  --not an icon, but a svg img--
+.icon-ods:before,
+.icon-ods-black:before
+  content: " "
+  background-size: cover
+  width: 16px
+  height: 16px
+  display: inline-block
+  position: relative
+  top: 2px
+
+.icon-ods:before
+  background-image: url('../img/logos/logo-ods--icon.svg')
+.icon-ods-black:before
+  background-image: url('../img/logos/logo-ods--icon--black.svg')

@@ -103,3 +103,29 @@
   opacity: 1 !important
 #civics-map.highlighted .leaflet-marker-icon.related
   opacity: .85 !important
+
+.ods-toggle
+  position: absolute
+  z-index: 100
+  top: 180px
+  left: 10px
+  background: white
+  display: inline-block
+  width: 26px
+  height: 26px
+  background-color: white
+  text-align: center
+  padding-top: 3px
+  +box-shadow(0 0 10px rgba(black, .25))
+  +transition(background-color, .2s ease)
+  &:hover
+    cursor: pointer
+    background-color: #eee
+.showing-ods .ods-toggle
+  background-color: #dc5099
+.ods-toggle .icon-ods
+  display: none
+.showing-ods .ods-toggle .icon-ods
+  display: inherit
+.showing-ods .ods-toggle .icon-ods-black
+  display: none

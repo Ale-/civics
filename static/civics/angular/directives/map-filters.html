@@ -24,7 +24,7 @@
                 </div>
             </ul>
         </li>
-        <li class="map-filters__filter--{{content.section}}">
+        <li class="map-filters__filter--{{content.section}} topic-filter">
             <p class="map-filters__label">
                <span class="icon-topic"></span>
                <span class="map-filters__filter-name">{{'Temática'|t}}</span>
@@ -34,6 +34,20 @@
                     ng-repeat="(key,name) in content.topics"
                     ng-click="content.toggleFilter('topics', key)"
                     ng-class="{ 'active' : content.active_legend_items['topics'][key] }">
+                    {{ name|t }}
+                </li>
+            </ul>
+        </li>
+        <li class="map-filters__filter--{{content.section}} ods-filter">
+            <p class="map-filters__label">
+               <span class="icon-ods"></span>
+               <span class="map-filters__filter-name">{{ 'ODS'|t }}</span>
+            </p>
+            <ul class="map-filters__categories--{{content.section}}">
+                <li class="map-filters__category category-ods-{{key}}"
+                    ng-repeat="(key,name) in content.ods"
+                    ng-click="content.toggleFilter('ods', key)"
+                    ng-class="{ 'active' : content.active_legend_items['ods'][key] }">
                     {{ name|t }}
                 </li>
             </ul>

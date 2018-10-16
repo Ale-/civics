@@ -1,22 +1,29 @@
-<!-- Map filters -->
-<div map-filters></div>
+<div class="map-wrapper" ng-class="{ 'showing-ods' : content.show_ods }">
+    <!-- Map filters -->
+    <div map-filters></div>
 
-<!-- Profile of selected marker -->
-<div marker-info></div>
+    <!-- Profile of selected marker -->
+    <div marker-info></div>
 
-<!-- Map viewport container including map and user actions over it -->
-<div class="map-container" ng-class="{ 'show-city-labels' : content.center.zoom < 10 }">
-    <!-- Map actions -->
-    <div map-actions></div>
-    <!-- Leaflet map -->
-    <leaflet id="civics-map" width="100%" height="500px"
-             ng-class="{ 'highlighted' : content.highlight_markers }"
-             center="content.center" defaults="content.defaults"
-             controls="content.controls" layers="content.layers">
-             <!-- Add custom control -->
-             <div leaflet-expand></div>
-    </leaflet>
+    <!-- Map viewport container including map and user actions over it -->
+    <div class="map-container" ng-class="{ 'show-city-labels' : content.center.zoom < 10 }">
+        <!-- Map actions -->
+        <div map-actions></div>
+        <!-- Leaflet map -->
+        <leaflet id="civics-map" width="100%" height="500px"
+                 ng-class="{ 'highlighted' : content.highlight_markers }"
+                 center="content.center" defaults="content.defaults"
+                 controls="content.controls" layers="content.layers">
+                 <!-- Add custom control -->
+                 <div leaflet-expand></div>
+                 <!--- ODS toggle -->
+                 <div class="ods-toggle" ng-click="content.show_ods = !content.show_ods">
+                     <span class="icon-ods"></span>
+                     <span class="icon-ods-black"></span>
+                 </div>
+        </leaflet>
+    </div>
+
+    <!-- Social widgets block -->
+    <div social></div>
 </div>
-
-<!-- Social widgets block -->
-<div social></div>

@@ -21,7 +21,7 @@
             </figure>
         </a>
         <div class="leaflet-marker-icon cm">
-            <i class='outer i-to-{{ info.marker.topics }} i-ag-{{ info.marker.agents }}'></i>
+            <i class='outer i-ods-{{ info.marker.ods.id }} i-to-{{ info.marker.topics }} i-ag-{{ info.marker.agents }}'></i>
             <i ng-if="content.section == 'initiatives'" class='inner i-sp-{{ info.marker.spaces }}'></i>
             <i ng-if="content.section == 'events'" class='inner i-ac-{{ info.marker.activities }}'></i>
         </div>
@@ -45,7 +45,6 @@
         </p>
     </div>
 
-    <!-- Event details -->
     <div class='initiative-info__event-details' ng-if="info.showing=='events'">
         <p class="initiative-info__detail--date">
             <span class="icon-event-date"></span> {{ info.marker.dat}} <span ng-if="info.marker.exp">{{ 'hasta' | t }} {{ info.marker.exp }}</span>
@@ -70,6 +69,16 @@
               {{ info.marker.ewe }}
             </a>
         </p>
+        <!-- Initiative ODS -->
+        <div class='initiative-info__ods' ng-if="info.marker.ods">
+            <p class='initiative-info__ods-label'>
+                {{ 'Objetivos de desarrollo sostenible de la iniciativa' | t }}
+            </p>
+            <p class='initiative-info__ods-value'>
+                <span class="main">{{ info.marker.ods.label }}</span>
+                <span ng-repeat="ods in info.marker.ods.other"> | {{ ods }}</span>
+            </p>
+        </div>
     </div>
 
     <!-- Profile description text -->

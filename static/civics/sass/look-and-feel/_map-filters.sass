@@ -107,6 +107,11 @@
   +border-radius(50%)
   color: #111
 
+$ods_color_step: 360/17
+@for $i from 1 through 17
+  .category-ods-#{$i}::before
+    background-color: hsl(round($ods_color_step * $i), 45%, 50%)
+
 .category-topic-dc::before
   background-color: #fdea14
 .category-topic-au::before
@@ -230,3 +235,14 @@
     color: rgba(black, .25)
   &:hover
     background-color: rgba(black, .1)
+
+// SDG behavior
+
+.ods-filter
+  display: none
+
+.showing-ods
+  .ods-filter
+    display: inherit
+  .topic-filter
+    display: none

@@ -62,6 +62,7 @@ angular.module('civics.initiatives_service', [])
                 topics : marker.topic.toLowerCase(),
                 spaces : marker.space.toLowerCase(),
                 agents : marker.agent.toLowerCase(),
+                ods    : '' + marker.main_ods,
             });
             clusters[city].RegisterMarker(m);
             meta.count++;
@@ -72,7 +73,7 @@ angular.module('civics.initiatives_service', [])
                     'iconSize'    : [40, 60],
                     'iconAnchor'  : [20, 60],
                     'className'   : 'cm cm--' + data.id,
-                    'html'        : "<i class='outer i-to-" + data.topics + " i-ag-" + data.agents + "'></i>" +
+                    'html'        : "<i class='outer i-ods-" + data.ods + " i-to-" + data.topics + " i-ag-" + data.agents + "'></i>" +
                                     "<i class='inner i-sp-" + data.spaces + "'></i>",
                 }) );
                 leafletMarker.on('click', function(e){

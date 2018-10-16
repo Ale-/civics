@@ -37,9 +37,10 @@ angular.module('civics.map_controller', [])
     /**
      *  Section state
      */
-    this.count = meta.count;
-    this.section = meta.showing;
-    this.format  = 'map';
+    this.count    = meta.count;
+    this.section  = meta.showing;
+    this.format   = 'map';
+    this.show_ods = false;
 
     // A state to reflect if clusters are fully enabled in current view
     // Map declusters when it reaches the given zoom threshold
@@ -73,13 +74,14 @@ angular.module('civics.map_controller', [])
     else
         this.cities = Categories.city_events;
     this.topics = Categories.topics;
+    this.ods    = Categories.ods;
     this.spaces = Categories.spaces;
     this.agents = Categories.agents;
     this.activities = Categories.activities;
 
     // Init filters
     if(this.section == 'initiatives') {
-        categories = ['cities', 'topics', 'spaces', 'agents' ];
+        categories = ['cities', 'topics', 'ods', 'spaces', 'agents' ];
         this.time_scope = 'all';
     } else {
         categories = ['cities', 'topics', 'activities', 'agents' ];
