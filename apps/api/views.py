@@ -29,7 +29,7 @@ no_results = _("No se han encontrado resultados que cumplan con todas las condic
 def initiatives_service(request):
     cities = City.objects.annotate(num_refs=Count('initiative')).filter(num_refs__gt=5)
     initiatives = Initiative.objects.filter(city__in=cities).select_related()
-    return JsonResponse(CivicsJSONSerializer().serialize(initiatives, fields=('name', 'position', 'image', 'city', 'topic', 'agent', 'space')), safe=False)
+    return JsonResponse(CivicsJSONSerializer().serialize(initiatives, fields=('name', 'position', 'image', 'city', 'topic', 'agent', 'space', 'main_ods')), safe=False)
 
 def events_service(request):
     cities = City.objects.annotate(num_initiatives=Count('initiative')).filter(num_initiatives__gt=5)
@@ -321,7 +321,11 @@ def initiative_service(request):
         'rel' : relations,
         'cities' : cityname,
         'topics' : initiative.topic.lower(),
-        'ods'    : initiative.main_ods.get_category_display(),
+        'ods'    : {
+            'id'    : initiative.main_ods.category,
+            'label' : initiative.main_ods.get_category_display(),
+            'other' : [ ods.get_category_display() for ods in initiative.other_ods.all() ],
+        },
         'agents' : initiative.agent.lower(),
         'spaces' : initiative.space.lower(),
     }
