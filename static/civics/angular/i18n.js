@@ -127,6 +127,7 @@ angular.module('civics.i18n', [])
           'Saber más sobre' : 'Saiba mais sobre',
           'Iniciativas relacionadas' : 'Iniciativas relacionadas',
           'Las iniciativas relacionadas están conectadas por líneas discontinuas con la iniciativa seleccionada' : 'Iniciativas relacionadas são conectadas por linhas tracejadas com a iniciativa selecionada',
+          'Objetivos de desarrollo sostenible de la iniciativa' : 'Objetivos de desenvolvimento sustentável da iniciativa',
         },
         en: {
             //views/content-list.html
@@ -240,6 +241,7 @@ angular.module('civics.i18n', [])
             'Saber más sobre' : 'Know more about',
             'Iniciativas relacionadas' : 'Related initiatives',
             'Las iniciativas relacionadas están conectadas por líneas discontinuas con la iniciativa seleccionada' : 'Related initiatives are connected by dashed lines with the selected initiative',
+            'Objetivos de desarrollo sostenible de la iniciativa' : 'Initiative\'s sustainable development goals',
           }
     };
 
