@@ -107,10 +107,14 @@
   +border-radius(50%)
   color: #111
 
-$ods_color_step: 360/17
-@for $i from 1 through 17
-  .category-ods-#{$i}::before
-    background-color: hsl(round($ods_color_step * $i), 45%, 50%)
+@if $use_ods_colors
+  @for $i from 1 through 17
+    .category-ods-#{$i}::before
+      background-color: nth($ods_colors, $i)
+@else
+  @for $i from 1 through 17
+    .category-ods-#{$i}::before
+      background-color: hsl(round($ods_color_step * $i), 45%, 50%)
 
 .category-topic-dc::before
   background-color: #fdea14

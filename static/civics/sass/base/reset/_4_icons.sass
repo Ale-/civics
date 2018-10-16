@@ -92,10 +92,14 @@
 .showing-ods [class*='i-to-']
   color: inherit
 
-$ods_color_step: 360/17
-@for $i from 1 through 17
-  .showing-ods .i-ods-#{$i}::before
-    color: hsl(round($ods_color_step * $i), 45%, 50%)
+@if $use_ods_colors
+  @for $i from 1 through 17
+    .showing-ods .i-ods-#{$i}::before
+      color: nth($ods_colors, $i)
+@else
+  @for $i from 1 through 17
+    .showing-ods .i-ods-#{$i}::before
+      color: hsl(round($ods_color_step * $i), 45%, 50%)
 
 // Espacios
 //
