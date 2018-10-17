@@ -322,13 +322,15 @@ def initiative_service(request):
         'cities' : cityname,
         'topics' : initiative.topic.lower(),
         'ods'    : {
-            'id'    : initiative.main_ods.category,
-            'label' : initiative.main_ods.get_category_display(),
-            'other' : [ ods.get_category_display() for ods in initiative.other_ods.all() ],
+            'id'    : initiative.main_ods.category if initiative.main_ods else None,
+            'label' : initiative.main_ods.get_category_display() if initiative.main_ods else None,
+            'other' : None,
         },
         'agents' : initiative.agent.lower(),
         'spaces' : initiative.space.lower(),
     }
+    if initiative.other_ods:
+      initiative_json['ods']['other'] = [ ods.get_category_display() for ods in initiative.other_ods.all() ]
     return HttpResponse(json.dumps(initiative_json), content_type="application/json")
 
 def event_service(request):
