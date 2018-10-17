@@ -76,7 +76,7 @@ class InitiativeForm(forms.ModelForm):
             'image'       : PictureWithPreviewWidget(),
             'description' : LimitedTextareaWidget(limit=500),
         }
-        if settings.GEOCODER_API_KEY:
+        if hasattr(settings, 'GEOCODER_API_KEY'):
             widgets['position'] = GeocodedLeafletWidget(submit_text='Localiza la dirección de la iniciativa', provider="google", sources="id_address id_city", key=settings.GEOCODER_API_KEY)
         else:
             widgets['position'] = ReducedLeafletWidget()
