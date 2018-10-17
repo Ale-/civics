@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-15 18:00+0000\n"
+"POT-Creation-Date: 2018-10-17 11:23+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2162,25 +2162,29 @@ msgid "Proyecto impulsado por:"
 msgstr ""
 
 #: templates/pages/about.html:81
-msgid "en la parte de Objetivos de Desarrollo Sostenible:"
+msgid ""
+"en la parte de <a href=\"http://www.laaab.es/\" target=\"_blank\">Agenda "
+"2030</a> y <a href=\"http://www.undp.org/content/undp/es/home/sustainable-"
+"development-goals.html\" target=\"_blank\"> Objetivos de Desarrollo "
+"Sostenible</a>:"
 msgstr ""
 
-#: templates/pages/about.html:85
+#: templates/pages/about.html:89
 msgid "Con la colaboración de:"
 msgstr ""
 
-#: templates/pages/about.html:94
+#: templates/pages/about.html:98
 msgid ""
 "<strong>Son muchas las personas que de una manera y otra han contribuido el "
 "desarrollo de esta plataforma digital colaborativa:</strong><br/> Esaú "
 "Acosta, Mauro Gil-Fournier, Miguel Jaenicke, Ale, Javier Esquillor, Ana "
 "Espejo, Mariluz Arranz, Alejandro Zappala, Alfonzo Urzábal, Chema Blanco, "
 "David Ruíz, Carlos Salgado, David Moreno, Alejandro Martín, Julián Pérez, "
-"Adriano Belisario, Ines Gil, Héctor Sánchez, Sergio López, David González y "
-"Ailin Vera."
+"Adriano Belisario, Ines Gil, Héctor Sánchez, Sergio López, David González, "
+"Ailin Vera, Bentejui Hernández y Artemi Hernández."
 msgstr ""
 
-#: templates/pages/about.html:103
+#: templates/pages/about.html:107
 msgid ""
 "Esta obra está bajo <a href=\"https://creativecommons.org/licenses/by-sa/4.0/"
 "\" target=\"_blank\"> Licencia Creative Commons Atribución-CompartirIgual "

@@ -78,7 +78,11 @@
                 <img class="civics-about__logo" src="{% img 'logos/vic.jpg' %}" />
                 <img class="civics-about__logo" src="{% img 'logos/segib.png' %}" />
             </div>
-            {% trans 'en la parte de Objetivos de Desarrollo Sostenible:' %}
+            {% blocktrans trimmed %}
+            en la parte de <a href="http://www.laaab.es/" target="_blank">Agenda 2030</a> y
+            <a href="http://www.undp.org/content/undp/es/home/sustainable-development-goals.html" target="_blank">
+            Objetivos de Desarrollo Sostenible</a>:
+            {% endblocktrans %}
             <div class="civics-about__logos">
                 <img class="civics-about__logo" src="{% img 'logos/aragon.png' %}" />
             </div>
