@@ -70,7 +70,7 @@ class InitiativeForm(forms.ModelForm):
 
     class Meta:
         model   = models.Initiative
-        exclude  = [ 'intiatives', ]
+        exclude  = [ 'initiatives', ]
         widgets = {
             'video'       : VideoWidget(width=640, height=360),
             'image'       : PictureWithPreviewWidget(),
