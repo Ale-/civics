@@ -76,10 +76,10 @@ class InitiativeForm(forms.ModelForm):
             'image'       : PictureWithPreviewWidget(),
             'description' : LimitedTextareaWidget(limit=500),
         }
-        if settings.DEBUG:
-            widgets['position'] = ReducedLeafletWidget()
+        if settings.GEOCODER_API_KEY:
+            widgets['position'] = GeocodedLeafletWidget(submit_text='Localiza la dirección de la iniciativa', provider="google", sources="id_address id_city", key=settings.GEOCODER_API_KEY)
         else:
-            widgets['position'] = GeocodedLeafletWidget(submit_text='Localiza la dirección de la iniciativa', provider="google", sources="id_address id_city")
+            widgets['position'] = ReducedLeafletWidget()
 
     def __init__(self, *args, **kwargs):
         self.base_fields['video'].widget.attrs['placeholder'] = _("Por ejemplo 'https://vimeo.com/45130145'")

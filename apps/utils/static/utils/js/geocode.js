@@ -111,9 +111,10 @@ function Geocoder(map, marker, geometry_field)
                     address += ", "
                 });
                 var provider = geometry_field.dataset.provider;
+                var key      = widget.querySelector("textarea").dataset.key;
                 get(geocoder[provider].api({
                       'address' : address,
-                      'key'     : widget.getAttribute('data-key'),
+                      'key'     : key,
                     }), geocoder[provider].callback
                 );
             });
