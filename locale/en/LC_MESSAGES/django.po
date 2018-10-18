@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-17 11:23+0000\n"
+"POT-Creation-Date: 2018-10-18 08:43+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -310,7 +310,11 @@ msgstr ""
 msgid "Añade una ciudad"
 msgstr "Add a city"
 
-#: apps/models/forms.py:85 apps/models/forms.py:132
+#: apps/models/forms.py:80 apps/models/forms.py:125
+msgid "Localiza la dirección"
+msgstr "Locate address"
+
+#: apps/models/forms.py:85 apps/models/forms.py:135
 msgid "Por ejemplo 'https://vimeo.com/45130145'"
 msgstr "For instance https://vimeo.com/45130145'"
 
@@ -352,15 +356,15 @@ msgstr ""
 "City where the event is held, if you do not find the city in the dropdown "
 "use the button below to add it."
 
-#: apps/models/forms.py:128 apps/models/forms.py:129
+#: apps/models/forms.py:131 apps/models/forms.py:132
 msgid "Usa el formato dd/mm/aaaa, por ejemplo '05/06/2017'"
 msgstr "Use the format dd/mm/yyyy, for example '05/06/2017 '"
 
-#: apps/models/forms.py:130
+#: apps/models/forms.py:133
 msgid "P.ej. 'Todos los martes' o 'Cada dos semanas'"
 msgstr "E.g. 'Every Tuesday' or 'Every two weeks'"
 
-#: apps/models/forms.py:131
+#: apps/models/forms.py:134
 msgid "Usa el formato hh:mm, por ejemplo '09:00'"
 msgstr "Use the format hh:mm, for example '09:00'"
 
@@ -456,13 +460,13 @@ msgstr "Image"
 #: apps/models/models.py:96
 msgid ""
 "Sube una imagen representativa de la iniciativa haciendo click en la imagen "
-"inferior. La imagen ha de tener ancho mínimo de 300 píxeles y máximo de "
+"inferior. La imagen ha de tener ancho mínimo de 600 píxeles y máximo de "
 "1920, y altura mínima de 300 píxeles y máxima de 1280. Formatos permitidos: "
 "PNG, JPG, JPEG."
 msgstr ""
 "Upload a representative image of the initiative. The image must have a "
-"minimum width of 300 pixels and a maximum of1920, and minimum height of 300 "
-"pixels and maximum height of 1280. Allowed formats:PNG, JPG, JPEG."
+"minimum width of 600 pixels and a maximum of 1920, and minimum height of 300 "
+"pixels and maximum height of 1280. Allowed formats: PNG, JPG, JPEG."
 
 #: apps/models/models.py:100 apps/models/models.py:202
 msgid "Video"
@@ -642,12 +646,12 @@ msgstr "Describe the event."
 #: apps/models/models.py:198
 msgid ""
 "Sube una imagen representativa del evento haciendo click en la imagen "
-"inferior. La imagen ha de tener ancho mínimo de 300 píxeles y máximo de "
+"inferior. La imagen ha de tener ancho mínimo de 600 píxeles y máximo de "
 "1920, y altura mínima de 300 píxeles y máxima de 1280. Formatos permitidos: "
 "PNG, JPG, JPEG."
 msgstr ""
-"Upload a representative image of the event by clicking on the image.The "
-"image must have a minimum width of 300 pixels and a maximum of1920, and "
+"Upload a representative image of the event by clicking on the image. The "
+"image must have a minimum width of 600 pixels and a maximum of 1920, and "
 "minimum height of 300 pixels and maximum height of 1280. Allowed formats:"
 "PNG, JPG, JPEG."
 
@@ -705,7 +709,7 @@ msgid ""
 "de fin en el siguiente campo"
 msgstr ""
 "Specify, in that case, the periodicity of the event. You can indicate the "
-"dateend in the next field"
+"date of end in the next field"
 
 #: apps/models/models.py:218
 msgid "Fecha de fin"
@@ -2266,8 +2270,7 @@ msgid ""
 msgstr ""
 "in the part of the <a href=\"http://www.laaab.es/\" target=\"_blank\">Agenda "
 "2030</a> and <a href=\"http://www.undp.org/content/undp/en/home/sustainable-"
-"development-goals.html\" target=\"_blank\">Sustainable Development "
-"Goals</a>:"
+"development-goals.html\" target=\"_blank\">Sustainable Development Goals</a>:"
 
 #: templates/pages/about.html:89
 msgid "Con la colaboración de:"

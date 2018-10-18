@@ -108,7 +108,7 @@ class EventForm(forms.ModelForm):
     """Generic modelform to create and update Event objects"""
 
     city = GroupedModelChoiceField(queryset=models.City.objects.order_by('country', 'name'),
-                                   label='Ciudad',
+                                   label=_('Ciudad'),
                                    help_text=_('Ciudad donde se celebra el evento. Si no encuentras la ciudad en el desplegable usa el botón inferior para añadirla.'),
                                    group_by_field='country', group_label=group_label,
                                    empty_label=" ", widget = SelectOrAddWidget(view_name='modelforms:create_city_popup', link_text=_("Añade una ciudad")) )

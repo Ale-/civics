@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-17 11:23+0000\n"
+"POT-Creation-Date: 2018-10-18 08:43+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -316,7 +316,11 @@ msgstr ""
 msgid "Añade una ciudad"
 msgstr "Adicionar uma cidade"
 
-#: apps/models/forms.py:85 apps/models/forms.py:132
+#: apps/models/forms.py:80 apps/models/forms.py:125
+msgid "Localiza la dirección"
+msgstr "Localize o endereço"
+
+#: apps/models/forms.py:85 apps/models/forms.py:135
 msgid "Por ejemplo 'https://vimeo.com/45130145'"
 msgstr "Por exemplo 'https://vimeo.com/45130145"
 
@@ -358,15 +362,15 @@ msgstr ""
 "Cidade onde o evento é realizado. Se você não encontrar a cidade no menu "
 "suspenso, use o botão inferior para adicioná-lo."
 
-#: apps/models/forms.py:128 apps/models/forms.py:129
+#: apps/models/forms.py:131 apps/models/forms.py:132
 msgid "Usa el formato dd/mm/aaaa, por ejemplo '05/06/2017'"
 msgstr "Use o formato dd/mm/aaaa, por exemplo '05/06/2017'"
 
-#: apps/models/forms.py:130
+#: apps/models/forms.py:133
 msgid "P.ej. 'Todos los martes' o 'Cada dos semanas'"
 msgstr ""
 
-#: apps/models/forms.py:131
+#: apps/models/forms.py:134
 msgid "Usa el formato hh:mm, por ejemplo '09:00'"
 msgstr "Use o formato hh:mm, por exemplo '09:00'"
 
@@ -458,10 +462,14 @@ msgstr "Imagem"
 #: apps/models/models.py:96
 msgid ""
 "Sube una imagen representativa de la iniciativa haciendo click en la imagen "
-"inferior. La imagen ha de tener ancho mínimo de 300 píxeles y máximo de "
+"inferior. La imagen ha de tener ancho mínimo de 600 píxeles y máximo de "
 "1920, y altura mínima de 300 píxeles y máxima de 1280. Formatos permitidos: "
 "PNG, JPG, JPEG."
 msgstr ""
+"Faça o upload de uma imagem representativa da iniciativa clicando na imagem "
+"abaixo. A imagem deve ter uma largura mínima de 600 pixels e um máximo de 1920, "
+"e uma altura mínima de 300 pixels e uma altura máxima de 1280. "
+"Formatos permitidos: PNG, JPG, JPEG."
 
 #: apps/models/models.py:100 apps/models/models.py:202
 msgid "Video"
@@ -643,10 +651,14 @@ msgstr "Descreva o evento"
 #: apps/models/models.py:198
 msgid ""
 "Sube una imagen representativa del evento haciendo click en la imagen "
-"inferior. La imagen ha de tener ancho mínimo de 300 píxeles y máximo de "
+"inferior. La imagen ha de tener ancho mínimo de 600 píxeles y máximo de "
 "1920, y altura mínima de 300 píxeles y máxima de 1280. Formatos permitidos: "
 "PNG, JPG, JPEG."
 msgstr ""
+"Faça o upload de uma imagem representativa do evento clicando na imagem "
+"abaixo. A imagem deve ter uma largura mínima de 600 pixels e um máximo de 1920, "
+"e uma altura mínima de 300 pixels e uma altura máxima de 1280. "
+"Formatos permitidos: PNG, JPG, JPEG."
 
 #: apps/models/models.py:204
 msgid "Enlace"
@@ -683,8 +695,6 @@ msgid "Fecha del evento"
 msgstr "Data do evento"
 
 #: apps/models/models.py:213
-#, fuzzy
-#| msgid "¿Qué día se celebra el evento?"
 msgid "Indica qué día se celebra o empieza el evento"
 msgstr "Qual dia é o evento realizado?"
 
@@ -701,22 +711,16 @@ msgid "Periodicidad"
 msgstr "Periodicidade"
 
 #: apps/models/models.py:217
-#, fuzzy
-#| msgid "Especifica, en ese caso, la periodicidad del evento."
 msgid ""
 "Especifica, en ese caso, la periodicidad del evento. Puedes indicar la fecha "
 "de fin en el siguiente campo"
 msgstr "Especifica, neste caso, a periodicidade do evento."
 
 #: apps/models/models.py:218
-#, fuzzy
-#| msgid "Fecha del evento"
 msgid "Fecha de fin"
-msgstr "Data do evento"
+msgstr "Data final"
 
 #: apps/models/models.py:219
-#, fuzzy
-#| msgid "Especifica opcionalmente un enlace para conocer mejor el evento."
 msgid ""
 "Indica opcionalmente en eventos de varios dias la fecha en que acaba el "
 "evento."
@@ -2288,11 +2292,10 @@ msgid ""
 "development-goals.html\" target=\"_blank\"> Objetivos de Desarrollo "
 "Sostenible</a>:"
 msgstr ""
-"na parte da <a href=\"http://www.laaab.es/\" target=\"_blank\">Agenda "
-"2030</a> e dos <a href=\"https://www.unric.org/pt/17-objetivos-de-desenvolvimento-sustentavel\""
-" target=\"_blank\"> Objetivos de Desenvolvimento "
-"Sustentável</a>:"
-
+"na parte da <a href=\"http://www.laaab.es/\" target=\"_blank\">Agenda 2030</"
+"a> e dos <a href=\"https://www.unric.org/pt/17-objetivos-de-desenvolvimento-"
+"sustentavel\" target=\"_blank\"> Objetivos de Desenvolvimento Sustentável</"
+"a>:"
 
 #: templates/pages/about.html:89
 msgid "Con la colaboración de:"

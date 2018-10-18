@@ -94,7 +94,7 @@ class Initiative(models.Model):
                                     validators=[validate_image_size, validate_image_type],
                                     upload_to  = initiatives_images_path,
                                     help_text=_("Sube una imagen representativa de la iniciativa haciendo click en la imagen inferior. "
-                                                "La imagen ha de tener ancho mínimo de 300 píxeles y máximo de 1920, y altura mínima "
+                                                "La imagen ha de tener ancho mínimo de 600 píxeles y máximo de 1920, y altura mínima "
                                                 "de 300 píxeles y máxima de 1280. Formatos permitidos: PNG, JPG, JPEG."))
   image_medium = ImageSpecField(source="image", processors=[processors.ResizeToFill(600, 300)], format='JPEG', options={'quality': 90})
   video         = models.CharField(_('Video'), max_length=200, blank=True, null=True,
@@ -196,7 +196,7 @@ class Event(models.Model):
                                     validators=[validate_image_size, validate_image_type],
                                     upload_to  = events_images_path,
                                     help_text=_("Sube una imagen representativa del evento haciendo click en la imagen inferior. "
-                                                "La imagen ha de tener ancho mínimo de 300 píxeles y máximo de 1920, y altura mínima "
+                                                "La imagen ha de tener ancho mínimo de 600 píxeles y máximo de 1920, y altura mínima "
                                                 "de 300 píxeles y máxima de 1280. Formatos permitidos: PNG, JPG, JPEG."))
   image_medium = ImageSpecField(source="image", processors=[processors.ResizeToFill(600, 300)], format='JPEG', options={'quality': 90})
   video        = models.CharField(_('Video'), max_length=200, blank=True, null=True,

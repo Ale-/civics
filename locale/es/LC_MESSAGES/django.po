@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-17 11:23+0000\n"
+"POT-Creation-Date: 2018-10-18 08:43+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -300,7 +300,11 @@ msgstr ""
 msgid "Añade una ciudad"
 msgstr ""
 
-#: apps/models/forms.py:85 apps/models/forms.py:132
+#: apps/models/forms.py:80 apps/models/forms.py:125
+msgid "Localiza la dirección"
+msgstr ""
+
+#: apps/models/forms.py:85 apps/models/forms.py:135
 msgid "Por ejemplo 'https://vimeo.com/45130145'"
 msgstr ""
 
@@ -335,15 +339,15 @@ msgid ""
 "desplegable usa el botón inferior para añadirla."
 msgstr ""
 
-#: apps/models/forms.py:128 apps/models/forms.py:129
+#: apps/models/forms.py:131 apps/models/forms.py:132
 msgid "Usa el formato dd/mm/aaaa, por ejemplo '05/06/2017'"
 msgstr ""
 
-#: apps/models/forms.py:130
+#: apps/models/forms.py:133
 msgid "P.ej. 'Todos los martes' o 'Cada dos semanas'"
 msgstr ""
 
-#: apps/models/forms.py:131
+#: apps/models/forms.py:134
 msgid "Usa el formato hh:mm, por ejemplo '09:00'"
 msgstr ""
 
@@ -433,7 +437,7 @@ msgstr ""
 #: apps/models/models.py:96
 msgid ""
 "Sube una imagen representativa de la iniciativa haciendo click en la imagen "
-"inferior. La imagen ha de tener ancho mínimo de 300 píxeles y máximo de "
+"inferior. La imagen ha de tener ancho mínimo de 600 píxeles y máximo de "
 "1920, y altura mínima de 300 píxeles y máxima de 1280. Formatos permitidos: "
 "PNG, JPG, JPEG."
 msgstr ""
@@ -605,7 +609,7 @@ msgstr ""
 #: apps/models/models.py:198
 msgid ""
 "Sube una imagen representativa del evento haciendo click en la imagen "
-"inferior. La imagen ha de tener ancho mínimo de 300 píxeles y máximo de "
+"inferior. La imagen ha de tener ancho mínimo de 600 píxeles y máximo de "
 "1920, y altura mínima de 300 píxeles y máxima de 1280. Formatos permitidos: "
 "PNG, JPG, JPEG."
 msgstr ""
