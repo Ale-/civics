@@ -77,7 +77,7 @@ class InitiativeForm(forms.ModelForm):
             'description' : LimitedTextareaWidget(limit=500),
         }
         if hasattr(settings, 'GEOCODER_API_KEY'):
-            widgets['position'] = GeocodedLeafletWidget(submit_text='Localiza la dirección de la iniciativa', provider="google", sources="id_address id_city", key=settings.GEOCODER_API_KEY)
+            widgets['position'] = GeocodedLeafletWidget(submit_text=_('Localiza la dirección'), provider="google", sources="id_address id_city", key=settings.GEOCODER_API_KEY)
         else:
             widgets['position'] = ReducedLeafletWidget()
 
@@ -117,11 +117,14 @@ class EventForm(forms.ModelForm):
         model = models.Event
         fields = '__all__'
         widgets = {
-            'position'    : GeocodedLeafletWidget(submit_text='Localiza la dirección de la iniciativa', provider="google", sources="id_address id_city"),
             'video'       : VideoWidget(),
             'image'       : PictureWithPreviewWidget(),
             'description' : LimitedTextareaWidget(limit=500),
         }
+        if hasattr(settings, 'GEOCODER_API_KEY'):
+            widgets['position'] = GeocodedLeafletWidget(submit_text=_('Localiza la dirección'), provider="google", sources="id_address id_city", key=settings.GEOCODER_API_KEY)
+        else:
+            widgets['position'] = ReducedLeafletWidget()
 
     def __init__(self, *args, **kwargs):
         self.base_fields['image'].widget.attrs['accept'] = 'image/*'
