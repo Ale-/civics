@@ -66,7 +66,10 @@ class InitiativeEdit(GenericUpdate):
     """Pass context data to generic view."""
     context                       = super(InitiativeEdit, self).get_context_data(**kwargs)
     pk                            = self.kwargs['pk']
-    initiative                    = get_object_or_404(models.Initiative, pk=pk)
+    try:
+        initiative = models.Initiative.objects.get(pk=pk)
+    except:
+        raise Http404("That initiative does not exist")
     context['title']              = self.title + (' ') + initiative.name
     context['form__html_class']   = self.form__html_class
     context['form__action_class'] = 'form-edit'
