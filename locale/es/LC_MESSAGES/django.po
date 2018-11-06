@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-18 08:43+0000\n"
+"POT-Creation-Date: 2018-11-06 16:56+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -285,8 +285,8 @@ msgid ""
 "derecha y usa el botón \"Eliminar\" para quitarla de la selección."
 msgstr ""
 
-#: apps/models/forms.py:66 apps/models/models.py:71 apps/models/models.py:118
-#: apps/models/models.py:220
+#: apps/models/forms.py:66 apps/models/forms.py:111 apps/models/models.py:71
+#: apps/models/models.py:118 apps/models/models.py:220
 msgid "Ciudad"
 msgstr ""
 
@@ -730,47 +730,47 @@ msgstr ""
 msgid "Edita la información de la iniciativa "
 msgstr ""
 
-#: apps/models/views.py:74 apps/models/views.py:98 apps/models/views.py:185
+#: apps/models/views.py:77 apps/models/views.py:101 apps/models/views.py:188
 msgid "Guarda los cambios"
 msgstr ""
 
-#: apps/models/views.py:83
+#: apps/models/views.py:86
 msgid "Relaciona tu iniciativa"
 msgstr ""
 
-#: apps/models/views.py:108
+#: apps/models/views.py:111
 msgid "Borra la iniciativa "
 msgstr ""
 
-#: apps/models/views.py:118
+#: apps/models/views.py:121
 msgid "¿Estás seguro de que quieres borrar esta iniciativa?"
 msgstr ""
 
-#: apps/models/views.py:119 apps/models/views.py:213
+#: apps/models/views.py:122 apps/models/views.py:216
 msgid "No, no estoy seguro."
 msgstr ""
 
-#: apps/models/views.py:136
+#: apps/models/views.py:139
 msgid "Crea un evento "
 msgstr ""
 
-#: apps/models/views.py:150
+#: apps/models/views.py:153
 msgid "Publica este evento"
 msgstr ""
 
-#: apps/models/views.py:165
+#: apps/models/views.py:168
 msgid "Edita el evento "
 msgstr ""
 
-#: apps/models/views.py:199
+#: apps/models/views.py:202
 msgid "Borra el evento "
 msgstr ""
 
-#: apps/models/views.py:211
+#: apps/models/views.py:214
 msgid "¿Estás seguro de que quieres borrar este evento?"
 msgstr ""
 
-#: apps/models/views.py:212
+#: apps/models/views.py:215
 msgid "Sí, quiero borrar este evento"
 msgstr ""
 
@@ -2182,10 +2182,10 @@ msgid ""
 "<strong>Son muchas las personas que de una manera y otra han contribuido el "
 "desarrollo de esta plataforma digital colaborativa:</strong><br/> Esaú "
 "Acosta, Mauro Gil-Fournier, Miguel Jaenicke, Ale, Javier Esquillor, Ana "
-"Espejo, Mariluz Arranz, Alejandro Zappala, Alfonzo Urzábal, Chema Blanco, "
-"David Ruíz, Carlos Salgado, David Moreno, Alejandro Martín, Julián Pérez, "
-"Adriano Belisario, Ines Gil, Héctor Sánchez, Sergio López, David González, "
-"Ailin Vera, Bentejui Hernández y Artemi Hernández."
+"Espejo, Mariluz Arranz, Alejandro Zappala, Alfonso Sánchez Uzábal, Chema "
+"Blanco, David Ruíz, Carlos Salgado, David Moreno, Alejandro Martín, Julián "
+"Pérez, Adriano Belisario, Ines Gil, Héctor Sánchez, Sergio López, David "
+"González, Ailin Vera, Pascual PG, Bentejui Hernández y Artemi Hernández."
 msgstr ""
 
 #: templates/pages/about.html:107
