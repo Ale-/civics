@@ -318,9 +318,10 @@ angular.module('civics.map_controller', [])
                     [args.lat, args.lng],
                     [args.rel[i].lat, args.rel[i].lng]
                 ], {
-                    dashArray : [5, 5],
+                    dashArray : [10, 5],
                     color: '#ed61aa',
                     weight: 2,
+                    opacity: .9,
                 }).addTo(this.relations);
             }
 
