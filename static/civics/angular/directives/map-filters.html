@@ -48,7 +48,7 @@
                     ng-repeat="(key,name) in content.ods"
                     ng-click="content.toggleFilter('ods', key)"
                     ng-class="{ 'active' : content.active_legend_items['ods'][key] }">
-                    {{ name|t }}
+                    [{{ key }}] {{ name|t }}
                 </li>
             </ul>
         </li>
