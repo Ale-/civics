@@ -19,6 +19,8 @@ TOPICS = (
     ('UP', _('Urbanismo / Patrimonio')),
     ('PC', _('Periodismo comunitario')),
     ('IN', _('Infancia')),
+    ('DI', _('Digitalización / Datos Abiertos')),
+    ('FE', _('Feminismos')),
 )
 
 SPACES = (

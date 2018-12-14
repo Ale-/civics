@@ -17,6 +17,8 @@ angular.module('civics.categories_service', [])
       'up': 'Urbanismo / Patrimonio',
       'pc': 'Periodismo comunitario',
       'in': 'Infancia',
+      'di': 'Digitalización / Datos Abiertos',
+      'fe': 'Feminismos',
     };
 
     this.spaces = {

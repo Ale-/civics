@@ -33,7 +33,7 @@ class RelationsForm(forms.ModelForm):
     initiatives = forms.ModelMultipleChoiceField(queryset = models.Initiative.objects.order_by('name'), label=_('Iniciativas relacionadas'),
                                                  help_text=_('Escoge de la columna izquierda las iniciativas relacionadas con la tuya y seleccionalas pasándolas a la columna derecha pulsando el botón "Elegir". '
                                                              'Puedes usar el filtro de la columna izquierda para buscar las iniciativas por su nombre. Ten en cuenta que éste es sensible a mayúsculas, minúsculas y signos de puntuación. '
-                                                             'Escoge un máximo de 4 iniciativas y no selecciones la tuya propia. Puedes hacer selecciones múltiples con la tecla Ctrl pulsada (Command en MAC)'),
+                                                             'Puedes hacer selecciones múltiples con la tecla Ctrl pulsada (Command en MAC)'),
                                                  required=False,
                                                  widget=FilteredSelectMultiple(_('Elementos'), False,))
 
@@ -52,8 +52,6 @@ class RelationsForm(forms.ModelForm):
 
     def clean_initiatives(self):
         cleaned_initiatives = self.cleaned_data.get('initiatives')
-        if cleaned_initiatives.count() > 4:
-            raise forms.ValidationError(_('Indica un máximo de 4 iniciativas.'))
         if cleaned_initiatives.filter(pk=self.instance.pk).exists():
             raise forms.ValidationError(_('No puedes añadir tu iniciativa a este campo. Seleccionala en la columna derecha y usa el botón "Eliminar" para quitarla de la selección.'))
         return cleaned_initiatives
