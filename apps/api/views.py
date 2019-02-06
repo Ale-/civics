@@ -6,7 +6,7 @@ from datetime import datetime
 
 # django
 from django.conf import settings
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.utils.translation import ugettext_lazy as _
 from django.http import HttpResponse, JsonResponse
 from django.db.models import Count
@@ -289,7 +289,7 @@ def media(url):
 
 def initiative_service(request):
     id = request.GET.get('id')
-    initiative    = Initiative.objects.filter(pk=id).first()
+    initiative    = get_object_or_404(Initiative, pk=id)
     coords        = initiative.position['coordinates']
     cityname      = initiative.city.translated_name(request.LANGUAGE_CODE) if initiative.city else 'none'
     countryname   = initiative.city.get_country_display() if initiative.city else 'none'

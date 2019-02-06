@@ -2,7 +2,7 @@
 from django.utils.translation import ugettext_lazy as _
 from django.shortcuts import render
 from django.urls import reverse_lazy, reverse
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, Http404
 from django.core.exceptions import PermissionDenied
 from django.contrib.auth.mixins import UserPassesTestMixin
 from django.shortcuts import get_object_or_404
@@ -64,8 +64,8 @@ class InitiativeEdit(GenericUpdate):
 
   def get_context_data(self, **kwargs):
     """Pass context data to generic view."""
-    context                       = super(InitiativeEdit, self).get_context_data(**kwargs)
-    pk                            = self.kwargs['pk']
+    context = super(InitiativeEdit, self).get_context_data(**kwargs)
+    pk = self.kwargs['pk']
     try:
         initiative = models.Initiative.objects.get(pk=pk)
     except:

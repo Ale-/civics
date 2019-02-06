@@ -84,6 +84,12 @@ class InitiativeForm(forms.ModelForm):
         self.base_fields['main_ods'].empty_label = _("Escoge un ODS")
         super(InitiativeForm, self).__init__(*args, **kwargs)
 
+    def clean_video(self):
+        video = self.cleaned_data['video']
+        if video and (not video.startswith('https://www.youtube.com') or not video.startswith('https://vimeo.com')):
+             raise forms.ValidationError(_('Las urls admitidas empiezan por "https://www.youtube.com" o "https://vimeo.com"'))
+        return video
+
     def clean(self):
         cleaned_data = super(InitiativeForm, self).clean()
         main_ods  = self.cleaned_data.get('main_ods')
