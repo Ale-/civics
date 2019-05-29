@@ -74,14 +74,17 @@
             <p class='initiative-info__ods-label'>
                 {{ 'Objetivos de desarrollo sostenible de la iniciativa' | t }}
             </p>
-            <p class='initiative-info__ods-icon'>
-                <a href="https://sustainabledevelopment.un.org/sdg{{info.marker.ods.id}}" target="_blank">
+            <div class='initiative-info__ods-icons'>
+                <a href="https://sustainabledevelopment.un.org/sdg{{ info.marker.ods.id }}"
+                   target="_blank" title="{{ info.marker.ods.label }}"
+                >
                     <img src="/static/civics/img/ods/{{ info.marker.ods.id }}.png" />
                 </a>
-            </p>
-            <div class='initiative-info__ods-value'>
-                <p>{{ info.marker.ods.label }}</p>
-                <p ng-repeat="ods in info.marker.ods.other">{{ ods }}</p>
+                <a ng-repeat="ods in info.marker.ods.other"
+                    target="_blank" title="{{ ods.label }}"
+                    href="https://sustainabledevelopment.un.org/sdg{{ ods.id }}">
+                    <img src="/static/civics/img/ods/{{ ods.id }}.png" />
+                </a>
             </div>
         </div>
     </div>

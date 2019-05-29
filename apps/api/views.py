@@ -330,7 +330,12 @@ def initiative_service(request):
         'spaces' : initiative.space.lower(),
     }
     if initiative.other_ods:
-      initiative_json['ods']['other'] = [ ods.get_category_display() for ods in initiative.other_ods.all() ]
+        initiative_json['ods']['other'] = [
+            {
+                'label' : ods.get_category_display(),
+                'id'    : ods.category
+            }  for ods in initiative.other_ods.all()
+        ]
     return HttpResponse(json.dumps(initiative_json), content_type="application/json")
 
 def event_service(request):

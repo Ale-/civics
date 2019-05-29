@@ -15,6 +15,8 @@
 .initiative-info__name
   text-transform: uppercase
   margin: $m/2 $m 0
+  line-height: 1.1
+  margin-bottom: $m/3
   font-size: 1.3rem
 
 .initiative-actions
@@ -119,7 +121,7 @@
   margin-bottom: $m/2
 
 .initiative-marker__description
-  margin: $m*1.25 $m
+  margin: $m/2 $m $m*1.5
 
 [class^='initiative-info__detail--']
   margin: $m/3 0
@@ -199,15 +201,26 @@
 .initiative-info__ods
   margin-bottom: $m
   +clearfix
+  a
+    border: 0
+  img
+    border-radius: 6px
+    transition: opacity .2s ease
+  a:hover
+    img
+      opacity: .75
 .initiative-info__ods-label
-  margin: $m/2 0
+  margin: $m 0 $m/2
   text-transform: uppercase
   font-weight: bold
   font-size: .8em
-.initiative-info__ods-value p
-  font-size: .8em !important
-  margin-bottom: 0
-.initiative-info__ods-icon
-  max-width: $m*3
-  float: left
-  margin-right: $m/2
+  color: #333
+.initiative-info__ods-icons
+  a
+    display: inline-block
+    vertical-align: middle
+    margin-left: 6px
+  img
+    max-width: $m*3
+  a:first-child img
+    max-width: $m*4 !important
