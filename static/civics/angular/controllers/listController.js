@@ -10,6 +10,7 @@ angular.module('civics.list_controller', [])
      *  Content setup
      */
     this.markers = items;
+    console.log(this.markers[0]);
     for(i in this.markers)
       this.markers[i].filtered = false;  // Show markers by default
 

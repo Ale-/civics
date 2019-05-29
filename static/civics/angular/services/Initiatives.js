@@ -28,15 +28,23 @@ angular.module('civics.initiatives_service', [])
         var initiatives = initiatives_data.get('initiatives');
         for(var i in initiatives){
             initiative = initiatives[i];
-            items.push({
+            var marker = {
                   name   : initiative.name,
                   pk     : initiative.pk,
                   topics : initiative.topic.toLowerCase(),
                   agents : initiative.agent.toLowerCase(),
                   spaces : initiative.space.toLowerCase(),
+                  topicname : Categories.topics[ initiative.topic.toLowerCase() ],
+                  agentname : Categories.agents[ initiative.agent.toLowerCase() ],
+                  ods    : initiative.main_ods,
                   cities : initiative.city,
                   img    : initiative.image,
-            });
+            };
+            if(initiative.space)
+                marker.spacename = Categories.spaces[ initiative.space.toLowerCase() ];
+            if(initiative.activity)
+                marker.activitiesname = Categories.activities[ initiative.activity.toLowerCase() ];
+            items.push(marker);
         }
         meta.count = items.length;
         return items;

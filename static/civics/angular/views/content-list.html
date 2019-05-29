@@ -35,17 +35,35 @@
         <div class="grid__item"
              ng-repeat="marker in content.markers | filter: { filtered : false } | limitTo:content.current_items:content.starting_index"
              ng-click="content.show(marker)">
-            <img ng-show="marker.img" ng-src="{{ marker.img }}" />
-            <img ng-hide="marker.img" src="/static/civics/img/blank.png" />
+            <p class="grid__item-city">{{ content.cityname(marker.cities) }}</p>
+            <figure class="grid__item-image">
+                <img ng-show="marker.img" ng-src="{{ marker.img }}" />
+                <div ng-hide="marker.img" class="leaflet-marker-icon cm">
+                    <i class='outer i-ods-{{ marker.ods.id }} i-to-{{ marker.topics }} i-ag-{{ marker.agents }}'></i>
+                    <i ng-if="content.section == 'initiatives'" class='inner i-sp-{{ marker.spaces }}'></i>
+                    <i ng-if="content.section == 'events'" class='inner i-ac-{{ marker.activities }}'></i>
+                </div>
+            </figure>
             <div dates date='{{marker.date|date:"yyyy-MM-dd"}}' expiration='{{marker.expiration|date:"yyyy-MM-dd"}}'
                  ng-if="content.section == 'events'">
             </div>
             <div class="grid__item-caption">
-              <p class="grid__item-name" ng-if="content.section=='initiatives'">{{ marker.name }}</p>
-              <p class="grid__item-name" ng-if="content.section=='events'">{{ marker.title }}</p>
-              <p class="grid__item-city">{{ content.cityname(marker.cities) }}</p>
+                <p class='grid__item-ods' ng-show="marker.ods">
+                    <a href="https://sustainabledevelopment.un.org/sdg{{ marker.ods }}" target="_blank">
+                        <img src="/static/civics/img/ods/{{ marker.ods }}.png" />
+                    </a>
+                </p>
+                <p class="grid__item-name" ng-if="content.section=='initiatives'">{{ marker.name }}</p>
+                <p class="grid__item-name" ng-if="content.section=='events'">{{ marker.title }}</p>
             </div>
+            <p class="grid__item-categories">
+              <span class="grid__item-topic">{{ marker.topicname | t }}</span> —
+              <span class="grid__item-agent">{{ marker.agentname | t }}</span> —
+              <span class="grid__item-space">{{ marker.spacename | t }}</span>
+              <span class="grid__item-activity">{{ marker.activitiesname | t }}</span>
+            </p>
         </div>
+
         <div class="initiatives-grid__pager bottom" ng-hide="content.markers.length == 0">
             <p class="initiatives-grid__pager-links">
                 <span class="initiatives-grid__pager-link"
