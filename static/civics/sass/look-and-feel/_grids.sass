@@ -5,7 +5,7 @@
   padding: $m
   +breakpoint('md')
     padding: $m*4 $m*6
-  background: image-url('signin-bg.png') repeat #eae9e9
+  //background: image-url('signin-bg.png') repeat #eae9e9
   height: calc(100vh - 128px)
   overflow-y: auto
   +transition(left .1s ease)
@@ -24,17 +24,22 @@
 .grid__item
   +inline-block
   width: 100%
-  padding: $m/4
   position: relative
   +breakpoint('sm')
     width: 50%
   +breakpoint('md')
-    width: 33%
+    width: 50%
   +breakpoint('lg')
-    width: 25%
+    width: 33%
+
+.grid__item-wrapper
+  margin: $m/4
+  box-shadow: 0 0 10px rgba(black, .25)
+  outline: 2px solid transparent
+  transition: outline-color .2s ease
   &:hover
     cursor: pointer
-    outline: 2px solid #ddd
+    outline: 2px solid #dc5099
 
 .grid__item img
   +box_shadow(0 0 5px rgba(black, .25))
@@ -53,12 +58,12 @@
   font-size: $size_small
 
 .grid__item-categories
-  font-size: .8em
+  font-size: .7em
   line-height: 1
   padding: 6px
   background-color: #f5f5f5
   border-top: 1px solid rgba(black, .1)
-  color: #555
+  color: #333
 
 .grid__item-ods
   max-width: 64px
@@ -85,7 +90,7 @@
 
 .initiatives-grid__pager
   +clearfix
-  margin-bottom: $m*1.5
+  margin-bottom: $m
   font-size: .8em
   padding: $m/4
 .initiatives-grid__pager.bottom
@@ -144,7 +149,7 @@
   +clearfix
   & .leaflet-marker-icon
     display: inline-block
-    margin: $m/2 0
+    margin: $m 0
   img
     float: left
 
