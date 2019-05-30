@@ -144,12 +144,14 @@
   +border-radius(12px)
 
 .grid__item-image
-  background: white
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAADklEQVQImWNgQAVSZHAADXgAaQuCV7gAAAAASUVORK5CYII=) repeat white
   text-align: center
   +clearfix
   & .leaflet-marker-icon
     display: inline-block
     margin: $m 0
+  & .outer::before
+    text-shadow: none !important
   img
     float: left
 

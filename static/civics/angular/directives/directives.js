@@ -32,7 +32,7 @@ angular.module('civics.directives', [])
     }
 })
 
-.controller('MarkerinfoController', function(Categories, $scope, meta, $sce, $rootScope, $http){
+.controller('MarkerinfoController', function(Categories, $scope, meta, $sce, $rootScope, $http, Langs){
      /** Root scope event fired from the services that create the markers **/
      $scope.$on('open-marker', angular.bind(this, function(event, args){
           this.expanded = true;
@@ -57,6 +57,7 @@ angular.module('civics.directives', [])
              $rootScope.$broadcast('open-marker', response.data);
          });
      }
+     this.lang = Langs.lang;
 })
 
 /**

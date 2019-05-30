@@ -8,7 +8,7 @@
   background: white
   +inline-block
   padding: 0 0 $m*2
-  +links_info
+  +links_initiatives
   max-height: calc(100vh - 100px)
   overflow-y: auto
 
@@ -50,9 +50,11 @@
 
 .initiative-info__details
   font-size: .7em
-  margin: $m*1.5 $m 0
+  margin: $m*1.5 0 0
+  padding: $m/2 $m $m
   clear: both
   z-index: 100
+  background-color: #eee
 
 .initiative-info__detail
   margin-bottom: $m
@@ -107,9 +109,6 @@
   line-height: 26px
   vertical-align: middle
 
-[class^='initiative-info__detail']
-  font-size: .9em
-
 .initiative-info__description--calendar
   margin-top: $m
 
@@ -131,6 +130,8 @@
     text-align: center
     color: #555
     margin-right: $m/2
+    vertical-align: middle
+    opacity: .5
 
 .initiative-info__detail--initiative
   border-bottom: 1px dotted $color_text
@@ -224,3 +225,8 @@
     max-width: $m*3
   a:first-child img
     max-width: $m*4 !important
+.initiative-info__detail--address .icon-event-address
+  width: 24px
+  font-size: 24px
+  line-height: 24px
+  text-indent: 4px

@@ -38,13 +38,6 @@
         </div>
     </div>
 
-    <!-- Initiative details -->
-    <div class='initiative-info__initiative-details' ng-if="info.showing=='initiatives'">
-        <p class="initiative-info__detail--address">
-            <span class="icon-event-address"></span> {{ info.marker.add }} ({{ info.marker.cities }})
-        </p>
-    </div>
-
     <div class='initiative-info__event-details' ng-if="info.showing=='events'">
         <p class="initiative-info__detail--date">
             <span class="icon-event-date"></span> {{ info.marker.dat}} <span ng-if="info.marker.exp">{{ 'hasta' | t }} {{ info.marker.exp }}</span>
@@ -106,6 +99,13 @@
                 {{ info.marker.ini }}
             </a>
           </a>
+        </p>
+        <!-- Initiative details -->
+        <p class="initiative-info__detail--address" ng-if="info.showing=='initiatives'">
+            <span class="icon-event-address"></span> {{ info.marker.add }} ({{ info.marker.cities }})
+            <a href="/{{ info.lang }}/#!/iniciativas?center={{ info.marker.lat }},{{ info.marker.lng }},16">
+                [{{ 'ver' | t }}]
+            </a>
         </p>
         <p class="initiative-info__detail--website" ng-show="info.marker.web">
             <span class="icon-website"></span> <a href="{{ info.marker.web }}" target="_blank">{{ info.marker.web }}</a>
