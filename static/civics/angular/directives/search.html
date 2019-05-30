@@ -3,8 +3,13 @@
 <div class="map-actions__search">
     <input class="map-actions__search-input" type="text"
            ng-change="search.query()"
-           ng-model="search.name"/>
-    <label class="map-actions__search-label">{{'Busca por nombre'|t}}</label>
+           ng-model="search.name"
+    />
+    <label class="map-actions__search-label">{{ 'Busca por' | t }}</label>
+    <select class="map-actions__search-type" ng-model="search.type">
+        <option value="name">{{ 'Nombre' | t }}</option>
+        <option value="concept">{{ 'Concepto' | t }}</option>
+    </select>
     <div class="map-actions__search-results" ng-show="search.results.length > 0">
         <p class="map-actions__search-result" ng-repeat="result in search.results" ng-click="search.set(result.id)"
            ng-bind-html="result.nam">

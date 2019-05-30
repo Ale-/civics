@@ -259,15 +259,21 @@ def events_service_xls(request):
 
 def autocomplete_service(request):
     """ Returns initiatives with names beginning with the query characters. """
-    name = request.GET.get('n')
-    if(len(name) < 3):
+    type  = request.GET.get('t')
+    query = request.GET.get('q')
+    if(len(query) < 3):
         raise Exception("Queries must be longer than two characters")
-    initiatives = Initiative.objects.filter(slug__contains=slugify(name))
+
+    q = Q(slug__contains=slugify(query))
+    if type=='concept':
+        q = q|Q(description__contains=query)
+    initiatives = Initiative.objects.filter(q)
     initiatives_json = []
+
     # TODO: map this!
     for initiative in initiatives:
-        q        = name.upper()
-        new_name = initiative.name.upper().replace(q, "<i>" + q + "</i>")
+        name = query.upper()
+        new_name = initiative.name.upper().replace(name, "<i>" + name + "</i>")
         initiatives_json.append({
             'id'  : initiative.pk,
             'nam' : new_name,

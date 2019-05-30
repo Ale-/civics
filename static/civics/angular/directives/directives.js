@@ -111,10 +111,11 @@ angular.module('civics.directives', [])
 
 .controller('SearchController', function($scope, $http, $rootScope, leafletData){
      this.results = [];
+     this.type = 'name';
 
      this.query = function(){
         if(this.name.length > 2){
-            $http.get('/api/autocomplete?n=' + this.name, {
+            $http.get('/api/autocomplete?t=' + this.type + '&q=' + this.name, {
                 ignoreLoadingBar: true,
             }).then( angular.bind(this, function(response){
                 if(response.data.length > 0)
