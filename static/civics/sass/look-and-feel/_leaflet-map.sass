@@ -15,16 +15,14 @@
   .leaflet-control-attribution
     +links_normal
     background-color: white
-    letter-spacing: 1px
     font-size: $size_small
+    font-family: $font_text
+    right: $m/2
   .leaflet-control-layers-toggle
     background-image: url('../img/layers.png') !important
     background-size: cover
     width: 26px
     height: 26px
-  .leaflet-bottom.leaflet-right
-    left: 0
-    right: inherit
   .leaflet-control-layers-overlays
     display: none
   .leaflet-expand
@@ -46,6 +44,17 @@
   .fa-spinner
     +i("◎")
     color: $color_text !important
+
+  &:after
+    content: "➢"
+    color: rgba(black, .5)
+    font-size: 4em
+    position: absolute
+    z-index: 11000
+    font-weight: bold
+    bottom: $m
+    transform: rotate(-90deg)
+    font-family: sans-serif
 
 //Map clusters
 .prunecluster

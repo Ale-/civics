@@ -55,9 +55,10 @@ angular.module('civics.settings', [])
       };
 
       this.map_controls = {
+          scale: true,
           custom: [
-              L.control.locate({ follow: true })
-          ]
+              L.control.locate({ follow: true }),
+          ],
       };
 
       return this;
