@@ -50,3 +50,12 @@ def remove_i18n_prefix(value):
 @register.filter(name='check_file')
 def check_file(value):
     return value and os.path.isfile(settings.MEDIA_ROOT + "/" + value.name)
+
+@register.assignment_tag
+def FAQ():
+    return [
+        'what', 'where', 'for',
+        'community', 'who', 'categories',
+        'data', 'maintenance',
+        'support', 'impact'
+    ]

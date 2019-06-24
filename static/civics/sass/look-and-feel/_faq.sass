@@ -1,0 +1,37 @@
+// FAQ
+
+.civics-about__faq
+  margin-bottom: $m*2
+
+.faq-items
+  padding-left: $m
+
+.faq-item:hover
+  cursor: pointer
+  .faq-item__label:before
+    color: #dc5099
+
+.faq-item:not(:last-child)
+  border-bottom: 1px dotted $color_text
+
+.faq-item__text:not(.active)
+  display: none
+
+.faq-item.active .faq-item__text
+  display: block
+  padding-left: $m*2
+
+.faq-item__label
+  font-size: .8em
+  margin: $m/2 0
+  &:before
+    color: #ddd
+    content: "\271a"
+    display: inline-block
+    transition: all .2s ease
+
+.faq-item.active .faq-item__label:before
+  transform: rotate(45deg)
+
+.faq-item__text
+  margin-bottom: $m/2

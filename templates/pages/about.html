@@ -54,6 +54,26 @@
                 </p>
             </div>
         </div>
+        <div class="civics-about__faq">
+            <h5 class="civics-about__faq-title">
+                {% trans 'FAQ' %}
+            </h5>
+            <ul class="faq-items">
+                {% FAQ as FAQ %}
+                {% for question in FAQ %}
+                    {% with label='faq_'|add:question|add:'_label' text='faq_'|add:question|add:'_text' %}
+                    <li class="faq-item">
+                        <h6 class="faq-item__label">
+                            {% trans label %}
+                        </h6>
+                        <div class="faq-item__text">
+                            {% trans text|linebreaks %}
+                        </div>
+                    </li>
+                    {% endwith %}
+                {% endfor %}
+            </ul>
+        </div>
         <div class="civics-about__ethic-code">{% blocktrans trimmed %}
             <h5>Código ético y de convivencia en el proyecto CIVICS</h5>
             <ul>
@@ -114,4 +134,17 @@
             General Public License 3.0</a>.
         {% endblocktrans %}</div>
     </div>
+{% endblock %}
+
+{% block page_scripts %}
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", ()=>{
+         var faq_items = document.querySelectorAll('.faq-item');
+         faq_items.forEach(item => {
+              item.addEventListener('click', i => {
+                  item.classList.toggle('active');
+              });
+         });
+   });
+</script>
 {% endblock %}

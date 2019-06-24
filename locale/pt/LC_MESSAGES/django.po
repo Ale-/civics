@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-12-17 09:42+0000\n"
+"POT-Creation-Date: 2019-06-24 18:15+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -311,7 +311,7 @@ msgstr ""
 "Você não pode adicionar sua iniciativa a este campo. Selecione na coluna "
 "direita e use o botão \"Excluir\" para removê-lo da seleção."
 
-#: apps/models/forms.py:64 apps/models/forms.py:109 apps/models/models.py:71
+#: apps/models/forms.py:64 apps/models/forms.py:115 apps/models/models.py:71
 #: apps/models/models.py:118 apps/models/models.py:220
 msgid "Ciudad"
 msgstr "Cidade"
@@ -324,15 +324,15 @@ msgstr ""
 "Cidade onde a iniciativa está localizada. Se você não encontrar a cidade no "
 "menu suspenso, use o botão inferior para adicionálo."
 
-#: apps/models/forms.py:67 apps/models/forms.py:112
+#: apps/models/forms.py:67 apps/models/forms.py:118
 msgid "Añade una ciudad"
 msgstr "Adicionar uma cidade"
 
-#: apps/models/forms.py:78 apps/models/forms.py:123
+#: apps/models/forms.py:78 apps/models/forms.py:129
 msgid "Localiza la dirección"
 msgstr "Localize o endereço"
 
-#: apps/models/forms.py:83 apps/models/forms.py:133
+#: apps/models/forms.py:83 apps/models/forms.py:139
 msgid "Por ejemplo 'https://vimeo.com/45130145'"
 msgstr "Por exemplo 'https://vimeo.com/45130145"
 
@@ -340,7 +340,13 @@ msgstr "Por exemplo 'https://vimeo.com/45130145"
 msgid "Escoge un ODS"
 msgstr "Escolha um ODS"
 
-#: apps/models/forms.py:92
+#: apps/models/forms.py:90
+msgid ""
+"Las urls admitidas empiezan por \"https://www.youtube.com\" o \"https://"
+"vimeo.com\""
+msgstr ""
+
+#: apps/models/forms.py:98
 msgid ""
 "Si indicas los ODS de tu iniciativa has de señalar cuál de ellos es el "
 "principal."
@@ -348,17 +354,17 @@ msgstr ""
 "Se você indicar os ODS da sua iniciativa, você deve indicar qual deles é o "
 "principal."
 
-#: apps/models/forms.py:94
+#: apps/models/forms.py:100
 msgid ""
 "No repitas el objetivo principal de tu iniciativa en el campo \"Otros ODS\"."
 msgstr ""
 "Não repita o objetivo principal da sua iniciativa no campo \"Outros ODS\"."
 
-#: apps/models/forms.py:96
+#: apps/models/forms.py:102
 msgid "Indica un máximo de tres objetivos."
 msgstr "Indica um máximo de três objetivos"
 
-#: apps/models/forms.py:101
+#: apps/models/forms.py:107
 msgid ""
 "Has de proporcionar la url de una página web o de un perfil público de una "
 "red social para poder añadir tu iniciativa."
@@ -366,7 +372,7 @@ msgstr ""
 "Insira o URL de uma página da Web ou um perfil público de uma rede social "
 "para adicionar sua iniciativa"
 
-#: apps/models/forms.py:110
+#: apps/models/forms.py:116
 msgid ""
 "Ciudad donde se celebra el evento. Si no encuentras la ciudad en el "
 "desplegable usa el botón inferior para añadirla."
@@ -374,15 +380,15 @@ msgstr ""
 "Cidade onde o evento é realizado. Se você não encontrar a cidade no menu "
 "suspenso, use o botão inferior para adicioná-lo."
 
-#: apps/models/forms.py:129 apps/models/forms.py:130
+#: apps/models/forms.py:135 apps/models/forms.py:136
 msgid "Usa el formato dd/mm/aaaa, por ejemplo '05/06/2017'"
 msgstr "Use o formato dd/mm/aaaa, por exemplo '05/06/2017'"
 
-#: apps/models/forms.py:131
+#: apps/models/forms.py:137
 msgid "P.ej. 'Todos los martes' o 'Cada dos semanas'"
 msgstr ""
 
-#: apps/models/forms.py:132
+#: apps/models/forms.py:138
 msgid "Usa el formato hh:mm, por ejemplo '09:00'"
 msgstr "Use o formato hh:mm, por exemplo '09:00'"
 
@@ -2266,7 +2272,11 @@ msgstr "Mapa de atividades"
 msgid "Información"
 msgstr "Informação"
 
-#: templates/pages/about.html:57
+#: templates/pages/about.html:59
+msgid "FAQ"
+msgstr ""
+
+#: templates/pages/about.html:77
 msgid ""
 "<h5>Código ético y de convivencia en el proyecto CIVICS</h5> <ul> <li>No se "
 "aceptan iniciativas que fomenten expresiones de odio o intolerancia en temas "
@@ -2282,7 +2292,7 @@ msgstr ""
 "criar um painel de organização de atividades, tema de iniciativa, para ser "
 "modificado pelo usuário.</li> </ul>"
 
-#: templates/pages/about.html:69
+#: templates/pages/about.html:89
 #, python-format
 msgid ""
 "<h5>Política de privacidad</h5> <p>Puedes leer nuestra política de "
@@ -2293,11 +2303,11 @@ msgstr ""
 "na página enlaçada a continuação:</p> <a href=\"%(contact_url)s\">Política "
 "de privacidade de civics.cc</a>"
 
-#: templates/pages/about.html:76
+#: templates/pages/about.html:96
 msgid "Proyecto impulsado por:"
 msgstr "Este projecto é conduzido por:"
 
-#: templates/pages/about.html:81
+#: templates/pages/about.html:101
 msgid ""
 "en la parte de <a href=\"http://www.laaab.es/\" target=\"_blank\">Agenda "
 "2030</a> y <a href=\"http://www.undp.org/content/undp/es/home/sustainable-"
@@ -2309,11 +2319,11 @@ msgstr ""
 "sustentavel\" target=\"_blank\"> Objetivos de Desenvolvimento Sustentável</"
 "a>:"
 
-#: templates/pages/about.html:89
+#: templates/pages/about.html:109
 msgid "Con la colaboración de:"
 msgstr "Mediante a colaboração de:"
 
-#: templates/pages/about.html:98
+#: templates/pages/about.html:118
 #, fuzzy
 #| msgid ""
 #| "<strong>Son muchas las personas que de una manera y otra han contribuido "
@@ -2341,7 +2351,7 @@ msgstr ""
 "Pérez, Adriano Belisario, Ines Gil, Héctor Sánchez, Sergio López, David "
 "González, Ailin Vera, Pascual PG, Bentejui Hernández e Artemi Hernández."
 
-#: templates/pages/about.html:107
+#: templates/pages/about.html:127
 msgid ""
 "Esta obra está bajo <a href=\"https://creativecommons.org/licenses/by-sa/4.0/"
 "\" target=\"_blank\"> Licencia Creative Commons Atribución-CompartirIgual "
