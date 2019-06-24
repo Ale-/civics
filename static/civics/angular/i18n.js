@@ -49,7 +49,9 @@ angular.module('civics.i18n', [])
           'Actividad' : 'Atividade',
           'Agente' : 'Agente',
           //directives/search.html
-          'Busca por nombre' : 'Pesquisar por nome',
+          'Busca por' : 'Pesquisa por',
+          'Nombre' : 'Nome',
+          'Concepto' : 'Conceito',
           //directives/social-widget.html
           'Perfil de Civics en Facebook' : 'Perfil do Civismo no Facebook',
           'Perfil de Civics en Twitter' : 'Perfil do Civics no Twitter',
@@ -183,7 +185,9 @@ angular.module('civics.i18n', [])
             'Actividad' : 'Activity',
             'Agente' : 'Agent',
             //directives/search.html
-            'Busca por nombre' : 'Search by name',
+            'Busca por' : 'Search by',
+            'Nombre' : 'Name',
+            'Concepto' : 'Concept',
             //directives/social-widget.html
             'Perfil de Civics en Facebook' : 'Civics\' Facebook profile',
             'Perfil de Civics en Twitter' : 'Civics\' Twitter profile',

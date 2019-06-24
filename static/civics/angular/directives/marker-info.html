@@ -102,9 +102,9 @@
         </p>
         <!-- Initiative details -->
         <p class="initiative-info__detail--address" ng-if="info.showing=='initiatives'">
-            <span class="icon-event-address"></span> {{ info.marker.add }} ({{ info.marker.cities }})
+            <span class="icon-event-address"></span>
             <a href="/{{ info.lang }}/#!/iniciativas?center={{ info.marker.lat }},{{ info.marker.lng }},16">
-                [{{ 'ver' | t }}]
+                {{ info.marker.add }} ({{ info.marker.cities }})
             </a>
         </p>
         <p class="initiative-info__detail--website" ng-show="info.marker.web">
