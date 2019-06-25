@@ -44,3 +44,19 @@ class ImageTypeValidator(object):
                 raise ValidationError(_(self.type_error) % { 'name' : value.name, 'format' : mime.split('image/')[1] })
         except ValueError:
             pass
+
+@deconstructible
+class AttachedFileValidator(object):
+
+    def __init__(self, mime_types=["pdf"]):
+        self.mime_types = mime_types
+        self.type_error = r"El archivo '%(name)s' tiene un formato no válido. Revise arriba los formatos permitidos"
+
+    def __call__(self, value):
+        try:
+            mime = magic.from_buffer(value.read(), mime=True)
+            mimes = [ ("application/" + mime) for mime in self.mime_types ]
+            if mime not in mimes:
+                raise ValidationError(_(self.type_error) % { 'name' : value.name })
+        except ValueError:
+            pass

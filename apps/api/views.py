@@ -299,6 +299,7 @@ def initiative_service(request):
     coords        = initiative.position['coordinates']
     cityname      = initiative.city.translated_name(request.LANGUAGE_CODE) if initiative.city else 'none'
     countryname   = initiative.city.get_country_display() if initiative.city else 'none'
+    print(initiative.file)
     relations     = [ {
         'nam'    : i.name,
         'id'     : i.id,
@@ -332,6 +333,7 @@ def initiative_service(request):
             'label' : initiative.main_ods.get_category_display() if initiative.main_ods else None,
             'other' : None,
         },
+        'file' : initiative.file.url if initiative.file else None,
         'agents' : initiative.agent.lower(),
         'spaces' : initiative.space.lower(),
     }

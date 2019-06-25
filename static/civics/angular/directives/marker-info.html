@@ -80,6 +80,15 @@
                 </a>
             </div>
         </div>
+        <!-- Initiative attached file -->
+        <div class='initiative-info__file' ng-if="info.marker.file">
+            <p class='initiative-info__file-label'>
+                {{ 'Más información' | t }}
+            </p>
+            <a class='initiative-info__file-value' href="{{ info.marker.file }}" target="_blank">
+                {{ info.filename(info.marker.file) }}
+            </a>
+        </div>
     </div>
 
     <!-- Profile description text -->

@@ -14,7 +14,7 @@ from django_countries.fields import CountryField
 from djgeojson.fields import PointField
 # project
 from . import categories
-from .validators import ImageTypeValidator, ImageSizeValidator
+from .validators import ImageTypeValidator, ImageSizeValidator, AttachedFileValidator
 from .utils import RenameCivicsImage
 
 
@@ -22,6 +22,7 @@ from .utils import RenameCivicsImage
 
 validate_image_size     = ImageSizeValidator({ 'min_width' : 600, 'min_height' : 300, 'max_width' : 1920, 'max_height' : 1280 })
 validate_image_type     = ImageTypeValidator(["jpeg", "png"])
+validate_file_type     = AttachedFileValidator()
 initiatives_images_path = RenameCivicsImage("images/initiatives/")
 events_images_path      = RenameCivicsImage("images/events/")
 
@@ -131,6 +132,17 @@ class Initiative(models.Model):
 
   # Relations
   initiatives   = models.ManyToManyField('self', verbose_name=_('Relaciones'), blank=True)
+  file          = models.FileField(
+    _('Archivo adjunto'),
+    upload_to='files/initiatives',
+    blank=True,
+    validators=[validate_file_type],
+    help_text=_(
+        'Puedes usar este campo para subir algún documento que explique '
+        'mejor tu iniciativa. Sólo admite formato PDF.'
+    )
+  )
+
 
   class Meta:
     verbose_name        = _('Iniciativa')

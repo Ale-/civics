@@ -50,6 +50,10 @@ angular.module('civics.directives', [])
           this.expanded = false;
           $rootScope.$broadcast('close-marker');
      }
+     this.filename = function(filepath){
+         var comps = filepath.split("/");
+         return comps[comps.length-1];
+     }
      this.openRelatedInfo = function(id){
          $http.get('/api/initiative?id=' + id, {
              ignoreLoadingBar: true,
