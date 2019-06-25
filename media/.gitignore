@@ -1,3 +1,4 @@
 # Ignore images and cache here
 images/
+files/
 CACHE/

@@ -4,6 +4,7 @@ from django.utils.translation import ugettext_lazy as _
 from civics.settings import STATIC_URL, PROJECT_STATIC_FOLDER
 from django.utils.safestring import mark_safe
 from django.conf import settings
+from apps.models.categories import RESOURCES
 
 register = template.Library()
 
@@ -59,3 +60,16 @@ def FAQ():
         'data', 'maintenance',
         'support', 'impact'
     ]
+
+@register.simple_tag
+def resource(value):
+    resources = dict(RESOURCES)
+    return resources[value]
+
+@register.filter
+def resource_name(obj, lang):
+    return obj.get_name(lang)
+
+@register.filter
+def resource_summary(obj, lang):
+    return obj.get_summary(lang)

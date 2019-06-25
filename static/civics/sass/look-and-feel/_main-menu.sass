@@ -13,17 +13,12 @@
     display: inline-block !important
     padding: inherit
 
-.main-menu__link.active > span
-  +h(5)
-
-.main-menu__link--about.active
+[class*='main-menu__link--'].active
   +h(5)
 
 .main-menu__link--initiatives.active
-  +h(5)
   +links_initiatives
 .main-menu__link--events.active
-  +h(5)
   +links_events
 
 .main-menu__link
@@ -34,7 +29,7 @@
     font-weight: 700
   +breakpoint('sm')
     display: inline-block
-    width: 32%
+    width: 24%
     margin: 0
 
 .civics-logo--toolbar

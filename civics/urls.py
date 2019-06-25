@@ -12,6 +12,7 @@ from registration.forms import RegistrationFormUniqueEmail
 from registration.backends.default.views import RegistrationView
 # Import custom apps
 from apps.users.views import ActivationView
+from apps.models.views import Resources
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -26,6 +27,7 @@ urlpatterns += i18n_patterns(
 
     # Static URLs
     url(r'^acerca$', TemplateView.as_view(template_name='pages/about.html'), name="about"),
+    url(r'^recursos$', Resources.as_view(template_name='pages/resources.html'), name="resources"),
     url(r'^privacidad$', TemplateView.as_view(template_name='pages/privacy.html'), name="privacy"),
 
     # Registration URLs

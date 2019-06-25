@@ -1,0 +1,58 @@
+{# About page #}
+{% extends 'layouts/single-fluid-column.html' %} {% load static utils i18n %}
+{% block body_classes %}resources{% endblock %}
+
+{% block main %}
+<div class="civics-resources">
+      <h1 class="civics-resources__title">
+          {% trans 'Recursos' %}
+      </h1>
+      {% regroup object_list by category as resources_list %}
+      {% for category in resources_list %}
+      <div class="civics-resources__section">
+          <h2 class="civics-resources__section-title">
+              {% resource category.grouper %}
+          </h2>
+          <ul class="resources-list {% if category.list|length < 3 %}few{% endif %}">
+          {% for resource in category.list %}
+              <li class="resource-item">
+                  {% if request.user.is_staff %}
+                      <a class="resource-item__edit"
+                         href="{% url 'admin:models_resource_change' resource.pk %}">
+                         {% trans 'Edita' %}
+                      </a>
+                  {% endif %}
+                  {% if resource.url %}
+                  <a href="{{ resource.url }}" target="_blank">
+                  {% elif resource.file %}
+                  <a href="{% get_media_prefix %}{{ resource.file }}" target="_blank">
+                  {% endif %}
+                      <img class="resource-item__img" src="{{ resource.image.url }}" />
+                      <p class="resource-item__category">
+                          {% resource category.grouper %}
+                      </p>
+                      <h5 class="resource-item__name">
+                          {{ resource|resource_name:request.LANGUAGE_CODE }}
+                      </h5>
+                      <p class="resource-item__summary">
+                          {{ resource|resource_summary:request.LANGUAGE_CODE }}
+                      </p>
+                  {% if resource.url or resource.file %}
+                  </a>
+                  {% endif %}
+              </li>
+          {% endfor %}
+          </ul>
+      </div>
+      {% endfor %}
+</div>
+{% endblock %}
+
+{% block page_scripts %}
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", ()=>{
+         var active_menu_item = document.querySelector('.main-menu__link--resources');
+         active_menu_item.classList.add('active');
+   });
+</script>
+{% endblock %}

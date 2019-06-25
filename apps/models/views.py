@@ -6,10 +6,12 @@ from django.http import HttpResponseRedirect, Http404
 from django.core.exceptions import PermissionDenied
 from django.contrib.auth.mixins import UserPassesTestMixin
 from django.shortcuts import get_object_or_404
+from django.views.generic.list import ListView
 # project
 from apps.utils.views import GenericCreate, GenericUpdate, GenericDelete
 from . import forms, models
 from .models import Initiative
+from .categories import RESOURCES
 
 # Model related templates
 
@@ -218,3 +220,7 @@ class EventDelete(GenericDelete):
 
   def get_success_url(self):
     return reverse_lazy('users:dashboard')
+
+class Resources(ListView):
+
+    model = models.Resource

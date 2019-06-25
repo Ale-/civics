@@ -1,0 +1,60 @@
+// Resources section
+@import columns_masonry
+
+body.resources
+  background: image-url('signin-bg.png') repeat #eae9e9
+  background-attachment: fixed
+
+.civics-resources__title
+  margin: 0 0 $m*2
+.civics-resources__text
+  font-size: 1.2em
+  margin-bottom: $m*1.5
+
+.civics-resources__section-title
+  color: #999
+  font-size: 1em
+  margin-top: 0
+  border-bottom: 1px dashed #999
+
+.civics-resources
+  top: 50px
+  margin: 0 auto
+  min-height: 100vh
+  width: 780px
+  max-width: 100%
+  background: white
+  padding: $m*2
+  +no_links($color_text)
+  +box-shadow(0 0 10px rgba(black, .25))
+  +clearfix
+
+.resources-list
+  +columns_masonry(1, 2, 2, 2, 'resource-item', 'few', $m/2)
+
+.resource-item
+  transition: background-color .2s ease
+  font-size: .85em
+  border-radius: 6px
+.resource-item:hover
+  background-color: #eee
+.resource-item__name
+  text-transform: uppercase
+  line-height: 1.1
+  margin: $m/4 0 $m/2
+.resource-item__category
+  font-size: .8em
+  color: #555
+  margin-top: $m/3
+.resource-item__summary:before
+  content: "\25A0"
+  display: inline-block
+  color: #dc5099
+  font-size: .7em
+  float: left
+  padding: 0 $m/3 $m/6 0
+.resource-item__edit
+  font-size: .8em
+  text-align: left
+  font-weight: bold
+  margin-bottom: $m/4

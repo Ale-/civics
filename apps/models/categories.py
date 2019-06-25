@@ -79,3 +79,11 @@ ODS = (
     ('16',_('Paz, justicia e instituciones sólidas')),
     ('17',_('Alianzas para lograr los objetivos')),
 )
+
+RESOURCES = (
+    ('0', _('Guías')),
+    ('1', _('Mapas')),
+    ('2', _('Señalética urbana')),
+    ('3', _('Forks de civics')),
+    ('4', _('Otras plataformas')),
+)

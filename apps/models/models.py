@@ -258,3 +258,73 @@ class Event(models.Model):
     if user.is_staff or (self.initiative and self.initiative.user and self.initiative.user == user):
         return True
     return False
+
+class Resource(models.Model):
+
+    name = models.CharField(
+        _('Nombre del recurso'),
+        max_length = 200,
+        blank=False,
+        null=True,
+    )
+    name_en = models.CharField(
+        _('Nombre del recurso en inglés'),
+        max_length = 200,
+        blank=False,
+        null=True,
+    )
+    name_pt = models.CharField(
+        _('Nombre del recurso en portugués'),
+        max_length = 200,
+        blank=False,
+        null=True,
+    )
+    category = models.CharField(
+        _('Tipo de recurso'),
+        blank=False,
+        null=False,
+        default='0',
+        max_length=2,
+        choices = categories.RESOURCES,
+    )
+    image = models.ImageField(
+        _("Imagen"),
+        blank=True,
+        validators=[validate_image_size, validate_image_type],
+        upload_to='images/resources',
+    )
+    file = models.FileField(
+        _("Archivo"),
+        blank=True,
+        upload_to='files/resources',
+    )
+    url = models.URLField(
+        _("Enlace"),
+        blank=True,
+        help_text=_('Si el recurso es un site externo puedes indicar la url aquí.')
+    )
+    summary = models.TextField(
+        _('Descripción corta del recurso'),
+        blank=False,
+        null=True,
+    )
+    summary_en = models.TextField(
+        _('Descripción corta del recurso [inglés]'),
+        blank=False,
+        null=True,
+    )
+    summary_pt = models.TextField(
+        _('Descripción corta del recurso [portugués]'),
+        blank=False,
+        null=True,
+    )
+
+    def __str__(self):
+        """String representation of this model objects."""
+        return self.name
+
+    def get_name(self, lang):
+        return self.name if lang==settings.LANGUAGE_CODE else getattr(self, 'name_'+lang)
+
+    def get_summary(self, lang):
+        return self.summary if lang==settings.LANGUAGE_CODE else getattr(self, 'summary_'+lang)
