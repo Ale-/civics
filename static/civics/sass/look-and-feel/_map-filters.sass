@@ -45,11 +45,12 @@
 [class^='map-filters__categories']
   text-align: left
   position: absolute
-  z-index: 10000
+  z-index: 12000
   left: 0
   outline: 1px solid rgba(black, .05)
   width: 100%
-  background-color: lighten(#ed61aa, 10%)
+  //background-color: lighten(#ed61aa, 10%)
+  background-color: rgba(#dedede, .95)
   display: none
   +breakpoint('md')
     width: 25%
@@ -255,3 +256,34 @@
     display: inherit
   .topic-filter
     display: none
+
+[class*='category-ods-']
+  display: none
+.showing-ods
+  [class*='category-topic-']
+    display: none
+  [class*='category-ods-']
+    display: inherit
+.map-filters__label--topic
+  float: left
+.map-filters__label--topic,
+.map-filters__label--ods
+  display: inline-block
+  position: relative
+  width: 50%
+.map-filters__label
+  font-weight: bold
+  // font-size: .9em
+.map-filters__label--topic span
+  opacity: 1
+.map-filters__label--ods span
+  opacity: .5
+.showing-ods
+  .map-filters__label--topic span
+    opacity: .5
+  .map-filters__label--ods span
+    opacity: 1
+.map-filters__label:not(:last-child)
+  border-right: 2px solid #dc5099
+.map-filters__label--topic
+  border-right: 0 !important

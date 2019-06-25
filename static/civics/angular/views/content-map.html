@@ -1,4 +1,5 @@
-<div class="map-wrapper" ng-class="{ 'showing-ods' : content.show_ods }">
+<div class="map-wrapper"
+     ng-class="{ 'showing-ods' : content.show_ods }">
     <!-- Map filters -->
     <div map-filters></div>
 
@@ -16,11 +17,6 @@
                  controls="content.controls" layers="content.layers">
                  <!-- Add custom control -->
                  <div leaflet-expand></div>
-                 <!--- ODS toggle -->
-                 <div class="ods-toggle" ng-click="content.show_ods = !content.show_ods">
-                     <span class="icon-ods">{{ 'ODS' | t }}</span>
-                     <span class="icon-ods-black">{{ 'ODS' | t }}</span>
-                 </div>
         </leaflet>
     </div>
 
