@@ -5,6 +5,7 @@ from django_countries import countries
 from django.core.exceptions import ValidationError
 from django.contrib.admin.widgets import FilteredSelectMultiple
 from django.urls import reverse_lazy
+from django.utils.text import slugify
 # custom
 from django.conf import settings
 from . import models, categories
@@ -24,8 +25,16 @@ class CityForm(forms.ModelForm):
         model = models.City
         fields = '__all__'
         widgets = {
-            'position'    : ReducedLeafletWidget(),
+            'position' : ReducedLeafletWidget(),
         }
+
+    def clean_name(self):
+        name   = self.cleaned_data['name']
+        cities = models.City.objects.all()
+        slugs = [ slugify(city.name) for city in cities ]
+        if slugify(name) in slugs:
+             raise forms.ValidationError(_('Ya existe una ciudad con ese nombre'))
+        return name
 
 class RelationsForm(forms.ModelForm):
     """Modelform to set relationships among initiatives"""
