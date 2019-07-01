@@ -6,29 +6,42 @@
   position: fixed
   left: 0
   top: 0
-  background: rgba(black, .75)
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAD0lEQVQImWNgQAX/yeAAAIHCA/0RE2WAAAAAAElFTkSuQmCC) repeat, rgba(black, .75)
   z-index: 99000
-  padding-top: $m
+  padding-top: $m*3
   cursor: pointer
   transition: opacity 1s ease
+  &:after
+    content: "\1F7A2"
+    position: absolute
+    top: $m/2
+    right: $m/2
+    color: white
+    font-size: 3em
+    display: inline-block
+    transform: rotate(45deg)
 .ods-popup.hidden
   display: block
   opacity: 0
   pointer-events: none
 .ods-popup__inner-wrapper
   width: 480px
+  max-width: 90%
   margin: 0 auto
   background: white
-  padding: $m
+  border-top: 4px solid #ed61aa
+  border-bottom: 4px solid #ed61aa
+  padding: $m/2
   box-shadow: 0 0 10px rgba(black, .75)
 .ods-popup__header
-  width: 50%
+  width: 90%
   margin: 0 auto $m
 .ods-popup__content
   margin-bottom: $m
+  font-size: .95em
 .sdg-icons
   text-align: center
   display: flex
   flex-flow: row wrap
-.sdg-icons__item
-  flex: 0 0 16.66%
+// .sdg-icons__item
+//   flex: 0 0 14.28%

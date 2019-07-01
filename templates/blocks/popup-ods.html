@@ -17,17 +17,7 @@
             discriminación alguna. Vincula el tuyo!!
             {% endblocktrans %}
             </p>
-            <div class="ods-popup__footer">
-                <ul class="sdg-icons">
-                    {% for i in 17|get_range %}
-                        {% with 'ods/'|addstr:forloop.counter|add:'.png' as url %}
-                        <li class="sdg-icons__item">
-                            <img class="sdg-icon" src="{% img url %}" />
-                        </li>
-                        {% endwith %}
-                    {% endfor %}
-                </ul>
-            </div>
+            
         </div>
     </div>
 </div>
