@@ -46,15 +46,13 @@
     color: $color_text !important
 
   &:after
-    content: "➢"
-    color: rgba(black, .5)
-    font-size: 4em
+    content: url('../img/south.svg')
+    width: $m*2
+    height: $m*2
+    opacity: .5
     position: absolute
     z-index: 11000
-    font-weight: bold
-    bottom: $m
-    transform: rotate(-90deg)
-    font-family: sans-serif
+    bottom: $m*2
 
 //Map clusters
 .prunecluster
