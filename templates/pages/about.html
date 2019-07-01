@@ -54,6 +54,24 @@
                 </p>
             </div>
         </div>
+        <div class="civics-about__ethic-code">{% blocktrans trimmed %}
+            <h5>Código ético y de convivencia en el proyecto CIVICS</h5>
+            <ul>
+                <li>No se aceptan iniciativas que fomenten expresiones de odio
+                o intolerancia en temas de género, raza, etnia, posición social,
+                orientación sexual, religiosa, o de procedencia.</li>
+                <li>El registro es libre y te facilita que el sistema cree un panel
+                de organización de actividades, temática de la iniciativa,
+                para poder ser modificable por el propio usuario.</li>
+            </ul>
+        {% endblocktrans %}</div>
+        {% url 'privacy' as contact_url %}
+        <div class="civics-about__privacy">{% blocktrans trimmed %}
+            <h5>Política de privacidad</h5>
+            <p>Puedes leer nuestra política de privacidad en la página enlazada
+            a continuación:</p>
+            <a href="{{ contact_url }}">Política de privacidad de civics.cc</a>
+        {% endblocktrans %}</div>
         <div class="civics-about__faq">
             <h5 class="civics-about__faq-title">
                 {% trans 'FAQ' %}
@@ -74,24 +92,6 @@
                 {% endfor %}
             </ul>
         </div>
-        <div class="civics-about__ethic-code">{% blocktrans trimmed %}
-            <h5>Código ético y de convivencia en el proyecto CIVICS</h5>
-            <ul>
-                <li>No se aceptan iniciativas que fomenten expresiones de odio
-                o intolerancia en temas de género, raza, etnia, posición social,
-                orientación sexual, religiosa, o de procedencia.</li>
-                <li>El registro es libre y te facilita que el sistema cree un panel
-                de organización de actividades, temática de la iniciativa,
-                para poder ser modificable por el propio usuario.</li>
-            </ul>
-        {% endblocktrans %}</div>
-        {% url 'privacy' as contact_url %}
-        <div class="civics-about__privacy">{% blocktrans trimmed %}
-            <h5>Política de privacidad</h5>
-            <p>Puedes leer nuestra política de privacidad en la página enlazada
-            a continuación:</p>
-            <a href="{{ contact_url }}">Política de privacidad de civics.cc</a>
-        {% endblocktrans %}</div>
         <div class="civics-about__credits">
             {% trans 'Proyecto impulsado por:' %}
             <div class="civics-about__logos">
