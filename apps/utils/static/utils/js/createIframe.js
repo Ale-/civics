@@ -19,11 +19,8 @@
                break;
 
                case 'www.youtube.com':
-                   var resource = '';
-                   if(uri.indexOf('?v=')>-1)
-                      resource = uri.split('?v=')[1];
-                   else if (uri.indexOf('&v=')>-1)
-                      resource = uri.split('&v=')[1];
+                   var url = new URL(url);
+                   var resource = url.searchParams.get("v");
                    return '<iframe src="https://www.youtube.com/embed/' + resource + '" width="' + width + '" height="' + height + '" \
                            frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>';
                break;

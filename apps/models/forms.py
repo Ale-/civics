@@ -95,8 +95,8 @@ class InitiativeForm(forms.ModelForm):
 
     def clean_video(self):
         video = self.cleaned_data['video']
-        if video and (not video.startswith('https://www.youtube.com') or not video.startswith('https://vimeo.com')):
-             raise forms.ValidationError(_('Las urls admitidas empiezan por "https://www.youtube.com" o "https://vimeo.com"'))
+        if video and not(video.startswith('https://www.youtube.com') or video.startswith('https://vimeo.com') or video.startswith('https://youtu.be')):
+             raise forms.ValidationError(_('Las urls admitidas empiezan por "https://www.youtube.com", "https://youtu.be" o "https://vimeo.com"'))
         return video
 
     def clean(self):
