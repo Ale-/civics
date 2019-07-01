@@ -25,26 +25,26 @@
             </ul>
         </li>
         <li class="map-filters__filter--{{content.section}}">
+            <p class="map-filters__label map-filters__label--ods" ng-click="content.show_ods=!content.show_ods">
+              <span class="icon-ods"></span>
+              <span class="map-filters__filter-name">{{ 'ODS'|t }}</span>
+            </p>
             <p class="map-filters__label map-filters__label--topic" ng-click="content.show_ods=!content.show_ods">
                 <span class="icon-topic"></span>
                 <span class="map-filters__filter-name">{{'Temática'|t}}</span>
             </p>
-            <p class="map-filters__label map-filters__label--ods" ng-click="content.show_ods=!content.show_ods">
-                <span class="icon-ods"></span>
-                <span class="map-filters__filter-name">{{ 'ODS'|t }}</span>
-            </p>
             <ul class="map-filters__categories--{{content.section}} map-filters__categories--topics">
+                <li class="map-filters__category category-ods-{{key}}"
+                  ng-repeat="(key,name) in content.ods"
+                  ng-click="content.toggleFilter('ods', key)"
+                  ng-class="{ 'active' : content.active_legend_items['ods'][key] }">
+                  [{{ key }}] {{ name|t }}
+                </li>
                 <li class="map-filters__category category-topic-{{key}}"
                     ng-repeat="(key,name) in content.topics"
                     ng-click="content.toggleFilter('topics', key)"
                     ng-class="{ 'active' : content.active_legend_items['topics'][key] }">
                     {{ name|t }}
-                </li>
-                <li class="map-filters__category category-ods-{{key}}"
-                    ng-repeat="(key,name) in content.ods"
-                    ng-click="content.toggleFilter('ods', key)"
-                    ng-class="{ 'active' : content.active_legend_items['ods'][key] }">
-                    [{{ key }}] {{ name|t }}
                 </li>
             </ul>
         </li>
