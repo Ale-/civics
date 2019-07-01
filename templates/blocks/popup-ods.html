@@ -1,0 +1,34 @@
+{# SDG popup in angular app #}
+{% load utils i18n %}
+
+<div class="ods-popup hidden">
+    <div class="ods-popup__inner-wrapper">
+        <div class="ods-popup__content">
+            <figure class="ods-popup__header">
+                <img src="{% img 'ods/ods-civics__wheel.png' %}" />
+            </figure>
+            <p class="ods-popup__content">
+            {% blocktrans trimmed %}
+            Ya puedes vincular tu iniciativa ciudadana a los <strong>Objetivos
+            de Desarrollo Sostenible (ODS)</strong> de la Agenda 2030. Un acuerdo
+            entre Estados que contó con la participación de la sociedad civil y
+            que está basado en 17 Objetivos relacionados con la reducción de la
+            desigualdad, el cuidado del medio ambiente o el distrute de derechos sin
+            discriminación alguna. Vincula el tuyo!!
+            {% endblocktrans %}
+            </p>
+            <div class="ods-popup__footer">
+                <ul class="sdg-icons">
+                    {% for i in 17|get_range %}
+                        {% with 'ods/'|addstr:forloop.counter|add:'.png' as url %}
+                        <li class="sdg-icons__item">
+                            <img class="sdg-icon" src="{% img url %}" />
+                        </li>
+                        {% endwith %}
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="{% js 'ods-popup.js' %}"></script>

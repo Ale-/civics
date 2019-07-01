@@ -1,0 +1,34 @@
+// ODS popup
+
+.ods-popup
+  width: 100vw
+  min-height: 100vh
+  position: fixed
+  left: 0
+  top: 0
+  background: rgba(black, .75)
+  z-index: 11000
+  padding-top: $m
+  cursor: pointer
+  transition: opacity 1s ease
+.ods-popup.hidden
+  display: block
+  opacity: 0
+  pointer-events: none
+.ods-popup__inner-wrapper
+  width: 480px
+  margin: 0 auto
+  background: white
+  padding: $m
+  box-shadow: 0 0 10px rgba(black, .75)
+.ods-popup__header
+  width: 50%
+  margin: 0 auto $m
+.ods-popup__content
+  margin-bottom: $m
+.sdg-icons
+  text-align: center
+  display: flex
+  flex-flow: row wrap
+.sdg-icons__item
+  flex: 0 0 16.66%
