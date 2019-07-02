@@ -1,47 +1,32 @@
 // ODS popup
 
 .ods-popup
-  width: 100vw
-  min-height: 100vh
-  position: fixed
+  width: 480px
   left: 0
-  top: 0
-  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAD0lEQVQImWNgQAX/yeAAAIHCA/0RE2WAAAAAAElFTkSuQmCC) repeat, rgba(black, .75)
+  top: $m*2.25
+  height: calc(100vh - #{$m*2.25})
   z-index: 99000
+  position: absolute
   padding-top: $m*3
   cursor: pointer
-  transition: opacity 1s ease
+  transition: left 1.5s ease
+  padding: $m
+  background: white
   &:after
     content: "\1F7A2"
     position: absolute
-    top: $m/2
-    right: $m/2
-    color: white
-    font-size: 3em
+    top: $m
+    right: $m
+    color: #dc5099
+    font-size: 2em
     display: inline-block
     transform: rotate(45deg)
 .ods-popup.hidden
   display: block
-  opacity: 0
-  pointer-events: none
-.ods-popup__inner-wrapper
-  width: 480px
-  max-width: 90%
-  margin: 0 auto
-  background: white
-  border-top: 4px solid #ed61aa
-  border-bottom: 4px solid #ed61aa
-  padding: $m/2
-  box-shadow: 0 0 10px rgba(black, .75)
+  left: -480px
 .ods-popup__header
   width: 90%
   margin: 0 auto $m
 .ods-popup__content
   margin-bottom: $m
   font-size: .95em
-.sdg-icons
-  text-align: center
-  display: flex
-  flex-flow: row wrap
-// .sdg-icons__item
-//   flex: 0 0 14.28%

@@ -9,6 +9,7 @@
 document.addEventListener("DOMContentLoaded", function()
 {
     var popup = document.querySelector('.ods-popup');
+    var map = document.querySelector('.map-container');
     var first_time = !(localStorage.getItem('sdg_popup_firsttime') == 'false');
     if(first_time){
         popup.classList.remove('hidden');
