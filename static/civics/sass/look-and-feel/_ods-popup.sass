@@ -1,19 +1,24 @@
 // ODS popup
 
 .ods-popup
-  width: 480px
+  width: 100vw
   left: 0
-  top: $m*2.25
+  top: 0
   height: calc(100vh - #{$m*2.25})
   z-index: 99000
   position: absolute
-  padding-top: $m*3
   cursor: pointer
   transition: left 1.5s ease
-  padding: $m
+
+.ods-popup__inner-wrapper
+  width: 480px
   background: white
+  margin-top: $m*2.25
+  padding: $m
+  height: calc(100vh - #{$m*2.25})
+  position: relative
   &:after
-    content: "\1F7A2"
+    content: "+"
     position: absolute
     top: $m
     right: $m
@@ -23,7 +28,7 @@
     transform: rotate(45deg)
 .ods-popup.hidden
   display: block
-  left: -480px
+  left: -100vw
 .ods-popup__header
   width: 90%
   margin: 0 auto $m
