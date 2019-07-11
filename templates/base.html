@@ -33,6 +33,8 @@
     </head>
 
     <body class="{% if user.is_authenticated %}logged-in{% endif %} {% if user.is_staff %}staff-user{% endif %} {% block body_classes %}{% endblock %} {% block layout_classes %}{% endblock %}">
+        {# Cookie consent popup #}
+        {% include 'blocks/cookie-consent.html' %}
 
         {# Toolbar #}
         {% include 'regions/toolbar.html' with region_name="toolbar" html_container="div" layout="fluid" %}

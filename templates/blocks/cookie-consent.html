@@ -1,0 +1,25 @@
+{# SDG popup in angular app #}
+{% load utils i18n %}
+
+<template id="cookies-popup">
+    <div class="cookies-popup">
+        <div class="cookies-popup__content">
+            <p class="cookies-popup__text">
+            {% blocktrans trimmed %}
+            Este sitio usa <a href='//matomo.org' target="_blank">Matomo</a> para analizar
+            el tráfico y ayudarnos a mejorar la experiencia de usuario.
+            Procesamos tu dirección IP en una cookie que permanece en tu navegador por
+            13 meses. Estos datos sólo son procesados por nosotros y en ningún caso se
+            comparten con terceros. Lee nuestra <a href="">Política de Privacidad</a> si quieres
+            saber más.
+            {% endblocktrans %}
+            </p>
+            <input id="cookie-consent"
+                   type="submit"
+                   value="{% trans 'Aceptar y continuar' %}"
+            >
+            </input>
+        </div>
+    </div>
+</template>
+<script type="text/javascript" src="{% js 'cookies-popup.js' %}"></script>

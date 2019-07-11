@@ -1,0 +1,36 @@
+// Cookies popup
+
+.cookies-popup
+  width: 400px
+  position: fixed
+  font-size: .8em
+  font-family: $font_text
+  right: $m
+  bottom: $m
+  background-color: #222
+  color: white
+  padding: $m
+  text-align: justify
+  border-radius: 8px
+  a
+    transition: color .2s ease
+  a:link, a:visited
+    color: #dc5099
+  a:hover
+    color: #ed61aa
+  a:active
+    color: #dc5099
+
+#cookie-consent
+  display: block
+  width: 50%
+  margin: $m auto 0
+  background-color: #dc5099
+  border: 0
+  font-weight: bold
+  text-transform: uppercase
+  padding: $m/2
+  border-radius: 4px
+  transition: background-color .2s ease
+  &:hover
+    background-color: darken(#dc5099, 10%)
