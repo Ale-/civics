@@ -29,6 +29,7 @@
         <link href="{% css 'style.css' %}" rel="stylesheet">
         {# Block for the extension of base head, to include css/js libraries #}
         {% block page_header %}{% endblock %}
+        {% include 'blocks/matomo-script.html' %}
     </head>
 
     <body class="{% if user.is_authenticated %}logged-in{% endif %} {% if user.is_staff %}staff-user{% endif %} {% block body_classes %}{% endblock %} {% block layout_classes %}{% endblock %}">
@@ -57,20 +58,5 @@
             content.style.display = 'block';
             header.style.display = 'block';
         </script>
-        <!-- Matomo -->
-        <script type="text/javascript">
-          var _paq = _paq || [];
-          /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
-          _paq.push(['trackPageView']);
-          _paq.push(['enableLinkTracking']);
-          (function() {
-            var u="//analytics.wwb.cc/";
-            _paq.push(['setTrackerUrl', u+'piwik.php']);
-            _paq.push(['setSiteId', '3']);
-            var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-            g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
-          })();
-        </script>
-        <!-- End Matomo Code -->
     </body>
 </html>
