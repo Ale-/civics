@@ -60,9 +60,9 @@ class InitiativeEdit(GenericUpdate):
   def get_success_url(self):
     return reverse_lazy('users:dashboard')
 
-  # def form_valid(self, form):
-  #   form.instance.user = self.request.user
-  #   return super(InitiativeEdit, self).form_valid(form)
+  def form_valid(self, form):
+    form.instance.user = self.request.user
+    return super(InitiativeEdit, self).form_valid(form)
 
   def get_context_data(self, **kwargs):
     """Pass context data to generic view."""
