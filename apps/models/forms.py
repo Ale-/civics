@@ -6,6 +6,7 @@ from django.core.exceptions import ValidationError
 from django.contrib.admin.widgets import FilteredSelectMultiple
 from django.urls import reverse_lazy
 from django.utils.text import slugify
+from django.contrib.auth.models import User
 # custom
 from django.conf import settings
 from . import models, categories
@@ -91,6 +92,7 @@ class InitiativeForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         self.base_fields['video'].widget.attrs['placeholder'] = _("Por ejemplo 'https://vimeo.com/45130145'")
         self.base_fields['main_ods'].empty_label = _("Escoge un ODS")
+        self.base_fields['user'].queryset = User.objects.all().order_by('username')
         super(InitiativeForm, self).__init__(*args, **kwargs)
 
     def clean_video(self):
