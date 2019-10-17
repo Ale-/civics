@@ -153,7 +153,7 @@
         <ul class="initiative-info__relations-items">
             <li class="initiative-info__relations-item" ng-repeat="i in info.marker.rel">
                 <div class="leaflet-marker-icon cm">
-                    <i class='outer i-to-{{ i.topics }} i-ag-{{ i.agents }}'></i>
+                    <i class='outer i-ods-{{ i.ods }} i-to-{{ i.topics }} i-ag-{{ i.agents }}'></i>
                     <i class='inner i-sp-{{ i.spaces }}'></i>
                 </div>
                 <p class="initiative-info__relations-item-name" ng-click="info.openRelatedInfo(i.id)">

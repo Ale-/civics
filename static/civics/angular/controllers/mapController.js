@@ -300,7 +300,7 @@ angular.module('civics.map_controller', [])
             initiative.classList.remove('related');
         })
         // Highlight current marker
-        var marker   = document.querySelector('.cm--' + args.id);
+        var marker = document.querySelector('.cm--' + args.id);
         marker.classList.add('featured');
         // Highlight related
         for(var i in args.rel){
@@ -318,13 +318,12 @@ angular.module('civics.map_controller', [])
                     [args.lat, args.lng],
                     [args.rel[i].lat, args.rel[i].lng]
                 ], {
-                    dashArray : [10, 5],
-                    color: '#ed61aa',
-                    weight: 2,
-                    opacity: .9,
+                    dashArray : [15, 5],
+                    color: '#111111',
+                    weight: 3,
+                    opacity: .75,
                 }).addTo(this.relations);
             }
-
         }));
     }));
 

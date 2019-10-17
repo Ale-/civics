@@ -184,12 +184,13 @@
   font-size: .8em
 .initiative-info__relations-label
   text-transform: uppercase
-  margin: 0 0 $m/3
-  border-bottom: 2px dashed #dc5099
+  margin: 0 0 $m/2
 .initiative-info__relations .leaflet-marker-icon.cm
   text-align: left
   float: left
   +transform(scale(.75))
+.initiative-info__relations .outer::before
+  text-shadow: none !important
 .initiative-info__relations-item
   clear: both
   +transition(background-color, .2s ease)
@@ -199,7 +200,7 @@
 .initiative-info__relations-item-name
   padding: $m*.75 $m $m $m*2
 .initiative-info__relations-desc
-  padding: $m/2
+  padding: $m/2 0
 
 .initiative-info__ods
   margin-bottom: $m

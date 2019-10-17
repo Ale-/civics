@@ -306,6 +306,7 @@ def initiative_service(request):
         'topics' : i.topic.lower(),
         'agents' : i.agent.lower(),
         'spaces' : i.space.lower(),
+        'ods'    : i.main_ods.category if i.main_ods else None,
         'lng'    : i.position['coordinates'][0],
         'lat'    : i.position['coordinates'][1],
     } for i in initiative.initiatives.all() ]
