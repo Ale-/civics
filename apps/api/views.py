@@ -324,6 +324,7 @@ def initiative_service(request):
         'ema' : initiative.email,
         'twi' : initiative.twitter,
         'fac' : initiative.facebook,
+        'ins' : initiative.instagram,
         'url' : initiative.external_url,
         'rel' : relations,
         'cities' : cityname,

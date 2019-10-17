@@ -42,10 +42,11 @@
             {% include 'forms/field.html' with field=form.position %}
         </div>
     </div>
-    <div class="fieldset--inline">
+    <div class="fieldset--four-col">
         {% include 'forms/field.html' with field=form.website %}
         {% include 'forms/field.html' with field=form.twitter %}
         {% include 'forms/field.html' with field=form.facebook %}
+        {% include 'forms/field.html' with field=form.instagram %}
     </div>
     {% if request.user.is_staff %}
         <div class="fieldset--one-col">
