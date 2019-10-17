@@ -69,12 +69,13 @@ class City(models.Model):
       return self.name
 
   class Meta:
+    ordering = ('name',)
     verbose_name = _('Ciudad')
     verbose_name_plural = _('Ciudades')
 
   def __str__(self):
     """String representation of this model objects."""
-    return self.name or '---'
+    return "%s [%s]" % (self.name, self.id) or '---'
 
 
 #

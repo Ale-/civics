@@ -28,7 +28,7 @@ class InitiativeAdmin(LeafletGeoAdmin):
   model = models.Initiative
   ordering = ('name',)
   list_display = ('name', 'creation_date', 'city', 'topic', 'space', 'agent', 'featured')
-  list_filter  = ('featured', 'topic', 'space', 'agent')
+  list_filter  = ('featured', 'topic', 'space', 'agent', 'city')
   actions      = [unfeature, feature]
 
   def get_action_choices(self, request):
@@ -57,7 +57,13 @@ class EventAdmin(LeafletGeoAdmin):
 class CityAdmin(LeafletGeoAdmin):
   model = models.City
   ordering = ('country', 'name')
-  list_display = ('name', 'country')
+  list_display = ('name_id', 'country', 'initiatives')
+
+  def name_id(self, obj):
+      return "%s [%s]" % (obj.name, obj.id)
+
+  def initiatives(self, obj):
+      return models.Initiative.objects.filter(city=obj).count()
 
   def get_action_choices(self, request):
     """
