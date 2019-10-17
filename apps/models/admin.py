@@ -56,13 +56,14 @@ class EventAdmin(LeafletGeoAdmin):
 # Initiative Admin Form
 class CityAdmin(LeafletGeoAdmin):
   model = models.City
-  ordering = ('country', 'name')
-  list_display = ('name_id', 'country', 'initiatives')
+  ordering = ('name',)
+  list_display = ('nombre', 'country', 'iniciativas_asociadas')
+  list_filter  = ('country',)
 
-  def name_id(self, obj):
+  def nombre(self, obj):
       return "%s [%s]" % (obj.name, obj.id)
 
-  def initiatives(self, obj):
+  def iniciativas_asociadas(self, obj):
       return models.Initiative.objects.filter(city=obj).count()
 
   def get_action_choices(self, request):
