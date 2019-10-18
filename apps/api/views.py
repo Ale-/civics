@@ -1,10 +1,9 @@
 # python
-import json
-import math
-from datetime import date
-from datetime import datetime
+import json, csv, math
+from datetime import date, datetime
 
 # django
+from django.utils.translation import ugettext_lazy as _
 from django.conf import settings
 from django.shortcuts import render, get_object_or_404
 from django.utils.translation import ugettext_lazy as _
@@ -154,33 +153,119 @@ def initiatives_service_xls(request):
     wb.save(response)
     return response
 
-def events_service_xls(request):
-    import xlwt
+def initiatives_service_csv(request):
 
-    topics     = request.GET.get('topics').split(',')[0:-1];
-    activities = request.GET.get('activities').split(',')[0:-1];
-    agents     = request.GET.get('agents').split(',')[0:-1];
+    query = Q()
 
-    events = Event.objects.all()
+    topics = request.GET.get('topics').split(',')[0:-1]
     if len(topics) > 0:
-        events = events.filter(topic__in=topics)
-    if len(activities) > 0:
-        events = events.filter(activity__in=activities)
+        query = query & Q(topic__in=topics)
+    spaces = request.GET.get('spaces').split(',')[0:-1]
+    if len(spaces) > 0:
+        query = query & Q(space__in=spaces)
+    agents = request.GET.get('agents').split(',')[0:-1]
     if len(agents) > 0:
-        events = events.filter(agent__in=agents)
+        query = query & Q(agent__in=agents)
+    cities = request.GET.get('cities').split(',')[0:-1]
+    if len(cities) > 0:
+        query = query & Q(city__in=cities)
 
-    response = HttpResponse(content_type='application/ms-excel')
-    filename = 'eventos-civics__' + date.today().isoformat() + '.xls'
+    initiatives = Initiative.objects.filter(query)
+
+    response = HttpResponse(content_type='text/csv')
+    filename = 'iniciativas-civics__' + date.today().isoformat() + '.csv'
     response['Content-Disposition'] = 'attachment; filename=' + filename
 
-    wb = xlwt.Workbook(encoding='utf-8')
-    ws = wb.add_sheet("Initiatives")
-    ezxf = xlwt.easyxf
+    writer = csv.writer(response)
+
+    writer.writerow(["CIVICS.CC # " + date.today().strftime("%d/%m/%Y")])
+    count = str(initiatives.count()) + " iniciativas encontradas en las categorías: "
+    topics_keys = dict(TOPICS)
+    spaces_keys = dict(SPACES)
+    agents_keys = dict(AGENTS)
+    for topic in topics:
+        if topic:
+            count += str(topics_keys[topic]) + " · "
+    for space in spaces:
+        if space:
+            count += str(spaces_keys[space]) + " · "
+    for agent in agents:
+        if agent:
+            count += str(agents_keys[agent]) + " · "
+    writer.writerow([count])
+
+    header = [
+        _("Nombre de la iniciativa"),
+        _("Descripción"),
+        _("Temática"),
+        _("Espacio"),
+        _("Agente"),
+        _("ODS principal"),
+        _("Otros ODS"),
+        _("Facebook"),
+        _("Twitter"),
+        _("Web"),
+        _("Ciudad"),
+        _("País"),
+        _("Latitud"),
+        _("Longitud"),
+        _("Fecha de creación"),
+    ]
+    if request.user.is_staff:
+        header.append(_("Email"))
+    writer.writerow(header)
+
+    for initiative in initiatives:
+        row = [
+            initiative.name,
+            initiative.description.strip(),
+            initiative.get_topic_display(),
+            initiative.get_space_display(),
+            initiative.get_agent_display(),
+            initiative.main_ods.category if initiative.main_ods else "",
+            ", ".join([ i.category for i in initiative.other_ods.all() ]),
+            initiative.facebook,
+            initiative.twitter,
+            initiative.website,
+            initiative.city.name if initiative.city else "None",
+            initiative.city.get_country_display() if initiative.city else "None",
+            initiative.position['coordinates'][0],
+            initiative.position['coordinates'][1],
+            initiative.creation_date.strftime("%d/%m/%Y"),
+        ]
+        if request.user.is_staff:
+            row.append( initiative.email )
+
+        writer.writerow(row)
+
+    return response
+
+def events_service_xls(request):
+    query = Q()
+
+    topics = request.GET.get('topics').split(',')[0:-1]
+    if len(topics) > 0:
+        query = query & Q(topic__in=topics)
+    activities = request.GET.get('activities').split(',')[0:-1]
+    if len(activities) > 0:
+        query = query & Q(space__in=spaces)
+    agents = request.GET.get('agents').split(',')[0:-1]
+    if len(agents) > 0:
+        query = query & Q(agent__in=agents)
+    cities = request.GET.get('cities').split(',')[0:-1]
+    if len(cities) > 0:
+        query = query & Q(city__in=cities)
+
+    events = Event.objects.filter(query)
+
+    response = HttpResponse(content_type='text/csv')
+    filename = 'eventos-civics__' + date.today().isoformat() + '.csv'
+    response['Content-Disposition'] = 'attachment; filename=' + filename
+
+    writer = csv.writer(response)
 
     # Write headers
-    count_style = ezxf('font: bold on, name monospace, height 320')
-    ws.write(0, 0, "CIVICS.CC # " + date.today().strftime("%d/%m/%Y"), count_style)
-    count_style = ezxf('font: bold off, name monospace, height 240')
+    writer.writerow(["CIVICS.CC # " + date.today().strftime("%d/%m/%Y")])
     count = str(events.count()) + " eventos encontrados en las categorías: "
     topics_keys = dict(TOPICS)
     activities_keys = dict(ACTIVITIES)
@@ -195,41 +280,23 @@ def events_service_xls(request):
         if agent:
             count += str(agents_keys[agent]) + " · "
 
-    ws.write(1, 0, count, count_style)
-    ws.row(0).height_mismatch = True
-    ws.row(1).height_mismatch = True
-    ws.row(0).height = 368
-    ws.row(1).height = 368
+    writer.writerow([count])
 
-    row_num = 4
-    columns = [
-        (u"Título", 12000),
-        (u"Iniciativa promotora", 12000),
-        (u"Fecha", 6000),
-        (u"Resumen", 25600),
-        (u"Temática", 12000),
-        (u"Actividad", 12000),
-        (u"Agente", 12000),
-        (u"Ciudad", 6000),
-        (u"Latitud", 4000),
-        (u"Longitud", 4000),
-        (u"Fecha de creación", 6000),
-    ]
+    writer.writerow([
+        _("Título"),
+        _("Iniciativa promotora"),
+        _("Fecha"),
+        _("Resumen"),
+        _("Temática"),
+        _("Actividad"),
+        _("Agente"),
+        _("Ciudad"),
+        _("Latitud"),
+        _("Longitud"),
+        _("Fecha de creación"),
+    ])
 
-    xlwt.add_palette_colour("header_background", 0x21)
-    wb.set_colour_RGB(0x21, 50, 50, 50)
-    headers_style = ezxf('font: bold on, color white, name monospace, height 200; align: wrap on, horz center, vert center; borders: bottom thin, top thin; pattern: pattern solid, fore_colour header_background')
-
-    for col_num in range(len(columns)):
-        ws.write(row_num, col_num, columns[col_num][0], headers_style)
-        ws.col(col_num).width = columns[col_num][1]
-        ws.row(row_num).height_mismatch = True
-        ws.row(row_num).height = 368
-
-    firstcol_style = ezxf('font: height 200, name monospace, bold on; align: wrap on, vert center, horiz center')
-    cell_style = ezxf('font: height 200, name monospace, bold off; align: wrap on, vert center, horiz center')
     for event in events:
-        row_num += 1
         row = [
             event.title,
             event.initiative.name,
@@ -244,17 +311,8 @@ def events_service_xls(request):
             event.creation_date.strftime("%d/%m/%Y"),
         ]
         # Initiative name
-        ws.write(row_num, 0, row[0], firstcol_style)
-        for col_num in range(1, len(row)):
-            content = row[col_num]
-            ws.write(row_num, col_num, row[col_num], cell_style)
+        writer.writerow(row)
 
-        content_length = len( event.description )
-        characters_per_line = 100
-        ws.row(row_num).height_mismatch = True
-        ws.row(row_num).height = max(math.ceil(content_length/characters_per_line * 480), 480)
-
-    wb.save(response)
     return response
 
 def autocomplete_service(request):

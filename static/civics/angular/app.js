@@ -18,7 +18,7 @@ angular.module('civics', [
     'civics.initiatives_service',
     'civics.events_service',
     'civics.featured_service',
-    'civics.xls_downloader',
+    'civics.downloader',
     'civics.map_controller',
     'civics.list_controller',
     'civics.featured_controller',

@@ -1,16 +1,16 @@
-angular.module('civics.xls_downloader', [])
+angular.module('civics.downloader', [])
 
-.service('XlsDownloader', function(){
+.service('Downloader', function(){
 
     /**
      *   Download XLS with filtered initiatives
      */
-    this.get = function(section, selected_categories){
+    this.get = function(format, section, selected_categories){
 
         // Check section and build base URL for the query
-        var base_url = "/api/initiatives_xls?topics=";
+        var base_url = "/api/initiatives_" + format + "?topics=";
         if(section == 'events')
-            base_url = "/api/events_xls?topics=";
+            base_url = "/api/events_" + format + "?topics=";
 
         // Build url
         for(var i in selected_categories.topics){

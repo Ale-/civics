@@ -4,7 +4,7 @@
     <div class="legend-help"
          ng-init="show_legend=false">
         <span class="legend-help__icon icon-info"
-              ng-click="content.show_help = !content.show_help; content.sharing_url=false">
+              ng-click="content.showHelpModal()">
         </span>
     </div>
     <div class="map-actions__actions">
@@ -32,18 +32,47 @@
            ng-if="content.section == 'events'">
            <span class="icon-star"></span>
         </a>
-        <a ng-click="content.download_xls()" class="map-actions__action--download icon-download"
-            title="{{'Descargar la vista en XLS'|t}}">
-        </a>
-        <span class="map-actions__action--share icon-share" ng-class="{ 'active' : content.sharing_url }"
-              ng-click="content.shareUrl()" ng-if="content.format == 'map'">
+        <span
+          class="map-actions__action--download icon-download"
+          ng-class="{ 'active' : content.download_modal_visible }"
+          ng-click="content.showDownloadModal()"
+          title="{{'Descargar la vista'|t}}">
         </span>
-        <div class="share-url" ng-show="content.sharing_url">
-            <span class="share-url__close" ng-click="content.sharing_url=false">×</span>
+        <div
+          class="map-actions-popup map-actions-popup--download"
+          ng-show="content.download_modal_visible"
+        >
+            <span
+              class="map-actions-popup__close"
+              ng-click="content.download_modal_visible=false"
+            >
+                ×
+            </span>
+            <ul class="map-actions-popup__links">
+                <li class="map-actions-popup__links-item icon-download">
+                    <span ng-click="content.download('xls')">
+                        {{ 'Descargar la vista en XLS' | t }}
+                    </span>
+                </li>
+                <li class="map-actions-popup__links-item icon-download">
+                    <span ng-click="content.download('csv')">
+                        {{ 'Descargar la vista en CSV' | t }}
+                    </span>
+                </li>
+            </ul>
+        </div>
+        <span
+          class="map-actions__action--share icon-share"
+          ng-class="{ 'active' : content.sharing_url }"
+          ng-click="content.shareUrl()"
+          ng-if="content.format == 'map'">
+        </span>
+        <div class="map-actions-popup map-actions-popup--share" ng-show="content.sharing_url">
+            <span class="map-actions-popup__close" ng-click="content.sharing_url=false">×</span>
             <p class="share-url__text">
                 {{ 'Puedes usar este enlace para compartir la vista actual del mapa' | t}}:
             </p>
-            <input class="share-url__link" value="{{ content.shared_url }}" />
+            <input class="map-actions-popup__share-link" value="{{ content.shared_url }}" />
         </div>
         <div class="map-actions__help-tip arrow-up arrow-left"
              ng-click="content.show_help = false"
@@ -52,7 +81,7 @@
              <ul>
                  <li><span class="icon-list"></span> {{ 'Ver contenido en formato lista' | t }}</li>
                  <li><span class="icon-star"></span> {{ 'Ver contenido destacado' | t }}</li>
-                 <li><span class="icon-download"></span> {{ 'Descargar vista actual en formato Excel' | t }}</li>
+                 <li><span class="icon-download"></span> {{ 'Descargar vista actual en formato XLS o CSV' | t }}</li>
                  <li><span class="icon-share"></span> {{ 'Generar un enlace para compartir la vista actual' | t }}</li>
                  <li><span class="icon-layers"></span> {{ 'Cambiar la capa base del mapa' | t }}</li>
                  <li><span class="icon-expand"></span> {{ 'Volver a la vista inicial de todo el contenido' | t }}</li>
@@ -65,7 +94,7 @@
              <ul>
                  <li><span class="icon-map"></span> {{ 'Ver contenido en formato mapa' | t }}</li>
                  <li><span class="icon-star"></span> {{ 'Ver contenido destacado' | t }}</li>
-                 <li><span class="icon-download"></span> {{ 'Descargar vista actual en formato Excel' | t }}</li>
+                 <li><span class="icon-download"></span> {{ 'Descargar vista actual en formato XLS o CSV' | t }}</li>
              </ul>
         </div>
     </div>

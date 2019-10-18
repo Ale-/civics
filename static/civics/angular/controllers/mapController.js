@@ -1,6 +1,6 @@
 angular.module('civics.map_controller', [])
 
-.controller("MapController", function($scope, Settings, Initiatives, Categories, leafletData, items, meta, DateRanger, XlsDownloader, $route, $location)
+.controller("MapController", function($scope, Settings, Initiatives, Categories, leafletData, items, meta, DateRanger, Downloader, $route, $location)
 {
     /**
      *  Map setup
@@ -122,6 +122,7 @@ angular.module('civics.map_controller', [])
 
     // Popup states
     this.sharing_url = false;
+    this.download_modal_visible = false;
     this.show_help = false;
 
     /**
@@ -249,12 +250,13 @@ angular.module('civics.map_controller', [])
     }
 
     /**
-     *   Download XLS with filtered initiatives
+     *   Download filtered initiatives
      */
-    this.download_xls = function(){
-        XlsDownloader.get(this.section, this.selected_categories);
+    this.download = function(format){
+        Downloader.get(format, this.section, this.selected_categories);
         this.sharing_url = false;
         this.show_help = false;
+        this.download_modal_visible = false;
     }
 
 
@@ -269,6 +271,7 @@ angular.module('civics.map_controller', [])
 
     this.shareUrl = function(){
         this.sharing_url = !this.sharing_url;
+        this.download_modal_visible = false;
         this.show_help = false;
         if(this.sharing_url) {
             var base_url = $location.absUrl().split("?")[0];
@@ -283,6 +286,18 @@ angular.module('civics.map_controller', [])
                 }
             }
         }
+    }
+
+    this.showDownloadModal = function(){
+        this.download_modal_visible = !this.download_modal_visible;
+        this.sharing_url = false;
+        this.show_help = false;
+    }
+
+    this.showHelpModal = function(){
+        this.show_help = !this.show_help;
+        this.download_modal_visible = false;
+        this.sharing_url = false;
     }
 
     $scope.$on('open-marker', angular.bind(this, function(event, args){
