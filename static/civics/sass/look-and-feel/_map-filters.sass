@@ -266,11 +266,12 @@
     display: inherit
 .map-filters__label--ods
   float: left
-.map-filters__label--topic,
-.map-filters__label--ods
+.map-filters__label--ods,
+.map-filters__filter--initiatives .map-filters__label--topic
   display: inline-block
   position: relative
   width: 50%
+  
 .map-filters__label
   font-weight: bold
   // font-size: .9em
@@ -284,6 +285,6 @@
   .map-filters__label--ods span
     opacity: 1
 .map-filters__label:not(:last-child)
-  border-right: 2px solid #dc5099
+  border-right: 2px solid rgba(black, .1)
 .map-filters__label--ods
   border-right: 0 !important

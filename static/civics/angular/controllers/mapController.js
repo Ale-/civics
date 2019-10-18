@@ -40,7 +40,7 @@ angular.module('civics.map_controller', [])
     this.count    = meta.count;
     this.section  = meta.showing;
     this.format   = 'map';
-    this.show_ods = true;
+    this.show_ods = this.section == 'initiatives';
 
     // A state to reflect if clusters are fully enabled in current view
     // Map declusters when it reaches the given zoom threshold
