@@ -7,19 +7,12 @@
 .lang-switcher
   width: $m
   font-size: .8em
-  +breakpoint('xs')
-    position: fixed
-    right: $m*2.5
-    top: $m/2
-    z-index: 100000
-  +breakpoint('sm')
-    +inline-block
-    float: right
-    position: relative
-    margin-left: $m
-    bottom: 30px
-    text-align: inherit
-    padding-bottom: inherit
+  position: fixed
+  right: $m*2.5
+  top: $m/2
+  z-index: 100000
+  +breakpoint('md')
+    right: $m
   &:after
     content: "⌄"
     position: absolute

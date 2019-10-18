@@ -3,7 +3,7 @@ angular.module('civics.list_controller', [])
 /**
  *   Controller for list displays
  */
-.controller("ListController", function(items, Categories, meta, $scope, $rootScope, $http, DateRanger, XlsDownloader)
+.controller("ListController", function(items, Categories, meta, $scope, $rootScope, $http, DateRanger, Downloader)
 {
 
     /**
@@ -225,7 +225,7 @@ angular.module('civics.list_controller', [])
      */
     this.download_xls = function(){
         this.show_help = false;
-        XlsDownloader.get(this.section, this.selected_categories);
+        Downloader.get(this.section, this.selected_categories);
     }
 
     $scope.$on('open-marker', angular.bind(this, function(){
