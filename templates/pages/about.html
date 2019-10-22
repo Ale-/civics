@@ -4,7 +4,11 @@
 
 {% block main %}
     <div class="civics-about">
-        <object class="civics-logo--about" data="{% static 'civics/img/logo-civics.svg' %}"></object>
+        <div class="civics-about__logos">
+            <img class="civics-about__logo" src="{% img 'logos/vic.jpg' %}" />
+            <img class="civics-about__logo" src="{% img 'logos/segib.png' %}" />
+            <img class="civics-about__logo" src="{% img 'logos/aragon.png' %}" />
+        </div>
         <p class="civics-about__text">{% blocktrans trimmed %}
           Son miles las vecinas y vecinos que trabajan de forma colectiva para
           construir una ciudad más habitable, sostenible, inclusiva y participativa.
@@ -93,12 +97,6 @@
             </ul>
         </div>
         <div class="civics-about__credits">
-            {% trans 'Proyecto impulsado por:' %}
-            <div class="civics-about__logos">
-                <img class="civics-about__logo" src="{% img 'logos/vic.jpg' %}" />
-                <img class="civics-about__logo" src="{% img 'logos/segib.png' %}" />
-                <img class="civics-about__logo" src="{% img 'logos/aragon.png' %}" />
-            </div>
             {% trans 'Con la colaboración de:' %}
             <div class="civics-about__logos">
                 {% for i in 60|get_range %}
