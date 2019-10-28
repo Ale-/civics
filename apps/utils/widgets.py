@@ -34,7 +34,6 @@ class GeocodedLeafletWidget(forms.widgets.Textarea):
     def __init__(self, attrs=None, submit_text='Localiza los datos introducidos', provider='google', sources=None, key=None):
         self.submit_text = submit_text
         self.provider    = provider
-        self.sources     = sources
         self.key         = key
         super(GeocodedLeafletWidget, self).__init__(attrs)
 
@@ -51,7 +50,6 @@ class GeocodedLeafletWidget(forms.widgets.Textarea):
         """Render widget"""
         attrs['class'] = 'geocode-widget__geometry'
         attrs['data-provider'] = self.provider
-        attrs['data-sources']  = self.sources
         attrs['data-key']      = self.key
         parent_widget = super(GeocodedLeafletWidget, self).render(name, value, attrs )
         geocode = render_to_string("geocoded-leaflet-widget.html", {

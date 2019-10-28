@@ -62,11 +62,26 @@ function Geocoder(map, marker, geometry_field)
          }
      };
      this.nominatim = {
-         api      : function(params){
-             return  "http://nominatim.openstreetmap.org/search/" + encodeURIComponent(address);
+         api : function(params){
+             var address = params.address.trim();
+             address.replace(/ /g, "+");
+             return  "https://nominatim.openstreetmap.org/search?q=" + address + "&format=json";
+
          },
-         callback : function(results){
-             return;
+         callback : function(response){
+             var data = JSON.parse(response);
+             var lat = data[0]['lat'];
+             var lng = data[0]['lon'];
+             if(marker){
+                 map.removeLayer(marker);
+             }
+             marker = L.marker([lat, lng], { 'draggable' : true });
+             marker.on('dragend', function(e){
+                 var latlng = e.target.getLatLng();
+                 geometry_field.value = coords_to_geojson(latlng.lat, latlng.lng);
+             });
+             map.addLayer(marker).setView([lat, lng], 12);
+             geometry_field.value = coords_to_geojson(lat, lng);
          }
      };
  }
@@ -100,16 +115,7 @@ function Geocoder(map, marker, geometry_field)
             trigger.addEventListener('click', function(e)
             {
                 e.stopPropagation();
-                var address = '';
-                var sources = geometry_field.dataset.sources.split(' ');
-                sources.forEach( function(source){
-                    var el = document.getElementById(source);
-                    if(el.tagName == 'INPUT')
-                        address += el.value;
-                    else if(el.tagName == 'SELECT')
-                        address += el.options[el.selectedIndex].innerHTML;
-                    address += ", "
-                });
+                var address = widget.querySelector('#geocode-widget__input').value;
                 var provider = geometry_field.dataset.provider;
                 var key      = widget.querySelector("textarea").dataset.key;
                 get(geocoder[provider].api({

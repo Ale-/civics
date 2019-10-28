@@ -67,14 +67,23 @@ class RelationsForm(forms.ModelForm):
         return cleaned_initiatives
 
 
+class CityField(GroupedModelChoiceField):
+
+     def label_from_instance(self, obj):
+         return obj.name
+
 class InitiativeForm(forms.ModelForm):
     """Generic modelform to create and update Initiative objects"""
 
-    city = GroupedModelChoiceField(queryset=models.City.objects.order_by('country', 'name'),
-                                   label=_('Ciudad'),
-                                   help_text=_('Ciudad donde se encuentra la iniciativa. Si no encuentras la ciudad en el desplegable usa el botón inferior para añadirla.'),
-                                   group_by_field='country', group_label=group_label,
-                                   empty_label=" ", widget = SelectOrAddWidget(view_name='modelforms:create_city_popup', link_text=_("Añade una ciudad")))
+    city = CityField(
+       queryset=models.City.objects.order_by('country', 'name'),
+       label=_('Ciudad'),
+       help_text=_('Ciudad donde se encuentra la iniciativa. Si no encuentras la ciudad en el desplegable usa el botón inferior para añadirla.'),
+       group_by_field='country',
+       group_label=group_label,
+       empty_label=" ",
+       widget = SelectOrAddWidget(view_name='modelforms:create_city_popup', link_text=_("Añade una ciudad"))
+    )
 
     class Meta:
         model   = models.Initiative
@@ -83,11 +92,8 @@ class InitiativeForm(forms.ModelForm):
             'video'       : VideoWidget(width=640, height=360),
             'image'       : PictureWithPreviewWidget(),
             'description' : LimitedTextareaWidget(limit=500),
+            'position'    : GeocodedLeafletWidget(submit_text=_('Localiza la dirección'), provider="nominatim")
         }
-        if hasattr(settings, 'GEOCODER_API_KEY'):
-            widgets['position'] = GeocodedLeafletWidget(submit_text=_('Localiza la dirección'), provider="google", sources="id_address id_city", key=settings.GEOCODER_API_KEY)
-        else:
-            widgets['position'] = ReducedLeafletWidget()
 
     def __init__(self, *args, **kwargs):
         self.base_fields['video'].widget.attrs['placeholder'] = _("Por ejemplo 'https://vimeo.com/45130145'")

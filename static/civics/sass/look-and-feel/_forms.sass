@@ -149,3 +149,24 @@
 
 input[name=image]
   margin-top: 0
+
+
+// Adjustements to geocode widget
+.geocode-widget__search
+  position: absolute
+  bottom: $m*2
+  left: $m
+  z-index: 110000
+  &:before
+    content: "\1F50D"
+    font-family: sans-serif
+    margin-right: $m/3
+
+#geocode-widget__input
+  margin: 0 !important
+
+#geocode-widget__input,
+.geocode-widget__geocode-submit
+  height: $m*2
+.geocode-widget__geocode-submit
+  line-height: $m*2

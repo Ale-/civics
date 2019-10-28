@@ -2,5 +2,8 @@
 <div class="geocode-widget">
     {{ parent_widget }}
     <div id="geocode-widget__map" class="geocode-widget__map"></div>
-    <p class="geocode-widget__geocode-submit">{% trans submit_text %}</p>
+    <div class="geocode-widget__search">
+        <input id="geocode-widget__input"></input>
+        <p class="geocode-widget__geocode-submit">{% trans submit_text %}</p>
+    </div>
 </div>
