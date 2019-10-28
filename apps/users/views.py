@@ -1,13 +1,18 @@
 # django
+from django.utils.translation import ugettext_lazy as _
 from django.shortcuts import render
 from django.views import View
 from django.contrib.sites.shortcuts import get_current_site
 from django.http import HttpResponseRedirect
-from django.core.urlresolvers import reverse
+from django.core.urlresolvers import reverse, reverse_lazy
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
 from django.utils.decorators import method_decorator
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic.edit import DeleteView
+from django.contrib.auth.models import User
+from django.contrib import messages
+from django.core.mail import send_mail
 # contrib
 from registration.views import ActivationView as BaseActivationView
 from registration.models import RegistrationProfile
@@ -25,7 +30,7 @@ class Dashboard(LoginRequiredMixin, View):
     """
 
     def get(self, request):
-        google_client_id = settings.GOOGLE_CLIENT_ID 
+        google_client_id = settings.GOOGLE_CLIENT_ID
         initiatives = Initiative.objects.filter(user=request.user).order_by('name')
         if initiatives:
             events      = Event.objects.filter(initiative__in=initiatives).all()
@@ -65,3 +70,28 @@ class ActivationView(BaseActivationView):
 
     def get_success_url(self, user):
         return ('modelforms:create_initiative', (), {})
+
+class UserDelete(DeleteView):
+
+    model = User
+    template_name = 'users/user_confirm_delete.html'
+    success_url = reverse_lazy('users:thanks')
+
+    def delete(self, request, *args, **kwargs):
+        messages.success(self.request, _('Tu cuenta ha sido cancelada'))
+        pk = request.user.pk
+        mail = User.objects.get(pk=pk).email
+        send_mail(
+            _('Tu cuenta en civics.cc ha sido cancelada'),
+            _('Te confirmamos que la cuenta '
+              'asociada a este correo en civics.cc ha sido borrada con éxito. '
+              'Este es un correo automático. No lo respondas.'
+             ),
+            'no-reply@civics.cc',
+            [mail]
+        )
+        return super(UserDelete, self).delete(request, *args, **kwargs)
+
+    def get_object(self):
+        pk = self.request.user.pk
+        return User.objects.get(pk=pk)

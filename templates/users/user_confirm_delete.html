@@ -1,0 +1,24 @@
+{# Staff user dashboard #}
+{% extends 'layouts/single-fluid-column.html' %}
+{% load utils i18n %}
+{% block body_classes %}signout{% endblock %}
+
+
+{% block main %}
+    {% trans 'Signout' as page_title %}
+    <form class="user-delete-form" action="" method="POST">
+        {% csrf_token %}
+        <p class="user-delete-form__text">
+        {% blocktrans trimmed %}
+        ¿Estás seguro de que quieres cancelar tu cuenta?
+        Esta acción no se puede deshacer y borrará a tu usuario y a todo el
+        contenido asociado al mismo.
+        {% endblocktrans %}
+        </p>
+        {{ form }}
+        <input type="submit" value="{% trans 'Cancela mi cuenta' %}"></input>
+        <a href="{% url 'users:dashboard' %}">
+            {% trans 'Volver atrás' %}
+        </a>
+    </form>
+{% endblock %}

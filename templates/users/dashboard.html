@@ -10,6 +10,9 @@
 
 {% block main %}
     {% trans 'Mi perfil' as page_title %}
+    <a href="{% url 'users:signout' 'me' %}" class="user-delete">
+        {% trans 'Cancelar mi usuario' %}
+    </a>
     {% include 'pages/title.html' with title=page_title %}
     <div class="dashboard-left">
         <div class="dashboard-left__left">

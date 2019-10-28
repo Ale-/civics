@@ -14,14 +14,28 @@
 .dashboard,
 .dashboard-staff
   .page-title
-    text-align: center
     text-transform: uppercase
     font-size: 1.25rem
     margin-bottom: $m*2
-    &:before
-      content: "- "
-    &:after
-      content: " -"
+    margin-left: $m
+    border-bottom: 1px solid $color_text
+    width: calc(100% - #{$m*2})
+
+.user-delete
+  float: right
+  margin-right: $m
+  position: relative
+  top: 16px
+  font-size: .8em
+  text-transform: uppercase
+  color: #333
+  transition: opacity .2s ease
+  &:before
+    content: "\1f7a8"
+    font-family: sans-serif
+    color: #d00
+  &:hover
+    opacity: .75
 
 .dashboard,
 .dashboard-staff

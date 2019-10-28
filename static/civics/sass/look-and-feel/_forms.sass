@@ -170,3 +170,22 @@ input[name=image]
   height: $m*2
 .geocode-widget__geocode-submit
   line-height: $m*2
+
+//User delete form
+.user-delete-form
+  width: 480px
+  max-width: 100%
+  text-align: center
+  margin: 0 auto
+  +generic_form
+.user-delete-form__text
+  margin: $m 0
+  font-size: 1.25em
+  &:before
+    content: "\1f7a8"
+    font-size: 5em
+    display: block
+    color: #d00
+.user-delete-form a
+  color: inherit
+  text-transform: uppercase
