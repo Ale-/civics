@@ -28,7 +28,7 @@ no_results = _("No se han encontrado resultados que cumplan con todas las condic
 def initiatives_service(request):
     cities = City.objects.annotate(num_refs=Count('initiative')).filter(num_refs__gt=5)
     initiatives = Initiative.objects.filter(city__in=cities).select_related()
-    return JsonResponse(CivicsJSONSerializer().serialize(initiatives, fields=('name', 'position', 'image', 'city', 'topic', 'agent', 'space', 'main_ods')), safe=False)
+    return JsonResponse(CivicsJSONSerializer().serialize(initiatives, fields=('name', 'position', 'image', 'city', 'topic', 'agent', 'space', 'main_ods', 'initiatives')), safe=False)
 
 def events_service(request):
     cities = City.objects.annotate(num_initiatives=Count('initiative')).filter(num_initiatives__gt=5)

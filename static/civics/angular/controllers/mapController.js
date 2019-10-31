@@ -300,6 +300,9 @@ angular.module('civics.map_controller', [])
         this.sharing_url = false;
     }
 
+    var featured_nodes = document.querySelectorAll('.featured');
+    var related_nodes  = document.querySelectorAll('.related');
+
     $scope.$on('open-marker', angular.bind(this, function(event, args){
         this.sharing_url = false;
         this.show_help = false;
@@ -307,38 +310,45 @@ angular.module('civics.map_controller', [])
         // Fade all markers
         this.highlight_markers = true;
         // If there's any selected marker unselect it and its related initiatives
-        var featured = document.querySelector('.cm.featured');
-        if(featured)
-          featured.classList.remove('featured');
-        var related = document.querySelectorAll('.cm.related');
-        if(related) related.forEach( function(initiative){
-            initiative.classList.remove('related');
-        })
+        if(featured_nodes.length>0){
+            featured_nodes.forEach(function(marker){
+                marker.classList.remove('featured')
+            });
+        }
+        if(related_nodes.length>0){
+            related_nodes.forEach( function(marker){
+                marker.classList.remove('related');
+            });
+        };
         // Highlight current marker
         var marker = document.querySelector('.cm--' + args.id);
         marker.classList.add('featured');
-        // Highlight related
-        for(var i in args.rel){
-            var id = args.rel[i].id;
-            var m  = document.querySelector('.cm--' + id);
-            if(m)
-                m.classList.add('related');
-        }
+        var relations_network = Initiatives.getRelations(args.id);
+        relations_network.forEach(function(i){
+            var id = i[2];
+            marker = document.querySelector('.cm--' + id);
+            marker.classList.add('related');
+
+        });
+        featured_nodes = document.querySelectorAll('.featured');
+        related_nodes  = document.querySelectorAll('.related');
         // Draw lines
         leafletData.getMap("civics-map").then(angular.bind(this, function(map)
         {
             this.relations.clearLayers();
-            for(var i in args.rel){
-                var line =  new L.Polyline([
-                    [args.lat, args.lng],
-                    [args.rel[i].lat, args.rel[i].lng]
-                ], {
-                    dashArray : [15, 5],
-                    color: '#111111',
-                    weight: 3,
-                    opacity: .75,
-                }).addTo(this.relations);
-            }
+            relations_network.forEach(function(i)
+            {
+              var line = new L.Polyline([
+                  i[0],
+                  i[1],
+              ], {
+                  dashArray : [15, 5],
+                  color: '#111111',
+                  weight: i[2] == args.id ? 3.5 : 1.25,
+                  opacity: .75,
+              });
+              line.addTo(this.relations);
+            }, this);
         }));
     }));
 

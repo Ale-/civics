@@ -125,6 +125,32 @@ angular.module('civics.initiatives_service', [])
         }
     };
 
+    // Get relations tree of a given initiatiave
+    initiatives.getRelations = function(id){
+        var items = initiatives_data.get('initiatives');
+        var marker = items.filter(i=>i.pk==id)[0];
+        var markers = [];
+        var visited_ids = [];
+        var relations = [];
+        while(marker){
+            visited_ids.push(marker.pk);
+            var marker_relations = marker.initiatives;
+            marker_relations.forEach(id=>{
+                var related_marker = items.filter(i=>i.pk==id)[0];
+                if( visited_ids.indexOf(id) == -1 ){
+                    markers.push(related_marker);
+                    relations.push([
+                      JSON.parse(marker.position).coordinates.reverse(),
+                      JSON.parse(related_marker.position).coordinates.reverse(),
+                      marker.pk
+                    ]);
+                }
+            });
+            marker = markers.shift();
+        }
+        return relations;
+    }
+
     return initiatives;
 
 });
