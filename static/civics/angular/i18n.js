@@ -67,6 +67,7 @@ angular.module('civics.i18n', [])
           'Pasadas' : 'Passado',
           'Filtra por fecha' : 'Filtrar por data',
           //services/Categories.js
+          'COVID-19' : 'COVID-19',
           'Desarrollo comunitario' : 'Desenvolvimento Comunitário',
           'Arte urbano' : 'Arte urbana',
           'Cultura libre' : 'Cultura livre',
@@ -105,7 +106,7 @@ angular.module('civics.i18n', [])
           'Audiovisual' : 'Audiovisual',
           'Curso / Convocatoria' : 'Curso / Chamada',
           'Digital' : 'Digital',
-          'Encuentro' : 'Encontro',
+          'Acción' : 'Ação',
           'Evento' : 'Evento',
           'Exposicion' : 'Exposição',
           'Fiesta / Concierto' : 'Festa / Concerto',
@@ -203,6 +204,7 @@ angular.module('civics.i18n', [])
             'Pasadas' : 'Past',
             'Filtra por fecha' : 'Filter by date',
             //services/Categories.js
+            'COVID-19' : 'COVID-19',
             'Desarrollo comunitario' : 'Community development',
             'Arte urbano' : 'Urban art',
             'Cultura libre' : 'Free culture',
@@ -241,7 +243,7 @@ angular.module('civics.i18n', [])
             'Audiovisual' : 'Audiovisual',
             'Curso / Convocatoria' : 'Course / Call',
             'Digital' : 'Digital',
-            'Encuentro' : 'Meeting',
+            'Acción' : 'Action',
             'Evento' : 'Event',
             'Exposicion' : 'Exhibition',
             'Fiesta / Concierto' : 'Gig',

@@ -3,6 +3,7 @@ angular.module('civics.categories_service', [])
 .factory('Categories', function(){
 
     this.topics = {
+      'co': 'COVID-19',
       'dc': 'Desarrollo comunitario',
       'au': 'Arte urbano',
       'cl': 'Cultura libre',
@@ -50,7 +51,7 @@ angular.module('civics.categories_service', [])
       'au': 'Audiovisual',
       'cu': 'Curso / Convocatoria',
       'di': 'Digital',
-      'en': 'Encuentro',
+      'en': 'Acción',
       'ev': 'Evento',
       'ex': 'Exposicion',
       'fi': 'Fiesta / Concierto',

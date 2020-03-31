@@ -5,6 +5,7 @@ The different categories used by the Models of Civics
 """
 
 TOPICS = (
+    ('CO', _('COVID-19')),
     ('DC', _('Desarrollo comunitario')),
     ('AU', _('Arte urbano')),
     ('CL', _('Cultura libre')),
@@ -42,7 +43,7 @@ ACTIVITIES = (
     ('AU', _('Audiovisual')),
     ('CU', _('Curso / Convocatoria')),
     ('DI', _('Digital')),
-    ('EN', _('Encuentro')),
+    ('EN', _('Acción')),
     ('EV', _('Evento')),
     ('EX', _('Exposicion')),
     ('FI', _('Fiesta / Concierto')),
