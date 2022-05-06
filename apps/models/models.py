@@ -129,7 +129,7 @@ class Initiative(models.Model):
                              help_text=_("Tras añadir ciudad y dirección puedes ubicar la iniciativa pulsando el botón inferior y ajustando la posición del marcador posteriormente."))
   # ODS
   main_ods      = models.ForeignKey(ODS, verbose_name=_('Objetivo de desarrollo sostenible principal'), blank=True, null=True,
-                                    help_text=_('Indícanos que Objetivo de Desarrollo Sostenible (ODS) crees que cumple o trabaja principalmente tu iniciativa.'))
+                                    help_text=_('Indícanos que Objetivo de Desarrollo Sostenible (ODS) crees que cumple o trabaja principalmente tu iniciativa.'), on_delete=models.SET_NULL)
   other_ods     = models.ManyToManyField(ODS, verbose_name=_('Otros ODS'), blank=True, related_name='initiatives',
                                     help_text=_('Indícanos otros Objetivos de Desarrollo Sostenible (ODS) con los que también trabaja tu iniciativa (máximo 3). Puedes deseleccionar y hacer selecciones múltiples usando el ratón con la tecla Ctrl pulsada (Command en MAC)'))
 
@@ -200,7 +200,7 @@ class Event(models.Model):
   """Model to represent Event objects"""
 
   initiative   = models.ForeignKey(Initiative, verbose_name=_("Iniciativa que organiza la actividad"), blank=True, null=True,
-                                   help_text=_('¿Qué iniciativa organiza el evento?'))
+                                   help_text=_('¿Qué iniciativa organiza el evento?'), on_delete=models.SET_NULL)
   title        = models.CharField(_('Título del evento'), max_length = 200, blank=False, null=True,
                                   help_text=_('¿Cuál es el título del evento que quieres organiza?'))
   featured     = models.BooleanField(_('Destacado'), blank=True, default=False,
