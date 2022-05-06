@@ -212,7 +212,7 @@ angular.module('civics.map_controller', [])
             if(city) {
                 this.selected_categories[category].push(parseInt(subcategory));
                 this.selected_tabs.push({ 'k' : category, 'v': subcategory, 'n' : city.name });
-                _map.setView(city.coords, 10);
+                _map.setView(city.coords, 12);
             } else {
                 this.selected_categories[category].push(subcategory);
                 this.selected_tabs.push({ 'k' : category, 'v': subcategory, 'n' : Categories[category][subcategory] });
