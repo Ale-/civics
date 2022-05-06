@@ -26,12 +26,12 @@ from apps.models.forms import EventForm
 no_results = _("No se han encontrado resultados que cumplan con todas las condiciones de filtrado.")
 
 def initiatives_service(request):
-    cities = City.objects.annotate(num_refs=Count('initiative')).filter(num_refs__gt=5)
+    cities = City.objects.annotate(num_refs=Count('initiative')).filter(num_refs__gt=3)
     initiatives = Initiative.objects.filter(city__in=cities).select_related()
     return JsonResponse(CivicsJSONSerializer().serialize(initiatives, fields=('name', 'position', 'image', 'city', 'topic', 'agent', 'space', 'main_ods', 'initiatives')), safe=False)
 
 def events_service(request):
-    cities = City.objects.annotate(num_initiatives=Count('initiative')).filter(num_initiatives__gt=5)
+    cities = City.objects.annotate(num_initiatives=Count('initiative')).filter(num_initiatives__gt=3)
     events = Event.objects.filter(city__in=cities).select_related()
     return JsonResponse(CivicsJSONSerializer().serialize(events, fields=('title', 'position', 'image', 'thumbnail', 'image', 'city', 'topic', 'agent', 'category', 'date', 'expiration')), safe=False)
 
@@ -556,7 +556,7 @@ def cities_with_initiatives(request):
     Get cities related to initiatives
     """
 
-    cities = City.objects.annotate(num_refs=Count('initiative')).filter(num_refs__gt=5)
+    cities = City.objects.annotate(num_refs=Count('initiative')).filter(num_refs__gt=3)
     response = {}
     for city in cities:
         response[city.pk] = {
@@ -573,7 +573,7 @@ def cities_with_events(request):
     Get cities related to events
     """
 
-    cities = City.objects.annotate(num_initiatives=Count('initiative'), num_events=Count('event')).filter(num_initiatives__gt=5, num_events__gt=1)
+    cities = City.objects.annotate(num_initiatives=Count('initiative'), num_events=Count('event')).filter(num_initiatives__gt=3, num_events__gt=1)
     response = {}
     for city in cities:
         response[city.pk] = {
