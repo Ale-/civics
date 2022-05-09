@@ -37,6 +37,9 @@ DOCUMENT_DESCRIPTION = _('Aquí podrás encontrar iniciativas ciudadanas existen
 # Sites conf
 SITE_ID = 1
 
+# honeypot
+HONEYPOT_FIELD_NAME = 'website'
+
 #
 # Application definition
 #
@@ -54,6 +57,8 @@ CONTRIB_APPS = [
     'djgeojson',
     'imagekit',
     'django_countries',
+    'captcha',
+    'honeypot'
 ]
 
 PROJECT_APPS = [

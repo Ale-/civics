@@ -1,4 +1,4 @@
-{# Template to render a modelform #} {% load i18n %}
+{# Template to render a modelform #} {% load i18n honeypot %}
 
 {% if form.errors and not form.non_field_errors %}
     <p class="form-errors">
@@ -27,5 +27,6 @@
             {% endfor %}
         </div>
     {% endwith %}
+    {% render_honeypot_field "website" %}
     <input class="form__submit" type="submit" value="{{ submit_text }}" />
 </form>

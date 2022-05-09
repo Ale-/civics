@@ -1,5 +1,6 @@
 # Import django apps
 from django.conf.urls import url, include
+from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
@@ -10,9 +11,9 @@ from django.conf.urls.i18n import i18n_patterns
 from django.views.i18n import JavaScriptCatalog
 from django.views.defaults import page_not_found
 # Import contrib apps
-from registration.forms import RegistrationFormUniqueEmail
 from registration.backends.default.views import RegistrationView
 # Import custom apps
+from apps.users.forms import RegistrationFormCaptcha
 from apps.users.views import ActivationView
 from apps.models.views import Resources
 
@@ -21,6 +22,7 @@ urlpatterns = [
     url(r'^i18n/', include('django.conf.urls.i18n')),
     url(r'^api/', include('apps.api.urls')),
     url(r'^jsi18n/', JavaScriptCatalog.as_view(), name='javascript-catalog'),
+    path('captcha/', include('captcha.urls')),
 ]
 
 urlpatterns += i18n_patterns(
@@ -34,7 +36,7 @@ urlpatterns += i18n_patterns(
 
     # Registration URLs
     url(r'^activate/(?P<activation_key>\w+)/$', ActivationView.as_view(), name='registration_activate'),
-    #url(r'^registrate/$', RegistrationView.as_view(form_class=RegistrationFormUniqueEmail), name="registration_register"),
+    url(r'^registrate/$', RegistrationView.as_view(form_class=RegistrationFormCaptcha), name="registration_register"),
     url(r'^register/$', RedirectView.as_view(permanent=False, url='/registrate' ), name="registration_register_404"),
     url(r'^me-olvide-el-pass', auth_views.PasswordResetView.as_view(), name='password_reset'),
     url(r'^confirma-pass/(?P<uidb64>[0-9A-Za-z]+)-(?P<token>.+)/$', auth_views.PasswordResetConfirmView.as_view(), name="password_reset_confirm"),

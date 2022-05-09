@@ -6,9 +6,9 @@
     <p class="field__label--{{ fieldname }}">
         {{ field.label }}
     </p>
-    <p class="field__help--{{ fieldname }}">
+    <div class="field__help--{{ fieldname }}">
         {{ field.help_text | safe }}
-    </p>
+    </div>
     {% if field.errors %}
     <ul class="field__errors--{{ fieldname }}">
         {% for error in field.errors %}
