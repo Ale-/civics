@@ -18,6 +18,8 @@ from .validators import ImageTypeValidator, ImageSizeValidator, AttachedFileVali
 from .utils import RenameCivicsImage
 
 
+app_name = 'modelforms'
+
 # Bound methods moved from model to avoid problems with serialization in migrations
 
 validate_image_size     = ImageSizeValidator({ 'min_width' : 600, 'min_height' : 300, 'max_width' : 1920, 'max_height' : 1280 })

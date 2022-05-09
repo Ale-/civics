@@ -2,6 +2,8 @@ from django.conf.urls import url, include
 from apps.models.models import Initiative
 from . import views
 
+app_name = 'api'
+
 urlpatterns = [
     url(r'^initiative$', views.initiative_service, name='get_initiative'),
     url(r'^initiatives$', views.initiatives_service, name='get_initiatives'),

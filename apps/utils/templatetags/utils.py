@@ -52,7 +52,7 @@ def remove_i18n_prefix(value):
 def check_file(value):
     return value and os.path.isfile(settings.MEDIA_ROOT + "/" + value.name)
 
-@register.assignment_tag
+@register.simple_tag(takes_context=True)
 def FAQ():
     return [
         'what', 'where', 'for',
