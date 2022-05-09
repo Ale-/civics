@@ -9,7 +9,7 @@ angular.module('civics.categories_service', [])
       'cl': 'Cultura libre',
       'ds': 'Deporte / Salud / Cuidados',
       'id': 'Igualdad / Derechos / Memoria',
-      'ec': 'Ecología / Consumo',
+      'ec': 'Medioambiente',
       'oe': 'Otras economías',
       'ee': 'Educación expandida',
       'ct': 'Ciencia / Tecnología',
