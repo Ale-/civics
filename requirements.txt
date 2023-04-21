@@ -22,5 +22,5 @@ pyparsing==2.2.0
 python-magic==0.4.13
 pytz==2022.1
 six==1.10.0
-sqlparse==0.4.2
+sqlparse==0.4.4
 xlwt==1.2.0
